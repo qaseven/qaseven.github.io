@@ -1,0 +1,492 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>前端测试进化论2 | seven qi blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="seven">
+    
+
+    
+    <meta name="description" content="前端测试进化论2=============
+说完了，前端技术的发展史，那么对应的前端测试发展史也随之发展。
+石器时代——纯手工测试早期的页面基本都是静态化的页面，只有几个链接或者图片，那么相对测试工作量不大，只需要我们打开页面查看加载是否正确。
+铁器时代–xunit到了javascript时代，随着其他语言xunit 风靡天下,js 也出现了它的xunit 框架。
+Jsunit，以往在测试js的时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端测试进化论2">
+<meta property="og:url" content="http://yoursite.com/2016/01/26/前端测试进化论2/index.html">
+<meta property="og:site_name" content="seven qi blog">
+<meta property="og:description" content="前端测试进化论2=============
+说完了，前端技术的发展史，那么对应的前端测试发展史也随之发展。
+石器时代——纯手工测试早期的页面基本都是静态化的页面，只有几个链接或者图片，那么相对测试工作量不大，只需要我们打开页面查看加载是否正确。
+铁器时代–xunit到了javascript时代，随着其他语言xunit 风靡天下,js 也出现了它的xunit 框架。
+Jsunit，以往在测试js的时">
+<meta property="og:image" content="http://yoursite.com/image/JASMINE.png">
+<meta property="og:image" content="http://yoursite.com/image/KARMA.png">
+<meta property="og:image" content="http://yoursite.com/image/MOCHA.png">
+<meta property="og:updated_time" content="2016-01-27T04:52:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端测试进化论2">
+<meta name="twitter:description" content="前端测试进化论2=============
+说完了，前端技术的发展史，那么对应的前端测试发展史也随之发展。
+石器时代——纯手工测试早期的页面基本都是静态化的页面，只有几个链接或者图片，那么相对测试工作量不大，只需要我们打开页面查看加载是否正确。
+铁器时代–xunit到了javascript时代，随着其他语言xunit 风靡天下,js 也出现了它的xunit 框架。
+Jsunit，以往在测试js的时">
+
+    
+    <link rel="alternative" href="/atom.xml" title="seven qi blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="seven qi blog" title="seven qi blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="seven qi blog">seven qi blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/01/26/前端测试进化论2/" title="前端测试进化论2" itemprop="url">前端测试进化论2</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="seven" target="_blank" itemprop="author">seven</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-26T10:01:07.000Z" itemprop="datePublished"> 發表於 2016-01-26</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u524D_u7AEF_u6D4B_u8BD5_u8FDB_u5316_u8BBA2"><span class="toc-number">1.</span> <span class="toc-text">前端测试进化论2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u77F3_u5668_u65F6_u4EE3_u2014_u2014_u7EAF_u624B_u5DE5_u6D4B_u8BD5"><span class="toc-number">1.1.</span> <span class="toc-text">石器时代——纯手工测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u94C1_u5668_u65F6_u4EE3_u2013xunit"><span class="toc-number">1.2.</span> <span class="toc-text">铁器时代–xunit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5DE5_u4E1A_u9769_u547D_u2013ajax_u6D41_u884C"><span class="toc-number">1.3.</span> <span class="toc-text">工业革命–ajax流行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TDD_u7684_u65F6_u4EE3_u6765_u4E34_QUnit_u6846_u67B6_u7248_u672C"><span class="toc-number">1.3.1.</span> <span class="toc-text">TDD的时代来临 QUnit框架版本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u73B0_u4EE3_u5316_u6280_u672F-BBD"><span class="toc-number">1.4.</span> <span class="toc-text">现代化技术-BBD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u524D_u7AEF_u7684_u672A_u6765"><span class="toc-number">1.5.</span> <span class="toc-text">前端的未来</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="u524D_u7AEF_u6D4B_u8BD5_u8FDB_u5316_u8BBA2"><a href="#u524D_u7AEF_u6D4B_u8BD5_u8FDB_u5316_u8BBA2" class="headerlink" title="前端测试进化论2"></a>前端测试进化论2</h1><p>=============</p>
+<p>说完了，前端技术的发展史，那么对应的前端测试发展史也随之发展。</p>
+<h2 id="u77F3_u5668_u65F6_u4EE3_u2014_u2014_u7EAF_u624B_u5DE5_u6D4B_u8BD5"><a href="#u77F3_u5668_u65F6_u4EE3_u2014_u2014_u7EAF_u624B_u5DE5_u6D4B_u8BD5" class="headerlink" title="石器时代——纯手工测试"></a>石器时代——纯手工测试</h2><p>早期的页面基本都是静态化的页面，只有几个链接或者图片，那么相对测试工作量不大，只需要我们打开页面查看加载是否正确。</p>
+<h2 id="u94C1_u5668_u65F6_u4EE3_u2013xunit"><a href="#u94C1_u5668_u65F6_u4EE3_u2013xunit" class="headerlink" title="铁器时代–xunit"></a>铁器时代–xunit</h2><p>到了javascript时代，随着其他语言xunit 风靡天下,js 也出现了它的xunit 框架。</p>
+<p>Jsunit，以往在测试js的时候，都是以alert方式来检测错误，很不专业。</p>
+<p>2001年 jsunit 出现，让js调试称为可能。</p>
+<p>Jsunit 主要参考junit的设计，只要你会使用junit 那么jsunit 对你来说，根本不是什么事，具体使用参考</p>
+<p><a href="http://llying.iteye.com/blog/258605" target="_blank" rel="external">http://llying.iteye.com/blog/258605</a><br>DEMO:</p>
+<p>测试代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE HTML PUBLIC &#34;-//W3C//DTD HTML 4.0 Transitional//EN&#34;&#62;&#10;&#60;HTML&#62;&#10; &#60;HEAD&#62;&#10;  &#60;TITLE&#62;testHtml&#60;/TITLE&#62;&#10; &#60;/HEAD&#62;&#10;&#60;script type=&#34;text/javascript&#34; src=&#34;myjs.js&#34;&#62;&#60;/script&#62;&#10;&#60;script type=&#34;text/javascript&#34; src=&#34;jsunit\app\jsUnitCore.js&#34;&#62;&#60;/script&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;&#60;!--&#10;function testAdd()&#123;&#10;&#9;var result = add(arg1,arg2);&#10;&#9;warn(&#34;result&#34;, result);&#10;&#9;debug(&#34;result&#34;, result);&#10;&#9;info(&#34;result&#34;, result);&#10;&#9;assertEquals(6,result);&#10;&#125;&#10;&#10;function testMinus()&#123;&#10;&#9;var result = minus(arg1,arg2)&#10;&#9;assertEquals(2,result);&#10;&#125;&#10;&#10;function testMultiply()&#123;&#10;&#9;var result = multiply(arg1,arg2)&#10;&#9;assertEquals(8,result);&#10;&#125;&#10;&#10;function testDivide()&#123;&#10;&#9;var result = divide(arg1,arg2)&#10;&#9;assertEquals(&#34;4 divide 2 is 2&#34;,2,result);&#10;&#125;&#10;&#10;function setUpPage()&#123;&#10;&#9;arg1 = 4;&#10;&#9;arg2 = 2;&#10;&#9;setUpPageStatus = &#34;complete&#34;;&#10;&#125;&#10;&#10;function exposeTestFunctionNames()&#123;&#10;&#9;var tests = new Array();&#10;&#9;tests[0]=&#34;testAdd&#34;;&#10;&#9;tests[1]=&#34;testMinus&#34;;&#10;&#9;tests[2]=&#34;testMultiply&#34;;&#10;&#9;return tests;&#10;&#125;&#10;&#10;//--&#62;&#10;&#60;/SCRIPT&#62;&#10; &#60;BODY&#62;&#10;&#10; &#60;/BODY&#62;&#10;&#60;/HTML&#62;</span><br></pre></td></tr></table></figure></p>
+<p>测试驱动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE HTML PUBLIC &#34;-//W3C//DTD HTML 4.0 Transitional//EN&#34;&#62;&#10;&#60;HTML&#62;&#10; &#60;HEAD&#62;&#10;  &#60;TITLE&#62;suit test&#60;/TITLE&#62;&#10; &#60;/HEAD&#62;&#10;&#60;script type=&#34;text/javascript&#34; src=&#34;jsunit\app\jsUnitCore.js&#34;&#62;&#60;/script&#62;&#10;&#60;script type=&#34;text/javascript&#34;&#62;&#10;&#60;!--&#10;function suite()&#10;&#123;&#10;&#9;var testSuite = new top.jsUnitTestSuite();&#10;&#9;//&#22686;&#21152;&#30340;&#27979;&#35797;&#39029;&#38754;&#30340;&#36335;&#24452;&#26159;&#30456;&#23545;&#20110;&#27979;&#35797;&#36816;&#34892;&#22120;&#30340;&#36335;&#24452;&#30340;&#65288;testRunner.html&#65289;&#65292;&#32780;&#19981;&#26159;&#30456;&#23545;&#20110;&#24403;&#21069;&#30340;&#39029;&#38754;&#10;&#9;testSuite.addTestPage(&#34;../mytest1.html&#34;);&#10;    //&#22871;&#20214;&#37324;&#36824;&#21487;&#20197;&#22312;&#21253;&#21547;&#22871;&#20214;&#10;&#9;testSuite.addTestSuite(Suite2());&#10;&#9;return testSuite;&#10;&#125;&#10;function Suite2() //&#38656;&#35201;&#19982;suite&#23450;&#20041;&#22312;&#21516;&#19968;&#20010;&#39029;&#38754;&#20013;&#10;&#123;&#10;&#9;var testSuite = new top.jsUnitTestSuite();&#10;&#9;testSuite.addTestPage(&#34;../mytest2.html&#34;);&#10;&#9;return testSuite;&#10;&#125;&#10;&#10;//--&#62;&#10;&#60;/SCRIPT&#62;&#10; &#60;BODY&#62;&#10;&#10; &#60;/BODY&#62;&#10;&#60;/HTML&#62;</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.jsunit.net/" target="_blank" rel="external">http://www.jsunit.net/</a> </p>
+<h2 id="u5DE5_u4E1A_u9769_u547D_u2013ajax_u6D41_u884C"><a href="#u5DE5_u4E1A_u9769_u547D_u2013ajax_u6D41_u884C" class="headerlink" title="工业革命–ajax流行"></a>工业革命–ajax流行</h2><p>随着ajax的流行，jquery框架在前端开发中的普及，让开发者看到了前端的新纪元，<br>jquery 团队也为广大开发人员开发了Qunit.QUnit 是一款强大而且容易使用的JavaScript 测试框架，它被用于jQuery 与其插件的测试，同时它也同样可以测试普通的JavaScript 代码.</p>
+<h3 id="TDD_u7684_u65F6_u4EE3_u6765_u4E34_QUnit_u6846_u67B6_u7248_u672C"><a href="#TDD_u7684_u65F6_u4EE3_u6765_u4E34_QUnit_u6846_u67B6_u7248_u672C" class="headerlink" title="TDD的时代来临 QUnit框架版本"></a>TDD的时代来临 QUnit框架版本</h3><p>将要被测试的代码需要添加到myProject.js中，并且你的测试用例应该插入到myTest.js。要运行这些测试，只需在一个浏览器中打开这个html文件。现在需要写一些测试用例了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE html&#62;&#10;&#60;html&#62;&#10;&#60;head&#62;&#10;    &#60;title&#62;QUnit Test Suite&#60;/title&#62;&#10;    &#60;link rel=&#34;stylesheet&#34; href=&#34;http://github.com/jquery/qunit/raw/master/qunit/qunit.css&#34; mce_href=&#34;http://github.com/jquery/qunit/raw/master/qunit/qunit.css&#34; type=&#34;text/css&#34; media=&#34;screen&#34;&#62;&#10;    &#60;mce:script type=&#34;text/javascript&#34; src=&#34;http://github.com/jquery/qunit/raw/master/qunit/qunit.js&#34; mce_src=&#34;http://github.com/jquery/qunit/raw/master/qunit/qunit.js&#34;&#62;&#60;/mce:script&#62;&#10;    &#60;!-- Your project file goes here --&#62;&#10;    &#60;mce:script type=&#34;text/javascript&#34; src=&#34;myProject.js&#34; mce_src=&#34;myProject.js&#34;&#62;&#60;/mce:script&#62;&#10;    &#60;!-- Your tests file goes here --&#62;&#10;    &#60;mce:script type=&#34;text/javascript&#34; src=&#34;myTests.js&#34; mce_src=&#34;myTests.js&#34;&#62;&#60;/mce:script&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;    &#60;h1 id=&#34;qunit-header&#34;&#62;QUnit Test Suite&#60;/h1&#62;&#10;    &#60;h2 id=&#34;qunit-banner&#34;&#62;&#60;/h2&#62;&#10;    &#60;div id=&#34;qunit-testrunner-toolbar&#34;&#62;&#60;/div&#62;&#10;    &#60;h2 id=&#34;qunit-userAgent&#34;&#62;&#60;/h2&#62;&#10;    &#60;ol id=&#34;qunit-tests&#34;&#62;&#60;/ol&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<p>参考<br><a href="http://www.cnblogs.com/nuaalfm/archive/2010/02/26/1674235.html" target="_blank" rel="external">http://www.cnblogs.com/nuaalfm/archive/2010/02/26/1674235.html</a><br><a href="http://qunitjs.com/" target="_blank" rel="external">http://qunitjs.com/</a></p>
+<h2 id="u73B0_u4EE3_u5316_u6280_u672F-BBD"><a href="#u73B0_u4EE3_u5316_u6280_u672F-BBD" class="headerlink" title="现代化技术-BBD"></a>现代化技术-BBD</h2><p>紧着angluar react 等框架大行其道的同时，bdd也在开发中兴起，基于bdd的测试框架开始在前端如雨后春笋般冒出,jasmine,mocha,karma都是其中的代表，但是各得其道，到底谁好，没惹能说得清楚。但google 在前端测试的贡献，绝对是业界良心。</p>
+<p><img src="/image/JASMINE.png" alt=""><br><a href="http://jasmine.github.io/" target="_blank" rel="external">http://jasmine.github.io/</a></p>
+<p><img src="/image/KARMA.png" alt=""><br><a href="https://karma-runner.github.io/0.13/index.html" target="_blank" rel="external">https://karma-runner.github.io/0.13/index.html</a></p>
+<p><img src="/image/MOCHA.png" alt=""><br><a href="https://mochajs.org/" target="_blank" rel="external">https://mochajs.org/</a></p>
+<p>这些框架本人就不举列子了，会在以后的篇章里面一一介绍。</p>
+<h2 id="u524D_u7AEF_u7684_u672A_u6765"><a href="#u524D_u7AEF_u7684_u672A_u6765" class="headerlink" title="前端的未来"></a>前端的未来</h2><p>未来，我希望有一种框架能够解救苦逼的qa,简单的语法与api，使得我们能够处理所有前端框架而不用考虑控件问题，良好的性能，支持并发，跑ui和单元测试都在秒级，当然越快越好，最好能够自动更新ui自动化中页面对象的路径等等。也许只是个梦。Qa 还需努力。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/01/26/前端测试进化论2/" data-title="前端测试进化论2 | seven qi blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/02/23/前端性能测试分析_原理篇/" title="前端性能测试分析">
+  <strong>上一篇：</strong><br/>
+  <span>
+  前端性能测试分析</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/01/25/前端测试进化论/"  title="前端测试进化论">
+ <strong>下一篇：</strong><br/> 
+ <span>前端测试进化论
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u524D_u7AEF_u6D4B_u8BD5_u8FDB_u5316_u8BBA2"><span class="toc-number">1.</span> <span class="toc-text">前端测试进化论2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u77F3_u5668_u65F6_u4EE3_u2014_u2014_u7EAF_u624B_u5DE5_u6D4B_u8BD5"><span class="toc-number">1.1.</span> <span class="toc-text">石器时代——纯手工测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u94C1_u5668_u65F6_u4EE3_u2013xunit"><span class="toc-number">1.2.</span> <span class="toc-text">铁器时代–xunit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5DE5_u4E1A_u9769_u547D_u2013ajax_u6D41_u884C"><span class="toc-number">1.3.</span> <span class="toc-text">工业革命–ajax流行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TDD_u7684_u65F6_u4EE3_u6765_u4E34_QUnit_u6846_u67B6_u7248_u672C"><span class="toc-number">1.3.1.</span> <span class="toc-text">TDD的时代来临 QUnit框架版本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u73B0_u4EE3_u5316_u6280_u672F-BBD"><span class="toc-number">1.4.</span> <span class="toc-text">现代化技术-BBD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u524D_u7AEF_u7684_u672A_u6765"><span class="toc-number">1.5.</span> <span class="toc-text">前端的未来</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/性能测试/" title="性能测试">性能测试<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/appium-mobile-testing/" title="appium, mobile testing">appium, mobile testing<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/front-end/" title="front-end">front-end<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gulp/" title="gulp">gulp<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://www.test.com" target="_blank" title="test">test</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m qilei ,a QA work in thoughtworks. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="seven">seven</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'qaseven';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

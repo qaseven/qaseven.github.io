@@ -1,0 +1,568 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>前端性能测试之分析篇 | seven qi blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="seven">
+    
+
+    
+    <meta name="description" content="引言前一章，我们讲了browser的工作原理,那么怎么样才能让了解整个主站前端的性能呢？监控！ 对，是的，我们可以利用各种工作对我们的website进行实时的监控,目前监控的方式有两种。
+
+
+
+类型
+优点
+缺点
+示例
+
+
+
+
+非侵入式
+指标齐全、客户端主动监测、竞品监控
+无法知道性能影响用户数、采样少容易失真、无法监控复杂应用与细分功能
+Pagespeed、yslow、PhantomJS、webp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端性能测试之分析篇">
+<meta property="og:url" content="http://yoursite.com/2016/02/23/前端性能测试之分析篇/index.html">
+<meta property="og:site_name" content="seven qi blog">
+<meta property="og:description" content="引言前一章，我们讲了browser的工作原理,那么怎么样才能让了解整个主站前端的性能呢？监控！ 对，是的，我们可以利用各种工作对我们的website进行实时的监控,目前监控的方式有两种。
+
+
+
+类型
+优点
+缺点
+示例
+
+
+
+
+非侵入式
+指标齐全、客户端主动监测、竞品监控
+无法知道性能影响用户数、采样少容易失真、无法监控复杂应用与细分功能
+Pagespeed、yslow、PhantomJS、webp">
+<meta property="og:image" content="http://yoursite.com/image/pagespeed.png">
+<meta property="og:image" content="http://yoursite.com/image/yslow.gif">
+<meta property="og:image" content="http://yoursite.com/image/page_perfor.png">
+<meta property="og:image" content="http://yoursite.com/image/performance_alay.png">
+<meta property="og:image" content="http://yoursite.com/image/webpagespeed.png">
+<meta property="og:image" content="http://yoursite.com/image/showslow.png">
+<meta property="og:image" content="http://yoursite.com/image/sitespeed.png">
+<meta property="og:image" content="http://yoursite.com/image/google_alay.png">
+<meta property="og:image" content="http://yoursite.com/image/relic1.png">
+<meta property="og:image" content="http://yoursite.com/image/oneapm.png">
+<meta property="og:updated_time" content="2016-02-23T07:43:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端性能测试之分析篇">
+<meta name="twitter:description" content="引言前一章，我们讲了browser的工作原理,那么怎么样才能让了解整个主站前端的性能呢？监控！ 对，是的，我们可以利用各种工作对我们的website进行实时的监控,目前监控的方式有两种。
+
+
+
+类型
+优点
+缺点
+示例
+
+
+
+
+非侵入式
+指标齐全、客户端主动监测、竞品监控
+无法知道性能影响用户数、采样少容易失真、无法监控复杂应用与细分功能
+Pagespeed、yslow、PhantomJS、webp">
+
+    
+    <link rel="alternative" href="/atom.xml" title="seven qi blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="seven qi blog" title="seven qi blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="seven qi blog">seven qi blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/02/23/前端性能测试之分析篇/" title="前端性能测试之分析篇" itemprop="url">前端性能测试之分析篇</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="seven" target="_blank" itemprop="author">seven</a>
+		
+  <p class="article-time">
+    <time datetime="2016-02-23T03:31:51.000Z" itemprop="datePublished"> 發表於 2016-02-23</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5F15_u8A00"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u524D_u7AEF_u6027_u80FD_u5206_u6790_u5DE5_u5177"><span class="toc-number">2.</span> <span class="toc-text">前端性能分析工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6D4F_u89C8_u5668_u63D2_u4EF6_u7C7B"><span class="toc-number">2.1.</span> <span class="toc-text">浏览器插件类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5728_u7EBF_u7F51_u7AD9_u7C7B"><span class="toc-number">2.2.</span> <span class="toc-text">在线网站类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5E73_u53F0_u7C7B"><span class="toc-number">2.3.</span> <span class="toc-text">平台类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u6536_u8D39_u670D_u52A1_u5E73_u53F0"><span class="toc-number">2.3.1.</span> <span class="toc-text">收费服务平台</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5F00_u6E90_u5E73_u53F0"><span class="toc-number">2.4.</span> <span class="toc-text">开源平台</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="u5F15_u8A00"><a href="#u5F15_u8A00" class="headerlink" title="引言"></a>引言</h2><p>前一章，我们讲了browser的工作原理,那么怎么样才能让了解整个主站前端的性能呢？监控！ 对，是的，我们可以利用各种工作对我们的website进行实时的监控,目前监控的方式有两种。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th style="text-align:center">优点</th>
+<th style="text-align:center">缺点</th>
+<th style="text-align:right">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>非侵入式</td>
+<td style="text-align:center">指标齐全、客户端主动监测、竞品监控</td>
+<td style="text-align:center">无法知道性能影响用户数、采样少容易失真、无法监控复杂应用与细分功能</td>
+<td style="text-align:right">Pagespeed、yslow、PhantomJS、webpagetest、sitespeedio</td>
+</tr>
+<tr>
+<td>侵入式</td>
+<td style="text-align:center">真实海量用户数据、能监控复杂应用与业务功能、用户点击与区域渲染</td>
+<td style="text-align:center">需插入脚本统计、网络指标不全、无法监控竞品</td>
+<td style="text-align:right">new relic、Google analyse、oneapm</td>
+</tr>
+</tbody>
+</table>
+<h2 id="u524D_u7AEF_u6027_u80FD_u5206_u6790_u5DE5_u5177"><a href="#u524D_u7AEF_u6027_u80FD_u5206_u6790_u5DE5_u5177" class="headerlink" title="前端性能分析工具"></a>前端性能分析工具</h2><p>那有哪些简易便利的工具能帮助我们更好的进行测试呢？<br>ok，工具集锦来临。</p>
+<h3 id="u6D4F_u89C8_u5668_u63D2_u4EF6_u7C7B"><a href="#u6D4F_u89C8_u5668_u63D2_u4EF6_u7C7B" class="headerlink" title="浏览器插件类"></a>浏览器插件类</h3><ol>
+<li>FireBug<br>它可以对页面进行调试，可以记录所有网页的访问耗时，下载的资源等</li>
+<li>Page Speed<br><img src="/image/pagespeed.png" alt=""></li>
+<li>Yslow<br><img src="/image/yslow.gif" alt=""></li>
+<li>page performance<br><img src="/image/page_perfor.png" alt=""></li>
+<li>performance analyse<br><img src="/image/performance_alay.png" alt=""></li>
+</ol>
+<h3 id="u5728_u7EBF_u7F51_u7AD9_u7C7B"><a href="#u5728_u7EBF_u7F51_u7AD9_u7C7B" class="headerlink" title="在线网站类"></a>在线网站类</h3><ol>
+<li>WebPageTest<br><img src="/image/webpagespeed.png" alt=""></li>
+<li>showslow<br><img src="/image/showslow.png" alt=""></li>
+<li><p>sitespeed.io<br><img src="/image/sitespeed.png" alt=""></p>
+<h3 id="u5E73_u53F0_u7C7B"><a href="#u5E73_u53F0_u7C7B" class="headerlink" title="平台类"></a>平台类</h3><h4 id="u6536_u8D39_u670D_u52A1_u5E73_u53F0"><a href="#u6536_u8D39_u670D_u52A1_u5E73_u53F0" class="headerlink" title="收费服务平台"></a>收费服务平台</h4></li>
+<li><p>google_analytics<br><img src="/image/google_alay.png" alt=""></p>
+</li>
+<li>new relic<br><img src="/image/relic1.png" alt=""></li>
+<li>oneapm<br><img src="/image/oneapm.png" alt=""></li>
+</ol>
+<h3 id="u5F00_u6E90_u5E73_u53F0"><a href="#u5F00_u6E90_u5E73_u53F0" class="headerlink" title="开源平台"></a>开源平台</h3><ol>
+<li>InfluxDB + Grafana<br>参考文章</li>
+</ol>
+<p><a href="https://ruby-china.org/topics/23470" target="_blank" rel="external">InfluxDB + Grafana 快速搭建自己的 NewRelic，分析应用运行情况
+</a><br><a href="http://www.rittmanmead.com/2015/02/obiee-monitoring-and-diagnostics-with-influxdb-and-grafana/" target="_blank" rel="external">OBIEE Monitoring and Diagnostics with InfluxDB and Grafana
+</a></p>
+<ol>
+<li>Nagios</li>
+<li>Zabbix</li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/性能测试/">性能测试</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/02/23/前端性能测试之分析篇/" data-title="前端性能测试之分析篇 | seven qi blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/02/23/前端性能分析优化/" title="前端性能分析优化">
+  <strong>上一篇：</strong><br/>
+  <span>
+  前端性能分析优化</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/02/23/前端性能测试分析_原理篇/"  title="前端性能测试分析">
+ <strong>下一篇：</strong><br/> 
+ <span>前端性能测试分析
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5F15_u8A00"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u524D_u7AEF_u6027_u80FD_u5206_u6790_u5DE5_u5177"><span class="toc-number">2.</span> <span class="toc-text">前端性能分析工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6D4F_u89C8_u5668_u63D2_u4EF6_u7C7B"><span class="toc-number">2.1.</span> <span class="toc-text">浏览器插件类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5728_u7EBF_u7F51_u7AD9_u7C7B"><span class="toc-number">2.2.</span> <span class="toc-text">在线网站类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5E73_u53F0_u7C7B"><span class="toc-number">2.3.</span> <span class="toc-text">平台类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u6536_u8D39_u670D_u52A1_u5E73_u53F0"><span class="toc-number">2.3.1.</span> <span class="toc-text">收费服务平台</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5F00_u6E90_u5E73_u53F0"><span class="toc-number">2.4.</span> <span class="toc-text">开源平台</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/性能测试/" title="性能测试">性能测试<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/appium-mobile-testing/" title="appium, mobile testing">appium, mobile testing<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/front-end/" title="front-end">front-end<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gulp/" title="gulp">gulp<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://www.test.com" target="_blank" title="test">test</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m qilei ,a QA work in thoughtworks. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="seven">seven</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'qaseven';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
