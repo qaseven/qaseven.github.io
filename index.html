@@ -165,7 +165,7 @@
 <p>不幸的是，IOS不能进行本地并发测试。跟Android不一样，IOS在同一时间只能启动一个版本的模拟器来运行多个测试。</p>
 <p><strong>总结:<br>单机并发目前只能在android实现，且必须启动n个appium server 对应不同devices，这里devices可以是真机或模拟器。但是必须保证端口后没有重复使用。<br>接下来工作就是利用测试框架(testng,jasmine,rspec,cucumber等)将测试分发到不同appium server上。</strong></p>
 <h4 id="u4EE3_u7801_u793A_u4F8B"><a href="#u4EE3_u7801_u793A_u4F8B" class="headerlink" title="代码示例"></a>代码示例</h4><p> <a href="https://github.com/saikrishna321/AppiumTestDistribution" target="_blank" rel="external">github</a></p>
-<p>解析：</p>
+<p>代码解析：</p>
 <ol>
 <li><p>首先让我们来看下代码中的AppiumParallelTest这个类，他们先判断操作系统，并获取操作系统上连接的devices<br>利用AndroidDeviceConfiguration.java 与 IOSDeviceConfiguration.java 中的getIOSUDID，getDevices方法分别获取真机与模拟器的id.</p>
 </li>
@@ -174,7 +174,7 @@
 <li><p>aa</p>
 </li>
 </ol>
-<h2 id="aa"><a href="#aa" class="headerlink" title="aa"></a>aa</h2><ol>
+<h3 id="appium_grid__u5206_u5E03_u5F0F_u5E76_u53D1"><a href="#appium_grid__u5206_u5E03_u5F0F_u5E76_u53D1" class="headerlink" title="appium grid 分布式并发"></a>appium grid 分布式并发</h3><ol>
 <li><p>启动selenium grid sever</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar selenium-server-standalone-2.47.1.jar -port 4444 -role hub   -hub http://192.168.199.140:4444/grid/registe</span><br></pre></td></tr></table></figure>
 </li>
@@ -182,11 +182,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">appium --nodeconfig appium_node_S3.json  -p 4823  -bp 3356 -U &#34;192.168.99.104:5555&#34; --chromedriver-port 4738</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>配置测试脚本将之发送到grid,并在脚本中设置好desired capabilities</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@BeforeTest&#10;    @Parameters(&#123;&#34;deviceName&#34;&#125;)&#10;    public void setUp(String deviceName) throws Exception &#123;&#10;        capabilities.setCapability(&#34;deviceName&#34;,deviceName);&#10;        capabilities.setCapability(&#34;platformVersion&#34;, &#34;5.0&#34;);&#10;        capabilities.setCapability(&#34;app&#34;, getApp(&#34;ContactManager.apk&#34;));&#10;&#10;        setUpAndroidDriver();&#10;    &#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@BeforeTest&#10;    @Parameters(&#123;&#34;deviceName&#34;&#125;)&#10;    public void setUp(String deviceName) throws Exception &#123;&#10;        capabilities.setCapability(&#34;deviceName&#34;,deviceName);&#10;        capabilities.setCapability(&#34;platformVersion&#34;, &#34;5.0&#34;);&#10;        capabilities.setCapability(&#34;app&#34;, getApp(&#34;ContactManager.apk&#34;));&#10;&#10;        setUpAndroidDriver();&#10;    &#125;</span><br></pre></td></tr></table></figure>
-<p>GRID NODE CONFIGURATION EXAMPLE JSON FILE</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#10;  &#34;capabilities&#34;:&#10;      [&#10;        &#123; &#34;deviceName&#34;: &#34;192.168.56.101:5555&#34;,&#10;          &#34;browserName&#34;: &#34;&#60;e.g._iPhone5_or_iPad4&#62;&#34;,&#10;          &#34;version&#34;:&#34;&#60;version_of_iOS_e.g._7.1&#62;&#34;,&#10;          &#34;maxInstances&#34;: 1,&#10;          &#34;platform&#34;:&#34;&#60;platform_e.g._MAC_or_ANDROID&#62;&#34;&#10;        &#125;&#10;      ],&#10;  &#34;configuration&#34;:&#10;  &#123;&#10;    &#34;cleanUpCycle&#34;:2000,&#10;    &#34;timeout&#34;:30000,&#10;    &#34;proxy&#34;: &#34;org.openqa.grid.selenium.proxy.DefaultRemoteProxy&#34;,&#10;    &#34;url&#34;:&#34;http://&#60;host_name_appium_server_or_ip-address_appium_server&#62;:&#60;appium_port&#62;/wd/hub&#34;,&#10;    &#34;host&#34;: &#60;host_name_appium_server_or_ip-address_appium_server&#62;,&#10;    &#34;port&#34;: &#60;appium_port&#62;,&#10;    &#34;maxSession&#34;: 1,&#10;    &#34;register&#34;: true,&#10;    &#34;registerCycle&#34;: 5000,&#10;    &#34;hubPort&#34;: &#60;grid_port&#62;,&#10;    &#34;hubHost&#34;: &#34;&#60;Grid_host_name_or_grid_ip-address&#62;&#34;&#10;  &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="GRID_NODE_CONFIGURATION_EXAMPLE_JSON_FILE"><a href="#GRID_NODE_CONFIGURATION_EXAMPLE_JSON_FILE" class="headerlink" title="GRID NODE CONFIGURATION EXAMPLE JSON FILE"></a>GRID NODE CONFIGURATION EXAMPLE JSON FILE</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#10;  &#34;capabilities&#34;:&#10;      [&#10;        &#123; &#34;deviceName&#34;: &#34;192.168.56.101:5555&#34;,&#10;          &#34;browserName&#34;: &#34;&#60;e.g._iPhone5_or_iPad4&#62;&#34;,&#10;          &#34;version&#34;:&#34;&#60;version_of_iOS_e.g._7.1&#62;&#34;,&#10;          &#34;maxInstances&#34;: 1,&#10;          &#34;platform&#34;:&#34;&#60;platform_e.g._MAC_or_ANDROID&#62;&#34;&#10;        &#125;&#10;      ],&#10;  &#34;configuration&#34;:&#10;  &#123;&#10;    &#34;cleanUpCycle&#34;:2000,&#10;    &#34;timeout&#34;:30000,&#10;    &#34;proxy&#34;: &#34;org.openqa.grid.selenium.proxy.DefaultRemoteProxy&#34;,&#10;    &#34;url&#34;:&#34;http://&#60;host_name_appium_server_or_ip-address_appium_server&#62;:&#60;appium_port&#62;/wd/hub&#34;,&#10;    &#34;host&#34;: &#60;host_name_appium_server_or_ip-address_appium_server&#62;,&#10;    &#34;port&#34;: &#60;appium_port&#62;,&#10;    &#34;maxSession&#34;: 1,&#10;    &#34;register&#34;: true,&#10;    &#34;registerCycle&#34;: 5000,&#10;    &#34;hubPort&#34;: &#60;grid_port&#62;,&#10;    &#34;hubHost&#34;: &#34;&#60;Grid_host_name_or_grid_ip-address&#62;&#34;&#10;  &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <p>未完待续</p>
 
