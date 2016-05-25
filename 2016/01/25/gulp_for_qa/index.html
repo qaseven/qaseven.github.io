@@ -1,108 +1,136 @@
 
-
-<!DOCTYPE HTML>
-<html>
+ <!DOCTYPE HTML>
+<html >
 <head>
-  <meta charset="utf-8">
-  <script type="text/javascript" src="http://tajs.qq.com/stats?sId=44218032" charset="UTF-8"></script>
-  <script>
-	var _hmt = _hmt || [];
-	(function() {
-	  var hm = document.createElement("script");
-	  hm.src = "//hm.baidu.com/hm.js?7192fa361f5cabb11d8a22de41c1ba8f";
-	  var s = document.getElementsByTagName("script")[0]; 
-	  s.parentNode.insertBefore(hm, s);
-	})();
-	</script>
+  <meta charset="UTF-8">
   
-  <title>gulp_for_qa | Hexo</title>
-  <meta name="author" content="John Doe">
-  
-  <meta name="description" content="gulp 介绍
+    <title>gulp_for_qa | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="John Doe">
+    
+
+    
+    <meta name="description" content="gulp 介绍
 什么是gulp?这和我们qa有什么关系？Gulp.js 是一个自动化构建工具,开发者可以使用它在项目开发过程中自动执行常见任务。入门指南
 
 全局安装 gulp：
 1$ npm install --global gulp
 
 作为项目的开发依赖（devDependencies）安装：
-1">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+1$ npm install --save-dev gulp
 
-  <meta property="og:title" content="gulp_for_qa"/>
-  <meta property="og:site_name" content="Hexo"/>
+在项目根目录下创建一个名为 gulpf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gulp_for_qa">
+<meta property="og:url" content="http://yoursite.com/2016/01/25/gulp_for_qa/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="gulp 介绍
+什么是gulp?这和我们qa有什么关系？Gulp.js 是一个自动化构建工具,开发者可以使用它在项目开发过程中自动执行常见任务。入门指南
 
-  
-    <meta property="og:image" content="undefined"/>
-  
+全局安装 gulp：
+1$ npm install --global gulp
 
-  <link href="/imgs/favicon.ico" rel="icon" type="image/x-ico">
-  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+作为项目的开发依赖（devDependencies）安装：
+1$ npm install --save-dev gulp
+
+在项目根目录下创建一个名为 gulpf">
+<meta property="og:image" content="http://yoursite.com/image/Picture1.png">
+<meta property="og:image" content="http://yoursite.com/image/Picture2.png">
+<meta property="og:image" content="http://yoursite.com/image/Picture3.png">
+<meta property="og:updated_time" content="2016-01-25T07:17:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="gulp_for_qa">
+<meta name="twitter:description" content="gulp 介绍
+什么是gulp?这和我们qa有什么关系？Gulp.js 是一个自动化构建工具,开发者可以使用它在项目开发过程中自动执行常见任务。入门指南
+
+全局安装 gulp：
+1$ npm install --global gulp
+
+作为项目的开发依赖（devDependencies）安装：
+1$ npm install --save-dev gulp
+
+在项目根目录下创建一个名为 gulpf">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
 
-
-<body>
-  <header><div>
+  <body>
+    <header>
+      
+<div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/imgs/logo.png" alt="Hexo" title="Hexo"/></a>
+				<a href="/"><img src="/img/logo.png" alt="Hexo" title="Hexo"/></a>
 			</div>
 			
 			<div id="textlogo">
-				<h1 class="site-name">Hexo</h1>
+				<h1 class="site-name"><a href="/" title="Hexo">Hexo</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
 			<nav class="animated">
 				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
 					
-						<li><a href="/">Home</a></li>
+						<li><a href="/archives">归档</a></li>
 					
-						<li><a href="/archives">Archives</a></li>
+						<li><a href="/about">关于</a></li>
 					
-						<li><a href="/about">About</a></li>
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
 					
-					<li> <a href="/atom.xml">RSS</a> </li>
+					</li>
 				</ul>
 			</nav>			
 </div>
-</header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
   
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header class="article-info clearfix">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
   <h1 itemprop="name">
-	gulp_for_qa
+    
+      <a href="/2016/01/25/gulp_for_qa/" title="gulp_for_qa" itemprop="url">gulp_for_qa</a>
   </h1>
   <p class="article-author">By
-    
-      <a href="http://yoursite.com" title="John Doe">John Doe</a>
-    </p>
+       
+		<a href="/about" title="John Doe" target="_blank" itemprop="author">John Doe</a>
+		
   <p class="article-time">
-    <time datetime="2016-01-25T07:13:20.000Z" itemprop="datePublished">2016-01-25</time>
-    更新日期:<time datetime="2016-01-25T07:17:22.000Z" itemprop="dateModified">2016-01-25</time>
+    <time datetime="2016-01-25T07:13:20.000Z" itemprop="datePublished"> 發表於 2016-01-25</time>
     
   </p>
 </header>
-    <div class="entry">
+	<div class="article-content">
 		
-        <h2 id="gulp__u4ECB_u7ECD"><a href="#gulp__u4ECB_u7ECD" class="headerlink" title="gulp 介绍"></a>gulp 介绍</h2><p><img src="/image/Picture1.png" alt="gulp"></p>
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp__u4ECB_u7ECD"><span class="toc-number">1.</span> <span class="toc-text">gulp 介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EC0_u4E48_u662Fgulp_3F_u8FD9_u548C_u6211_u4EECqa_u6709_u4EC0_u4E48_u5173_u7CFB_uFF1F"><span class="toc-number">1.1.</span> <span class="toc-text">什么是gulp?这和我们qa有什么关系？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#eslint"><span class="toc-number">2.</span> <span class="toc-text">eslint</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u53C2_u8003_uFF1A"><span class="toc-number">2.0.1.</span> <span class="toc-text">参考：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u53C2_u8003_u6587_u6863"><span class="toc-number">2.0.2.</span> <span class="toc-text">参考文档</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="gulp__u4ECB_u7ECD"><a href="#gulp__u4ECB_u7ECD" class="headerlink" title="gulp 介绍"></a>gulp 介绍</h2><p><img src="/image/Picture1.png" alt="gulp"></p>
 <h3 id="u4EC0_u4E48_u662Fgulp_3F_u8FD9_u548C_u6211_u4EECqa_u6709_u4EC0_u4E48_u5173_u7CFB_uFF1F"><a href="#u4EC0_u4E48_u662Fgulp_3F_u8FD9_u548C_u6211_u4EECqa_u6709_u4EC0_u4E48_u5173_u7CFB_uFF1F" class="headerlink" title="什么是gulp?这和我们qa有什么关系？"></a>什么是gulp?这和我们qa有什么关系？</h3><p>Gulp.js 是一个自动化构建工具,开发者可以使用它在项目开发过程中自动执行常见任务。<br>入门指南</p>
 <ol>
 <li><p>全局安装 gulp：</p>
@@ -156,159 +184,285 @@
 <p><a href="http://blog.oskoui-oskoui.com/?p=8478" target="_blank" rel="external">http://blog.oskoui-oskoui.com/?p=8478</a></p>
 <p><a href="https://github.com/SBoudrias/gulp-istanbul" target="_blank" rel="external">https://github.com/SBoudrias/gulp-istanbul</a></p>
 <p>##所有例子用的repo<br><a href="https://github.com/qileilove/gulp_qa" target="_blank" rel="external">https://github.com/qileilove/gulp_qa</a></p>
-
-    </div>
-    <footer>
-        
-        
   
-  <div class="tags">
-    <a href="/tags/gulp/">gulp</a>
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/gulp/">gulp</a>
   </div>
 
-		<div class="bdsharebuttonbox">
-	<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-	<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
-	<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
-	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
-	<a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
-	<a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
-	<a href="#" class="bds_more" data-cmd="more"></a>
-	<a href="#" class="bds_count" data-cmd="count"></a>
 </div>
-<script>
-window._bd_share_config=
-{
-	"common":{
-		"bdSnsKey":{},
-		"bdText":"",
-		"bdMini":"2",
-		"bdMiniList":false,
-		"bdPic":"",
-		"bdStyle":"0",
-		"bdSize":"24"
-	},
-	"share":{},
-	"image":{
-		"viewList":["qzone","tsina","tqq","renren","weixin","fbook","twi"],
-		"viewText":"分享到：",
-		"viewSize":"24"
-	},
-	"selectShare":{
-		"bdContainerClass":null,
-		"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin","fbook","twi"]
-	}
-};
-with(document)0[
-	(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)
-];
-</script>    
-        <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
 
- <nav id="pagination" >
-    
-    <a href="/2016/01/25/前端测试进化论/" class="alignleft prev" title="前端测试进化论">前端测试进化论</a>
-    
-    
-    <div class="clearfix"></div>
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/01/25/gulp_for_qa/" data-title="gulp_for_qa | Hexo" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/01/25/前端测试进化论/" title="前端测试进化论">
+  <strong>上一篇：</strong><br/>
+  <span>
+  前端测试进化论</span>
+</a>
+</div>
+
+
 </nav>
 
-
-
 	
-	<section id="comment">
-		<!-- 多说评论框 start -->
-		<div class="ds-thread" data-thread-key="2016/01/25/gulp_for_qa/" data-title="gulp_for_qa" data-url="http://yoursite.com/2016/01/25/gulp_for_qa/"></div>
-		<!-- 多说评论框 end -->
-		<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-		<script type="text/javascript">
-		var duoshuoQuery = {short_name:""};
-		(function() {
-			var ds = document.createElement('script');
-			ds.type = 'text/javascript';ds.async = true;
-			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-			ds.charset = 'UTF-8';
-			(document.getElementsByTagName('head')[0] 
-			 || document.getElementsByTagName('body')[0]).appendChild(ds);
-		})();
-		</script>
-		<!-- 多说公共JS代码 end -->
-	</section>
-	
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜尋">
-    <input type="hidden" name="q" value="site:yoursite.com">
-  </form>
-</div>
 
-  
-
-  
-<div class="widget tagcloud">
-  <h3 class="title">標籤雲</h3>
-  <div class="entry">
-    <a href="/tags/appium-mobile-testing/" style="font-size: 10px;">appium, mobile testing</a> <a href="/tags/front-end/" style="font-size: 10px;">front-end</a> <a href="/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/tags/前端测试/" style="font-size: 10px;">前端测试</a> <a href="/tags/性能测试/" style="font-size: 20px;">性能测试</a>
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp__u4ECB_u7ECD"><span class="toc-number">1.</span> <span class="toc-text">gulp 介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EC0_u4E48_u662Fgulp_3F_u8FD9_u548C_u6211_u4EECqa_u6709_u4EC0_u4E48_u5173_u7CFB_uFF1F"><span class="toc-number">1.1.</span> <span class="toc-text">什么是gulp?这和我们qa有什么关系？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#eslint"><span class="toc-number">2.</span> <span class="toc-text">eslint</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u53C2_u8003_uFF1A"><span class="toc-number">2.0.1.</span> <span class="toc-text">参考：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u53C2_u8003_u6587_u6863"><span class="toc-number">2.0.2.</span> <span class="toc-text">参考文档</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/性能测试/" title="性能测试">性能测试<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/appium-mobile-testing/" title="appium, mobile testing">appium, mobile testing<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/front-end/" title="front-end">front-end<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gulp/" title="gulp">gulp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端测试/" title="前端测试">前端测试<sup>1</sup></a></li>
+			
+		
+		</ul>
 </div>
 
 
-  <iframe width="100%" height="140" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=1923610190&verifier=6af5ad6a&colors=fafafa,fafafa,666666,0082cb,ecfbfd&dpc=1"></iframe>
-
-  <div class="widget tag">
-<h3 class="title">友情链接</h3>
-<ul class="entry">
-<li><a href="http://opiece.me" title="Chillax's Blog" target="_blank">Chillax</a></li>
-</ul>
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://www.test.com" target="_blank" title="test">test</a>
+            
+          </li>
+        
+    </ul>
 </div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
 </aside>
-    <div class="clearfix"></div>
-  </div>
-  <footer id="footer"><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
+</div>
+    </div>
+    <footer><div id="footer" >
 	
 	
 	<section class="info">
-		<p> Hi,I&#39;m the designer of this theme. <br/>
-			You can download this theme on my github.</p>
+		<p> Hello ,I&#39;m qilei ,a QA work in thoughtworks. <br/>
+			This is my blog,believe it or not.</p>
 	</section>
 	 
-	<div class="social-font clearfix">
-		
-		
-		
-		<a href="https://github.com/https://github.com/qileilove" target="_blank" title="github"></a>
+	<div class="social-font" class="clearfix">
 		
 		
 		
 		
-		<a href="mailto:qieilove@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+		
+		
+		
+		
 		
 	</div>
-		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/huangjunhui/concise" target="_blank" title="Concise">Concise</a> © 2016 
+			
 		
-		<a href="http://yoursite.com/about" target="_blank" title="John Doe">John Doe</a>
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="John Doe">John Doe</a>
+		
 		
 		</p>
 </div>
 </footer>
-  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+    <script src="/js/jquery-2.0.3.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
-<script src="/js/counter.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
 
 
 <script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
 var disqus_shortname = 'http://qaseven.github.io/';
 
 (function(){
@@ -318,53 +472,69 @@ var disqus_shortname = 'http://qaseven.github.io/';
   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 }());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
 </script>
+
+
+
 
 
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
 </script>
 
-<div id="totop" style="position:fixed;bottom:100px;right:10px;cursor: pointer;">
-<a title="返回顶部"><img src="/imgs/scrollup.png"/></a>
-</div>
-<script src="/js/totop.js"></script>
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
 <!-- mathjax config similar to math.stackexchange -->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
+<!-- MathJax End -->
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
+<!-- Tiny_search Begin -->
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-</body>
+<!-- Tiny_search End -->
+
+  </body>
 </html>
-
-
