@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-01T13:44:26.000Z</updated>
+  <updated>2016-06-01T13:47:55.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2016/05/31/gatling/"/>
     <id>http://yoursite.com/2016/05/31/gatling/</id>
     <published>2016-05-31T06:56:38.000Z</published>
-    <updated>2016-06-01T13:44:26.000Z</updated>
+    <updated>2016-06-01T13:47:55.000Z</updated>
     
     <content type="html">&lt;p&gt;第一篇&lt;/p&gt;
 &lt;h2 id=&quot;http_3A//gatling-io/docs/2-2-1/index-html&quot;&gt;&lt;a href=&quot;#http_3A//gatling-io/docs/2-2-1/index-html&quot; class=&quot;headerlink&quot; title=&quot;http://gatling.io/docs/2.2.1/index.html&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://gatling.io/docs/2.2.1/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://gatling.io/docs/2.2.1/index.html&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Gatling is a highly capable load testing tool. It is designed for ease of use, maintainability and high performance.&lt;/p&gt;
@@ -29,12 +29,12 @@
 &lt;p&gt;Having scenarios that are defined in code and are resource efficient are the two requirements that motivated us to create Gatling. Based on an expressive DSL, the scenarios are self explanatory. They are easy to maintain and can be kept in a version control system.&lt;/p&gt;
 &lt;p&gt;Gatling’s architecture is asynchronous as long as the underlying protocol, such as HTTP, can be implemented in a non blocking way. This kind of architecture lets us implement virtual users as messages instead of dedicated threads, making them very resource cheap. Thus, running thousands of concurrent virtual users is not an issue.&lt;/p&gt;
 &lt;p&gt;Migrating from a Previous Version of Gatling&lt;br&gt;If you’re migrating from Gatling 2.1 to Gatling 2.2, please check the dedicated migration guide.&lt;br&gt;Otherwise, please follow the previous migration guides.&lt;br&gt;User’s guide&lt;br&gt;What’s New&lt;br&gt;Migration Guides&lt;br&gt;Quickstart&lt;br&gt;Advanced Tutorial&lt;br&gt;General&lt;br&gt;Session&lt;br&gt;HTTP&lt;br&gt;JMS&lt;br&gt;Realtime monitoring&lt;br&gt;Extensions&lt;br&gt;Cookbook&lt;br&gt;Information for Gatling Developers&lt;br&gt;Project Information&lt;/p&gt;
-&lt;p&gt;gatling是一个的高性能压力测试工具。它设计的初衷是易用性、可维护性和高性能。gatling开箱即用的,并且很好的支持HTTP协议,使其成为你测试任何HTTP服务器负载的工具选择之一。作为核心引擎实际上是协议无关,这是完全有可能实现并支持其他协议。例如,gatling目前还对JMS支持。&lt;br&gt;快速入门是对于最重要的概念有一个回顾,通过设置一个简单的场景的来对一个HTTP服务器完成负载测试。&lt;br&gt;在代码中定义测试场景和资源利用率两方面的需求,激励我们创造gatling。基于可表述的DSL语言,所以场景易于叙述和理解的。他们很容易维护,并且可以保存在一个版本控制系统。&lt;/p&gt;
+&lt;p&gt;gatling是一个的高性能压力测试工具。它设计的初衷是易用性、可维护性和高性能。gatling开箱即用的,并且很好的支持HTTP协议,使其成为你测试任何HTTP服务器负载的工具选择之一。作为核心引擎实际上是协议无关,这是完全有可能实现并支持其他协议。例如,gatling目前还对JMS支持。&lt;/p&gt;
+&lt;p&gt;快速入门是对于最重要的概念有一个回顾,通过设置一个简单的场景的来对一个HTTP服务器完成负载测试。&lt;br&gt;在代码中定义测试场景和资源利用率两方面的需求,激励我们创造gatling。基于可表述的DSL语言,所以场景易于叙述和理解的。他们很容易维护,并且可以保存在一个版本控制系统。&lt;/p&gt;
 &lt;p&gt;gatling的架构和底层协议均采用异步方式设计。比如HTTP、可以利用一个非阻塞的方式来实现。这种架构可以让我们实现虚拟用户的消息而不是专用的线程,让他们成为非常廉价资源。因此,运行数千并发虚拟用户不是什么问题。&lt;/p&gt;
 &lt;p&gt;合并gatling从之前的版本中&lt;/p&gt;
 &lt;p&gt;如果你从gatling2.1迁移到2.2gatling,请检查专用的合并指南。否则,请安装的合并指南。&lt;/p&gt;
-&lt;p&gt;用户手册&lt;/p&gt;
-&lt;ol&gt;
+&lt;h3 id=&quot;u7528_u6237_u624B_u518C&quot;&gt;&lt;a href=&quot;#u7528_u6237_u624B_u518C&quot; class=&quot;headerlink&quot; title=&quot;用户手册&quot;&gt;&lt;/a&gt;用户手册&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;新事物&lt;/li&gt;
 &lt;li&gt;合并手册&lt;/li&gt;
 &lt;li&gt;快速入门&lt;/li&gt;
@@ -43,11 +43,12 @@
 &lt;li&gt;消息&lt;/li&gt;
 &lt;li&gt;Http&lt;/li&gt;
 &lt;li&gt;JMS&lt;/li&gt;
-&lt;li&gt;实时监测&lt;br&gt;1O. 扩展&lt;/li&gt;
+&lt;li&gt;实时监测&lt;/li&gt;
+&lt;li&gt;扩展&lt;/li&gt;
 &lt;li&gt;cookbook&lt;/li&gt;
 &lt;li&gt;gatling 开发者信息&lt;/li&gt;
 &lt;li&gt;项目信息        &lt;/li&gt;
-&lt;/ol&gt;
+&lt;/ul&gt;
 </content>
     
     <summary type="html">
