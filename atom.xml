@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-02T15:29:58.000Z</updated>
+  <updated>2016-06-14T02:53:29.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,158 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>gatling官方文档翻译3</title>
+    <link href="http://yoursite.com/2016/06/08/gatling3/"/>
+    <id>http://yoursite.com/2016/06/08/gatling3/</id>
+    <published>2016-06-08T15:22:40.000Z</published>
+    <updated>2016-06-14T02:53:29.000Z</updated>
+    
+    <content type="html">&lt;p&gt;第三篇&lt;br&gt;&lt;a href=&quot;http://gatling.io/docs/2.2.1/migration_guides/1.5.x-to-2.0.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://gatling.io/docs/2.2.1/migration_guides/1.5.x-to-2.0.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Migrating from 1.5.x to 2.0&lt;br&gt;Global changes&lt;br&gt;Gatling requires at least JDK7u6&lt;br&gt;As targeting newer JDKs provides bug fixes, speed improvements and opens opportunities for optimization, Gatling now requires at least a JDK7u6 (released almost two years ago already).&lt;/p&gt;
+&lt;p&gt;Scala 2.10&lt;br&gt;Gatling is built with Scala 2.10. If you’re using Scala IDE, make sure you’re using a version compatible with Scala 2.10.&lt;/p&gt;
+&lt;p&gt;Gatling is now available on Maven Central&lt;br&gt;Gatling releases are now available on Maven Central, and snapshots are deployed on each successful build by Travis CI to Sonatype’s snapshots repository. If you were using Gatling with its Maven plugin, you no longer need to add the Excilys repository in your pom.xml.&lt;/p&gt;
+&lt;p&gt;Package and GroupId changes&lt;br&gt;Gatling’s artifacts groupId and package are now io.gatling. You’ll have to :&lt;/p&gt;
+&lt;p&gt;Update your build scripts to change the groupId of Gatling’s dependencies from com.excilys.ebi.gatling to io.gatling&lt;br&gt;Update your simulations to replace the com.excilys.ebi.gatling part in the imports by io.gatling&lt;br&gt;Simulation&lt;br&gt;Necessary imports&lt;br&gt;akka.util.duration classes have been ported to the scala.concurrent.duration package. Simply replace import akka.util.duration.&lt;em&gt; by import scala.concurrent.duration.&lt;/em&gt;.&lt;br&gt;import bootstrap.&lt;em&gt; and import assertions.&lt;/em&gt; are now unnecessary and have to be removed.&lt;br&gt;import com.excilys.ebi.gatling.http.Headers.Names.&lt;em&gt; is now unnecessary, headers names are now directly available from HeaderNames.&lt;br&gt;import com.excilys.ebi.gatling.http.Headers.Values.&lt;/em&gt; is now unnecessary, headers values are now directly available from HeaderValues.&lt;br&gt;Protocols setup&lt;br&gt;Protocols are no longer configured by scenario and are now configured by simulation, using the protocols method.&lt;/p&gt;
+&lt;p&gt;A 1.4.x-1.5.x setUp like this one:&lt;/p&gt;
+&lt;p&gt;setUp(scn.(…).protocolConfig(httpConfig))&lt;br&gt;would now be with Gatling 2.0:&lt;/p&gt;
+&lt;p&gt;setUp(scn.(…)).protocols(httpConfig)&lt;br&gt;Assertions setup&lt;br&gt;The assertThat method has been removed, assertions are now configured using assertions in the same fashion as protocols are, e.g.&lt;/p&gt;
+&lt;p&gt;setup(scn.(…).protocolConfig(httpConfig))&lt;/p&gt;
+&lt;p&gt;assertThat(global.responseTime.max.lessThan(1000))&lt;br&gt;becomes:&lt;/p&gt;
+&lt;p&gt;setup(scn.(…))&lt;br&gt;  .protocols(httpConfig)&lt;br&gt;  .assertions(global.responseTime.max.lessThan(1000)&lt;br&gt;New Injection DSL&lt;br&gt;The users, ramp and delay methods to configure the injection profile for your scenario have been removed in favor of a full-blown dedicated DSL.&lt;/p&gt;
+&lt;p&gt;Injection steps are now configured using the inject method available on your configured scenario.&lt;/p&gt;
+&lt;p&gt;Migrating users&lt;/p&gt;
+&lt;p&gt;// With Gatling 1.5.X&lt;br&gt;setUp(scn.users(10)…)&lt;/p&gt;
+&lt;p&gt;// With Gatling 2.0&lt;br&gt;setUp(scn.inject(atOnceUsers(10))…&lt;br&gt;Migrating ramp&lt;/p&gt;
+&lt;p&gt;// With Gatling 1.5.X&lt;br&gt;setUp(scn.users(10).ramp(30)…)&lt;/p&gt;
+&lt;p&gt;// With Gatling 2.0&lt;br&gt;setUp(scn.inject(rampUsers(10) over (30 seconds))…&lt;br&gt;Migrating delay&lt;/p&gt;
+&lt;p&gt;// With Gatling 1.5.X&lt;br&gt;setUp(scn.users(10).delay(5)…)&lt;/p&gt;
+&lt;p&gt;// With Gatling 2.0&lt;br&gt;setUp(scn.inject(nothingFor(5 seconds), atOnceUsers(10))…&lt;br&gt;For more information on the new Injection DSL, please consult the Injection DSL reference documentation.&lt;/p&gt;
+&lt;p&gt;Core&lt;br&gt;Checks&lt;br&gt;whatever has been renamed to optional.&lt;/p&gt;
+&lt;p&gt;Structure Elements&lt;br&gt;The first parameter of foreach is now an Expression (e.g. a Gatling EL string), not the name of the attribute to loop over.&lt;br&gt;For example, if you have a list attribute in the user’s session holding a list of values:&lt;/p&gt;
+&lt;p&gt;.foreach(“list”, “elem”) {&lt;br&gt;  …&lt;br&gt;}&lt;br&gt;becomes:&lt;/p&gt;
+&lt;p&gt;.foreach(“${list}”, “elem”) {&lt;br&gt;  …&lt;br&gt;}&lt;br&gt;In asLongAs, exitASAP now defaults to true. For more information on the change of behaviour it introduces, see asLongAs documentation.&lt;br&gt;Session&lt;br&gt;Session has been under major refactoring:&lt;/p&gt;
+&lt;p&gt;session.get(“foobar”) becomes session(“foobar”)&lt;br&gt;session.getTypedAttribute&lt;a href=&quot;/&amp;quot;foobar&amp;quot;&quot;&gt;T&lt;/a&gt; becomes session(“foobar”).as[T]&lt;br&gt;session.getAttributeAsOption&lt;a href=&quot;/&amp;quot;foobar&amp;quot;&quot;&gt;T&lt;/a&gt; becomes session(“foobar”).asOption[T]&lt;br&gt;session.setAttribute(“foobar”, 1234) becomes session.set(“foobar”, 1234)&lt;br&gt;session.setAttributes(Map(“foo” -&amp;gt; 1, “bar” -&amp;gt; 2) becomes session.setAll(“foo” -&amp;gt; 1, “bar” -&amp;gt; 2)&lt;br&gt;session.removeAttribute(“foobar”) becomes session.remove(“foobar”)&lt;br&gt;session.isAttributeDefined(“foobar”) becomes session.contains(“foobar”)&lt;br&gt;HTTP&lt;br&gt;Protocol&lt;br&gt;HTTP protocol bootstrapper, httpProtocol, has been renamed to http.&lt;/p&gt;
+&lt;p&gt;Query parameters&lt;br&gt;Removed&lt;/p&gt;
+&lt;p&gt;Versions of queryParam and multivaluedQueryParam that took no other parameters than the key (resolving the value from the session, using the key’s name to find the attribute with the same name) have been removed.&lt;/p&gt;
+&lt;p&gt;Modified&lt;/p&gt;
+&lt;p&gt;multivaluedQueryParam can now resolve the values directly from the session, using Gatling’s EL.&lt;/p&gt;
+&lt;p&gt;Form parameters (for POST requests)&lt;br&gt;Renamed&lt;/p&gt;
+&lt;p&gt;Methods for adding form parameters to the request have been renamed:&lt;/p&gt;
+&lt;p&gt;param =&amp;gt; formParam&lt;br&gt;multiValuedParam =&amp;gt; multivaluedFormParam&lt;br&gt;Removed&lt;/p&gt;
+&lt;p&gt;Versions of queryParam and multivaluedQueryParam that took no other parameters than the key (resolving the value from the session, using the key’s name to find the attribute with the same name) have been removed.&lt;/p&gt;
+&lt;p&gt;Modified&lt;/p&gt;
+&lt;p&gt;multivaluedFormParam can now resolve the values directly from the session, using Gatling’s EL.&lt;/p&gt;
+&lt;p&gt;Request bodies&lt;br&gt;Scalate templates support has been dropped. ElFileBody (see below) is the best suited to replace your existing Scalate templates.&lt;br&gt;The API for setting request bodies on request has changed. Instead of having several methods like body, fileBody and byteArrayBody, there is a now a single method, body(…) in which you set the type of body to send.&lt;br&gt;Migrating .body(body)&lt;/p&gt;
+&lt;p&gt;.body(body) has been replaced by .body(StringBody(body)).&lt;/p&gt;
+&lt;p&gt;http(“my post request”)&lt;br&gt;  .post(“&lt;a href=&quot;http://www.example.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.example.org&lt;/a&gt;“)&lt;br&gt;  .body(“Look Ma, I’m a request body !”)&lt;br&gt;becomes:&lt;/p&gt;
+&lt;p&gt;http(“my post request”)&lt;br&gt;  .post(“&lt;a href=&quot;http://www.example.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.example.org&lt;/a&gt;“)&lt;br&gt;  .body(StringBody(“Look Ma, I’m a request body !”))&lt;br&gt;Migrating .fileBody(filePath)&lt;/p&gt;
+&lt;p&gt;.fileBody(filePath) has been replaced by .body(RawFileBody(filePath)).&lt;/p&gt;
+&lt;p&gt;http(“my post request”)&lt;br&gt;  .post(“&lt;a href=&quot;http://www.example.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.example.org&lt;/a&gt;“)&lt;br&gt;  .fileBody(“my_upload.xslx”)&lt;br&gt;becomes:&lt;/p&gt;
+&lt;p&gt;http(“my post request”)&lt;br&gt;  .post(“&lt;a href=&quot;http://www.example.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.example.org&lt;/a&gt;“)&lt;br&gt;  .body(FileBody(“my_upload.xslx”))&lt;br&gt;Migrating .fileBody(filePath, values)&lt;/p&gt;
+&lt;p&gt;.fileBody(filePath, values) has been replaced by .body(ElFileBody(filePath)). values are now directly resolved from the virtual user’s session’s content.&lt;/p&gt;
+&lt;p&gt;http(“my post request”)&lt;br&gt;  .post(“&lt;a href=&quot;http://www.example.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.example.org&lt;/a&gt;“)&lt;br&gt;  .fileBody(“my_template.txt”, Map(“userName” -&amp;gt; “user123”)&lt;br&gt;becomes:&lt;/p&gt;
+&lt;p&gt;http(“my post request”)&lt;br&gt;  .post(“&lt;a href=&quot;http://www.example.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.example.org&lt;/a&gt;“)&lt;br&gt;  .body(ElFileBody(“my template.txt”))&lt;br&gt;If my template.txt contains:&lt;/p&gt;
+&lt;p&gt;Hi, my name is ${userName}&lt;br&gt;and the virtual user’s session has an attribute userName set to user123,&lt;/p&gt;
+&lt;p&gt;Then the effectively sent request body would be:&lt;/p&gt;
+&lt;p&gt;Hi, my name is user123&lt;br&gt;Migrating .byteArrayBody(byteArray)&lt;/p&gt;
+&lt;p&gt;.byteArrayBody(byteArray) has been replaced by .body(ByteArrayBody(bytes)).&lt;/p&gt;
+&lt;p&gt;http(“my post request”)&lt;br&gt;  .post(“&lt;a href=&quot;http://www.example.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.example.org&lt;/a&gt;“)&lt;br&gt;  .byteArrayBody(Array(1, 2, 3, 4))&lt;br&gt;becomes:&lt;/p&gt;
+&lt;p&gt;http(“my post request”)&lt;br&gt;  .post(“&lt;a href=&quot;http://www.example.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.example.org&lt;/a&gt;“)&lt;br&gt;  .body(ByteArrayBody(Array(1, 2, 3, 4)))&lt;br&gt;For more information, see the Request bodies reference section.&lt;/p&gt;
+&lt;p&gt;Misc&lt;br&gt;ExtendedResponse has been renamed into Response.&lt;br&gt;requestInfoExtractor and responseInfoExtractor have been merged into a single extraInfoExtractor, which takes a ExtraInfo =&amp;gt; List[Any] function.&lt;br&gt;For more information on extraInfoExtractor, please refer to its documentation.&lt;/p&gt;
+&lt;p&gt;Logs&lt;br&gt;simulation.log has been redesigned.&lt;/p&gt;
+&lt;p&gt;If you wrote your own specific simulation.log parser, you’ll need to migrate it to the new structure.&lt;/p&gt;
+&lt;p&gt;Recorder&lt;br&gt;Until now, when setting up the Recorder, you had to setup two ports for the Recorder’s local proxy: one for HTTP, one for HTTPS. This is not needed anymore, as the Recorder handles itself the switch to an HTTPS connection if necessary, and only a single port needs to be specified.&lt;/p&gt;
+&lt;p&gt;Maven Plugin&lt;br&gt;The &lt;includes&gt;…&lt;/includes&gt; and &lt;excludes&gt;…&lt;/excludes&gt; configuration options have been removed. Should you want to select a specific simulation to run, you can use the &lt;simulationclass&gt;…&lt;/simulationclass&gt; config option to do so.&lt;/p&gt;
+&lt;p&gt;For more information, see the Maven plugin documentation.&lt;/p&gt;
+&lt;p&gt;从1.5迁移到2.0&lt;/p&gt;
+&lt;p&gt;全局变化&lt;br&gt;gatling至少需要JDK7u6&lt;/p&gt;
+&lt;p&gt;提供新jdk针对的是bug修复、优化速度和打开优化速度,gatling现在至少需要JDK7u6(大约两年前已经发布)。&lt;br&gt;Scala 2.10&lt;/p&gt;
+&lt;p&gt;gatling使用Scala 2.10。如果你使用Scala的IDE,确保您正在使用一个版本能与Scala 2.10兼容。&lt;br&gt;gatling现在可用在Maven中央库&lt;/p&gt;
+&lt;p&gt;galtling版本现在可以使用Maven中央,以及快照部署在每个成功构建了 Travis CI Sonatype快照存储库。如果你是使用gatling的Maven插件,您不再需要添加pom.xml Excilys存储库。&lt;/p&gt;
+&lt;p&gt;package和GroupId变化&lt;/p&gt;
+&lt;p&gt;gatling的groupId和package现在io.gatling组件。&lt;br&gt;你必须:&lt;br&gt;更新您的构建脚本改变从com.excilys.ebi groupId gatling的依赖关系。gatling,io.gatling更新你的模拟来代替com.excilys.ebi。io.gatling&lt;br&gt;更新你的模拟器来代替com.excilys.ebi.io.gatling部分通过引入io.gatling&lt;/p&gt;
+&lt;p&gt;akka.util.duration 类 已经移植到 scala.concurrent.duration 包中。简单从 import akka.util.duration.&lt;em&gt; 替换到 import scala.concurrent.duration.&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;import bootstrap.&lt;em&gt; 和 import assertions.&lt;/em&gt; 现在不是必须的，已经被移除.&lt;/p&gt;
+&lt;p&gt;import com.excilys.ebi.gatling.http.Headers.Names._ 现在不是必须的, headers 名字 直接使用HeaderNames.&lt;/p&gt;
+&lt;p&gt;import com.excilys.ebi.gatling.http.Headers.Values._ 现在不是必须的, headers 值 直接使用HeaderValues.&lt;/p&gt;
+&lt;p&gt;协议设置&lt;br&gt;协议已经不再配置场景,现在配置模拟器,使用协议的方法。&lt;/p&gt;
+&lt;p&gt;A 1.4.x-1.5.x 设置如下:&lt;/p&gt;
+&lt;p&gt;setUp(scn.(…).protocolConfig(httpConfig))&lt;br&gt; Gatling 2.0将会这样设置:&lt;/p&gt;
+&lt;p&gt;setUp(scn.(…)).protocols(httpConfig)&lt;/p&gt;
+&lt;p&gt;Assertions 设置&lt;/p&gt;
+&lt;p&gt;assertThat方法已经被移除，assertions配置使用assertions以相同的方式作为协议.如下&lt;/p&gt;
+&lt;p&gt;setup(scn.(…).protocolConfig(httpConfig))&lt;/p&gt;
+&lt;p&gt;assertThat(global.responseTime.max.lessThan(1000))&lt;/p&gt;
+&lt;p&gt;改变&lt;br&gt;setup(scn.(…))&lt;br&gt;  .protocols(httpConfig)&lt;br&gt;  .assertions(global.responseTime.max.lessThan(1000)&lt;br&gt;新的DSL语言注入&lt;/p&gt;
+&lt;p&gt;通过用户、增长和延迟来配置你的场景注入剖面的方法已被拆除,取而代之的是一个完整的专用的DSL。&lt;/p&gt;
+&lt;p&gt;注入步骤现在使用注射方法配置可用的配置。&lt;/p&gt;
+&lt;p&gt;合并 users&lt;/p&gt;
+&lt;p&gt;// With Gatling 1.5.X&lt;br&gt;setUp(scn.users(10)…)&lt;/p&gt;
+&lt;p&gt;// With Gatling 2.0&lt;br&gt;setUp(scn.inject(atOnceUsers(10))…&lt;br&gt;合并 ramp&lt;/p&gt;
+&lt;p&gt;// With Gatling 1.5.X&lt;br&gt;setUp(scn.users(10).ramp(30)…)&lt;/p&gt;
+&lt;p&gt;// With Gatling 2.0&lt;br&gt;setUp(scn.inject(rampUsers(10) over (30 seconds))…&lt;br&gt;合并 delay&lt;/p&gt;
+&lt;p&gt;// With Gatling 1.5.X&lt;br&gt;setUp(scn.users(10).delay(5)…)&lt;/p&gt;
+&lt;p&gt;// With Gatling 2.0&lt;br&gt;setUp(scn.inject(nothingFor(5 seconds), atOnceUsers(10))…&lt;/p&gt;
+&lt;p&gt;新注入的DSL的更多信息,请查阅注入DSL参考文档。&lt;/p&gt;
+&lt;p&gt;核心&lt;br&gt;Checks&lt;br&gt;whatever 现在被改名为 optional.&lt;/p&gt;
+&lt;p&gt;Structure Elements&lt;/p&gt;
+&lt;p&gt;The first parameter of foreach is now an Expression (e.g. a Gatling EL string), not the name of the attribute to loop over.&lt;/p&gt;
+&lt;p&gt;foreach现在是一个表达式的第一个参数(如gatling EL string),不是遍历属性的名称。&lt;/p&gt;
+&lt;p&gt;For example, if you have a list attribute in the user’s session holding a list of values:&lt;/p&gt;
+&lt;p&gt;例如,如果您有一个属性列表在用户的会话持有的值列表:&lt;/p&gt;
+&lt;p&gt;.foreach(“list”, “elem”) {&lt;br&gt;  …&lt;br&gt;}&lt;br&gt;变为:&lt;/p&gt;
+&lt;p&gt;.foreach(“${list}”, “elem”) {&lt;br&gt;  …&lt;br&gt;}&lt;br&gt;In asLongAs, exitASAP now defaults to true. For more information on the change of behaviour it introduces, see asLongAs documentation.&lt;/p&gt;
+&lt;p&gt;在 asLongAs exitASAP 现在默认设置是true.有关的行为改变的更多信息介绍,请看asLongAs文档。&lt;/p&gt;
+&lt;p&gt;Session&lt;/p&gt;
+&lt;p&gt;会话已经作为主要的重构:&lt;/p&gt;
+&lt;p&gt;session.get(“foobar”) becomes session(“foobar”)&lt;br&gt;session.getTypedAttribute&lt;a href=&quot;/&amp;quot;foobar&amp;quot;&quot;&gt;T&lt;/a&gt; becomes session(“foobar”).as[T]&lt;br&gt;session.getAttributeAsOption&lt;a href=&quot;/&amp;quot;foobar&amp;quot;&quot;&gt;T&lt;/a&gt; becomes session(“foobar”).asOption[T]&lt;br&gt;session.setAttribute(“foobar”, 1234) becomes session.set(“foobar”, 1234)&lt;br&gt;session.setAttributes(Map(“foo” -&amp;gt; 1, “bar” -&amp;gt; 2) becomes session.setAll(“foo” -&amp;gt; 1, “bar” -&amp;gt; 2)&lt;br&gt;session.removeAttribute(“foobar”) becomes session.remove(“foobar”)&lt;br&gt;session.isAttributeDefined(“foobar”) becomes session.contains(“foobar”)&lt;/p&gt;
+&lt;p&gt;HTTP协议&lt;br&gt;HTTP协议启动加载器、httpProtocol已经更名为HTTP。&lt;br&gt;Query 参数&lt;br&gt;移除&lt;br&gt;版本的queryParam和multivaluedQueryParam,没有其他比的关键参数(解决会话中的值,使用关键的名字找到具有相同名称的属性)已被移除。&lt;/p&gt;
+&lt;p&gt;Modified&lt;/p&gt;
+&lt;p&gt;multivaluedFormParam现在可以解决直接从会话值,使用gatling的EL。&lt;/p&gt;
+&lt;p&gt;Request bodies&lt;/p&gt;
+&lt;p&gt;Scalate templates support has been dropped.&lt;br&gt;对Scalate templates 支持已经放弃。&lt;/p&gt;
+&lt;p&gt; ElFileBody (如下) 是当前代替Scalate templates最佳方案&lt;/p&gt;
+&lt;p&gt;api的请求体的设置意境改变。现在用这几个方法来代替body fileBody byteArrayBody.现在有一个单独的方法。body(…)通过你设置的类型的body来发送。&lt;br&gt;合并 .body(body)&lt;/p&gt;
+&lt;p&gt;body(body) 已经被 .body(StringBody(body))代替.&lt;/p&gt;
+&lt;p&gt;http(“my post request”)&lt;br&gt;  .post(“&lt;a href=&quot;http://www.example.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.example.org&lt;/a&gt;“)&lt;br&gt;  .body(“Look Ma, I’m a request body !”)&lt;br&gt;变成：&lt;/p&gt;
+&lt;p&gt;http(“my post request”)&lt;br&gt;  .post(“&lt;a href=&quot;http://www.example.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.example.org&lt;/a&gt;“)&lt;br&gt;  .body(StringBody(“Look Ma, I’m a request body !”))&lt;/p&gt;
+&lt;p&gt;合并 .fileBody(filePath)&lt;/p&gt;
+&lt;p&gt;.fileBody(filePath) 被 .body(RawFileBody(filePath))代替.&lt;/p&gt;
+&lt;p&gt;http(“my post request”)&lt;br&gt;  .post(“&lt;a href=&quot;http://www.example.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.example.org&lt;/a&gt;“)&lt;br&gt;  .fileBody(“my_upload.xslx”)&lt;br&gt;becomes:&lt;/p&gt;
+&lt;p&gt;http(“my post request”)&lt;br&gt;  .post(“&lt;a href=&quot;http://www.example.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.example.org&lt;/a&gt;“)&lt;br&gt;  .body(FileBody(“my_upload.xslx”))&lt;/p&gt;
+&lt;p&gt;合并 .fileBody(filePath, values)&lt;/p&gt;
+&lt;p&gt;.fileBody(filePath, values) 已经被 .body(ElFileBody(filePath))代替.&lt;br&gt;值现在直接解决虚拟用户会话的内容。&lt;/p&gt;
+&lt;p&gt;http(“my post request”)&lt;br&gt;  .post(“&lt;a href=&quot;http://www.example.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.example.org&lt;/a&gt;“)&lt;br&gt;  .fileBody(“my_template.txt”, Map(“userName” -&amp;gt; “user123”)&lt;/p&gt;
+&lt;p&gt;变为&lt;/p&gt;
+&lt;p&gt;http(“my post request”)&lt;br&gt;  .post(“&lt;a href=&quot;http://www.example.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.example.org&lt;/a&gt;“)&lt;br&gt;  .body(ElFileBody(“my template.txt”))&lt;/p&gt;
+&lt;p&gt;如果 template.txt 包含:&lt;/p&gt;
+&lt;p&gt;Hi, my name is ${userName}&lt;/p&gt;
+&lt;p&gt;和虚拟用户的会话属性的用户名设置为user123,&lt;/p&gt;
+&lt;p&gt;然后将发送有效地请求主体:&lt;br&gt;Hi, my name is user123&lt;/p&gt;
+&lt;p&gt;合并 .byteArrayBody(byteArray)&lt;/p&gt;
+&lt;p&gt;.byteArrayBody(byteArray) 被 .body(ByteArrayBody(bytes))代替.&lt;/p&gt;
+&lt;p&gt;http(“my post request”)&lt;br&gt;  .post(“&lt;a href=&quot;http://www.example.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.example.org&lt;/a&gt;“)&lt;br&gt;  .byteArrayBody(Array(1, 2, 3, 4))&lt;/p&gt;
+&lt;p&gt;变为：&lt;/p&gt;
+&lt;p&gt;http(“my post request”)&lt;br&gt;  .post(“&lt;a href=&quot;http://www.example.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.example.org&lt;/a&gt;“)&lt;br&gt;  .body(ByteArrayBody(Array(1, 2, 3, 4)))&lt;/p&gt;
+&lt;p&gt;更多有关信息,请参见请求机构引用部分。&lt;/p&gt;
+&lt;p&gt;Misc&lt;br&gt;ExtendedResponse已经重命名为响应。requestInfoExtractor和responseInfoExtractor已经合并成一个单一的extraInfoExtractor,ExtraInfo =&amp;gt; List[Any] function.。&lt;br&gt;在extraInfoExtractor的更多信息,请参阅文档。&lt;/p&gt;
+&lt;p&gt;Logs&lt;br&gt;simulation.log 被重新设计。&lt;/p&gt;
+&lt;p&gt;If you wrote your own specific simulation.log parser, you’ll need to migrate it to the new structure.&lt;br&gt;如果你写自己的simulation.log解析器,您需要它迁移到新结构&lt;/p&gt;
+&lt;p&gt;Recorder&lt;br&gt;录制器&lt;br&gt;Until now, 当你设置 Recorder时, 你必须设置两个端口记录器的当地代理:一个用于HTTP,HTTPS。 这再也不需要了, 因为record处理本身转向一个HTTPS连接如果必要,并且只需要指定一个单独的端口。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;第三篇&lt;br&gt;&lt;a href=&quot;http://gatling.io/docs/2.2.1/migration_guides/1.5.x-to-2.0.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://gatling.io/docs/2.
+    
+    </summary>
+    
+    
+      <category term="gatling" scheme="http://yoursite.com/tags/gatling/"/>
+    
+  </entry>
   
   <entry>
     <title>gatling官方文档翻译2</title>
@@ -132,7 +284,7 @@
     <link href="http://yoursite.com/2016/05/24/front-end-tools/"/>
     <id>http://yoursite.com/2016/05/24/front-end-tools/</id>
     <published>2016-05-24T12:47:35.000Z</published>
-    <updated>2016-05-24T16:45:12.000Z</updated>
+    <updated>2016-06-06T03:33:52.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;img src=&quot;/image/front-end-tools.png&quot; alt=&quot;front-end-tools&quot;&gt;&lt;/p&gt;
 &lt;p&gt;总结最近了解的前端测试的相关内容，发现前端这里真的是太庞大了，而且各种测试工具层出不穷，需要总结东西太多了，如有遗漏请大家见谅。&lt;/p&gt;
@@ -146,7 +298,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Usage&lt;br&gt;To run your test suite&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;jasmine
 &lt;/code&gt;&lt;/pre&gt;&lt;figure class=&quot;highlight actionscript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;describe(&lt;span class=&quot;string&quot;&gt;&quot;A suite&quot;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  it(&lt;span class=&quot;string&quot;&gt;&quot;contains spec with an expectation&quot;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    expect(&lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;).toBe(&lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;mocha&lt;/p&gt;
+&lt;p&gt;mocha(推荐,简洁明了)&lt;/p&gt;
 &lt;p&gt;Installation&lt;/p&gt;
 &lt;p&gt;Install with npm:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ npm install -g mocha
@@ -218,7 +370,7 @@ describe(&amp;apos;sum&amp;apos;, () =&amp;gt; {
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;##代码覆盖率工具&lt;/p&gt;
 &lt;p&gt;jscover&lt;br&gt;jscover是一个用来显示JavaScript项目代码覆盖率的工具，它是继承于JSCoverage的，用C++/SpiderMonkey 取代了Java/Rhino&lt;/p&gt;
 &lt;p&gt;但是已经沦落到淘汰的边缘&lt;/p&gt;
-&lt;p&gt;Istanbul&lt;/p&gt;
+&lt;p&gt;Istanbul(推荐目前最强大前端代码覆盖率工具)&lt;/p&gt;
 &lt;p&gt;Istanbul 是 JavaScript 程序的代码覆盖率工具,&lt;br&gt;能产生 Statements/Lines/Functions/Branches 等指标报表，并以各种格式导出。&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://qaseven.github.io/2016/01/25/gulp_for_qa/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://qaseven.github.io/2016/01/25/gulp_for_qa/&lt;/a&gt; 这篇文章里已经详细介绍了。&lt;/p&gt;
 &lt;p&gt;blanketjs&lt;/p&gt;
@@ -262,7 +414,7 @@ Scenario(&amp;apos;test some forms&amp;apos;, (I) =&amp;gt; {
   I.see(&amp;apos;User is valid&amp;apos;);
   I.dontSeeInCurrentUrl(&amp;apos;/documentation&amp;apos;);
 });
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;protractor&lt;br&gt;protractor 是 AngularJS 团队构建的一个端对端的测试运行工具，模拟用户交互，帮助你验证你的Angular应用的运行状况。&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;protractor(angluarjs亲儿子，由angluarjs核心人物开发的e2e测试工具)&lt;br&gt;protractor 是 AngularJS 团队构建的一个端对端的测试运行工具，模拟用户交互，帮助你验证你的Angular应用的运行状况。&lt;/p&gt;
 &lt;p&gt;Protractor使用Jasmine测试框架来定义测试,当然你也可以选择其他测试框架来定义测试，如mocha。Protractor为不同的页面交互提供一套健壮的API。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;var chai = require(&amp;apos;chai&amp;apos;);
 var chaiAsPromised = require(&amp;apos;chai-as-promised&amp;apos;);
