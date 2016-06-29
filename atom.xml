@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-16T02:15:39.000Z</updated>
+  <updated>2016-06-29T12:57:39.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,65 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>gatling官方文档翻译5</title>
+    <link href="http://yoursite.com/2016/06/29/gatling5/"/>
+    <id>http://yoursite.com/2016/06/29/gatling5/</id>
+    <published>2016-06-29T09:45:25.000Z</published>
+    <updated>2016-06-29T12:57:39.000Z</updated>
+    
+    <content type="html">&lt;p&gt;第五篇&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://gatling.io/docs/2.2.2/migration_guides/2.0-to-2.1.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://gatling.io/docs/2.2.2/migration_guides/2.0-to-2.1.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Migrating from 2.0 to 2.1&lt;br&gt;Global changes&lt;br&gt;Scala 2.11&lt;br&gt;Gatling is now built with Scala 2.11. If you’re using Scala IDE, make sure you’re using a version compatible with Scala 2.11.&lt;/p&gt;
+&lt;p&gt;Compiler runs standalone&lt;br&gt;Gatling itself doesn’t compile the Simulations anymore and expects that the simulations are already compiled. This means that gatling.sh/gatling.bat and the Maven plugin runs the compiler prior to running Gatling. Consequently, a few options in gatling.conf have been removed:&lt;/p&gt;
+&lt;p&gt;gatling.core.disableCompiler&lt;br&gt;gatling.core.zinc.jvmArgs&lt;br&gt;Please note that, as this change implied that the Maven Plugin was heavily modified so that it compiles the simulations separately prior to running Gatling, you’ll need to upgrade the Maven Plugin to its version 2.1.0 too.&lt;/p&gt;
+&lt;p&gt;Percentiles&lt;br&gt;Gatling now publishes 4 percentiles instead of 2. These percentiles are published in the reports and in the Graphite integration module. Beware that keys in gatling.conf file have been translated:&lt;/p&gt;
+&lt;p&gt;Gatling 2.0:&lt;br&gt;percentile1 = 95&lt;br&gt;percentile2 = 99&lt;br&gt;Gatling 2.1+:&lt;br&gt;percentile1 = 50&lt;br&gt;percentile2 = 75&lt;br&gt;percentile3 = 95&lt;br&gt;percentile4 = 99&lt;br&gt;Core&lt;br&gt;Mute mode&lt;br&gt;The “mute mode” option, which was previously restricted to the SBT Plugin, is now also usable by the bundle scripts and the Maven Archetype.&lt;/p&gt;
+&lt;p&gt;Assertions&lt;br&gt;Validating assertions in combination with the reports-only / ro option does not require to pass the simulation (using -s) for which the assertions will be validated anymore.&lt;/p&gt;
+&lt;p&gt;Throttling&lt;br&gt;Throttling now automatically adds a maxDuration of either the simulation throttling duration, or the minimum of the scenarios throttling durations.&lt;/p&gt;
+&lt;p&gt;HTTP&lt;br&gt;Parameters&lt;br&gt;Form parameters are no longer specific to POST method, you can use them with all methods.&lt;/p&gt;
+&lt;p&gt;Request Bodies Directory&lt;br&gt;The directory name was changed from request-bodies to bodies as it now can host both request bodies and response bodies. The latter one are now captured by the recorder, and can be used as template for checking the response body.&lt;/p&gt;
+&lt;p&gt;CLI option was renamed from rbf to bdf.&lt;/p&gt;
+&lt;p&gt;Checks&lt;br&gt;Deprecated dontValidate was dropped in 2.1 as previously announced. Please use optional instead.&lt;/p&gt;
+&lt;p&gt;Protocol&lt;br&gt;Deprecated baseHeaders was dropped in 2.1 as previously announced. Please use headers instead.&lt;/p&gt;
+&lt;p&gt;Maven Archetype&lt;br&gt;Due to some necessary changes to allow Gatling to use Scala 2.11, you’ll have to update IDEPathHelper.scala, Engine.scala and Recorder.scala if you’re using the Maven archetype.&lt;/p&gt;
+&lt;p&gt;Either generate a new project with the 2.1.1 archetype (there was a bug in 2.1), or override your classes with the ones here. If you choose the latter, don’t forget to fix the simulationPackage in Recorder.scala.&lt;/p&gt;
+&lt;p&gt;SBT Plugin&lt;br&gt;The SBT Plugin’s test framework has been moved to the core project in 2.1. As a consequence, the test framework name has be modified to follow the naming conventions of all core modules and share its versionning.&lt;/p&gt;
+&lt;p&gt;The SBT Plugin will also share the same versionning schema as all other Gatling modules, and has been renamed to ‘gatling-sbt’.&lt;/p&gt;
+&lt;p&gt;The new coordinates are therefore :&lt;/p&gt;
+&lt;p&gt;“io.gatling” % “gatling-sbt” % “2.1.0” for the SBT Plugin&lt;br&gt;“io.gatling” % “gatling-test-framework” % “2.1.0” for the testing framework.&lt;/p&gt;
+&lt;p&gt;从2.0 合并到2.1&lt;br&gt;全局变化&lt;br&gt;Scala 2.11&lt;br&gt;gatling 现在用2.11 构建，如果你使用Scala IDE, 确认你是使用的版本能够兼容scala2.11.&lt;/p&gt;
+&lt;p&gt;Compiler runs standalone&lt;br&gt;编译器独立的运行&lt;/p&gt;
+&lt;p&gt;gatling本身不再编译模拟器和预测模拟已经编译。&lt;/p&gt;
+&lt;p&gt;这就意味着 gatling.sh/gatling.bat 和maven插件编译在运行gatling之前。因此,一些选项在gatling.conf 已经被移除&lt;/p&gt;
+&lt;p&gt;请注意，这种变化意味着Maven插件大量修改，单独编译仿真运行gatling之前，你需要升级版本2.1.0的Maven插件。&lt;/p&gt;
+&lt;p&gt;Percentiles&lt;br&gt;gatling 发布4位百分数来代替2位。&lt;br&gt;这些百分位数发布在生成的报告和图表的集成模块&lt;br&gt;注意键在gatling.conf 文件已经被翻译。&lt;/p&gt;
+&lt;p&gt;Gatling 2.0:&lt;br&gt;percentile1 = 95&lt;br&gt;percentile2 = 99&lt;br&gt;Gatling 2.1+:&lt;br&gt;percentile1 = 50&lt;br&gt;percentile2 = 75&lt;br&gt;percentile3 = 95&lt;br&gt;percentile4 = 99&lt;br&gt;Core&lt;/p&gt;
+&lt;p&gt;Mute mode&lt;/p&gt;
+&lt;p&gt;“静音模式”选项,该选项以前局限于SBT插件,现在也可用bundle的脚本和Maven Archetype。&lt;br&gt;Assertions&lt;/p&gt;
+&lt;p&gt;验证断言结合the reports-only / ro option不需要通过仿真(using- s)的断言将被验证了。&lt;/p&gt;
+&lt;p&gt;Throttling&lt;br&gt;节流现在自动添加一个maxDuration仿真节流的持续时间、节流时间或最低的场景。&lt;br&gt;HTTP&lt;br&gt;Parameters&lt;br&gt;形式参数不再是特定于POST方法,您可以使用它们在全部的方法。&lt;br&gt;Request Bodies Directory&lt;br&gt;目录更名从请求体的body,因为它现在可以主机请求body和响应。后者现在被记录,并可以用作模板检查响应的body。&lt;/p&gt;
+&lt;p&gt;CLI option被重新命名从 rbf 到 bdf.&lt;/p&gt;
+&lt;p&gt;Checks&lt;br&gt;此前宣布弃用dontValidate下降2.1。请使用optional。&lt;/p&gt;
+&lt;p&gt;Protocol&lt;br&gt;此前宣布弃用baseHeaders下降2.1。请使用headers。&lt;/p&gt;
+&lt;p&gt;Maven Archetype&lt;/p&gt;
+&lt;p&gt;由于一些必要的改变,允许gatling使用Scala 2.11中,你将不得不更新IDEPathHelper.scala, Engine.scala and Recorder.scala。如果你使用Maven archetype 。&lt;/p&gt;
+&lt;p&gt;SBT Plugin&lt;br&gt;SBT插件的测试框架已经被转移到2.1的核心项目。因此,测试框架的名称已被修改遵循所有核心模块的命名约定和分享它的版本。&lt;/p&gt;
+&lt;p&gt;SBT插件还将共享相同的版本模式和其他gatling模块,并重新命名为“gatling-sbt”。&lt;br&gt;因此,新坐标:&lt;br&gt;“io.gatling” % “gatling-sbt” % “2.1.0” 关于 the SBT 插件&lt;br&gt;“io.gatling” % “gatling-test-framework” % “2.1.0” 关于测试框架.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;第五篇&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://gatling.io/docs/2.2.2/migration_guides/2.0-to-2.1.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://gatling.io/docs/
+    
+    </summary>
+    
+    
+      <category term="gatling" scheme="http://yoursite.com/tags/gatling/"/>
+    
+  </entry>
   
   <entry>
     <title>gatling官方文档翻译4</title>
