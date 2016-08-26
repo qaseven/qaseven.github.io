@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-29T12:57:39.000Z</updated>
+  <updated>2016-08-26T06:21:08.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>capybara1</title>
+    <link href="http://yoursite.com/2016/08/26/capybara1/"/>
+    <id>http://yoursite.com/2016/08/26/capybara1/</id>
+    <published>2016-08-26T06:17:36.000Z</published>
+    <updated>2016-08-26T06:21:08.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;capybara_u7B80_u4ECB&quot;&gt;&lt;a href=&quot;#capybara_u7B80_u4ECB&quot; class=&quot;headerlink&quot; title=&quot;capybara简介&quot;&gt;&lt;/a&gt;capybara简介&lt;/h2&gt;&lt;p&gt;capybara是一个ruby的gem,它是一个用来测试web应用的工具包，使用它可以模拟用户对web应用的操作。它可以通过CSS或xpath选择器选中页面上的元素，然后对这些元素应用一些操作，从而实现模拟用户行为。&lt;/p&gt;
+&lt;h3 id=&quot;u5E95_u5C42driver_u7684_u5B9E_u73B0&quot;&gt;&lt;a href=&quot;#u5E95_u5C42driver_u7684_u5B9E_u73B0&quot; class=&quot;headerlink&quot; title=&quot;底层driver的实现&quot;&gt;&lt;/a&gt;底层driver的实现&lt;/h3&gt;&lt;p&gt;基于底层driver的基础上，提供一套统一的 界面交互api，如visit, right_click，hover等。它内置 Rack::Test 和 Selenium 支持，也支持其他驱动。WebKit 通过外部 gem 的形式支持。&lt;/p&gt;
+&lt;p&gt;底层的driver有很多，可以是完全打开浏览器方式的driver(如：RackTest，selenium-webdriver)，也可以是基于headless webkit 的 driver(如：capybara-webkit, poltergeist).&lt;/p&gt;
+&lt;h3 id=&quot;capybara__u4F18_u70B9&quot;&gt;&lt;a href=&quot;#capybara__u4F18_u70B9&quot; class=&quot;headerlink&quot; title=&quot;capybara 优点&quot;&gt;&lt;/a&gt;capybara 优点&lt;/h3&gt;&lt;p&gt;  ● 无需配置 对于 Rails 和 Rack 应用而言，开箱即用。&lt;br&gt;  ● 符合直觉的 API 模拟真实用户行为。&lt;br&gt;  ● 可替换后端 可以替换测试后端，例如从快速的 headless 模式切换到实际的浏览器，无需更改测试。&lt;br&gt;  ● 强力同步 你不用手动等待异步过程结束。&lt;/p&gt;
+&lt;p&gt;因为capyybara提供了以下好处：&lt;br&gt;  ● 这是一个更高层次的API，这意味着当你使用不同driver时，例如（headless或者browser）可以使用同样的API处理动态页面或静态HTML.&lt;br&gt;  ● 它是专门为U自动化测试web应用而设计的程序,&lt;br&gt;  ● 因此它拥有十分有用的断言的方法判断页面是否正确。&lt;br&gt;  ● 当我们测试真实的浏览器时，他会自动帮助我们处理许多棘手的异步问题&lt;br&gt;  ● 它被设计用于测试机架的应用，因此它会开机并为您管理后台服务器&lt;br&gt;  ● 它为设计为rack应用的测试框架,所以它将引导和管理后台服务。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;capybara_u7B80_u4ECB&quot;&gt;&lt;a href=&quot;#capybara_u7B80_u4ECB&quot; class=&quot;headerlink&quot; title=&quot;capybara简介&quot;&gt;&lt;/a&gt;capybara简介&lt;/h2&gt;&lt;p&gt;capybara是一个ruby的ge
+    
+    </summary>
+    
+    
+      <category term="ui_automation, capybara1" scheme="http://yoursite.com/tags/ui-automation-capybara1/"/>
+    
+  </entry>
   
   <entry>
     <title>gatling官方文档翻译5</title>
