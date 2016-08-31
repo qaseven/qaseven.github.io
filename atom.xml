@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-30T04:57:07.000Z</updated>
+  <updated>2016-08-31T14:52:03.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>capybara4--安装cucumber</title>
+    <link href="http://yoursite.com/2016/08/30/capybara4/"/>
+    <id>http://yoursite.com/2016/08/30/capybara4/</id>
+    <published>2016-08-30T07:54:19.000Z</published>
+    <updated>2016-08-31T14:52:03.000Z</updated>
+    
+    <content type="html">&lt;p&gt;capybara是一个简单的API,它提供了抽象层在你真实自动化库之上。如果它帮助,认为capybara是你的翻译,你告诉它做一些事情，它将优雅的将命令转换为你应用驱动的API。&lt;/p&gt;
+&lt;p&gt;所以当我们使用capybara进行翻译时，我们需要告诉capybara做什么并且需要一个API自动化库去进行翻译。&lt;br&gt;capybara是一个非常灵活的库,&lt;br&gt;通过这本书我们将看到它在各种场景中应用。然而。目前为止最常见的情景是应用cucumber作为capybara测试驱动，去驱动selenium webdriver 开展浏览器自动化。&lt;br&gt;当cucumber被调用来解析这些简单易懂的英语场景时，它将使用正则表达式去将这些匹配&lt;/p&gt;
+&lt;h2 id=&quot;cucumber_u4ECB_u7ECD&quot;&gt;&lt;a href=&quot;#cucumber_u4ECB_u7ECD&quot; class=&quot;headerlink&quot; title=&quot;cucumber介绍&quot;&gt;&lt;/a&gt;cucumber介绍&lt;/h2&gt;&lt;p&gt;cucumber是一种可以使用文本描述语言来执行自动测试用例的工具，使用的语言叫做Gherkin.&lt;/p&gt;
+&lt;p&gt;Gherkin用于描述软件的行为而不需要了解具体的实现，使用Gherkin主要有两个目的文档和自动测试用例（我们希望能够和手工测试用例也统一）。 Gherkin支持超过40种语言，包括英文、中文。 Gherkin可以在任何地方新增注释，注释以#开头，每一个文件都是已.feature结尾，在feature文件中输入功能描述、场景、步骤，当执行这个功能时每一个步骤都需要编写ruby代码块来实现具体的功能，当前cucumber支持多种语言，除了ruby还可以使用java、javascript来编写具体定义层的实现。&lt;/p&gt;
+&lt;h3 id=&quot;u4EE5_u4E0B_u662F_u4E00_u4E2Acucumber__u573A_u666F_u7684_u4F8B_u5B50&quot;&gt;&lt;a href=&quot;#u4EE5_u4E0B_u662F_u4E00_u4E2Acucumber__u573A_u666F_u7684_u4F8B_u5B50&quot; class=&quot;headerlink&quot; title=&quot;以下是一个cucumber 场景的例子&quot;&gt;&lt;/a&gt;以下是一个cucumber 场景的例子&lt;/h3&gt;&lt;p&gt;   Feature: Search for Videos on Baidu&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Scenario: Search for Videos
+    Given I am on the  baidu home page
+    When I search for &amp;quot;capybara&amp;quot;
+    Then search result are returned
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;我们设置可以采用中文实现场景&lt;br&gt;中文的话最前面必须增加# language: zh-CN&lt;/p&gt;
+&lt;figure class=&quot;highlight vala&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;preprocessor&quot;&gt;# language: zh-CN&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;功能:第一个中文程序&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;中文实现&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;场景:中文实现场景&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;假如当前是中文&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;当输入是测试&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;那么能看到中文测试&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;下面的流程图说明了从cucumber到底层驱动如何实现，capybara在整个流程里面充当是中间价的作用。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/image/capybra flow.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;安装&lt;br&gt;&lt;figure class=&quot;highlight cmake&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;gem &lt;span class=&quot;keyword&quot;&gt;install&lt;/span&gt; cucumber&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;如果你使用的是 bundler，只是需要添加以下代码到Gemfile:&lt;/p&gt;
+&lt;figure class=&quot;highlight elixir&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;group &lt;span class=&quot;symbol&quot;&gt;:test&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  gem &lt;span class=&quot;string&quot;&gt;&#39;cucumber&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;初始化features目录：&lt;br&gt;&lt;figure class=&quot;highlight applescript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;cucumber &lt;span class=&quot;comment&quot;&gt;--init&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;查看完帮助列表：&lt;br&gt;&lt;figure class=&quot;highlight applescript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;cucumber &lt;span class=&quot;comment&quot;&gt;--help&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;运行所有features：&lt;br&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;cucumber&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Cucumber-Rails&quot;&gt;&lt;a href=&quot;#Cucumber-Rails&quot; class=&quot;headerlink&quot; title=&quot;Cucumber-Rails&quot;&gt;&lt;/a&gt;Cucumber-Rails&lt;/h2&gt;&lt;p&gt;如果你使用capybara 来测试rails应用，你应该安装cucumber－rails gem 而不是标准的rails gem。&lt;br&gt;这个gem需要capybara和cucumber作为依赖。&lt;br&gt;所以当你安装cucumber－rails gem时，会自动安装这些依赖，我们只需要运行以下命令&lt;br&gt;&lt;figure class=&quot;highlight cmake&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;gem &lt;span class=&quot;keyword&quot;&gt;install&lt;/span&gt; cucumber-rails&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;如果你使用bundle，只需要将以下代码添加进gemfile:&lt;br&gt;&lt;figure class=&quot;highlight elixir&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;group &lt;span class=&quot;symbol&quot;&gt;:test&lt;/span&gt;, &lt;span class=&quot;symbol&quot;&gt;:development&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  gem &lt;span class=&quot;string&quot;&gt;&#39;cucumber-rails&#39;&lt;/span&gt;, &lt;span class=&quot;symbol&quot;&gt;:require&lt;/span&gt; =&amp;gt; &lt;span class=&quot;keyword&quot;&gt;false&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;# database_cleaner is not required, but highly recommended&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  gem &lt;span class=&quot;string&quot;&gt;&#39;database_cleaner&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;然后运行&lt;br&gt;&lt;figure class=&quot;highlight armasm&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;bundle &lt;/span&gt;install&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;运行生成器帮助我们生成目录&lt;br&gt;&lt;figure class=&quot;highlight cmake&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;rails generate cucumber:&lt;span class=&quot;keyword&quot;&gt;install&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;capybara是一个简单的API,它提供了抽象层在你真实自动化库之上。如果它帮助,认为capybara是你的翻译,你告诉它做一些事情，它将优雅的将命令转换为你应用驱动的API。&lt;/p&gt;
+&lt;p&gt;所以当我们使用capybara进行翻译时，我们需要告诉capybara做什么并且
+    
+    </summary>
+    
+    
+      <category term="capybara" scheme="http://yoursite.com/tags/capybara/"/>
+    
+  </entry>
   
   <entry>
     <title>capybara3--rspec配置</title>
