@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-09-06T05:43:25.000Z</updated>
+  <updated>2016-10-31T14:59:49.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,149 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>从QA的角度来谈谈代码质量的改进</title>
+    <link href="http://yoursite.com/2016/10/31/qaquilty/"/>
+    <id>http://yoursite.com/2016/10/31/qaquilty/</id>
+    <published>2016-10-31T14:15:46.000Z</published>
+    <updated>2016-10-31T14:59:49.000Z</updated>
+    
+    <content type="html">&lt;p&gt;大部分人看到这个题目时，直接反应的是QA关心代码质量干嘛，能看懂代码吗？怎么给dev feedback？&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/image/qa.gif&quot; alt=&quot;qa&quot;&gt;&lt;/p&gt;
+&lt;p&gt;其实如果还有人持这样的观点后，那么我只能说too young too simple。&lt;br&gt;首先我们得谈谈什么是代码质量？ 创建优秀的代码涉及到正确性、可维护性甚至优美性。&lt;br&gt;正确性，最起码你的代码实现的业务逻辑是正确的。&lt;br&gt;可维护性，公司中其他的小伙伴能看看懂你的代码逻辑，便于修改代码。&lt;br&gt;优美性，符合各种代码规范，其他人看到代码后惊为天人。&lt;br&gt;但是要做到以上几点绝非易事，首先你得有高超的编程能力，其次你对前端或后端的代码规范有深刻的理解，但是能有这样能力的人又有多少呢？&lt;br&gt;我们都知道软件开发是团队合作才能完成的工作。&lt;br&gt;那么项目的质量与客户的需求才是项目生存下去的关键。&lt;br&gt;所以怎么才能改进项目代码的质量？我们先看看业界巨头公司都是如何做的？&lt;/p&gt;
+&lt;h2 id=&quot;microsoft_u600E_u4E48_u505A_uFF1F&quot;&gt;&lt;a href=&quot;#microsoft_u600E_u4E48_u505A_uFF1F&quot; class=&quot;headerlink&quot; title=&quot;microsoft怎么做？&quot;&gt;&lt;/a&gt;microsoft怎么做？&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/image/microsoft.jpg&quot; alt=&quot;microsoft&quot;&gt;&lt;/p&gt;
+&lt;p&gt;我们都知道微软是做操作系统出身的，其实微软的测试能力与测试工具都是业界中领先的，以下是两张表展示的是微软如何从visual studio与开发过程中提高代码质量&lt;/p&gt;
+&lt;h4 id=&quot;Visual_Studio&quot;&gt;&lt;a href=&quot;#Visual_Studio&quot; class=&quot;headerlink&quot; title=&quot;Visual Studio&quot;&gt;&lt;/a&gt;Visual Studio&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;标准&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;使用代码分析工具分析应用程序质量&lt;/td&gt;
+&lt;td&gt;静态代码分析工具可查找 C++ 和托管代码里的设计、使用、可维护性和样式问题。 其中的许多问题可能导致难以在标准测试环境中重现的 bug。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;单元测试代码&lt;/td&gt;
+&lt;td&gt;“测试资源管理器”可以在开发实践中轻松地集成单元测试。 可以使用 Microsoft 单元测试框架或若干第三方和开源框架之一。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  测量托管代码的复杂性和可维护性&lt;/td&gt;
+&lt;td&gt;代码度量是一组软件度量值，使开发人员可以更好地了解他们正在开发的代码。 度量值包括函数和类的可维护性指数、函数的圈复杂度、类的继承深度和类耦合度的数值。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  使用代码克隆检测功能查找重复代码&lt;/td&gt;
+&lt;td&gt;代码克隆工具可用于在整个 Visual Studio 解决方案内搜索 Visual C# 和 Visual Basic 项目中重复或高度相似的代码。 可以经常重构代码以消除重复代码，从而创建更易于维护的解决方案。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  PreEmptive Analytics for Team Foundation Server&lt;/td&gt;
+&lt;td&gt;PreEmptive Analytics for TFS CE 有助于将反馈驱动的开发过程集成到开发工作流中。 当应用程序在执行过程中发生错误时，它会自动将异常报告数据发回给 PreEmptive Analytics 服务。 然后，该服务将根据你定义的规则和阈值创建或更新 Microsoft Team Foundation Server 中的工作项。  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  PreEmptive Dotfuscator 和 Analytics CE&lt;/td&gt;
+&lt;td&gt;PreEmptive Dotfuscator 是 .NET 模糊处理程序和压缩程序，有助于防止程序遭遇反向工程，同时使程序更小更高效。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;u5F00_u53D1_u8FC7_u7A0B_u4E2D_u6539_u8FDB_u4EE3_u7801_u8D28_u91CF&quot;&gt;&lt;a href=&quot;#u5F00_u53D1_u8FC7_u7A0B_u4E2D_u6539_u8FDB_u4EE3_u7801_u8D28_u91CF&quot; class=&quot;headerlink&quot; title=&quot;开发过程中改进代码质量&quot;&gt;&lt;/a&gt;开发过程中改进代码质量&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;标准&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;  设计和代码的检查准则&lt;/td&gt;
+&lt;td&gt;提供若干帮助进行设计和代码检查的技术，通过让其他同事检查代码来发现 bug 和不正确的假设。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  安全代码编写准则&lt;/td&gt;
+&lt;td&gt;描述编写安全代码的技术和策略。  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  高质量代码签入准则&lt;/td&gt;
+&lt;td&gt;列出以不同方式检查代码以确保代码实现您的预期高质量设计目的的准则。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  代码分析工具使用准则&lt;/td&gt;
+&lt;td&gt;提供几条使用代码分析工具的准则。  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  检测和更正 C/C++ 代码缺陷&lt;/td&gt;
+&lt;td&gt;描述如何使用用于托管代码的代码分析工具检测和更正代码缺陷。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  代码分析签入策略&lt;/td&gt;
+&lt;td&gt;描述如何创建与 Team Foundation 源控件签入关联的自定义签入策略。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;调试准则&lt;/td&gt;
+&lt;td&gt;提供几条查找代码缺陷的准则。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&quot;google__u53C8_u662F_u600E_u4E48_u505A_uFF1F&quot;&gt;&lt;a href=&quot;#google__u53C8_u662F_u600E_u4E48_u505A_uFF1F&quot; class=&quot;headerlink&quot; title=&quot;google 又是怎么做？&quot;&gt;&lt;/a&gt;google 又是怎么做？&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/image/google.jpg&quot; alt=&quot;google&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;代码审查。在你提交任何代码改动之前，你得找去代码“主人”签字确认。为了实现，评审者（被鼓励去）建议大修代码，而不是让它成为根本没有经过思考的“图章”代码。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;按语言可读性要求坚持代码风格指南（请参阅这里）。除了让我们代码有统一的外观（所以我们能快速识别方法、变了等），我们的风格指南禁止了一些复杂、混乱、易出错的 C++ 特性（比如：class 类型的静态和全局变量）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;整个团队都致力改进我们代码库的质量，维护我们的核心库，不断做出更好的工具。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;一个活跃的“code health”课题组。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;发布软件时，不对外部期限承担责任。一般而言，这让我们可以正确做事，而非为了期限内完成任务把乱七八糟的代码拼凑起来。&lt;/li&gt;
+&lt;li&gt;“Fix it.” 例如，一个工程师或许说，“我认为我们真应该别再用过时的  Cruft Map 类（class）了。我打算在 1 月 20 日组织一次 Fix it。” 当 1 月 20 日来临时，大家应当暂停其正常运作，把他们代码中的 Cruft Maps 都换掉。在 1 月 21 日，Google 就永远和 Cruft Map 说拜拜了！不过最近，核心库团队已经很优秀了，貌似没有啥东西可再值得类似的 fix it 了。&lt;/li&gt;
+&lt;li&gt;测试文化。单元测试覆盖率可能接近 100%，我们有持续构建/整合/测试，还有知名的 “Testing on the Toilet” (请参见Google Testing Blog)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;facebook__u5462_uFF1F__u53C8_u6709_u4EC0_u4E48_u4E0D_u4E00_u6837&quot;&gt;&lt;a href=&quot;#facebook__u5462_uFF1F__u53C8_u6709_u4EC0_u4E48_u4E0D_u4E00_u6837&quot; class=&quot;headerlink&quot; title=&quot;facebook 呢？ 又有什么不一样&quot;&gt;&lt;/a&gt;facebook 呢？ 又有什么不一样&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/image/facebook.jpeg&quot; alt=&quot;facebook&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;开发对质量负责： 开发从设计，实现，测试，到部署都要自己做。其它做工具，流程的工程师通过开发工具和流程来帮助开发人员更为简单方便地做测试，做部署和做监控。每个开发人员有自己单独的测试环境，测试环境就是运行在开发本地机器上，部署非常简单快速。测试环境用的是真实的用户数据。&lt;/li&gt;
+&lt;li&gt;持续集成和测试自动化：每周发布一次。星期天晚上，要发布的构建从主线上分支出来到发布分支，到星期二的中午如果没有大的问题，就可以上线了。所有的测试运行控制在10分钟以内，所以不需要考虑不运行哪些测试用例。运行所有测试用例。 （只是听说，没有经过考证。）&lt;/li&gt;
+&lt;li&gt;严格实施代码审计：在Facebook 做 code review时间大约占50%，管理者对代码质量负有一定责任 。甚至代码质量高于一切：Facebook Code review是重点KPI考核的对象，实行连坐制，如果因为代码质量问题，那么产生的KPI责任包括领导30％、程序员50％、审核人员20％。 在代码checkin之前，都要由专人进行review。Facebook 创始人兼 CEO 马克扎克伯格会亲自对 News Feed 每个代码更新把关。在 Facebook，所有重大升级的代码都进行强制评估，任何一个改动都至少由一人把关。但是，无论工程师对 News Feed 做出任何改动，都将由扎克伯格亲自把关。&lt;/li&gt;
+&lt;li&gt;内测 （dog food）：发布之前，公司员工使用要发布的功能。2－3天之内可以有几百个或上千个人在使用新功能。负责要发布功能的开发人员在星期天晚上到星期二中午之间会做大量的测试 。&lt;/li&gt;
+&lt;li&gt;通过灰度发布控制风险：新功能本身质量可能有问题，新功能也可能影响其它现有功能。为了减少或控制这些风险。Facebook开发了一整套完善的发布，控制，监控流程和工具。做到：1.测试通过后，产品质量基本有保证。2.即使有漏测的bug，只会影响很少量的用户。3.及时监控到问题。4.及时修复。&lt;/li&gt;
+&lt;li&gt;产品监控：通过社区讨论的正负面舆情，及与历史应用数据的对比情况，监控产品的系统的运行状态技术修复。&lt;h2 id=&quot;thoughtworks__u4E1A_u754C_u4EE5_u654F_u6377_u8457_u79F0_u7684_u8F6F_u4EF6_u4F01_u4E1A_u53C8_u662F_u5982_u4F55_u6539_u8FDB_u7684&quot;&gt;&lt;a href=&quot;#thoughtworks__u4E1A_u754C_u4EE5_u654F_u6377_u8457_u79F0_u7684_u8F6F_u4EF6_u4F01_u4E1A_u53C8_u662F_u5982_u4F55_u6539_u8FDB_u7684&quot; class=&quot;headerlink&quot; title=&quot;thoughtworks 业界以敏捷著称的软件企业又是如何改进的&quot;&gt;&lt;/a&gt;thoughtworks 业界以敏捷著称的软件企业又是如何改进的&lt;/h2&gt;&lt;img src=&quot;/image/thoughtworks.jpg&quot; alt=&quot;thoughtworks&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;项目的初期，dev,BA,QA就会做到一起IPM,让不同的角色都能了解story，让dev尽早的分析story以及采用那种技术去完成工作。&lt;br&gt;&lt;img src=&quot;/image/twqa.jpg&quot; alt=&quot;pair&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;开发阶段，dev会采用pair的方式，和QA，其他dev共同完成story，这样的好处是，一让不熟悉的新人尽快的了解项目架构，二与QApair,QA将会提供dev考虑不足的点，一起编写单元测试以及feature test。&lt;/li&gt;
+&lt;li&gt;当dev完成代码工作后，会在github上发出pull request 或邀请其他dev，一起评审代码。&lt;/li&gt;
+&lt;li&gt;各个项目都有自己完备的cd流程，确保发布过程的正确性，减少人为手工操作的失误。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;从以上业界代表公司的改进方式，我们可以看出它们都是从以下几点出发的：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;完整的单元测试覆盖率&lt;br&gt;UI自动化测试的覆盖率很难被保证，不断的改变的ui,使使用UI测试来验证产品的功能变得十分麻烦，但是单元测试则不同，各种语言都有自己的测试工具以及测试覆盖率工具帮助我们更好的完善我们的代码质量，我们也可以用接口测试与pact测试来保证第三方集成服务的正确性，所以高覆盖率的单元测试时产品的质量的基础。&lt;/li&gt;
+&lt;li&gt;严格的代码审查机制&lt;br&gt;facebook，google，微软等公司严格的代码审查机制，是确保代码不被破坏的关键点，不会因为团队成员的某次粗心的提交，造成整个项目的失败。&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;强大的代码分析工具&lt;br&gt;代码级别的规范化，以及动态与静态扫描，进一步的帮助软件开发人员、质量保证人员查找代码中存在的结构性错误、安全漏洞等问题，从而保证软件的整体质量。与CI,CD的集成，能够让我们尽早的发现代码中存在的错误。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;规范化的测试流程&lt;br&gt;各个公司规范化的测试流程，保证项目在每一阶段都能够输出高质量的代码。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;完善的风险控制&lt;br&gt;完善的风险控制，不仅仅表现的google与Facebook的A/B测试，也表现在当有任何重大问题时，能够随意的切换到旧的版本，保证产品不因为该问题，就造成宕机。&lt;/li&gt;
+&lt;li&gt;实时的监控&lt;br&gt;这些行业的巨头，都有着非常强大的运维团队，从产品的开发阶段就开始实施了各种监控手段，监控范围包括编译阶段，部署阶段，产品环境，硬件服务器的状态等，帮助项目的中所有成员及时的发现产品中存在的问题，快速跟踪以及定位问题。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;第一篇分析各个公司都采取了那些代码质量改进措施完毕，接下来我会从不同的角度去详细介绍这些改进措施。
+&lt;/strong&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;大部分人看到这个题目时，直接反应的是QA关心代码质量干嘛，能看懂代码吗？怎么给dev feedback？&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/image/qa.gif&quot; alt=&quot;qa&quot;&gt;&lt;/p&gt;
+&lt;p&gt;其实如果还有人持这样的观点后，那么我只能说too young too 
+    
+    </summary>
+    
+    
+      <category term="QA" scheme="http://yoursite.com/tags/QA/"/>
+    
+  </entry>
   
   <entry>
     <title>capybara5--实现你第一个自动化场景</title>
