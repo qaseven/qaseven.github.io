@@ -5,6 +5,17 @@
  * @version 2.0
  * @link http://chopstack.com
  */
+/*
+pure css setting
+When setting the primary font stack, apply it to the Pure grid units along
+with `html`, `button`, `input`, `select`, and `textarea`. Pure Grids use
+specific font stacks to ensure the greatest OS/browser compatibility.
+*/
+html, button, input, select, textarea,
+.pure-g [class*="pure-u"] {
+  /* Set your content font stack here: */
+  font-family: "PingFangSC-Regular", Helvetica, "Helvetica Neue", "Segoe UI", "Hiragino Sans GB", "Source Han Sans CN", "Microsoft YaHei", "STHeiti", "WenQuanYi Micro Hei", sans-serif; }
+
 body {
   background-color: #FFF;
   color: #444;
@@ -116,6 +127,13 @@ div {
       #sidebar .widget ul li {
         margin: 5px 0;
         line-height: 1.5; }
+    #sidebar .widget .category-list-count {
+      padding-left: 5px;
+      color: #6E7173; }
+    #sidebar .widget .category-list-count:before {
+      content: "("; }
+    #sidebar .widget .category-list-count:after {
+      content: ")"; }
     #sidebar .widget .search-form {
       position: relative;
       overflow: hidden; }
@@ -333,8 +351,10 @@ div {
     padding: 0 30px; }
   .content_container {
     padding-right: 15px; }
+  .hidden_mid_and_down {
+    display: none !important; }
   #sidebar {
-    display: none; }
+    border-left-width: 0px; }
   #header .site-name {
     margin-bottom: 20px;
     text-align: center; }
@@ -844,7 +864,7 @@ figure.highlight,
 .codeblock {
   background: #f7f8f8;
   margin: 10px 0;
-  line-height: 1.2em;
+  line-height: 1.1em;
   color: #333;
   padding-top: 15px;
   overflow: hidden; }
@@ -861,7 +881,7 @@ figure.highlight,
   .codeblock .code,
   .codeblock .tag {
     background-color: inherit;
-    font-family: Menlo;
+    font-family: Menlo, Consolas, monospace;
     border: none;
     padding: 0;
     margin: 0;
@@ -904,12 +924,12 @@ figure.highlight,
       overflow-y: hidden; }
   figure.highlight .line,
   .codeblock .line {
-    height: 1.2em;
+    height: 1.3em;
     font-size: 13px; }
 
 .gist .line,
 .gist .line-number {
-  font-family: Menlo;
+  font-family: Menlo, Consolas, monospace;
   font-size: 1em;
   margin: 0 0 5px 0; }
 
