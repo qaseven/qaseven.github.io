@@ -78,11 +78,11 @@
   </entry>
   
   <entry>
-    <title>expresso系列一简介</title>
+    <title>espresso系列一简介</title>
     <link href="http://yoursite.com/2016/11/30/expresso/"/>
     <id>http://yoursite.com/2016/11/30/expresso/</id>
     <published>2016-11-30T08:59:53.000Z</published>
-    <updated>2016-11-30T15:24:05.000Z</updated>
+    <updated>2016-12-05T15:10:23.000Z</updated>
     
     <content type="html">&lt;h2 id=&quot;espresso_u662F_u4EC0_u4E48_uFF1F&quot;&gt;&lt;a href=&quot;#espresso_u662F_u4EC0_u4E48_uFF1F&quot; class=&quot;headerlink&quot; title=&quot;espresso是什么？&quot;&gt;&lt;/a&gt;espresso是什么？&lt;/h2&gt;&lt;p&gt; Espresso 测试框架提供了一系列的API用于构建UI测试来测试app内用户流操作。这些API让你可以编写简洁可靠的自动化UI测试。Espresso非常适合用来编写白盒测试，其中测试代码的编写是利用了被测试app中程序代码实现细节。&lt;/p&gt;
 &lt;p&gt;Espresso测试可运行android 2.3.3(API 10 level)以及更高版本的设备上。使用Espresso的主要好处是,当你运行测试时它提供了自动的同步测试动作与应用程序UI。Espresso会检测你的主线程是否为空闲状态,如果你的没有被利用,这时候他就会抢占主线程运行测试，所以它能够在恰当的时间运行您的测试命令,提高测试的可靠性。这种能力也使您无须添加任何额外的措施,例如在测试代码中加入&lt;code&gt;thread.sleep()&lt;/code&gt;。&lt;/p&gt;
