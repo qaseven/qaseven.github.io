@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-05T15:06:14.000Z</updated>
+  <updated>2016-12-05T15:08:59.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2016/12/02/espresso2/"/>
     <id>http://yoursite.com/2016/12/02/espresso2/</id>
     <published>2016-12-02T03:57:43.000Z</published>
-    <updated>2016-12-05T15:06:14.000Z</updated>
+    <updated>2016-12-05T15:08:59.000Z</updated>
     
     <content type="html">&lt;h2 id=&quot;espresso_u57FA_u7840_u67B6_u6784_u4E0EAPI_u5206_u6790&quot;&gt;&lt;a href=&quot;#espresso_u57FA_u7840_u67B6_u6784_u4E0EAPI_u5206_u6790&quot; class=&quot;headerlink&quot; title=&quot;espresso基础架构与API分析&quot;&gt;&lt;/a&gt;espresso基础架构与API分析&lt;/h2&gt;&lt;p&gt;Espresso测试框架提供了一组API来构建UI测试，以测试应用程序内的用户流。 这些API让您能够编写简洁，运行可靠的自动化UI测试。 Espresso非常适合编写白盒式自动化测试，其中测试代码使用来自所测试的应用程序的实现代码细节。&lt;/p&gt;
 &lt;p&gt;Espresso测试框架的主要功能包括：&lt;/p&gt;
@@ -65,7 +65,7 @@
 &lt;p&gt;其他action api 请查看&lt;br&gt;&lt;a href=&quot;/espresso.action&quot;&gt;https://developer.android.com/reference/android/support/test/espresso/action/package-summary.html&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;Verifying_Results&quot;&gt;&lt;a href=&quot;#Verifying_Results&quot; class=&quot;headerlink&quot; title=&quot;Verifying Results&quot;&gt;&lt;/a&gt;Verifying Results&lt;/h2&gt;&lt;p&gt;调用ViewInteraction.check()或DataInteraction.check()方法来断言UI中的视图匹配一些预期状态。 您必须传递一个ViewAssertion对象作为参数。 如果断言失败，Espresso会抛出一个AssertionFailedError。&lt;br&gt;ViewAssertions类提供了用于指定公共断言的帮助程序方法的列表。 您可以使用的断言包括：&lt;br&gt;doesNotExist：断言没有与当前视图层次结构中指定的条件匹配的视图。&lt;br&gt;matches：断言指定视图存在于当前视图层次结构中，并且其状态与某个给定的Hamcrest匹配器匹配。&lt;br&gt;selectedDescendentsMatch：存在指定的孩子为父视图查看的声明，它们的状态与某个给定的Hamcrest匹配器匹配。&lt;/p&gt;
 &lt;p&gt;以下代码段显示了如何检查UI中显示的文本的值与之前在EditText字段中输入的文本的值相同。&lt;br&gt;&lt;figure class=&quot;highlight scss&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public void &lt;span class=&quot;function&quot;&gt;testChangeText_sameActivity&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// Type text and then press the button.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;onView&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;withText&lt;/span&gt;(R&lt;span class=&quot;class&quot;&gt;.string&lt;/span&gt;&lt;span class=&quot;class&quot;&gt;.item_1_text&lt;/span&gt;))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;class&quot;&gt;.check&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;doesNotExist&lt;/span&gt;());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// Check that the text was changed.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;onView&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;withId&lt;/span&gt;(R&lt;span class=&quot;class&quot;&gt;.id&lt;/span&gt;&lt;span class=&quot;class&quot;&gt;.textToBeChanged&lt;/span&gt;))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;class&quot;&gt;.check&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;matches&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;withText&lt;/span&gt;(STRING_TO_BE_TYPED)));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;ViewMatchers, ViewActions, ViewAssertions 组成了espresso的基础架构，所以要真正的掌握espresso必须将这3部分基础熟悉。&lt;/p&gt;
+&lt;p&gt;ViewMatchers, ViewActions, ViewAssertions 组成了espresso的基础架构，所以要真正的掌握espresso必须将这3部分基础熟悉。&lt;br&gt;上一节&lt;a href=&quot;https://qaseven.github.io/2016/11/30/expresso/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;espresso基础&lt;/a&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
