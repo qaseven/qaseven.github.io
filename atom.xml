@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-11T09:44:43.000Z</updated>
+  <updated>2016-12-11T09:46:18.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2016/12/08/espresso3/"/>
     <id>http://yoursite.com/2016/12/08/espresso3/</id>
     <published>2016-12-08T14:30:17.000Z</published>
-    <updated>2016-12-11T09:44:43.000Z</updated>
+    <updated>2016-12-11T09:46:18.000Z</updated>
     
     <content type="html">&lt;h2 id=&quot;u524D_u8A00&quot;&gt;&lt;a href=&quot;#u524D_u8A00&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;前2篇我们已经详细介绍了espresso的架构以及相应的API，相信大家也有了一定的了解，理论讲的再多，还是不如手上自己敲一遍代码。&lt;br&gt;还是深入浅出系列的套路，让我这个小司机带大家一步一步进入espresso的世界吧。&lt;/p&gt;
 &lt;h2 id=&quot;u73AF_u5883_u51C6_u5907&quot;&gt;&lt;a href=&quot;#u73AF_u5883_u51C6_u5907&quot; class=&quot;headerlink&quot; title=&quot;环境准备&quot;&gt;&lt;/a&gt;环境准备&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://f.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=1b0dc3d30d2442a7ba03f5f7b02ac62e/6159252dd42a2834b1c7cf5b59b5c9ea15cebf79.jpg&quot; alt=&quot;github&quot;&gt;&lt;br&gt;github，如果你还用svn的话，请放弃阅读本系列文章，太low了，而且本系列的code都是采用google官方的espresso的demo，都来源于github。&lt;br&gt;&lt;img src=&quot;http://web.img.chuanke.com/course/2015-03/04/208e43b22dffd2a46a88f2a610c77e35.jpg&quot; alt=&quot;android studio&quot;&gt;&lt;br&gt;android studio,这个不用说，目前android开发者最好的工具，并且他有很多帮助espresso测试的插件或功能，比如录制功能等。&lt;br&gt;&lt;img src=&quot;http://i1.wp.com/photo.sofun.tw/2013/09/Android-SDK-ADT-Bundle-Logo.jpg&quot; alt=&quot;android sdk&quot;&gt;&lt;br&gt;android sdk，这个更不用说，如果你连这个都没，还学什么android。&lt;br&gt;&lt;img src=&quot;http://img1.imgtn.bdimg.com/it/u=2429262149,756671414&amp;amp;fm=21&amp;amp;gp=0.jpg&quot; alt=&quot;genymotion&quot;&gt;&lt;br&gt;genymotion,android目前来说最好的模拟器，虽然原生的也很不错，但是开发者首先得还是genymotion&lt;/p&gt;
