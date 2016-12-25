@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-19T05:38:57.000Z</updated>
+  <updated>2016-12-25T14:43:28.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,272 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>espresso-api之Matchers探究</title>
+    <link href="http://yoursite.com/2016/12/25/espresso4/"/>
+    <id>http://yoursite.com/2016/12/25/espresso4/</id>
+    <published>2016-12-25T13:00:09.000Z</published>
+    <updated>2016-12-25T14:43:28.000Z</updated>
+    
+    <content type="html">&lt;p&gt;通过前3篇文章，大家应该对espresso有了大体上的了解，那么今天我们要深入了解它的API，看看espresso的整体架构。&lt;br&gt;还是通过espresso cheat sheet来进入本次话题。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/image/espresso-cheat-sheet-2.1.0.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Espresso备忘单是您在开发过程中可以使用的快速参考。 这个备忘单包含大多数可用的Matchers，ViewActions和ViewAsertions。&lt;br&gt;让我们先来看看Matchers 都有哪些API可供我们使用。&lt;br&gt;&lt;figure class=&quot;highlight stylus&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;android&lt;span class=&quot;class&quot;&gt;.support&lt;/span&gt;&lt;span class=&quot;class&quot;&gt;.test&lt;/span&gt;&lt;span class=&quot;class&quot;&gt;.espresso&lt;/span&gt;&lt;span class=&quot;class&quot;&gt;.matcher&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Classes&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;BoundedMatcher&amp;lt;T, S extends T&amp;gt;	Some matcher sugar that lets you create &lt;span class=&quot;tag&quot;&gt;a&lt;/span&gt; matcher &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;tag&quot;&gt;a&lt;/span&gt; given type but only process items of &lt;span class=&quot;tag&quot;&gt;a&lt;/span&gt; specific subtype of that matcher.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;CursorMatchers	A collection of Hamcrest matchers that matches &lt;span class=&quot;tag&quot;&gt;a&lt;/span&gt; data row &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;tag&quot;&gt;a&lt;/span&gt; Cursor.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;CursorMatchers&lt;span class=&quot;class&quot;&gt;.CursorMatcher&lt;/span&gt;	A Matcher that matches Cursors based on values &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; their &lt;span class=&quot;attribute&quot;&gt;columns&lt;/span&gt;.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LayoutMatchers	A collection of hamcrest matches to detect typical layout issues.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;PreferenceMatchers	A collection of hamcrest matchers that match Preferences.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;RootMatchers	A collection of matchers &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; Root objects.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ViewMatchers	A collection of hamcrest matchers that match Views.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Enums&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ViewMatchers&lt;span class=&quot;class&quot;&gt;.Visibility&lt;/span&gt;	Enumerates the possible list of values &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; View.&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;getVisibility&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;7个类，1个Eums。接下来我们一个个欣赏谷歌大神的杰作。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;BoundedMatcher&amp;lt;T, S extends T&amp;gt;&lt;/code&gt;&lt;br&gt;一些匹配语法糖，允许您为给定类型创建匹配器，但只能处理该匹配器的特定子类型项。换句话说，就是能够自定义一些匹配器。&lt;br&gt;举个栗子，以下是一个自定义错误文本匹配器&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;ErrorTextMatchers&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;/**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   * Returns a matcher that matches &amp;#123;&lt;span class=&quot;doctag&quot;&gt;@link&lt;/span&gt; TextView&amp;#125;s based on text property value.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   *&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   * &lt;span class=&quot;doctag&quot;&gt;@param&lt;/span&gt; stringMatcher &amp;#123;&lt;span class=&quot;doctag&quot;&gt;@link&lt;/span&gt; Matcher&amp;#125; of &amp;#123;&lt;span class=&quot;doctag&quot;&gt;@link&lt;/span&gt; String&amp;#125; with text to match&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;annotation&quot;&gt;@NonNull&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; Matcher&amp;lt;View&amp;gt; &lt;span class=&quot;title&quot;&gt;withErrorText&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; Matcher&amp;lt;String&amp;gt; stringMatcher)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BoundedMatcher&amp;lt;View, TextView&amp;gt;(TextView.class) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;annotation&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;describeTo&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; Description description)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        description.appendText(&lt;span class=&quot;string&quot;&gt;&quot;with error text: &quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        stringMatcher.describeTo(description);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;annotation&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;matchesSafely&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; TextView textView)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; stringMatcher.matches(textView.getError().toString());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;实现的主要细节如下。 我们通过从withErrorText()返回一个BoundedMatcher来确保匹配器只匹配TextView类的子类。 这使得很容易在BoundedMatcher.matchesSafely()中实现匹配逻辑本身：只需从TextView中获取getError()方法并将其送入下一个匹配器。 最后，我们有一个简单的describeTo()方法的实现，它只用于生成调试输出到控制台。&lt;br&gt;&lt;code&gt;CursorMatchers&lt;/code&gt;&lt;br&gt;Hamcrest的集合匹配器，在Cursor匹配相应的数据行。&lt;br&gt;源码如下&lt;br&gt;&lt;figure class=&quot;highlight puppet&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   * Returns a matcher that matches &lt;span class=&quot;name&quot;&gt;a&lt;/span&gt; &amp;#123;@&lt;span class=&quot;literal&quot;&gt;link&lt;/span&gt; String&amp;#125; &lt;span class=&quot;name&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;name&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;name&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;name&quot;&gt;given&lt;/span&gt; &lt;span class=&quot;name&quot;&gt;column&lt;/span&gt; &lt;span class=&quot;name&quot;&gt;index&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   * in &lt;span class=&quot;name&quot;&gt;a&lt;/span&gt; &amp;#123;@&lt;span class=&quot;literal&quot;&gt;link&lt;/span&gt; Cursor&amp;#125;&lt;span class=&quot;name&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;name&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;name&quot;&gt;row&lt;/span&gt;.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   * &amp;lt;br&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   * @param columnIndex int column index&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   * @param value &lt;span class=&quot;name&quot;&gt;a&lt;/span&gt; &amp;#123;@&lt;span class=&quot;literal&quot;&gt;link&lt;/span&gt; String&amp;#125; &lt;span class=&quot;name&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;name&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;name&quot;&gt;match&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  public static CursorMatcher withRowString(int columnIndex, String value) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return withRowString(columnIndex, is(value));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;大部分的场景，大多发生于表单或者滚动menu时。&lt;br&gt;&lt;figure class=&quot;highlight lisp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;onData&lt;span class=&quot;list&quot;&gt;(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;list&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;instanceOf&lt;/span&gt;&lt;span class=&quot;list&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;Cursor&lt;/span&gt;.class)&lt;/span&gt;)&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    CursorMatchers.withRowString&lt;span class=&quot;list&quot;&gt;(&lt;span class=&quot;string&quot;&gt;&quot;job_title&quot;&lt;/span&gt;, is&lt;span class=&quot;list&quot;&gt;(&lt;span class=&quot;string&quot;&gt;&quot;Barista&quot;&lt;/span&gt;)&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;comment&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;LayoutMatchers hamcrest的集合匹配以检测典型的布局问题。&lt;br&gt;   例如匹配具有椭圆形文本的TextView元素。 如果文本太长，无法适应TextView，&lt;br&gt;    它可以是椭圆形（’Too long’显示为’Too l …’或’… long’）或切断（’Too&lt;br&gt;    long“显示为”Too l“）。 虽然在某些情况下可以接受，但通常表示不好的用户体验。&lt;/p&gt;
+&lt;p&gt;PreferenceMatchers hamcrest匹配器来匹配一组偏好。&lt;br&gt;Preference组件其实就是Android常见UI组件与SharePreferences的组合封装实现。&lt;br&gt;&lt;code&gt;onData(Matchers.&amp;lt;Object&amp;gt;allOf(PreferenceMatchers.withKey(&amp;quot;setting-name&amp;quot;))).perform(click());&lt;/code&gt;&lt;br&gt;PreferenceMatchers还有以下方法可以应用到其他场景&lt;br&gt;&lt;figure class=&quot;highlight stylus&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;withSummary&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(final int resourceId)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;withSummaryText&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String summary)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;withSummaryText&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(final Matcher&amp;lt;String&amp;gt; summaryMatcher)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;withTitle&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(final int resourceId)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;withTitleText&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String title)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;withTitleText&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(final Matcher&amp;lt;String&amp;gt; titleMatcher)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;isEnabled&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;RootMatchers Root对象的匹配器集合。&lt;br&gt;匹配root装饰视图匹配给定的视图匹配器。&lt;br&gt;&lt;figure class=&quot;highlight scss&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;onView&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;withText&lt;/span&gt;(&quot;&lt;span class=&quot;value&quot;&gt;Text&lt;/span&gt;&quot;))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;class&quot;&gt;.inRoot&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;withDecorView&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;not&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;is&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;getActivity&lt;/span&gt;()&lt;span class=&quot;class&quot;&gt;.getWindow&lt;/span&gt;()&lt;span class=&quot;class&quot;&gt;.getDecorView&lt;/span&gt;()))))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;class&quot;&gt;.perform&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;click&lt;/span&gt;());&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;RootMatchers还有以下方法可以应用到其他场景&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Public methods&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;static Matcher&lt;root&gt;&lt;/root&gt;&lt;/td&gt;
+&lt;td&gt;isDialog()Matches Roots that are dialogs (i.e.)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;static Matcher&lt;root&gt;&lt;/root&gt;&lt;/td&gt;
+&lt;td&gt;isFocusable()Matches Roots that can take window focus.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;root&gt;&lt;/root&gt;&lt;/td&gt;
+&lt;td&gt;isPlatformPopup()Matches Roots that are popups - like autocomplete suggestions or the actionbar spinner.  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;root&gt;&lt;/root&gt;&lt;/td&gt;
+&lt;td&gt;isTouchable()Matches Roots that can receive touch events.  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;root&gt;&lt;/root&gt;&lt;/td&gt;
+&lt;td&gt;withDecorView(Matcher&lt;view&gt; decorViewMatcher)Matches Roots with decor views that match the given view matcher.&lt;/view&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;  ViewMatchers 最重要也是应用最广的匹配器，通过一个或者多个来定位层级里面的控件。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Public methods&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;  static &lt;t&gt; void&lt;/t&gt;&lt;/td&gt;
+&lt;td&gt;assertThat(String message, T actual, Matcher&lt;t&gt; matcher) A replacement for MatcherAssert.assertThat that renders View objects nicely.&lt;/t&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static &lt;t&gt; void&lt;/t&gt;&lt;/td&gt;
+&lt;td&gt;assertThat(T actual, Matcher&lt;t&gt; matcher) A replacement for MatcherAssert.assertThat that renders View objects nicely.&lt;/t&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;hasContentDescription() Returns an Matcher that matches Views with any content description.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;hasDescendant(Matcher&lt;view&gt; descendantMatcher) Returns a matcher that matches Views based on the presence of a descendant in its view hierarchy.&lt;/view&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;hasErrorText(String expectedError) Returns a matcher that matches EditText based on edit text error string value.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;hasErrorText(Matcher&lt;string&gt; stringMatcher) Returns a matcher that matches EditText based on edit text error string value.&lt;/string&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;hasFocus() Returns a matcher that matches Views currently have focus.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;hasImeAction(int imeAction) Returns a matcher that matches views that support input methods (e.g.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;hasImeAction(Matcher&lt;integer&gt; imeActionMatcher) Returns a matcher that matches views that support input methods (e.g.&lt;/integer&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;hasLinks() Returns a matcher that matches TextViews that have links.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;hasSibling(Matcher&lt;view&gt; siblingMatcher) Returns an Matcher that matches Views based on their siblings.&lt;/view&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;isAssignableFrom(Class&amp;lt;? extends View&amp;gt; clazz) Returns a matcher that matches Views which are an instance of or subclass of the provided class.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;isChecked() Returns a matcher that accepts if and only if the view is a CompoundButton (or subtype of) and is in checked state.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;isClickable() Returns a matcher that matches Views that are clickable.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;isCompletelyDisplayed() Returns a matcher which only accepts a view whose height and width fit perfectly within the currently displayed region of this view.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;isDescendantOfA(Matcher&lt;view&gt; ancestorMatcher) Returns a matcher that matches Views based on the given ancestor type.&lt;/view&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;isDisplayed() Returns a matcher that matches Views that are currently displayed on the screen to the user.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;isDisplayingAtLeast(int areaPercentage) Returns a matcher which accepts a view so long as a given percentage of that view’s area is not obscured by any other view and is thus visible to the user.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;isEnabled() Returns a matcher that matches Views that are enabled.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;isFocusable() Returns a matcher that matches Views that are focusable.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;isJavascriptEnabled() Returns a matcher that matches WebView if they are evaluating Javascript.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;isNotChecked() Returns a matcher that accepts if and only if the view is a CompoundButton (or subtype of) and is not in checked state.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;isRoot() Returns a matcher that matches root View.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;isSelected() Returns a matcher that matches Views that are selected.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;supportsInputMethods() Returns a matcher that matches views that support input methods.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withChild(Matcher&lt;view&gt; childMatcher) A matcher that returns true if and only if the view’s child is accepted by the provided matcher.&lt;/view&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withClassName(Matcher&lt;string&gt; classNameMatcher) Returns a matcher that matches Views with class name matching the given matcher.&lt;/string&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withContentDescription(int resourceId) Returns a Matcher that matches Views based on content description property value.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withContentDescription(String text) Returns an Matcher that matches Views based on content description property value.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withContentDescription(Matcher&amp;lt;? extends CharSequence&amp;gt; charSequenceMatcher) Returns an Matcher that matches Views based on content description property value.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withEffectiveVisibility(ViewMatchers.Visibility visibility) Returns a matcher that matches Views that have “effective” visibility set to the given value.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withHint(Matcher&lt;string&gt; stringMatcher) Returns a matcher that matches TextViews based on hint property value.&lt;/string&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withHint(int resourceId) Returns a matcher that matches a descendant of TextView that is displaying the hint associated with the given resource id.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withHint(String hintText) Returns a matcher that matches TextView based on it’s hint property value.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withId(Matcher&lt;integer&gt; integerMatcher) Returns a matcher that matches Views based on resource ids.&lt;/integer&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withId(int id) Same as withId(is(int)), but attempts to look up resource name of the given id and use an R.id.myView style description with describeTo.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withInputType(int inputType) Returns a matcher that matches InputType.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withParent(Matcher&lt;view&gt; parentMatcher) A matcher that accepts a view if and only if the view’s parent is accepted by the provided matcher.&lt;/view&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withResourceName(String name) Returns a matcher that matches Views based on resource id names, (for instance, channel_avatar).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withResourceName(Matcher&lt;string&gt; stringMatcher) Returns a matcher that matches Views based on resource id names, (for instance, channel_avatar).&lt;/string&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withSpinnerText(int resourceId) Returns a matcher that matches a descendant of Spinner that is displaying the string of the selected item associated with the given resource id.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withSpinnerText(String text) Returns a matcher that matches Spinner based on it’s selected item’s toString value.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withSpinnerText(Matcher&lt;string&gt; stringMatcher) Returns a matcher that matches Spinners based on toString value of the selected item.&lt;/string&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withTagKey(int key) Returns a matcher that matches View based on tag keys.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withTagKey(int key, Matcher&lt;object&gt; objectMatcher) Returns a matcher that matches Views based on tag keys.&lt;/object&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withTagValue(Matcher&lt;object&gt; tagValueMatcher) Returns a matcher that matches Views based on tag property values.&lt;/object&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withText(Matcher&lt;string&gt; stringMatcher) Returns a matcher that matches TextViews based on text property value.&lt;/string&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withText(String text) Returns a matcher that matches TextView based on its text property value.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;  static Matcher&lt;view&gt;&lt;/view&gt;&lt;/td&gt;
+&lt;td&gt;withText(int resourceId) Returns a matcher that matches a descendant of TextView that is displaying the string associated with the given resource id.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;ok 这次主要介绍Matchers的API 更多的内容 大家还是要查看官方API去学习。&lt;br&gt;以下是android espresso matchers的地址&lt;br&gt;&lt;a href=&quot;https://developer.android.com/reference/android/support/test/espresso/matcher/ViewMatchers.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;espresso matchers&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;通过前3篇文章，大家应该对espresso有了大体上的了解，那么今天我们要深入了解它的API，看看espresso的整体架构。&lt;br&gt;还是通过espresso cheat sheet来进入本次话题。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/image/espresso-chea
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>QA请勿忘初心</title>
@@ -1563,74 +1829,6 @@ describe(&amp;apos;router testing&amp;apos;, function () {
     <summary type="html">
     
       &lt;h2 id=&quot;u5F15_u8A00&quot;&gt;&lt;a href=&quot;#u5F15_u8A00&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h2&gt;&lt;p&gt;前一章，我们讲了browser的工作原理,那么怎么样才能让了解整个主站前端的性能呢？监控！ 对，是的，我
-    
-    </summary>
-    
-    
-      <category term="性能测试" scheme="http://yoursite.com/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前端性能测试分析</title>
-    <link href="http://yoursite.com/2016/02/23/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%88%86%E6%9E%90_%E5%8E%9F%E7%90%86%E7%AF%87/"/>
-    <id>http://yoursite.com/2016/02/23/前端性能测试分析_原理篇/</id>
-    <published>2016-02-23T02:12:40.000Z</published>
-    <updated>2016-02-23T03:28:31.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;u539F_u7406_u7BC7&quot;&gt;&lt;a href=&quot;#u539F_u7406_u7BC7&quot; class=&quot;headerlink&quot; title=&quot;原理篇&quot;&gt;&lt;/a&gt;原理篇&lt;/h1&gt;&lt;h2 id=&quot;browser_u5DE5_u4F5C_u539F_u7406&quot;&gt;&lt;a href=&quot;#browser_u5DE5_u4F5C_u539F_u7406&quot; class=&quot;headerlink&quot; title=&quot;browser工作原理&quot;&gt;&lt;/a&gt;browser工作原理&lt;/h2&gt;&lt;p&gt;web浏览器与web服务器之间通过HTTP协议进行通信的过程。所以，web C/S之间握手的协议就是HTTP协议。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/image/front_end_performance_test.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;u9875_u9762_u7684_u8BF7_u6C42_u8FC7_u7A0B&quot;&gt;&lt;a href=&quot;#u9875_u9762_u7684_u8BF7_u6C42_u8FC7_u7A0B&quot; class=&quot;headerlink&quot; title=&quot;页面的请求过程&quot;&gt;&lt;/a&gt;页面的请求过程&lt;/h2&gt;&lt;h3 id=&quot;u8BF7_u6C42_u9636_u6BB5&quot;&gt;&lt;a href=&quot;#u8BF7_u6C42_u9636_u6BB5&quot; class=&quot;headerlink&quot; title=&quot;请求阶段&quot;&gt;&lt;/a&gt;请求阶段&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;browser send url request&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;/image/LSBAWS_HTTP_request_response.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;递归寻找DNS server&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;/image/dns.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;连接目标IP并建立TCP连接&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;向目标服务器发送http请求&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;web服务器接收请求后处理&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;web服务器返回相应的结果【无效、重定向、正确页面等】&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;浏览器接收返回的http内容&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;u524D_u7AEF_u89E3_u6790_u9636_u6BB5&quot;&gt;&lt;a href=&quot;#u524D_u7AEF_u89E3_u6790_u9636_u6BB5&quot; class=&quot;headerlink&quot; title=&quot;前端解析阶段&quot;&gt;&lt;/a&gt;前端解析阶段&lt;/h2&gt;&lt;p&gt;渲染引擎—通过网络获得所请求文档的内容, 解析html以构建dom树-&amp;gt;构建render树-&amp;gt;布局render树-&amp;gt;绘制render树&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;开始解析html文件，当然是自上而下，先是头部，后是body&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;当解析到头部css外部链接时，同步去下载，如果遇到外部js链接也是下载【不过js链接不建议放在头部，因为耽误页面第一展现时间】&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;接着解析body部分，边解析边开始生成对应的DOM树，同时等待css文件下载&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;一旦css文件下载完毕，那么就同步去用已经生成的DOM节点+CSS去生成渲染树&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;渲染树一旦有结构模型了，接着就会同步去计算渲染树节点的布局位置&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;一旦计算出来渲染的坐标后，又同步去开始渲染&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;4-6步进行过程中如果遇到图片则跳过去渲染下面内容，等待图片下载成功后会返回来在渲染原来图片的位置&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;同7步，如果渲染过程中出现js代码调整DOM树结构的情况，暂停其它渲染，再次重新来过，从修改DOM那步开始&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;最终所有节点和资源都会渲染完成&lt;/p&gt;
-&lt;h2 id=&quot;u5206_u6790_u7ED3_u675F&quot;&gt;&lt;a href=&quot;#u5206_u6790_u7ED3_u675F&quot; class=&quot;headerlink&quot; title=&quot;分析结束&quot;&gt;&lt;/a&gt;分析结束&lt;/h2&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;渲染完成后开始page的onload事件&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;整个页面load完成&lt;/p&gt;
-&lt;h2 id=&quot;u53C2_u8003&quot;&gt;&lt;a href=&quot;#u53C2_u8003&quot; class=&quot;headerlink&quot; title=&quot;参考&quot;&gt;&lt;/a&gt;参考&lt;/h2&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/zzzaquarius/article/details/6532299&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;浏览器工作原理&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;u539F_u7406_u7BC7&quot;&gt;&lt;a href=&quot;#u539F_u7406_u7BC7&quot; class=&quot;headerlink&quot; title=&quot;原理篇&quot;&gt;&lt;/a&gt;原理篇&lt;/h1&gt;&lt;h2 id=&quot;browser_u5DE5_u4F5C_u539F_u7406&quot;&gt;
     
     </summary>
     
