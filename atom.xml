@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-25T14:43:28.000Z</updated>
+  <updated>2017-02-16T02:44:03.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>100% code coverage != 100% test</title>
+    <link href="http://yoursite.com/2017/02/16/code-coverage/"/>
+    <id>http://yoursite.com/2017/02/16/code-coverage/</id>
+    <published>2017-02-16T02:32:59.000Z</published>
+    <updated>2017-02-16T02:44:03.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;100_25_code_coverage__21_3D_100_25_test&quot;&gt;&lt;a href=&quot;#100_25_code_coverage__21_3D_100_25_test&quot; class=&quot;headerlink&quot; title=&quot;100% code coverage != 100% test&quot;&gt;&lt;/a&gt;100% code coverage != 100% test&lt;/h1&gt;&lt;h2 id=&quot;u5F15_u8A00&quot;&gt;&lt;a href=&quot;#u5F15_u8A00&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/3732075-d1c1bc5652c294e5.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;avatar&quot;&gt;&lt;/p&gt;
+&lt;p&gt;很多人看到这个标题时，就在想你都100%代码覆盖了，怎么还会有问题呢？&lt;/p&gt;
+&lt;p&gt;让我们看看一下代码栗子：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Code example&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight kotlin&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;TestCalculator&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;typename&quot;&gt;Double&lt;/span&gt; add(&lt;span class=&quot;typename&quot;&gt;Double&lt;/span&gt; a, &lt;span class=&quot;typename&quot;&gt;Double&lt;/span&gt; b) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; a + b;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;再让我们看看用junit写出的测试代码：&lt;/p&gt;
+&lt;p&gt;@Test&lt;/p&gt;
+&lt;p&gt;public void testAdd() {&lt;/p&gt;
+&lt;p&gt;Double a = new Double(1);&lt;/p&gt;
+&lt;p&gt;Double b = new Double(2);&lt;/p&gt;
+&lt;p&gt;Double c = new Double(3);&lt;/p&gt;
+&lt;p&gt;assertEquals(c, testCalculator.add(a, b));&lt;/p&gt;
+&lt;p&gt;}&lt;br&gt;当我们在Eclipse使用 EclEmme Code Coverage 插件测试时， 对于这个类我们将得到 100% Line-Coverage.&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/3732075-236eb1a30b91a0a1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;avatar&quot;&gt;&lt;/p&gt;
+&lt;p&gt;一切看起来都那么的完美，真是这样的吗？&lt;/p&gt;
+&lt;p&gt;好吧，让我们来来看看另一个测试，当其中一个变量为null时，返回值将会怎样？&lt;/p&gt;
+&lt;figure class=&quot;highlight gradle&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;@Test&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; testAddNullPointerException() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;Double&lt;/span&gt; a = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;Double&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;Double&lt;/span&gt; b = &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;Double&lt;/span&gt; c = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;Double&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;assertEquals(c, testCalculator.add(a, b));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;好了，你会发现尽管你的覆盖率为100%，但程序却抛出了NullPointerException异常。&lt;/p&gt;
+&lt;p&gt;对于很多PM来说会选择第一个测试代码,因为100%的单元测试覆盖率总比50%的测试代码要更好!&lt;/p&gt;
+&lt;p&gt;但是这有用么？我们可能忽略了更重要的业务场景测试。&lt;/p&gt;
+&lt;p&gt;哈哈，小小的嘲讽了部分PM。&lt;/p&gt;
+&lt;p&gt;我们应当转换下思维，思考以下问题。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;100%的覆盖率并不意味你的测试代码质量很高，上面那个列子就是典型。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;100%的覆盖率并不意味着所有的业务场景都被覆盖。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;对于项目我们是否有足够的测试？&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/3732075-b6a0abab1778f170.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;avatar&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这里的测试不仅仅包括代码级别的单元测试，还要集成测试，接口测试，黑盒测试，可用性测试等等。只有全部得测试通过后，才能说明功能的完整性，仅仅单一的单元测试，对于整个项目来说，基本没用。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;所以100%的代码覆盖率值得追求吗?&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/3732075-80f3e850430d8615.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;avatar&quot;&gt;&lt;/p&gt;
+&lt;p&gt;  是的，这应该是每个程序猿毕生追求的之一，但是如果从项目角度考虑，ROI(投入产出比)，如果你的项目是一个短期项目，需要快速上线，那么这时候你需要注重的是测试应覆盖核心功能代码。如果你的项目是一个长期项目，那么高覆盖率是非要有必要的，它意味着可维护性，以及更少的bug。(前提是你的测试采用TDD/BDD方式编写，我见过将测试代码写的一团糟的人，看着他的代码，我宁愿重新一遍)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;那么对于一个项目来说覆盖率应该达到多少？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  其实没有具体数值能够覆盖到所有的项目，每个项目都应有自己的阈值，但共性是，必须测试必须覆盖主要业务场景，代码的逻辑分支也必须覆盖。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如何改进你的项目代码覆盖率？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  阅读和理解项目代码，找出其中需要测试并且与业务强相关的代码。&lt;/p&gt;
+&lt;p&gt;  将之前可读性差测试代码，采用TDD与BDD方式进行重写，提高项目的可维护性与可读性。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;代码覆盖率非常重要的意义在于：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  分析未覆盖部分的代码，从而反推在前期黑盒测试设计是否充分，没有覆盖到的代码是否是测试设计的盲点，为什么没有考虑到？是需求/设计不够清晰，还是测试设计的理解有误。&lt;/p&gt;
+&lt;p&gt;  检测出程序中的废代码，可以逆向反推在代码设计中不合理的地方，提醒设计/开发人员理清代码逻辑关系，提升代码质量。&lt;/p&gt;
+&lt;p&gt;  代码覆盖率高不能说明代码质量高，但是反过来看，代码覆盖率低，代码质量绝对不会高到哪里去，可以作为测试自我审视的重要工具之一。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;100_25_code_coverage__21_3D_100_25_test&quot;&gt;&lt;a href=&quot;#100_25_code_coverage__21_3D_100_25_test&quot; class=&quot;headerlink&quot; title=&quot;100% code cove
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>espresso-api之Matchers探究</title>
@@ -1756,79 +1810,6 @@ describe(&amp;apos;router testing&amp;apos;, function () {
     <summary type="html">
     
       &lt;h2 id=&quot;u5206_u6790_u95EE_u9898&quot;&gt;&lt;a href=&quot;#u5206_u6790_u95EE_u9898&quot; class=&quot;headerlink&quot; title=&quot;分析问题&quot;&gt;&lt;/a&gt;分析问题&lt;/h2&gt;&lt;p&gt;我们并不仅仅关注页面资源的解析和展示响应时间，而
-    
-    </summary>
-    
-    
-      <category term="性能测试" scheme="http://yoursite.com/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前端性能测试之分析篇</title>
-    <link href="http://yoursite.com/2016/02/23/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E5%88%86%E6%9E%90%E7%AF%87/"/>
-    <id>http://yoursite.com/2016/02/23/前端性能测试之分析篇/</id>
-    <published>2016-02-23T03:31:51.000Z</published>
-    <updated>2016-02-23T07:43:46.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;u5F15_u8A00&quot;&gt;&lt;a href=&quot;#u5F15_u8A00&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h2&gt;&lt;p&gt;前一章，我们讲了browser的工作原理,那么怎么样才能让了解整个主站前端的性能呢？监控！ 对，是的，我们可以利用各种工作对我们的website进行实时的监控,目前监控的方式有两种。&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;类型&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;优点&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;缺点&lt;/th&gt;
-&lt;th style=&quot;text-align:right&quot;&gt;示例&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;非侵入式&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;指标齐全、客户端主动监测、竞品监控&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;无法知道性能影响用户数、采样少容易失真、无法监控复杂应用与细分功能&lt;/td&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;Pagespeed、yslow、PhantomJS、webpagetest、sitespeedio&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;侵入式&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;真实海量用户数据、能监控复杂应用与业务功能、用户点击与区域渲染&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;需插入脚本统计、网络指标不全、无法监控竞品&lt;/td&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;new relic、Google analyse、oneapm&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&quot;u524D_u7AEF_u6027_u80FD_u5206_u6790_u5DE5_u5177&quot;&gt;&lt;a href=&quot;#u524D_u7AEF_u6027_u80FD_u5206_u6790_u5DE5_u5177&quot; class=&quot;headerlink&quot; title=&quot;前端性能分析工具&quot;&gt;&lt;/a&gt;前端性能分析工具&lt;/h2&gt;&lt;p&gt;那有哪些简易便利的工具能帮助我们更好的进行测试呢？&lt;br&gt;ok，工具集锦来临。&lt;/p&gt;
-&lt;h3 id=&quot;u6D4F_u89C8_u5668_u63D2_u4EF6_u7C7B&quot;&gt;&lt;a href=&quot;#u6D4F_u89C8_u5668_u63D2_u4EF6_u7C7B&quot; class=&quot;headerlink&quot; title=&quot;浏览器插件类&quot;&gt;&lt;/a&gt;浏览器插件类&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;FireBug&lt;br&gt;它可以对页面进行调试，可以记录所有网页的访问耗时，下载的资源等&lt;/li&gt;
-&lt;li&gt;Page Speed&lt;br&gt;&lt;img src=&quot;/image/pagespeed.png&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-&lt;li&gt;Yslow&lt;br&gt;&lt;img src=&quot;/image/yslow.gif&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-&lt;li&gt;page performance&lt;br&gt;&lt;img src=&quot;/image/page_perfor.png&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-&lt;li&gt;performance analyse&lt;br&gt;&lt;img src=&quot;/image/performance_alay.png&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;u5728_u7EBF_u7F51_u7AD9_u7C7B&quot;&gt;&lt;a href=&quot;#u5728_u7EBF_u7F51_u7AD9_u7C7B&quot; class=&quot;headerlink&quot; title=&quot;在线网站类&quot;&gt;&lt;/a&gt;在线网站类&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;WebPageTest&lt;br&gt;&lt;img src=&quot;/image/webpagespeed.png&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-&lt;li&gt;showslow&lt;br&gt;&lt;img src=&quot;/image/showslow.png&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;sitespeed.io&lt;br&gt;&lt;img src=&quot;/image/sitespeed.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;u5E73_u53F0_u7C7B&quot;&gt;&lt;a href=&quot;#u5E73_u53F0_u7C7B&quot; class=&quot;headerlink&quot; title=&quot;平台类&quot;&gt;&lt;/a&gt;平台类&lt;/h3&gt;&lt;h4 id=&quot;u6536_u8D39_u670D_u52A1_u5E73_u53F0&quot;&gt;&lt;a href=&quot;#u6536_u8D39_u670D_u52A1_u5E73_u53F0&quot; class=&quot;headerlink&quot; title=&quot;收费服务平台&quot;&gt;&lt;/a&gt;收费服务平台&lt;/h4&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;google_analytics&lt;br&gt;&lt;img src=&quot;/image/google_alay.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;new relic&lt;br&gt;&lt;img src=&quot;/image/relic1.png&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-&lt;li&gt;oneapm&lt;br&gt;&lt;img src=&quot;/image/oneapm.png&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;u5F00_u6E90_u5E73_u53F0&quot;&gt;&lt;a href=&quot;#u5F00_u6E90_u5E73_u53F0&quot; class=&quot;headerlink&quot; title=&quot;开源平台&quot;&gt;&lt;/a&gt;开源平台&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;InfluxDB + Grafana&lt;br&gt;参考文章&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;a href=&quot;https://ruby-china.org/topics/23470&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;InfluxDB + Grafana 快速搭建自己的 NewRelic，分析应用运行情况
-&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.rittmanmead.com/2015/02/obiee-monitoring-and-diagnostics-with-influxdb-and-grafana/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;OBIEE Monitoring and Diagnostics with InfluxDB and Grafana
-&lt;/a&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Nagios&lt;/li&gt;
-&lt;li&gt;Zabbix&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;u5F15_u8A00&quot;&gt;&lt;a href=&quot;#u5F15_u8A00&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h2&gt;&lt;p&gt;前一章，我们讲了browser的工作原理,那么怎么样才能让了解整个主站前端的性能呢？监控！ 对，是的，我
     
     </summary>
     
