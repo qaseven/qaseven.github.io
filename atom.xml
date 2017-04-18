@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-16T02:44:03.000Z</updated>
+  <updated>2017-04-18T15:31:03.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2017年qa应掌握的技能</title>
+    <link href="http://yoursite.com/2017/04/06/devopsforqa/"/>
+    <id>http://yoursite.com/2017/04/06/devopsforqa/</id>
+    <published>2017-04-06T03:24:00.000Z</published>
+    <updated>2017-04-18T15:31:03.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;DevOps__26amp_3B__u654F_u6377_u65B9_u6CD5&quot;&gt;&lt;a href=&quot;#DevOps__26amp_3B__u654F_u6377_u65B9_u6CD5&quot; class=&quot;headerlink&quot; title=&quot;DevOps &amp;amp; 敏捷方法&quot;&gt;&lt;/a&gt;DevOps &amp;amp; 敏捷方法&lt;/h2&gt;&lt;p&gt;随着对于在交付期限内完成项目的迫切需求，测试人员需要学习敏捷方法和DevOps，因为它们可以帮助促进团队之间的协作和改进迭代间工作模式。敏捷方法为测试项目提供了项目开发所需要速度与效率，而DevOps可以从开发，分析和质量保证流程中协助跨职能的团队合作，从而在更短的时间内产生出高质量的产品。此外，学习这些方法最终消除了角色间僵化和孤岛，让团队密切关注开发流程和持续发布。&lt;br&gt;&lt;img src=&quot;/image/timg.jpeg&quot; alt=&quot;devops&quot;&gt;&lt;br&gt;向上面devops工作流一样，devops 打通项目流程每一个环节，从代码的管理，到build、test 到最好部署到prod环境，对于qa来说，了解其中的流程，对于qa工作有非常的好处，通过devops一些监控工具例如airbrake我们可以实施查看系统发生的问题，与dev一起分析问题发生的原因，通过GA newrelic这些工具，我们可以分析系统用户行为，给系统性能测试与分析提供数据上的支持。通过对于了解devops工作流，我们可以分析项目中存在风险，及时改进流程，通过docker等容器化的工具，我们可以将测试放到容器中执行，降低测试对于环境的依赖，进一步改进自动化测试，所以说了解devops知识对于qa来说百利无一害，何乐而不为呢。&lt;/p&gt;
+&lt;p&gt;自动化&lt;br&gt;面对应用程序日益增加复杂性和系统集成，依靠手动测试已经无法完成全部测试工作。为了测试浏览器兼容性，性能，无头以及数据库和集成层面，测试人员应该学习自动化相关的技能，因为它可以提供业务逻辑和技术层面更高更准确更可靠支持。此外，还有几种自动化测试工具专门支持特定领域的测试类型，并具有快速高效地完成任务的功能。&lt;br&gt;&lt;img src=&quot;/image/selenium.jpg&quot; alt=&quot;selenium&quot;&gt;&lt;br&gt;如上图，很多QA或者tester有一个误区，提到自动化张嘴闭嘴都是selenium，甚至有的人连webdriver与selenium区别都不知道，所以这里我要澄清，ui自动化测试只是自动化测试中的一小部分，还包括api，接口，单元测试，集成测试，甚至性能测试我们都应该称为自动化测试。&lt;/p&gt;
+&lt;p&gt;网络与移动技术&lt;br&gt;&lt;img src=&quot;/image/webandmobile.jpeg&quot; alt=&quot;webandmobile&quot;&gt;&lt;/p&gt;
+&lt;p&gt;每个测试人员还必须熟悉web和mobile相关技术，以便他们能够更好了解应用程序的类型与架构，如何构建，以及相应的可扩展性，并为以后测试提供相应背景知识。这对于测试人员非常重要，因为它能够指导QA理解项目架构与所面临技术挑战，提供更有效的QA解决方案。&lt;br&gt;这里学问更多，完全是两大方向，知识领域都非常的广大，例如web端我们可能要测试不同浏览器兼容性，对于mobile来说，尤其是android这种版本碎片化以及各种自定义系统以及ui改更能会造成各种个样的问题，对于mobile我们甚至要考虑更多场景，例如app是否具有内存泄露，电量消耗的快慢，横竖屏的影响等等。不同构建工具，开发环境的区别等对于qa来说又要面对一堆未知领域，没事，继续加油。&lt;/p&gt;
+&lt;p&gt;SDLC 软件开发生命周期（Systems Development Life Cycle）&lt;br&gt;&lt;img src=&quot;/image/sdlc.jpeg&quot; alt=&quot;sdlc&quot;&gt;&lt;/p&gt;
+&lt;p&gt;测试人员也被建议学习软件生命周期管理技能，这将有助于QA更轻松了解应用程序开发任务和测试计划周期。对SDLC周期的深入了解还有助于预测应用程序的复杂性，从而提前采取正确的措施。因此，测试人员还必须学习适用于项目开发生命周期流程的几种开发方法，如瀑布，看板，Scrum，精益等。&lt;br&gt;作为一个qa,我们应关注软件开发生命周期中的每一步，了解敏捷开发迭代中的各个环节及时作出反馈，所以有时qa也需要承担scrum master的责任，例如某个story进度超过预定期限未完成，我们就应当了解原因，及时与团队成员以及客户沟通。&lt;/p&gt;
+&lt;p&gt;理性分析与逻辑思维&lt;br&gt;&lt;img src=&quot;/image/logic.jpeg&quot; alt=&quot;sdlc&quot;&gt;&lt;br&gt;为了保持竞争力，QA还应该学使用理性，分析性和逻辑性思维来思考问题，因为这些技能在测试应用时可以帮助QA识别错误，了解问题的复杂性，评估应用程序的不熟悉的功能并相应地进行测试。具有良好的分析和推理能力有助于根据在不同场景下验证应用程序，并根据预先定义的标准来评估应用程序。这进一步有助于评估相关信息，提出明确的问题，确定优势和弱点，而不会持有偏见，这有助于实施正确的行动方案和解决方案。&lt;/p&gt;
+&lt;p&gt;社交网络&lt;br&gt;&lt;img src=&quot;/image/contact.jpeg&quot; alt=&quot;contact&quot;&gt;&lt;br&gt;任何行业的任何专业人士都需要社交网络技能。由于社交网络可以即时访问讨论，资源和内容，因此在这方面的技巧有助于与其它QA进行互动，学习新事物并更新自己的知识体系的广度与深度。拥有社交网络技能还可让您与各种专家进行交流，交流疑问，当然也可以建立长期的合作关系，帮助您的专业技能和企业达到所需目标。&lt;/p&gt;
+&lt;p&gt;测试工具和技术&lt;br&gt;&lt;img src=&quot;/image/tools.jpg&quot; alt=&quot;tools&quot;&gt;&lt;br&gt;每个QA都必须了解不同的测试技术和使用工具。无论你的项目属于那个领域和应用程序类型，都应具有黑盒测试，渗透测试，安全测试，系统测试，单元测试等，测试人员具有多功能性，可以帮助他们在任何类型的项目上工作。此外，随着商业化的专业测试工具数量的增加，例如bug跟踪工具，测试管理工具，GUI测试工具，自动化工具等，测试人员可以了解这些工具的特点，选择适用于所在项目需求工具，以满足不同的需求和复杂性。&lt;/p&gt;
+&lt;p&gt;编程&lt;br&gt;&lt;img src=&quot;/image/coding.jpeg&quot; alt=&quot;tools&quot;&gt;&lt;/p&gt;
+&lt;p&gt;当我们谈论编程时，QA当然不会像开发人员一样工作，但是QA需要理解应用程序的实现原理与项目架构，这样我们可以更容易的创建所需的测试。编程知识有助于识别应用程序代码中的可能发生的错误，这就进一步降低了应用程序发生错误的概率。所以建议学习至少两种编程语言，这样的话测试人员就能够更好的了解应用程序的解决方案，以确保的应用程序生命周期的质量。&lt;/p&gt;
+&lt;p&gt;沟通 - 书面和口头&lt;br&gt;&lt;img src=&quot;/image/communicate.jpeg&quot; alt=&quot;communicate&quot;&gt;&lt;/p&gt;
+&lt;p&gt;每个QA还应具备良好的沟通能力。通过良好的沟通，对于项目的所有角色来说，QA应该是一个好的作家，演讲者，听众和读者，例如将项目的状态更新给客户，向团队通知story的需求变更，与开发人员交流bug的细节，将需求文档转化为测试用例，准备测试报告等。除此之外，良好的沟通有助于表现出个人高度的理解能力，进一步帮助QA在逻辑思维和理性分析基础上向技术人员和非技术人员提供反馈意见。&lt;/p&gt;
+&lt;p&gt;智力与创意&lt;br&gt;软件测试并不是一个程序化或平凡的任务，而是一个需要创造力和逻辑分析的过程。智力和创造力无法改变，但是，可以通过质疑应用程序行为并分析应用程序的不同方面来了解其工作原理。另外，通过设计一些应用场景，测试人员可以尝试探索性测试，来识别更多缺陷，并寻求提供有效产品质量的可能解决方案。&lt;/p&gt;
+&lt;p&gt;测试计划和文档&lt;/p&gt;
+&lt;p&gt;测试计划和文档对于每个QA至关重要，因为它有助于确定正确的需求以及采取合理的步骤。此外还可以帮助跟踪需求变化，检查测试过程和跟踪偏差，并有助于报告和记录工作。一个记录良好的测试过程也可以帮助个别测试者和企业将正确的预算和资源分配给一个项目，这就是为什么测试计划和文档技能是每个测试人员必须学习的重要技能之一。&lt;/p&gt;
+&lt;p&gt;项目管理&lt;br&gt;学习项目管理的技能，帮助QA提高对于处理问题的能力。例如项目中某个环节发生问题，通过项目管理技能，能够及时的分析问题影响广度，及时寻找相关人员协作处理问题，项目管理技能有助于QA了解项目流程中所存在的问题，来帮助更好改进整个测试过程。&lt;/p&gt;
+&lt;p&gt;客户支持&lt;br&gt;&lt;img src=&quot;/image/customers.jpeg&quot; alt=&quot;customers&quot;&gt;&lt;/p&gt;
+&lt;p&gt;与过去项目有所不同，现代测试项目要求QA提供客户支持并从他们的角度思考。作为QA并不意味着我只是关心功能是否正确，因为测试项目的成功或失败因素很多，而不仅仅只是局限于功能层面，因此QA应及时应对和支持客户提出的需求，并所他们角度思考哪些方面仍然需要改善。&lt;/p&gt;
+&lt;p&gt;报告&lt;br&gt;&lt;img src=&quot;/image/report.jpeg&quot; alt=&quot;report&quot;&gt;&lt;br&gt;优秀的QA必须拥有良好报告技能，才能向项目的成员与客户提供测试项目和被测试应用的确切状态。这种报告实践可以更好地协调整个测试项目，同时也为高层管理人员提供执行详细的数据，例如测试用例覆盖率，bug的数量，发布时间表等，最终有助于其做出正确的决策。&lt;/p&gt;
+&lt;p&gt;独立工作&lt;br&gt;最后，QA应该学习如何独立工作的技能。这将提高他们从需求理解（技术和业务需求）到产出的最终交付工作的能力，采取正确的步骤，在没有他人的帮助或经理的监督。学习独立工作将会增加对他们的信心。&lt;/p&gt;
+&lt;p&gt;无论经验多少，QA都应努力不断学习和提高软件测试技能和知识。无论是自学习还是参与培训计划，测试人员应不断学习新的方法，以提高测试工作中的效率，并继续应用新技能和学习，使自己处于领先地位。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;DevOps__26amp_3B__u654F_u6377_u65B9_u6CD5&quot;&gt;&lt;a href=&quot;#DevOps__26amp_3B__u654F_u6377_u65B9_u6CD5&quot; class=&quot;headerlink&quot; title=&quot;DevOps &amp;am
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>100% code coverage != 100% test</title>
@@ -1420,7 +1460,7 @@
     <link href="http://yoursite.com/2016/05/24/front-end-tools/"/>
     <id>http://yoursite.com/2016/05/24/front-end-tools/</id>
     <published>2016-05-24T12:47:35.000Z</published>
-    <updated>2016-06-14T06:25:23.000Z</updated>
+    <updated>2017-04-18T14:29:43.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;img src=&quot;/image/front-end-tools.png&quot; alt=&quot;front-end-tools&quot;&gt;&lt;/p&gt;
 &lt;p&gt;总结最近了解的前端测试的相关内容，发现前端这里真的是太庞大了，而且各种测试工具层出不穷，需要总结东西太多了，如有遗漏请大家见谅。&lt;/p&gt;
@@ -1709,112 +1749,6 @@ describe(&amp;apos;router testing&amp;apos;, function () {
     
     
       <category term="appium, mobile testing" scheme="http://yoursite.com/tags/appium-mobile-testing/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前端性能分析优化</title>
-    <link href="http://yoursite.com/2016/02/23/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E4%BC%98%E5%8C%96/"/>
-    <id>http://yoursite.com/2016/02/23/前端性能分析优化/</id>
-    <published>2016-02-23T13:05:28.000Z</published>
-    <updated>2016-02-24T03:10:23.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;u5206_u6790_u95EE_u9898&quot;&gt;&lt;a href=&quot;#u5206_u6790_u95EE_u9898&quot; class=&quot;headerlink&quot; title=&quot;分析问题&quot;&gt;&lt;/a&gt;分析问题&lt;/h2&gt;&lt;p&gt;我们并不仅仅关注页面资源的解析和展示响应时间，而是要关注总时间；我们进行web前端性能测试的目的是计算出包含页面渲染、网络传输以及服务器端解析等综合因素在内的加载时间等指标，对该页面性能进行评估分析，找出影响性能的主要因素和瓶颈，并在此结果的基础上，给出一定的优化建议和解决方案，从而提升用户体验。&lt;/p&gt;
-&lt;p&gt; 根据雅虎团队经验：网站页面性能优化的34条黄金守则，我们逐条分析。&lt;/p&gt;
-&lt;p&gt; &lt;strong&gt;性能黄金法则&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;只有10%-20%的最终用户响应时间花在接收请求的HTML文档上，剩下的80%-90%时间花在HTML文档所引用的所有组件(图片，script，css，flash等等)进行的HTTP请求上。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;尽量减少HTTP请求次数&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;合并文件.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;例如将项目中用的资源文件合并。所有的CSS文件都放入一个样式表中.或者将js文件合并压缩&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;利用gulp,grunt,webpack等构建工具将项目资源文件整合&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;利用CSS Sprites 减少图像请求.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;通过使用合并图片，通过指定css的backgroud-image和backgroud-position来显示元素。&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;启用浏览器缓存&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;要利用浏览器缓存存储可缓存的资源&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;在HTTP标头中为静态资源设置有效期或最长存在时间，可指示浏览器从本地磁盘中加载以前下载的资源而不是从网络中加载。&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;减少DNS查找&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;DNS缓存&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;当客户端的DNS缓存为空时，DNS查找的数量与Web页面中唯一主机名的数量相等。减少唯一主机名的数量就可以减少DNS查找的数量。&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;使用内容分发网络&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;页面静态化,取决于发布系统&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;按页面内容划分域名，在合适的资源服务器上存放文件&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;避免404错误&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;避免内部无效的链接&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;避免重定向&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;压缩组件&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;精简Javascript和Css&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;尽量缩减页面大小&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;页面必须小于150K(不含图片）&lt;/p&gt;
-&lt;p&gt;a) 静态文件是否gzip&lt;/p&gt;
-&lt;p&gt;b) 图片是否压缩优化过&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;预处理&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;浏览器空闲时请求将来可能会用到的页面内容&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;无条件加载：触发onload事件时，直接加载额外的页面内容&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;有预期的加载：载入重新设计过的页面时使用预加载。&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;移除重复脚本&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;使iframe的数量最小&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;异步加载&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;js 开发规范&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;代码逻辑分层&lt;/li&gt;
-&lt;li&gt;避免全局变量&lt;/li&gt;
-&lt;li&gt;便于多人协作开发&lt;/li&gt;
-&lt;li&gt;各部分代码模块化，可以按需加载 利用requirejs和seajs等模块化工具加载&lt;/li&gt;
-&lt;li&gt;保持全局变量的清洁&lt;/li&gt;
-&lt;li&gt;可进行单元测试&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;参考&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.cnblogs.com/li0803/archive/2009/09/20/1570581.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;yahoo前端性能优化指南中文版&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;yahoo前端性能优化指南&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;u5206_u6790_u95EE_u9898&quot;&gt;&lt;a href=&quot;#u5206_u6790_u95EE_u9898&quot; class=&quot;headerlink&quot; title=&quot;分析问题&quot;&gt;&lt;/a&gt;分析问题&lt;/h2&gt;&lt;p&gt;我们并不仅仅关注页面资源的解析和展示响应时间，而
-    
-    </summary>
-    
-    
-      <category term="性能测试" scheme="http://yoursite.com/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
