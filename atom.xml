@@ -915,7 +915,7 @@
     <link href="http://yoursite.com/2016/08/30/capybara4/"/>
     <id>http://yoursite.com/2016/08/30/capybara4/</id>
     <published>2016-08-30T07:54:19.000Z</published>
-    <updated>2016-08-31T15:00:04.000Z</updated>
+    <updated>2017-05-04T07:40:35.000Z</updated>
     
     <content type="html">&lt;p&gt;capybara是一个简单的API,它提供了抽象层在你真实自动化库之上。如果它帮助,认为capybara是你的翻译,你告诉它做一些事情，它将优雅的将命令转换为你应用驱动的API。&lt;/p&gt;
 &lt;p&gt;所以当我们使用capybara进行翻译时，我们需要告诉capybara做什么并且需要一个API自动化库去进行翻译。&lt;br&gt;capybara是一个非常灵活的库,&lt;br&gt;通过这本书我们将看到它在各种场景中应用。然而。目前为止最常见的情景是应用cucumber作为capybara测试驱动，去驱动selenium webdriver 开展浏览器自动化。&lt;br&gt;当cucumber被调用来解析这些简单易懂的英语场景时，它将使用正则表达式去将这些匹配&lt;/p&gt;
@@ -992,7 +992,7 @@
     <link href="http://yoursite.com/2016/08/26/capybara2/"/>
     <id>http://yoursite.com/2016/08/26/capybara2/</id>
     <published>2016-08-26T14:48:50.000Z</published>
-    <updated>2016-08-30T05:09:13.000Z</updated>
+    <updated>2017-05-04T07:40:30.000Z</updated>
     
     <content type="html">&lt;h2 id=&quot;ruby_u73AF_u5883_u914D_u7F6E&quot;&gt;&lt;a href=&quot;#ruby_u73AF_u5883_u914D_u7F6E&quot; class=&quot;headerlink&quot; title=&quot;ruby环境配置&quot;&gt;&lt;/a&gt;ruby环境配置&lt;/h2&gt;&lt;p&gt;capycara&lt;br&gt;Capybara 需要 Ruby 1.9.3或之后的版本. 所以首先我们需要在我们的操作系统中，配置ruby运行环境&lt;/p&gt;
 &lt;h3 id=&quot;windows&quot;&gt;&lt;a href=&quot;#windows&quot; class=&quot;headerlink&quot; title=&quot;windows&quot;&gt;&lt;/a&gt;windows&lt;/h3&gt;&lt;ol&gt;
@@ -1057,7 +1057,7 @@
     <link href="http://yoursite.com/2016/08/26/capybara1/"/>
     <id>http://yoursite.com/2016/08/26/capybara1/</id>
     <published>2016-08-26T06:17:36.000Z</published>
-    <updated>2016-08-29T03:46:49.000Z</updated>
+    <updated>2017-05-04T07:38:34.000Z</updated>
     
     <content type="html">&lt;h2 id=&quot;capybara_u7B80_u4ECB&quot;&gt;&lt;a href=&quot;#capybara_u7B80_u4ECB&quot; class=&quot;headerlink&quot; title=&quot;capybara简介&quot;&gt;&lt;/a&gt;capybara简介&lt;/h2&gt;&lt;p&gt;capybara是一个ruby的gem,它是一个用来测试web应用的工具包，使用它可以模拟用户对web应用的操作。它可以通过CSS或xpath选择器选中页面上的元素，然后对这些元素应用一些操作，从而实现模拟用户行为。&lt;/p&gt;
 &lt;h3 id=&quot;u5E95_u5C42driver_u7684_u5B9E_u73B0&quot;&gt;&lt;a href=&quot;#u5E95_u5C42driver_u7684_u5B9E_u73B0&quot; class=&quot;headerlink&quot; title=&quot;底层driver的实现&quot;&gt;&lt;/a&gt;底层driver的实现&lt;/h3&gt;&lt;p&gt;基于底层driver的基础上，提供一套统一的 界面交互api，如visit, right_click，hover等。它内置 Rack::Test 和 Selenium 支持，也支持其他驱动。WebKit 通过外部 gem 的形式支持。&lt;/p&gt;
