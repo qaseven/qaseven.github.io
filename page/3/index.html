@@ -1,1 +1,1525 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>QA seven's blog</title><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/5.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">QA seven's blog</h1><a id="logo" href="/.">QA seven's blog</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h2 class="post-title"><a href="/2016/02/23/前端性能分析优化/">前端性能分析优化</a></h2><div class="post-meta">2016-02-23</div><div class="post-content"><h2 id="u5206_u6790_u95EE_u9898"><a href="#u5206_u6790_u95EE_u9898" class="headerlink" title="分析问题"></a>分析问题</h2><p>我们并不仅仅关注页面资源的解析和展示响应时间，而是要关注总时间；我们进行web前端性能测试的目的是计算出包含页面渲染、网络传输以及服务器端解析等综合因素在内的加载时间等指标，对该页面性能进行评估分析，找出影响性能的主要因素和瓶颈，并在此结果的基础上，给出一定的优化建议和解决方案，从而提升用户体验。</p></div><p class="readmore"><a href="/2016/02/23/前端性能分析优化/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/02/23/前端性能测试之分析篇/">前端性能测试之分析篇</a></h2><div class="post-meta">2016-02-23</div><div class="post-content"><h2 id="u5F15_u8A00"><a href="#u5F15_u8A00" class="headerlink" title="引言"></a>引言</h2><p>前一章，我们讲了browser的工作原理,那么怎么样才能让了解整个主站前端的性能呢？监控！ 对，是的，我们可以利用各种工作对我们的website进行实时的监控,目前监控的方式有两种。</p></div><p class="readmore"><a href="/2016/02/23/前端性能测试之分析篇/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/02/23/前端性能测试分析_原理篇/">前端性能测试分析</a></h2><div class="post-meta">2016-02-23</div><div class="post-content"><h1 id="u539F_u7406_u7BC7"><a href="#u539F_u7406_u7BC7" class="headerlink" title="原理篇"></a>原理篇</h1><h2 id="browser_u5DE5_u4F5C_u539F_u7406"><a href="#browser_u5DE5_u4F5C_u539F_u7406" class="headerlink" title="browser工作原理"></a>browser工作原理</h2><p>web浏览器与web服务器之间通过HTTP协议进行通信的过程。所以，web C/S之间握手的协议就是HTTP协议。</p></div><p class="readmore"><a href="/2016/02/23/前端性能测试分析_原理篇/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/01/26/前端测试进化论2/">前端测试进化论2</a></h2><div class="post-meta">2016-01-26</div><div class="post-content"><h1 id="u524D_u7AEF_u6D4B_u8BD5_u8FDB_u5316_u8BBA2"><a href="#u524D_u7AEF_u6D4B_u8BD5_u8FDB_u5316_u8BBA2" class="headerlink" title="前端测试进化论2"></a>前端测试进化论2</h1><p>=============</p></div><p class="readmore"><a href="/2016/01/26/前端测试进化论2/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/01/25/前端测试进化论/">前端测试进化论</a></h2><div class="post-meta">2016-01-25</div><div class="post-content"><h1 id="u524D_u7AEF_u6D4B_u8BD5_u8FDB_u5316_u8BBA"><a href="#u524D_u7AEF_u6D4B_u8BD5_u8FDB_u5316_u8BBA" class="headerlink" title="前端测试进化论"></a>前端测试进化论</h1><h1 id="u7B2C_u4E00_u7BC7web__u53D1_u5C55_u53F2"><a href="#u7B2C_u4E00_u7BC7web__u53D1_u5C55_u53F2" class="headerlink" title="第一篇web 发展史"></a>第一篇web 发展史</h1><p>这篇主要是帮助我们qa 了解前端的历史与现状。</p></div><p class="readmore"><a href="/2016/01/25/前端测试进化论/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/01/25/gulp_for_qa/">gulp_for_qa</a></h2><div class="post-meta">2016-01-25</div><div class="post-content"><h2 id="gulp__u4ECB_u7ECD"><a href="#gulp__u4ECB_u7ECD" class="headerlink" title="gulp 介绍"></a>gulp 介绍</h2><p><img src="/image/Picture1.png" alt="gulp"></p></div><p class="readmore"><a href="/2016/01/25/gulp_for_qa/">阅读更多</a></p></div><nav class="page-navigator"><a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span></nav></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/appium-mobile-testing/" style="font-size: 15px;">appium, mobile testing</a> <a href="/tags/front-end/" style="font-size: 15px;">front-end</a> <a href="/tags/性能测试/" style="font-size: 15px;">性能测试</a> <a href="/tags/QA/" style="font-size: 15px;">QA</a> <a href="/tags/gulp/" style="font-size: 15px;">gulp</a> <a href="/tags/gatling/" style="font-size: 15px;">gatling</a> <a href="/tags/前端测试/" style="font-size: 15px;">前端测试</a> <a href="/tags/capybara/" style="font-size: 15px;">capybara</a> <a href="/tags/ui-automation-capybara1/" style="font-size: 15px;">ui_automation, capybara1</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/04/06/devopsforqa/">2017年qa应掌握的技能</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/16/code-coverage/">100% code coverage != 100% test</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/25/espresso4/">espresso-api之Matchers探究</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/qa-heart/">QA请勿忘初心</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/08/espresso3/">espresso系列3--测试实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/02/espresso2/">espresso基础架构与API分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/30/expresso/">espresso系列一简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/31/qaquilty/">从QA的角度来谈谈代码质量的改进</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/capybara5/">capybara5--实现你第一个自动化场景</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/30/capybara4/">capybara4--安装cucumber</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">QA seven's blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="QA seven's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="QA seven's blog">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:site_name" content="QA seven's blog">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="QA seven's blog">
+<meta name="twitter:description">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/page/3/"/>
+
+
+
+
+
+  <title>QA seven's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">QA seven's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/02/23/前端性能分析优化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/02/23/前端性能分析优化/" itemprop="url">前端性能分析优化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2016-02-23T21:05:28+08:00">
+                2016-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="u5206_u6790_u95EE_u9898"><a href="#u5206_u6790_u95EE_u9898" class="headerlink" title="分析问题"></a>分析问题</h2><p>我们并不仅仅关注页面资源的解析和展示响应时间，而是要关注总时间；我们进行web前端性能测试的目的是计算出包含页面渲染、网络传输以及服务器端解析等综合因素在内的加载时间等指标，对该页面性能进行评估分析，找出影响性能的主要因素和瓶颈，并在此结果的基础上，给出一定的优化建议和解决方案，从而提升用户体验。</p>
+<p> 根据雅虎团队经验：网站页面性能优化的34条黄金守则，我们逐条分析。</p>
+<p> <strong>性能黄金法则</strong></p>
+<blockquote>
+<p>只有10%-20%的最终用户响应时间花在接收请求的HTML文档上，剩下的80%-90%时间花在HTML文档所引用的所有组件(图片，script，css，flash等等)进行的HTTP请求上。</p>
+</blockquote>
+<ol>
+<li><p>尽量减少HTTP请求次数</p>
+<ul>
+<li><p>合并文件.</p>
+<p><code>例如将项目中用的资源文件合并。所有的CSS文件都放入一个样式表中.或者将js文件合并压缩</code></p>
+<p><code>利用gulp,grunt,webpack等构建工具将项目资源文件整合</code></p>
+</li>
+<li><p>利用CSS Sprites 减少图像请求.</p>
+<p><code>通过使用合并图片，通过指定css的backgroud-image和backgroud-position来显示元素。</code></p>
+</li>
+</ul>
+</li>
+<li><p>启用浏览器缓存</p>
+<ul>
+<li><p>要利用浏览器缓存存储可缓存的资源</p>
+<p><code>在HTTP标头中为静态资源设置有效期或最长存在时间，可指示浏览器从本地磁盘中加载以前下载的资源而不是从网络中加载。</code></p>
+</li>
+</ul>
+</li>
+<li><p>减少DNS查找</p>
+<ul>
+<li><p>DNS缓存</p>
+<p><code>当客户端的DNS缓存为空时，DNS查找的数量与Web页面中唯一主机名的数量相等。减少唯一主机名的数量就可以减少DNS查找的数量。</code></p>
+</li>
+</ul>
+</li>
+<li><p>使用内容分发网络</p>
+<ul>
+<li><p>页面静态化,取决于发布系统</p>
+<p><code>按页面内容划分域名，在合适的资源服务器上存放文件</code></p>
+</li>
+</ul>
+</li>
+<li><p>避免404错误</p>
+<ul>
+<li>避免内部无效的链接</li>
+</ul>
+</li>
+<li><p>避免重定向</p>
+</li>
+<li><p>压缩组件</p>
+</li>
+<li><p>精简Javascript和Css</p>
+</li>
+<li><p>尽量缩减页面大小</p>
+<ul>
+<li><p>页面必须小于150K(不含图片）</p>
+<p>a) 静态文件是否gzip</p>
+<p>b) 图片是否压缩优化过</p>
+</li>
+</ul>
+</li>
+<li><p>预处理</p>
+<ul>
+<li>浏览器空闲时请求将来可能会用到的页面内容</li>
+</ul>
+<p><code>无条件加载：触发onload事件时，直接加载额外的页面内容</code></p>
+<p><code>有预期的加载：载入重新设计过的页面时使用预加载。</code></p>
+</li>
+<li><p>移除重复脚本</p>
+</li>
+<li><p>使iframe的数量最小</p>
+<ul>
+<li>异步加载</li>
+</ul>
+</li>
+<li><p>js 开发规范</p>
+<ul>
+<li>代码逻辑分层</li>
+<li>避免全局变量</li>
+<li>便于多人协作开发</li>
+<li>各部分代码模块化，可以按需加载 利用requirejs和seajs等模块化工具加载</li>
+<li>保持全局变量的清洁</li>
+<li>可进行单元测试</li>
+</ul>
+</li>
+</ol>
+<p>参考</p>
+<p><a href="http://www.cnblogs.com/li0803/archive/2009/09/20/1570581.html" target="_blank" rel="external">yahoo前端性能优化指南中文版</a></p>
+<p><a href="https://developer.yahoo.com/performance/" target="_blank" rel="external">yahoo前端性能优化指南</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/02/23/前端性能测试之分析篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/02/23/前端性能测试之分析篇/" itemprop="url">前端性能测试之分析篇</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2016-02-23T11:31:51+08:00">
+                2016-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="u5F15_u8A00"><a href="#u5F15_u8A00" class="headerlink" title="引言"></a>引言</h2><p>前一章，我们讲了browser的工作原理,那么怎么样才能让了解整个主站前端的性能呢？监控！ 对，是的，我们可以利用各种工作对我们的website进行实时的监控,目前监控的方式有两种。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th style="text-align:center">优点</th>
+<th style="text-align:center">缺点</th>
+<th style="text-align:right">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>非侵入式</td>
+<td style="text-align:center">指标齐全、客户端主动监测、竞品监控</td>
+<td style="text-align:center">无法知道性能影响用户数、采样少容易失真、无法监控复杂应用与细分功能</td>
+<td style="text-align:right">Pagespeed、yslow、PhantomJS、webpagetest、sitespeedio</td>
+</tr>
+<tr>
+<td>侵入式</td>
+<td style="text-align:center">真实海量用户数据、能监控复杂应用与业务功能、用户点击与区域渲染</td>
+<td style="text-align:center">需插入脚本统计、网络指标不全、无法监控竞品</td>
+<td style="text-align:right">new relic、Google analyse、oneapm</td>
+</tr>
+</tbody>
+</table>
+<h2 id="u524D_u7AEF_u6027_u80FD_u5206_u6790_u5DE5_u5177"><a href="#u524D_u7AEF_u6027_u80FD_u5206_u6790_u5DE5_u5177" class="headerlink" title="前端性能分析工具"></a>前端性能分析工具</h2><p>那有哪些简易便利的工具能帮助我们更好的进行测试呢？<br>ok，工具集锦来临。</p>
+<h3 id="u6D4F_u89C8_u5668_u63D2_u4EF6_u7C7B"><a href="#u6D4F_u89C8_u5668_u63D2_u4EF6_u7C7B" class="headerlink" title="浏览器插件类"></a>浏览器插件类</h3><ol>
+<li>FireBug<br>它可以对页面进行调试，可以记录所有网页的访问耗时，下载的资源等</li>
+<li>Page Speed<br><img src="/image/pagespeed.png" alt=""></li>
+<li>Yslow<br><img src="/image/yslow.gif" alt=""></li>
+<li>page performance<br><img src="/image/page_perfor.png" alt=""></li>
+<li>performance analyse<br><img src="/image/performance_alay.png" alt=""></li>
+</ol>
+<h3 id="u5728_u7EBF_u7F51_u7AD9_u7C7B"><a href="#u5728_u7EBF_u7F51_u7AD9_u7C7B" class="headerlink" title="在线网站类"></a>在线网站类</h3><ol>
+<li>WebPageTest<br><img src="/image/webpagespeed.png" alt=""></li>
+<li>showslow<br><img src="/image/showslow.png" alt=""></li>
+<li><p>sitespeed.io<br><img src="/image/sitespeed.png" alt=""></p>
+<h3 id="u5E73_u53F0_u7C7B"><a href="#u5E73_u53F0_u7C7B" class="headerlink" title="平台类"></a>平台类</h3><h4 id="u6536_u8D39_u670D_u52A1_u5E73_u53F0"><a href="#u6536_u8D39_u670D_u52A1_u5E73_u53F0" class="headerlink" title="收费服务平台"></a>收费服务平台</h4></li>
+<li><p>google_analytics<br><img src="/image/google_alay.png" alt=""></p>
+</li>
+<li>new relic<br><img src="/image/relic1.png" alt=""></li>
+<li>oneapm<br><img src="/image/oneapm.png" alt=""></li>
+</ol>
+<h3 id="u5F00_u6E90_u5E73_u53F0"><a href="#u5F00_u6E90_u5E73_u53F0" class="headerlink" title="开源平台"></a>开源平台</h3><ol>
+<li>InfluxDB + Grafana<br>参考文章</li>
+</ol>
+<p><a href="https://ruby-china.org/topics/23470" target="_blank" rel="external">InfluxDB + Grafana 快速搭建自己的 NewRelic，分析应用运行情况
+</a><br><a href="http://www.rittmanmead.com/2015/02/obiee-monitoring-and-diagnostics-with-influxdb-and-grafana/" target="_blank" rel="external">OBIEE Monitoring and Diagnostics with InfluxDB and Grafana
+</a></p>
+<ol>
+<li>Nagios</li>
+<li>Zabbix</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/02/23/前端性能测试分析_原理篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/02/23/前端性能测试分析_原理篇/" itemprop="url">前端性能测试分析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2016-02-23T10:12:40+08:00">
+                2016-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="u539F_u7406_u7BC7"><a href="#u539F_u7406_u7BC7" class="headerlink" title="原理篇"></a>原理篇</h1><h2 id="browser_u5DE5_u4F5C_u539F_u7406"><a href="#browser_u5DE5_u4F5C_u539F_u7406" class="headerlink" title="browser工作原理"></a>browser工作原理</h2><p>web浏览器与web服务器之间通过HTTP协议进行通信的过程。所以，web C/S之间握手的协议就是HTTP协议。</p>
+<p><img src="/image/front_end_performance_test.png" alt=""></p>
+<h2 id="u9875_u9762_u7684_u8BF7_u6C42_u8FC7_u7A0B"><a href="#u9875_u9762_u7684_u8BF7_u6C42_u8FC7_u7A0B" class="headerlink" title="页面的请求过程"></a>页面的请求过程</h2><h3 id="u8BF7_u6C42_u9636_u6BB5"><a href="#u8BF7_u6C42_u9636_u6BB5" class="headerlink" title="请求阶段"></a>请求阶段</h3><ol>
+<li>browser send url request</li>
+</ol>
+<p><img src="/image/LSBAWS_HTTP_request_response.png" alt=""></p>
+<ol>
+<li>递归寻找DNS server</li>
+</ol>
+<p><img src="/image/dns.jpg" alt=""></p>
+<ol>
+<li><p>连接目标IP并建立TCP连接</p>
+</li>
+<li><p>向目标服务器发送http请求</p>
+</li>
+<li><p>web服务器接收请求后处理</p>
+</li>
+<li><p>web服务器返回相应的结果【无效、重定向、正确页面等】</p>
+</li>
+<li><p>浏览器接收返回的http内容</p>
+</li>
+</ol>
+<h2 id="u524D_u7AEF_u89E3_u6790_u9636_u6BB5"><a href="#u524D_u7AEF_u89E3_u6790_u9636_u6BB5" class="headerlink" title="前端解析阶段"></a>前端解析阶段</h2><p>渲染引擎—通过网络获得所请求文档的内容, 解析html以构建dom树-&gt;构建render树-&gt;布局render树-&gt;绘制render树</p>
+<ol>
+<li><p>开始解析html文件，当然是自上而下，先是头部，后是body</p>
+</li>
+<li><p>当解析到头部css外部链接时，同步去下载，如果遇到外部js链接也是下载【不过js链接不建议放在头部，因为耽误页面第一展现时间】</p>
+</li>
+<li><p>接着解析body部分，边解析边开始生成对应的DOM树，同时等待css文件下载</p>
+</li>
+<li><p>一旦css文件下载完毕，那么就同步去用已经生成的DOM节点+CSS去生成渲染树</p>
+</li>
+<li><p>渲染树一旦有结构模型了，接着就会同步去计算渲染树节点的布局位置</p>
+</li>
+<li><p>一旦计算出来渲染的坐标后，又同步去开始渲染</p>
+</li>
+<li><p>4-6步进行过程中如果遇到图片则跳过去渲染下面内容，等待图片下载成功后会返回来在渲染原来图片的位置</p>
+</li>
+<li><p>同7步，如果渲染过程中出现js代码调整DOM树结构的情况，暂停其它渲染，再次重新来过，从修改DOM那步开始</p>
+</li>
+<li><p>最终所有节点和资源都会渲染完成</p>
+<h2 id="u5206_u6790_u7ED3_u675F"><a href="#u5206_u6790_u7ED3_u675F" class="headerlink" title="分析结束"></a>分析结束</h2></li>
+<li><p>渲染完成后开始page的onload事件</p>
+</li>
+<li><p>整个页面load完成</p>
+<h2 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h2></li>
+</ol>
+<p><a href="http://blog.csdn.net/zzzaquarius/article/details/6532299" target="_blank" rel="external">浏览器工作原理</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/01/26/前端测试进化论2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/01/26/前端测试进化论2/" itemprop="url">前端测试进化论2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2016-01-26T18:01:07+08:00">
+                2016-01-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="u524D_u7AEF_u6D4B_u8BD5_u8FDB_u5316_u8BBA2"><a href="#u524D_u7AEF_u6D4B_u8BD5_u8FDB_u5316_u8BBA2" class="headerlink" title="前端测试进化论2"></a>前端测试进化论2</h1><p>=============</p>
+<p>说完了，前端技术的发展史，那么对应的前端测试发展史也随之发展。</p>
+<h2 id="u77F3_u5668_u65F6_u4EE3_u2014_u2014_u7EAF_u624B_u5DE5_u6D4B_u8BD5"><a href="#u77F3_u5668_u65F6_u4EE3_u2014_u2014_u7EAF_u624B_u5DE5_u6D4B_u8BD5" class="headerlink" title="石器时代——纯手工测试"></a>石器时代——纯手工测试</h2><p>早期的页面基本都是静态化的页面，只有几个链接或者图片，那么相对测试工作量不大，只需要我们打开页面查看加载是否正确。</p>
+<h2 id="u94C1_u5668_u65F6_u4EE3_u2013xunit"><a href="#u94C1_u5668_u65F6_u4EE3_u2013xunit" class="headerlink" title="铁器时代–xunit"></a>铁器时代–xunit</h2><p>到了javascript时代，随着其他语言xunit 风靡天下,js 也出现了它的xunit 框架。</p>
+<p>Jsunit，以往在测试js的时候，都是以alert方式来检测错误，很不专业。</p>
+<p>2001年 jsunit 出现，让js调试称为可能。</p>
+<p>Jsunit 主要参考junit的设计，只要你会使用junit 那么jsunit 对你来说，根本不是什么事，具体使用参考</p>
+<p><a href="http://llying.iteye.com/blog/258605" target="_blank" rel="external">http://llying.iteye.com/blog/258605</a><br>DEMO:</p>
+<p>测试代码<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&lt;!<span class="type">DOCTYPE</span> <span class="type">HTML</span> <span class="type">PUBLIC</span> <span class="string">"-//W3C//DTD HTML 4.0 Transitional//EN"</span>&gt;</span><br><span class="line">&lt;<span class="type">HTML</span>&gt;</span><br><span class="line"> &lt;<span class="type">HEAD</span>&gt;</span><br><span class="line">  &lt;<span class="type">TITLE</span>&gt;testHtml&lt;/<span class="type">TITLE</span>&gt;</span><br><span class="line"> &lt;/<span class="type">HEAD</span>&gt;</span><br><span class="line">&lt;script <span class="keyword">type</span>=<span class="string">"text/javascript"</span> src=<span class="string">"myjs.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script <span class="keyword">type</span>=<span class="string">"text/javascript"</span> src=<span class="string">"jsunit\app\jsUnitCore.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script <span class="keyword">type</span>=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">function testAdd()&#123;</span><br><span class="line">	<span class="keyword">var</span> <span class="literal">result</span> = add(arg1,arg2);</span><br><span class="line">	warn(<span class="string">"result"</span>, <span class="literal">result</span>);</span><br><span class="line">	debug(<span class="string">"result"</span>, <span class="literal">result</span>);</span><br><span class="line">	info(<span class="string">"result"</span>, <span class="literal">result</span>);</span><br><span class="line">	assertEquals(<span class="number">6</span>,<span class="literal">result</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function testMinus()&#123;</span><br><span class="line">	<span class="keyword">var</span> <span class="literal">result</span> = minus(arg1,arg2)</span><br><span class="line">	assertEquals(<span class="number">2</span>,<span class="literal">result</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function testMultiply()&#123;</span><br><span class="line">	<span class="keyword">var</span> <span class="literal">result</span> = multiply(arg1,arg2)</span><br><span class="line">	assertEquals(<span class="number">8</span>,<span class="literal">result</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function testDivide()&#123;</span><br><span class="line">	<span class="keyword">var</span> <span class="literal">result</span> = divide(arg1,arg2)</span><br><span class="line">	assertEquals(<span class="string">"4 divide 2 is 2"</span>,<span class="number">2</span>,<span class="literal">result</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function setUpPage()&#123;</span><br><span class="line">	arg1 = <span class="number">4</span>;</span><br><span class="line">	arg2 = <span class="number">2</span>;</span><br><span class="line">	setUpPageStatus = <span class="string">"complete"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function exposeTestFunctionNames()&#123;</span><br><span class="line">	<span class="keyword">var</span> tests = new <span class="type">Array</span>();</span><br><span class="line">	tests[<span class="number">0</span>]=<span class="string">"testAdd"</span>;</span><br><span class="line">	tests[<span class="number">1</span>]=<span class="string">"testMinus"</span>;</span><br><span class="line">	tests[<span class="number">2</span>]=<span class="string">"testMultiply"</span>;</span><br><span class="line">	<span class="keyword">return</span> tests;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//--&gt;</span><br><span class="line">&lt;/<span class="type">SCRIPT</span>&gt;</span><br><span class="line"> &lt;<span class="type">BODY</span>&gt;</span><br><span class="line"></span><br><span class="line"> &lt;/<span class="type">BODY</span>&gt;</span><br><span class="line">&lt;/<span class="type">HTML</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>测试驱动</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">HTML</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="title">HEAD</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">TITLE</span>&gt;</span>suit test<span class="tag">&lt;/<span class="title">TITLE</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="title">HEAD</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"jsunit\app\jsUnitCore.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">&lt;!--</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">suite</span>(<span class="params"></span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> testSuite = <span class="keyword">new</span> top.jsUnitTestSuite();</span><br><span class="line">	<span class="comment">//增加的测试页面的路径是相对于测试运行器的路径的（testRunner.html），而不是相对于当前的页面</span></span><br><span class="line">	testSuite.addTestPage(<span class="string">"../mytest1.html"</span>);</span><br><span class="line">    <span class="comment">//套件里还可以在包含套件</span></span><br><span class="line">	testSuite.addTestSuite(Suite2());</span><br><span class="line">	<span class="keyword">return</span> testSuite;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Suite2</span>(<span class="params"></span>) //需要与<span class="title">suite</span>定义在同一个页面中</span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> testSuite = <span class="keyword">new</span> top.jsUnitTestSuite();</span><br><span class="line">	testSuite.addTestPage(<span class="string">"../mytest2.html"</span>);</span><br><span class="line">	<span class="keyword">return</span> testSuite;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//--&gt;</span></span><br><span class="line"></span><span class="tag">&lt;/<span class="title">SCRIPT</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="title">BODY</span>&gt;</span></span><br><span class="line"></span><br><span class="line"> <span class="tag">&lt;/<span class="title">BODY</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">HTML</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><a href="http://www.jsunit.net/" target="_blank" rel="external">http://www.jsunit.net/</a> </p>
+<h2 id="u5DE5_u4E1A_u9769_u547D_u2013ajax_u6D41_u884C"><a href="#u5DE5_u4E1A_u9769_u547D_u2013ajax_u6D41_u884C" class="headerlink" title="工业革命–ajax流行"></a>工业革命–ajax流行</h2><p>随着ajax的流行，jquery框架在前端开发中的普及，让开发者看到了前端的新纪元，<br>jquery 团队也为广大开发人员开发了Qunit.QUnit 是一款强大而且容易使用的JavaScript 测试框架，它被用于jQuery 与其插件的测试，同时它也同样可以测试普通的JavaScript 代码.</p>
+<h3 id="TDD_u7684_u65F6_u4EE3_u6765_u4E34_QUnit_u6846_u67B6_u7248_u672C"><a href="#TDD_u7684_u65F6_u4EE3_u6765_u4E34_QUnit_u6846_u67B6_u7248_u672C" class="headerlink" title="TDD的时代来临 QUnit框架版本"></a>TDD的时代来临 QUnit框架版本</h3><p>将要被测试的代码需要添加到myProject.js中，并且你的测试用例应该插入到myTest.js。要运行这些测试，只需在一个浏览器中打开这个html文件。现在需要写一些测试用例了。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">title</span>&gt;</span>QUnit Test Suite<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">href</span>=<span class="value">"http://github.com/jquery/qunit/raw/master/qunit/qunit.css"</span> <span class="attribute">mce_href</span>=<span class="value">"http://github.com/jquery/qunit/raw/master/qunit/qunit.css"</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> <span class="attribute">media</span>=<span class="value">"screen"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">mce:script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"http://github.com/jquery/qunit/raw/master/qunit/qunit.js"</span> <span class="attribute">mce_src</span>=<span class="value">"http://github.com/jquery/qunit/raw/master/qunit/qunit.js"</span>&gt;</span><span class="tag">&lt;/<span class="title">mce:script</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Your project file goes here --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">mce:script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"myProject.js"</span> <span class="attribute">mce_src</span>=<span class="value">"myProject.js"</span>&gt;</span><span class="tag">&lt;/<span class="title">mce:script</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Your tests file goes here --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">mce:script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"myTests.js"</span> <span class="attribute">mce_src</span>=<span class="value">"myTests.js"</span>&gt;</span><span class="tag">&lt;/<span class="title">mce:script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">h1</span> <span class="attribute">id</span>=<span class="value">"qunit-header"</span>&gt;</span>QUnit Test Suite<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">h2</span> <span class="attribute">id</span>=<span class="value">"qunit-banner"</span>&gt;</span><span class="tag">&lt;/<span class="title">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"qunit-testrunner-toolbar"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">h2</span> <span class="attribute">id</span>=<span class="value">"qunit-userAgent"</span>&gt;</span><span class="tag">&lt;/<span class="title">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">ol</span> <span class="attribute">id</span>=<span class="value">"qunit-tests"</span>&gt;</span><span class="tag">&lt;/<span class="title">ol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>参考<br><a href="http://www.cnblogs.com/nuaalfm/archive/2010/02/26/1674235.html" target="_blank" rel="external">http://www.cnblogs.com/nuaalfm/archive/2010/02/26/1674235.html</a><br><a href="http://qunitjs.com/" target="_blank" rel="external">http://qunitjs.com/</a></p>
+<h2 id="u73B0_u4EE3_u5316_u6280_u672F-BBD"><a href="#u73B0_u4EE3_u5316_u6280_u672F-BBD" class="headerlink" title="现代化技术-BBD"></a>现代化技术-BBD</h2><p>紧着angluar react 等框架大行其道的同时，bdd也在开发中兴起，基于bdd的测试框架开始在前端如雨后春笋般冒出,jasmine,mocha,karma都是其中的代表，但是各得其道，到底谁好，没惹能说得清楚。但google 在前端测试的贡献，绝对是业界良心。</p>
+<p><img src="/image/JASMINE.png" alt=""><br><a href="http://jasmine.github.io/" target="_blank" rel="external">http://jasmine.github.io/</a></p>
+<p><img src="/image/KARMA.png" alt=""><br><a href="https://karma-runner.github.io/0.13/index.html" target="_blank" rel="external">https://karma-runner.github.io/0.13/index.html</a></p>
+<p><img src="/image/MOCHA.png" alt=""><br><a href="https://mochajs.org/" target="_blank" rel="external">https://mochajs.org/</a></p>
+<p>这些框架本人就不举列子了，会在以后的篇章里面一一介绍。</p>
+<h2 id="u524D_u7AEF_u7684_u672A_u6765"><a href="#u524D_u7AEF_u7684_u672A_u6765" class="headerlink" title="前端的未来"></a>前端的未来</h2><p>未来，我希望有一种框架能够解救苦逼的qa,简单的语法与api，使得我们能够处理所有前端框架而不用考虑控件问题，良好的性能，支持并发，跑ui和单元测试都在秒级，当然越快越好，最好能够自动更新ui自动化中页面对象的路径等等。也许只是个梦。Qa 还需努力。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/01/25/前端测试进化论/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/01/25/前端测试进化论/" itemprop="url">前端测试进化论</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2016-01-25T15:36:44+08:00">
+                2016-01-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="u524D_u7AEF_u6D4B_u8BD5_u8FDB_u5316_u8BBA"><a href="#u524D_u7AEF_u6D4B_u8BD5_u8FDB_u5316_u8BBA" class="headerlink" title="前端测试进化论"></a>前端测试进化论</h1><h1 id="u7B2C_u4E00_u7BC7web__u53D1_u5C55_u53F2"><a href="#u7B2C_u4E00_u7BC7web__u53D1_u5C55_u53F2" class="headerlink" title="第一篇web 发展史"></a>第一篇web 发展史</h1><p>这篇主要是帮助我们qa 了解前端的历史与现状。</p>
+<p>测试工程师大部分时间可能关注的是feature正确性，而对于前端代码级别的测试基本没有关心过，随着各种前端框架在web和移动端大行其道，绽放各种高大上的功能时，我们渐渐的发现前端代码级别问题逐渐暴露出来，甚至超越后端之势。那么问题来了，为什么以前这种现象出现呢？<br>我们现来看看前端技术发展史。</p>
+<p>##石器时代——开荒阶段</p>
+<h3 id="u5E26_u6709_u7B80_u5355_u903B_u8F91_u7684_u754C_u9762"><a href="#u5E26_u6709_u7B80_u5355_u903B_u8F91_u7684_u754C_u9762" class="headerlink" title="带有简单逻辑的界面"></a>带有简单逻辑的界面</h3><p>最早期的Web界面基本都是在互联网上使用，而且基本都是静态页面展示，人们浏览某些内容，填写几个表单并且提交。当时的界面以浏览为主，基本都是HTML代码，我们来看一个最简单的HTML文件：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="title">head</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="title">title</span>&gt;</span>开荒时代<span class="tag">&lt;/<span class="title">title</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="title">body</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="title">h1</span>&gt;</span>静态页面<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="title">p</span>&gt;</span>这是个测试<span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="u5E26_u6709_u7B80_u5355_u903B_u8F91_u7684_u754C_u9762-1"><a href="#u5E26_u6709_u7B80_u5355_u903B_u8F91_u7684_u754C_u9762-1" class="headerlink" title="带有简单逻辑的界面"></a>带有简单逻辑的界面</h3><p>接下来我们发现使用一些工具可以帮助我们做一些业务处理，这时javascript到来了，开始大放异彩。这时的代码的组织比较简单，而且CSS的运用也是比较少的。譬如：下面这个文档将带有一段JavaScript代码，用于拼接两个输入框中的字符串，并且弹出窗口显示。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">title</span>&gt;</span>javascript时代<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">input</span> <span class="attribute">id</span>=<span class="value">"firstNameInput"</span> <span class="attribute">type</span>=<span class="value">"text"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">input</span> <span class="attribute">id</span>=<span class="value">"lastNameInput"</span> <span class="attribute">type</span>=<span class="value">"text"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"button"</span> <span class="attribute">onclick</span>=<span class="value">"greet()"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">script</span> <span class="attribute">language</span>=<span class="value">"JavaScript"</span>&gt;</span><span class="javascript"></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> firstName = <span class="built_in">document</span>.getElementById(<span class="string">"firstNameInput"</span>).value;</span><br><span class="line">            <span class="keyword">var</span> lastName = <span class="built_in">document</span>.getElementById(<span class="string">"lastNameInput"</span>).value;</span><br><span class="line">            alert(<span class="string">"Hello, "</span> + firstName + <span class="string">"."</span> + lastName);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="u7ED3_u5408_u4E86_u670D_u52A1_u7AEF_u6280_u672F_u7684_u6DF7_u5408_u7F16_u7A0B"><a href="#u7ED3_u5408_u4E86_u670D_u52A1_u7AEF_u6280_u672F_u7684_u6DF7_u5408_u7F16_u7A0B" class="headerlink" title="结合了服务端技术的混合编程"></a>结合了服务端技术的混合编程</h3><p>由于静态界面不能实现保存数据等功能，出现了很多服务端技术，早期的有CGI（Common Gateway Interface，多数用C语言或者Perl实现的），ASP（使用VBScript或者JScript），JSP（使用Java），PHP等等，Python和Ruby等语言也常被用于这类用途。</p>
+<figure class="highlight vbscript-html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">title</span>&gt;</span>Using GET Method to Read Form Data<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">center</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">h1</span>&gt;</span>Using GET Method to Read Form Data<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">p</span>&gt;</span><span class="tag">&lt;<span class="title">b</span>&gt;</span>First Name:<span class="tag">&lt;/<span class="title">b</span>&gt;</span></span><br><span class="line">   </span><span class="vbscript">&lt;%= <span class="built_in">request</span>.getParameter(<span class="string">"first_name"</span>)%&gt;</span><span class="xml"></span><br><span class="line"><span class="tag">&lt;/<span class="title">p</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">p</span>&gt;</span><span class="tag">&lt;<span class="title">b</span>&gt;</span>Last  Name:<span class="tag">&lt;/<span class="title">b</span>&gt;</span></span><br><span class="line">   </span><span class="vbscript">&lt;%= <span class="built_in">request</span>.getParameter(<span class="string">"last_name"</span>)%&gt;</span><span class="xml"></span><br><span class="line"><span class="tag">&lt;/<span class="title">p</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="u94C1_u5668_u65F6_u4EE3_u2014Ajax_u5E2D_u5377_u5168_u4E16_u754C"><a href="#u94C1_u5668_u65F6_u4EE3_u2014Ajax_u5E2D_u5377_u5168_u4E16_u754C" class="headerlink" title="铁器时代—Ajax席卷全世界"></a>铁器时代—Ajax席卷全世界</h2><h3 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h3><p>由于Ajax的出现，规模更大，效果更好的Web程序逐渐出现，在这些程序中，JavaScript代码的数量迅速增加。出于代码组织的需要，“JavaScript框架”这个概念逐步形成。</p>
+<h4 id="JavaScript_u57FA_u7840_u5E93_u2014jquery"><a href="#JavaScript_u57FA_u7840_u5E93_u2014jquery" class="headerlink" title="JavaScript基础库—jquery"></a>JavaScript基础库—jquery</h4><p>Prototype框架主要是为JavaScript代码提供了一种组织方式，对一些原生的JavaScript类型提供了一些扩展，比如数组、字符串，又额外提供了一些实用的数据结构，如：枚举，Hash等，除此之外，还对dom操作，事件，表单和Ajax做了一些封装。</p>
+<p>Mootools框架的思路跟Prototype很接近，它对JavaScript类型扩展的方式别具一格，所以在这类框架中，经常被称作“最优雅的”对象扩展体系。<br>从这两个框架的所提供的功能来看，它们的定位是核心库，在使用的时候一般需要配合一些外围的库来完成。</p>
+<p>jQuery与这两者有所不同，它着眼于简化DOM相关的代码。</p>
+<p>DOM的选择</p>
+<p>jQuery提供了一系列选择器用于选取界面元素，在其他一些框架中也有类似功能，但是一般没有它的简洁、强大。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"*"</span>)              <span class="comment">//选取所有元素</span></span><br><span class="line">$(<span class="string">"#lastname"</span>)      <span class="comment">//选取id为lastname的元素</span></span><br><span class="line">$(<span class="string">".intro"</span>)         <span class="comment">//选取所有class="intro"的元素</span></span><br><span class="line">$(<span class="string">"p"</span>)              <span class="comment">//选取所有&amp;lt;p&amp;gt;元素</span></span><br><span class="line">$(<span class="string">".intro.demo"</span>)    <span class="comment">//选取所有 class="intro"且class="demo"的元素</span></span><br></pre></td></tr></table></figure>
+<p>链式表达式</p>
+<p>在jQuery中，可以使用链式表达式来连续操作dom，比如下面这个例子：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(</span><span class="string">"p.neat"</span>).addClass(<span class="string">"ohmy"</span>).show(<span class="string">"slow"</span>);</span><br></pre></td></tr></table></figure>
+<p>除此之外，jQuery还提供了一些动画方面的特效代码，也有大量的外围库，比如jQuery UI这样的控件库，jQuery mobile这样的移动开发库等等。</p>
+<h3 id="u6A21_u5757_u4EE3_u7801_u52A0_u8F7D_u65B9_u5F0F_u2013Requirejs"><a href="#u6A21_u5757_u4EE3_u7801_u52A0_u8F7D_u65B9_u5F0F_u2013Requirejs" class="headerlink" title="模块代码加载方式–Requirejs"></a>模块代码加载方式–Requirejs</h3><p>以上这些框架提供了代码的组织能力，但是未能提供代码的动态加载能力。动态加载JavaScript为什么重要呢？因为随着Ajax的普及，jQuery等辅助库的出现，Web上可以做很复杂的功能，因此，单页面应用程序（SPA，Single Page Application）也逐渐多了起来。</p>
+<p>单个的界面想要做很多功能，需要写的代码是会比较多的，但是，并非所有的功能都需要在界面加载的时候就全部引入，如果能够在需要的时候才加载那些代码，就把加载的压力分担了，在这个背景下，出现了一些用于动态加载JavaScript的框架，也出现了一些定义这类可被动态加载代码的规范。</p>
+<p>在这些框架里，知名度比较高的是RequireJS，它遵循一种称为AMD（Asynchronous Module Definition）的规范。<br>例如下列是一个js代码保存为adder.js文件<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">define([<span class="string">"math"</span>], <span class="function"><span class="keyword">function</span><span class="params">(math)</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        addTen : <span class="function"><span class="keyword">function</span><span class="params">(x)</span></span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">math</span>.add(x, <span class="number">10</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>当我们需要使用这个模块时，我们只需引入就好</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"require.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span><br><span class="line">    <span class="built_in">require</span>([<span class="string">"adder"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">adder</span>) </span>&#123;</span><br><span class="line">        <span class="comment">//使用这个adder</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>RequireJS除了提供异步加载方式，也可以使用同步方式加载模块代码。AMD规范除了使用在前端浏览器环境中，也可以运行于nodejs等服务端环境，nodejs的模块就是基于这套规范定义的。（修订，这里弄错了，nodejs是基于类似的CMD规范的）</p>
+<h2 id="u5DE5_u4E1A_u9769_u547D_u2014_u524D_u7AEF_u6846_u67B6"><a href="#u5DE5_u4E1A_u9769_u547D_u2014_u524D_u7AEF_u6846_u67B6" class="headerlink" title="工业革命—前端框架"></a>工业革命—前端框架</h2><p>这个时期，随着Web端功能的日益复杂，人们开始考虑这样一些问题：</p>
+<p>•    如何更好地模块化开发</p>
+<p>•    业务数据如何组织</p>
+<p>•    界面和业务数据之间通过何种方式进行交互</p>
+<p>在这种背景下，出现了一些前端MVC、MVP、MVVM框架，我们把这些框架统称为MV*框架。这些框架的出现，都是为了解决上面这些问题，具体的实现思路各有不同，主流的有Backbone，AngularJS，Ember，Spine等等，本文主要选用Backbone和AngularJS来讲述以下场景。</p>
+<h3 id="u6570_u636E_u6A21_u578B"><a href="#u6570_u636E_u6A21_u578B" class="headerlink" title="数据模型"></a>数据模型</h3><p>在这些框架里，定义数据模型的方式与以往有些差异，主要在于数据的get和set更加有意义了，比如说，可以把某个实体的get和set绑定到RESTful的服务上，这样，对某个实体的读写可以更新到数据库中。另外一个特点是，它们一般都提供一个事件，用于监控数据的变化，这个机制使得数据绑定成为可能。<br>在一些框架中，数据模型需要在原生的JavaScript类型上做一层封装，比如Backbone的方式是这样：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Todo = Backbone.Model.extend(&#123;</span><br><span class="line">    <span class="comment">// Default attributes for the todo item.</span></span><br><span class="line">    defaults : <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            title : <span class="string">"empty todo..."</span>,</span><br><span class="line">            order : Todos.nextOrder(),</span><br><span class="line">            done : <span class="literal">false</span></span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// Ensure that each todo created has `title`.</span></span><br><span class="line">    initialize : <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">this</span>.<span class="keyword">get</span>(<span class="string">"title"</span>)) &#123;</span><br><span class="line">            <span class="keyword">this</span>.<span class="keyword">set</span>(&#123;</span><br><span class="line">                <span class="string">"title"</span> : <span class="keyword">this</span>.defaults().title</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// Toggle the 'done' state of this todo item.</span></span><br><span class="line">    toggle : <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.save(&#123;</span><br><span class="line">            done : !<span class="keyword">this</span>.<span class="keyword">get</span>(<span class="string">"done"</span>)</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="u63A7_u5236_u5668"><a href="#u63A7_u5236_u5668" class="headerlink" title="控制器"></a>控制器</h3><p>在Backbone中，是没有独立的控制器的，它的一些控制的职责都放在了视图里，所以其实这是一种MVP（Model View Presentation）模式，而AngularJS有很清晰的控制器层。</p>
+<p>还是以这个todo为例，在AngularJS中，会有一些约定的注入，比如$scope，它是控制器、模型和视图之间的桥梁。在控制器定义的时候，将$scope作为参数，然后，就可以在控制器里面为它添加模型的支持。<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> TodoCtrl(<span class="variable">$scope</span>) &#123;</span><br><span class="line">    <span class="variable">$scope</span>.todos = [&#123;</span><br><span class="line">        text : <span class="string">'learn angular'</span>,</span><br><span class="line">        done : true</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        text : <span class="string">'build an angular app'</span>,</span><br><span class="line">        done : false</span><br><span class="line">    &#125;];</span><br><span class="line"> </span><br><span class="line">    <span class="variable">$scope</span>.addTodo = function() &#123;</span><br><span class="line">        <span class="variable">$scope</span>.todos.push(&#123;</span><br><span class="line">            text : <span class="variable">$scope</span>.todoText,</span><br><span class="line">            done : false</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="variable">$scope</span>.todoText = <span class="string">''</span>;</span><br><span class="line">    &#125;;</span><br><span class="line"> </span><br><span class="line">    <span class="variable">$scope</span>.remaining = function() &#123;</span><br><span class="line">        var count = <span class="number">0</span>;</span><br><span class="line">        angular.forEach(<span class="variable">$scope</span>.todos, function(todo) &#123;</span><br><span class="line">            count += todo.done ? <span class="number">0</span> : <span class="number">1</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">        return count;</span><br><span class="line">    &#125;;</span><br><span class="line"> </span><br><span class="line">    <span class="variable">$scope</span>.archive = function() &#123;</span><br><span class="line">        var oldTodos = <span class="variable">$scope</span>.todos;</span><br><span class="line">        <span class="variable">$scope</span>.todos = [];</span><br><span class="line">        angular.forEach(oldTodos, function(todo) &#123;</span><br><span class="line">            if (!todo.done)</span><br><span class="line">                <span class="variable">$scope</span>.todos.push(todo);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="u89C6_u56FE"><a href="#u89C6_u56FE" class="headerlink" title="视图"></a>视图</h3><p>在这些主流的MV*框架中，一般都提供了定义视图的功能。在Backbone中，是这样定义视图的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The DOM element for a todo item...</span></span><br><span class="line"><span class="keyword">var</span> TodoView = Backbone.View.extend(&#123;</span><br><span class="line">    <span class="comment">//... is a list tag.</span></span><br><span class="line">    tagName : <span class="string">"li"</span>,</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// Cache the template function for a single item.</span></span><br><span class="line">    template : _.template($(<span class="string">'#item-template'</span>).html()),</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// The DOM events specific to an item.</span></span><br><span class="line">    events : &#123;</span><br><span class="line">        <span class="string">"click .toggle"</span> : <span class="string">"toggleDone"</span>,</span><br><span class="line">        <span class="string">"dblclick .view"</span> : <span class="string">"edit"</span>,</span><br><span class="line">        <span class="string">"click a.destroy"</span> : <span class="string">"clear"</span>,</span><br><span class="line">        <span class="string">"keypress .edit"</span> : <span class="string">"updateOnEnter"</span>,</span><br><span class="line">        <span class="string">"blur .edit"</span> : <span class="string">"close"</span></span><br><span class="line">    &#125;,</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// The TodoView listens for changes to its model, re-rendering. Since there's</span></span><br><span class="line">    <span class="comment">// a one-to-one correspondence between a **Todo** and a **TodoView** in this</span></span><br><span class="line">    <span class="comment">// app, we set a direct reference on the model for convenience.</span></span><br><span class="line">    initialize : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.listenTo(<span class="keyword">this</span>.model, <span class="string">'change'</span>, <span class="keyword">this</span>.render);</span><br><span class="line">        <span class="keyword">this</span>.listenTo(<span class="keyword">this</span>.model, <span class="string">'destroy'</span>, <span class="keyword">this</span>.remove);</span><br><span class="line">    &#125;,</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// Re-render the titles of the todo item.</span></span><br><span class="line">    render : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.$el.html(<span class="keyword">this</span>.template(<span class="keyword">this</span>.model.toJSON()));</span><br><span class="line">        <span class="keyword">this</span>.$el.toggleClass(<span class="string">'done'</span>, <span class="keyword">this</span>.model.get(<span class="string">'done'</span>));</span><br><span class="line">        <span class="keyword">this</span>.input = <span class="keyword">this</span>.$(<span class="string">'.edit'</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;,</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//......</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">// Remove the item, destroy the model.</span></span><br><span class="line">    clear : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.model.destroy();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="/image/asd.png" alt=""></p>
+<h2 id="u53C2_u8003_u6587_u732E_uFF1A"><a href="#u53C2_u8003_u6587_u732E_uFF1A" class="headerlink" title="参考文献："></a>参考文献：</h2><p><a href="http://any9.com/1524.html" target="_blank" rel="external">http://any9.com/1524.html</a><br><a href="http://blog.jobbole.com/45169/" target="_blank" rel="external">http://blog.jobbole.com/45169/</a><br><a href="http://blog.jobbole.com/45170/" target="_blank" rel="external">http://blog.jobbole.com/45170/</a><br><a href="http://blog.jobbole.com/41988/" target="_blank" rel="external">http://blog.jobbole.com/41988/</a><br>我毕竟不是一个前端dev，有所疏漏尽请原谅，还有转载和抄录了一些人的blog 也请大家谅解，只是想写一些前端的文章给qa用。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/01/25/gulp_for_qa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/01/25/gulp_for_qa/" itemprop="url">gulp_for_qa</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2016-01-25T15:13:20+08:00">
+                2016-01-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="gulp__u4ECB_u7ECD"><a href="#gulp__u4ECB_u7ECD" class="headerlink" title="gulp 介绍"></a>gulp 介绍</h2><p><img src="/image/Picture1.png" alt="gulp"></p>
+<h3 id="u4EC0_u4E48_u662Fgulp_3F_u8FD9_u548C_u6211_u4EECqa_u6709_u4EC0_u4E48_u5173_u7CFB_uFF1F"><a href="#u4EC0_u4E48_u662Fgulp_3F_u8FD9_u548C_u6211_u4EECqa_u6709_u4EC0_u4E48_u5173_u7CFB_uFF1F" class="headerlink" title="什么是gulp?这和我们qa有什么关系？"></a>什么是gulp?这和我们qa有什么关系？</h3><p>Gulp.js 是一个自动化构建工具,开发者可以使用它在项目开发过程中自动执行常见任务。<br>入门指南</p>
+<ol>
+<li><p>全局安装 gulp：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --global gulp</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>作为项目的开发依赖（devDependencies）安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save-dev gulp</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在项目根目录下创建一个名为 gulpfile.js 的文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var gulp = require(<span class="string">'gulp'</span>);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'default'</span>, <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">  // 将你的默认的任务代码放在这</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行 gulp：</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gulp</span><br></pre></td></tr></table></figure>
+<p>默认的名为 default 的任务（task）将会被运行，在这里，这个任务并未做任何事情。<br>想要单独执行特定的任务（task），请输入 gulp <task> <othertask>。</othertask></task></p>
+<p>官网:<br><a href="http://www.gulpjs.com.cn/docs/getting-started/" target="_blank" rel="external">http://www.gulpjs.com.cn/docs/getting-started/</a></p>
+<p>gulp api 非常简单，只有5个task，run，watch，src，和dest.</p>
+<p>是的 你只需要搞懂这5个api 完全够用。</p>
+<p>Gulp 能帮助我们更好更快的进行测试，制定标准等工作。</p>
+<h2 id="eslint"><a href="#eslint" class="headerlink" title="eslint"></a>eslint</h2><p>Javascript代码验证工具,这种工具可以检查你的代码并提供相关的代码改进意见<br>最大卖点，可以通过插件实现自定义规则</p>
+<p>例如 gc 这边用的angluar</p>
+<p><a href="https://www.npmjs.com/package/eslint-plugin-angular" target="_blank" rel="external">https://www.npmjs.com/package/eslint-plugin-angular</a></p>
+<p>使用npm 安装jslint 插件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install gulp-eslint --save-dev</span><br></pre></td></tr></table></figure>
+<p>配置 .eslintrc文件</p>
+<p>设置js规范的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"env"</span>: &#123;</span><br><span class="line">    <span class="string">"browser"</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"globals"</span>: &#123;</span><br><span class="line">    <span class="string">"angular"</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"rules"</span>: &#123;</span><br><span class="line">    <span class="string">"camelcase"</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="string">"curly"</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="string">"brace-style"</span>: [<span class="number">2</span>, <span class="string">"1tbs"</span>],</span><br><span class="line">    <span class="string">"quotes"</span>: [<span class="number">2</span>, <span class="string">"single"</span>],</span><br><span class="line">    <span class="string">"semi"</span>: [<span class="number">2</span>, <span class="string">"always"</span>],</span><br><span class="line">    <span class="string">"space-in-brackets"</span>: [<span class="number">2</span>, <span class="string">"never"</span>],</span><br><span class="line">    <span class="string">"space-infix-ops"</span>: <span class="number">2</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>配置 gulpfile</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var eslint = require(<span class="string">'gulp-eslint'</span>)</span><br><span class="line">gulp.task(<span class="string">'lint'</span>, <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">  <span class="built_in">return</span> gulp.src(path.JS)</span><br><span class="line">    .pipe(eslint())</span><br><span class="line">    .pipe(eslint.format());</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$ gulp lint</span><br></pre></td></tr></table></figure>
+<h4 id="u53C2_u8003_uFF1A"><a href="#u53C2_u8003_uFF1A" class="headerlink" title="参考："></a>参考：</h4><p>运行 gulp lint 命令</p>
+<p><a href="http://www.jianshu.com/p/c599185a0d84" target="_blank" rel="external">http://www.jianshu.com/p/c599185a0d84</a></p>
+<p>jshint jslint jscs eslint的对比</p>
+<p><a href="http://developer.51cto.com/art/201506/481510.htm" target="_blank" rel="external">http://developer.51cto.com/art/201506/481510.htm</a><br><a href="http://www.sitepoint.com/comparison-javascript-linting-tools/" target="_blank" rel="external">http://www.sitepoint.com/comparison-javascript-linting-tools/</a>
+</p>
+<p>##browersync</p>
+<p>Browsersync能让浏览器实时、快速响应您的文件更改（html、js、css、sass、less等）并自动刷新页面。更重要的是 Browsersync可以同时在PC、平板、手机等设备下进项调试。您可以想象一下：“假设您的桌子上有pc、ipad、iphone、android等设备，同时打开了您需要调试的页面，当您使用browsersync后，您的任何一次代码保存，以上的设备都会同时显示您的改动”。无论您是前端还是后端工程师，使用它将提高您30%的工作效率。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install browser-sync gulp --save-dev</span><br></pre></td></tr></table></figure>
+<p>配置gulpfile<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">var path = &#123;</span><br><span class="line">        HTML : <span class="string">"html/*.html"</span>,</span><br><span class="line">        LESS : <span class="string">"less/*.less"</span>,</span><br><span class="line">        CSS : <span class="string">"css/*.css"</span>,</span><br><span class="line">        JS : <span class="string">"js/*.js"</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">"serve"</span>, [<span class="string">"less"</span>, <span class="string">"js-watch"</span>, <span class="string">"html"</span>], <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    browserSync.init(&#123;</span><br><span class="line">        server : <span class="string">"./"</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    gulp.watch(path.LESS, [<span class="string">"less"</span>]);</span><br><span class="line">    gulp.watch(path.JS, [<span class="string">"js-watch"</span>]);</span><br><span class="line">    gulp.watch(path.HTML, [<span class="string">"html"</span>]);</span><br><span class="line">    gulp.watch(path.HTML).on(<span class="string">"change"</span>, <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">        browserSync.reload;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">"less"</span>, <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    gulp.src(path.LESS)</span><br><span class="line">        .pipe(less())</span><br><span class="line">        .pipe(gulp.dest(path.CSS))</span><br><span class="line">        .pipe(browserSync.stream());</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">"js-watch"</span>, <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    gulp.src(path.JS)</span><br><span class="line">    .pipe(browserSync.stream());</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">"html"</span>, <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    gulp.src(path.HTML)</span><br><span class="line">    .pipe(browserSync.stream());</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>运行命令<br>就可以看到代码变更对不同浏览器页面造成的影响了。<br><img src="/image/Picture2.png" alt="image"></p>
+<h4 id="u53C2_u8003_u6587_u6863"><a href="#u53C2_u8003_u6587_u6863" class="headerlink" title="参考文档"></a>参考文档</h4><p><a href="http://www.browsersync.cn/docs/gulp/" target="_blank" rel="external">http://www.browsersync.cn/docs/gulp/</a></p>
+<p>开启代理模式<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">browser-sync start --proxy <span class="string">"http://localhost:3000/products/voip-phones/yealink-t20p"</span> --host <span class="string">"http://localhost:3001/products/voip-phones/yealink-t20p"</span></span><br><span class="line"></span><br><span class="line">gulp-istanbul</span><br></pre></td></tr></table></figure></p>
+<p>##Istanbul 是 JavaScript 程序的代码覆盖率工具<br>•    行覆盖率（line coverage）：是否每一行都执行了？</p>
+<p>•    函数覆盖率（function coverage）：是否每个函数都调用了？</p>
+<p>•    分支覆盖率（branch coverage）：是否每个if代码块都执行了？</p>
+<p>•    语句覆盖率（statement coverage）：是否每个语句都执行了？</p>
+<p>配置gulpfile文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'pre-test'</span>, <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">  <span class="built_in">return</span> gulp.src([<span class="string">'js/*.js'</span>])</span><br><span class="line">    // Covering files</span><br><span class="line">    .pipe(istanbul())</span><br><span class="line">    // Force `require` to <span class="built_in">return</span> covered files</span><br><span class="line">    .pipe(istanbul.hookRequire());</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'test'</span>, [<span class="string">'pre-test'</span>], <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">  <span class="built_in">return</span> gulp.src([<span class="string">'test/*.js'</span>])</span><br><span class="line">    .pipe(mocha())</span><br><span class="line">    // Creating the reports after tests ran</span><br><span class="line">    .pipe(istanbul.enforceThresholds(&#123; thresholds: &#123; global: <span class="number">90</span> &#125; &#125;))</span><br><span class="line">    .pipe(istanbul.writeReports(&#123;</span><br><span class="line">      dir: <span class="string">'./assets/unit-test-coverage'</span>,</span><br><span class="line">          reporters: [ <span class="string">'lcov'</span> ],</span><br><span class="line">          reportOpts: &#123; dir: <span class="string">'./assets/unit-test-coverage'</span>&#125; &#125;));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>运行gulp 命令</p>
+<p><img src="/image/Picture3.png" alt="image1"></p>
+<p>####参考：<br><a href="http://www.ruanyifeng.com/blog/2015/06/istanbul.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2015/06/istanbul.html</a></p>
+<p><a href="http://blog.oskoui-oskoui.com/?p=8478" target="_blank" rel="external">http://blog.oskoui-oskoui.com/?p=8478</a></p>
+<p><a href="https://github.com/SBoudrias/gulp-istanbul" target="_blank" rel="external">https://github.com/SBoudrias/gulp-istanbul</a></p>
+<p>##所有例子用的repo<br><a href="https://github.com/qileilove/gulp_qa" target="_blank" rel="external">https://github.com/qileilove/gulp_qa</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="qi lei" />
+          <p class="site-author-name" itemprop="name">qi lei</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">qi lei</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
