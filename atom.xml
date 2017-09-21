@@ -555,7 +555,7 @@
     <link href="http://yoursite.com/2016/11/30/expresso/"/>
     <id>http://yoursite.com/2016/11/30/expresso/</id>
     <published>2016-11-30T08:59:53.000Z</published>
-    <updated>2016-12-05T15:11:42.000Z</updated>
+    <updated>2017-09-21T07:42:27.000Z</updated>
     
     <content type="html">&lt;h2 id=&quot;espresso_u662F_u4EC0_u4E48_uFF1F&quot;&gt;&lt;a href=&quot;#espresso_u662F_u4EC0_u4E48_uFF1F&quot; class=&quot;headerlink&quot; title=&quot;espresso是什么？&quot;&gt;&lt;/a&gt;espresso是什么？&lt;/h2&gt;&lt;p&gt; Espresso 测试框架提供了一系列的API用于构建UI测试来测试app内用户流操作。这些API让你可以编写简洁可靠的自动化UI测试。Espresso非常适合用来编写白盒测试，其中测试代码的编写是利用了被测试app中程序代码实现细节。&lt;/p&gt;
 &lt;p&gt;Espresso测试可运行android 2.3.3(API 10 level)以及更高版本的设备上。使用Espresso的主要好处是,当你运行测试时它提供了自动的同步测试动作与应用程序UI。Espresso会检测你的主线程是否为空闲状态,如果你的没有被利用,这时候他就会抢占主线程运行测试，所以它能够在恰当的时间运行您的测试命令,提高测试的可靠性。这种能力也使您无须添加任何额外的措施,例如在测试代码中加入&lt;code&gt;thread.sleep()&lt;/code&gt;。&lt;/p&gt;
@@ -712,6 +712,8 @@
     </summary>
     
     
+      <category term="android自动化" scheme="http://yoursite.com/tags/android%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
+    
   </entry>
   
   <entry>
@@ -719,7 +721,7 @@
     <link href="http://yoursite.com/2016/10/31/qaquilty/"/>
     <id>http://yoursite.com/2016/10/31/qaquilty/</id>
     <published>2016-10-31T14:15:46.000Z</published>
-    <updated>2016-11-01T03:30:47.000Z</updated>
+    <updated>2017-09-21T07:40:24.000Z</updated>
     
     <content type="html">&lt;p&gt;大部分人看到这个题目时，直接的反应是QA关心代码质量干嘛，能看懂代码吗？怎么给dev feedback？&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/image/qa.gif&quot; alt=&quot;qa&quot;&gt;&lt;/p&gt;
@@ -862,7 +864,7 @@
     <link href="http://yoursite.com/2016/09/01/capybara5/"/>
     <id>http://yoursite.com/2016/09/01/capybara5/</id>
     <published>2016-09-01T14:31:15.000Z</published>
-    <updated>2016-09-06T05:43:25.000Z</updated>
+    <updated>2017-09-21T07:44:40.000Z</updated>
     
     <content type="html">&lt;h2 id=&quot;u5B9E_u73B0_u4F60_u7B2C_u4E00_u4E2A_u81EA_u52A8_u5316_u573A_u666F&quot;&gt;&lt;a href=&quot;#u5B9E_u73B0_u4F60_u7B2C_u4E00_u4E2A_u81EA_u52A8_u5316_u573A_u666F&quot; class=&quot;headerlink&quot; title=&quot;实现你第一个自动化场景&quot;&gt;&lt;/a&gt;实现你第一个自动化场景&lt;/h2&gt;&lt;p&gt;万事俱备，只欠东风，让我们来实现我们一个自动化测试场景，百度上搜索capybara。&lt;/p&gt;
 &lt;figure class=&quot;highlight vbnet&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;describe &lt;span class=&quot;string&quot;&gt;&quot;i want search capybara&quot;&lt;/span&gt;,  :type =&amp;gt; :feature &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    context &lt;span class=&quot;comment&quot;&gt;&#39;i need to open browser&#39; do&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      it &lt;span class=&quot;comment&quot;&gt;&#39;should be  has an browser&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    context &lt;span class=&quot;comment&quot;&gt;&#39;when i input baidu url into the browser textarea&#39; do&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      it &lt;span class=&quot;comment&quot;&gt;&#39;should be redirect  to the baidu homepage&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    context &lt;span class=&quot;comment&quot;&gt;&#39;when i input the capybara into search text &#39; do&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      it &lt;span class=&quot;comment&quot;&gt;&#39;responds with 200 and show the result&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -907,6 +909,10 @@
     
     </summary>
     
+    
+      <category term="rails" scheme="http://yoursite.com/tags/rails/"/>
+    
+      <category term="webdriver" scheme="http://yoursite.com/tags/webdriver/"/>
     
   </entry>
   
@@ -1057,7 +1063,7 @@
     <link href="http://yoursite.com/2016/08/26/capybara1/"/>
     <id>http://yoursite.com/2016/08/26/capybara1/</id>
     <published>2016-08-26T06:17:36.000Z</published>
-    <updated>2017-05-04T07:38:34.000Z</updated>
+    <updated>2017-09-21T07:45:08.000Z</updated>
     
     <content type="html">&lt;h2 id=&quot;capybara_u7B80_u4ECB&quot;&gt;&lt;a href=&quot;#capybara_u7B80_u4ECB&quot; class=&quot;headerlink&quot; title=&quot;capybara简介&quot;&gt;&lt;/a&gt;capybara简介&lt;/h2&gt;&lt;p&gt;capybara是一个ruby的gem,它是一个用来测试web应用的工具包，使用它可以模拟用户对web应用的操作。它可以通过CSS或xpath选择器选中页面上的元素，然后对这些元素应用一些操作，从而实现模拟用户行为。&lt;/p&gt;
 &lt;h3 id=&quot;u5E95_u5C42driver_u7684_u5B9E_u73B0&quot;&gt;&lt;a href=&quot;#u5E95_u5C42driver_u7684_u5B9E_u73B0&quot; class=&quot;headerlink&quot; title=&quot;底层driver的实现&quot;&gt;&lt;/a&gt;底层driver的实现&lt;/h3&gt;&lt;p&gt;基于底层driver的基础上，提供一套统一的 界面交互api，如visit, right_click，hover等。它内置 Rack::Test 和 Selenium 支持，也支持其他驱动。WebKit 通过外部 gem 的形式支持。&lt;/p&gt;
@@ -1073,7 +1079,9 @@
     </summary>
     
     
-      <category term="ui_automation, capybara1" scheme="http://yoursite.com/tags/ui-automation-capybara1/"/>
+      <category term="rails" scheme="http://yoursite.com/tags/rails/"/>
+    
+      <category term="webdriver" scheme="http://yoursite.com/tags/webdriver/"/>
     
   </entry>
   
@@ -1196,7 +1204,7 @@
     <link href="http://yoursite.com/2016/06/08/gatling3/"/>
     <id>http://yoursite.com/2016/06/08/gatling3/</id>
     <published>2016-06-08T15:22:40.000Z</published>
-    <updated>2016-06-14T02:53:29.000Z</updated>
+    <updated>2017-09-21T07:39:12.000Z</updated>
     
     <content type="html">&lt;p&gt;第三篇&lt;br&gt;&lt;a href=&quot;http://gatling.io/docs/2.2.1/migration_guides/1.5.x-to-2.0.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://gatling.io/docs/2.2.1/migration_guides/1.5.x-to-2.0.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Migrating from 1.5.x to 2.0&lt;br&gt;Global changes&lt;br&gt;Gatling requires at least JDK7u6&lt;br&gt;As targeting newer JDKs provides bug fixes, speed improvements and opens opportunities for optimization, Gatling now requires at least a JDK7u6 (released almost two years ago already).&lt;/p&gt;
@@ -1460,7 +1468,7 @@
     <link href="http://yoursite.com/2016/05/24/front-end-tools/"/>
     <id>http://yoursite.com/2016/05/24/front-end-tools/</id>
     <published>2016-05-24T12:47:35.000Z</published>
-    <updated>2017-04-18T14:29:43.000Z</updated>
+    <updated>2017-09-21T07:42:16.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;img src=&quot;/image/front-end-tools.png&quot; alt=&quot;front-end-tools&quot;&gt;&lt;/p&gt;
 &lt;p&gt;总结最近了解的前端测试的相关内容，发现前端这里真的是太庞大了，而且各种测试工具层出不穷，需要总结东西太多了，如有遗漏请大家见谅。&lt;/p&gt;
@@ -1643,7 +1651,7 @@ describe(&amp;apos;router testing&amp;apos;, function () {
     <link href="http://yoursite.com/2016/05/05/appium/"/>
     <id>http://yoursite.com/2016/05/05/appium/</id>
     <published>2016-05-05T05:53:59.000Z</published>
-    <updated>2016-05-24T13:05:42.000Z</updated>
+    <updated>2017-09-21T07:45:38.000Z</updated>
     
     <content type="html">&lt;h2 id=&quot;appium__u4ECB_u7ECD&quot;&gt;&lt;a href=&quot;#appium__u4ECB_u7ECD&quot; class=&quot;headerlink&quot; title=&quot;appium 介绍&quot;&gt;&lt;/a&gt;appium 介绍&lt;/h2&gt;&lt;p&gt;Appium 是一个开源的，跨平台的自动化测试工具。 它支持模拟器（iOS，FirefoxOS，Android）和真机（iOS， Android， FirefoxOS）上的原生应用，混合应用和移动 web 应用。&lt;/p&gt;
 &lt;h2 id=&quot;appium__u5DE5_u4F5C_u539F_u7406&quot;&gt;&lt;a href=&quot;#appium__u5DE5_u4F5C_u539F_u7406&quot; class=&quot;headerlink&quot; title=&quot;appium 工作原理&quot;&gt;&lt;/a&gt;appium 工作原理&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/image/mobile-test-automation-using-appium-ios-android.jpg&quot; alt=&quot;appium&quot;&gt;&lt;/p&gt;
@@ -1748,7 +1756,9 @@ describe(&amp;apos;router testing&amp;apos;, function () {
     </summary>
     
     
-      <category term="appium, mobile testing" scheme="http://yoursite.com/tags/appium-mobile-testing/"/>
+      <category term="appium" scheme="http://yoursite.com/tags/appium/"/>
+    
+      <category term="automation" scheme="http://yoursite.com/tags/automation/"/>
     
   </entry>
   
