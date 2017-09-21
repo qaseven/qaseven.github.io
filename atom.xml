@@ -1651,7 +1651,7 @@ describe(&amp;apos;router testing&amp;apos;, function () {
     <link href="http://yoursite.com/2016/05/05/appium/"/>
     <id>http://yoursite.com/2016/05/05/appium/</id>
     <published>2016-05-05T05:53:59.000Z</published>
-    <updated>2017-09-21T07:45:38.000Z</updated>
+    <updated>2017-09-21T07:50:18.000Z</updated>
     
     <content type="html">&lt;h2 id=&quot;appium__u4ECB_u7ECD&quot;&gt;&lt;a href=&quot;#appium__u4ECB_u7ECD&quot; class=&quot;headerlink&quot; title=&quot;appium 介绍&quot;&gt;&lt;/a&gt;appium 介绍&lt;/h2&gt;&lt;p&gt;Appium 是一个开源的，跨平台的自动化测试工具。 它支持模拟器（iOS，FirefoxOS，Android）和真机（iOS， Android， FirefoxOS）上的原生应用，混合应用和移动 web 应用。&lt;/p&gt;
 &lt;h2 id=&quot;appium__u5DE5_u4F5C_u539F_u7406&quot;&gt;&lt;a href=&quot;#appium__u5DE5_u4F5C_u539F_u7406&quot; class=&quot;headerlink&quot; title=&quot;appium 工作原理&quot;&gt;&lt;/a&gt;appium 工作原理&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/image/mobile-test-automation-using-appium-ios-android.jpg&quot; alt=&quot;appium&quot;&gt;&lt;/p&gt;
