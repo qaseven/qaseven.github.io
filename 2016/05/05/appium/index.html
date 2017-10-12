@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -96,24 +96,21 @@
 
 
 
-<meta name="description" content="appium 介绍Appium 是一个开源的，跨平台的自动化测试工具。 它支持模拟器（iOS，FirefoxOS，Android）和真机（iOS， Android， FirefoxOS）上的原生应用，混合应用和移动 web 应用。
-appium 工作原理
-Android在Android端，appium基于WebDriver协议，利用Bootstrap.jar，最后通过调⽤用UiAutomator的">
+<meta name="description" content="appium 介绍Appium 是一个开源的，跨平台的自动化测试工具。 它支持模拟器（iOS，FirefoxOS，Android）和真机（iOS， Android， FirefoxOS）上的原生应用，混合应用和移动 web 应用。 appium 工作原理 Android在Android端，appium基于WebDriver协议，利用Bootstrap.jar，最后通过调⽤用UiAutomator的">
+<meta name="keywords" content="appium,automation">
 <meta property="og:type" content="article">
 <meta property="og:title" content="appium并发测试">
 <meta property="og:url" content="http://yoursite.com/2016/05/05/appium/index.html">
-<meta property="og:site_name" content="QA seven's blog">
-<meta property="og:description" content="appium 介绍Appium 是一个开源的，跨平台的自动化测试工具。 它支持模拟器（iOS，FirefoxOS，Android）和真机（iOS， Android， FirefoxOS）上的原生应用，混合应用和移动 web 应用。
-appium 工作原理
-Android在Android端，appium基于WebDriver协议，利用Bootstrap.jar，最后通过调⽤用UiAutomator的">
+<meta property="og:site_name" content="QA seven&#39;s blog">
+<meta property="og:description" content="appium 介绍Appium 是一个开源的，跨平台的自动化测试工具。 它支持模拟器（iOS，FirefoxOS，Android）和真机（iOS， Android， FirefoxOS）上的原生应用，混合应用和移动 web 应用。 appium 工作原理 Android在Android端，appium基于WebDriver协议，利用Bootstrap.jar，最后通过调⽤用UiAutomator的">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/image/mobile-test-automation-using-appium-ios-android.jpg">
-<meta property="og:image" content="http://yoursite.com/image/appium 并发测试.png">
+<meta property="og:image" content="http://yoursite.com/image/appium%20并发测试.png">
 <meta property="og:updated_time" content="2017-09-21T07:50:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="appium并发测试">
-<meta name="twitter:description" content="appium 介绍Appium 是一个开源的，跨平台的自动化测试工具。 它支持模拟器（iOS，FirefoxOS，Android）和真机（iOS， Android， FirefoxOS）上的原生应用，混合应用和移动 web 应用。
-appium 工作原理
-Android在Android端，appium基于WebDriver协议，利用Bootstrap.jar，最后通过调⽤用UiAutomator的">
+<meta name="twitter:description" content="appium 介绍Appium 是一个开源的，跨平台的自动化测试工具。 它支持模拟器（iOS，FirefoxOS，Android）和真机（iOS， Android， FirefoxOS）上的原生应用，混合应用和移动 web 应用。 appium 工作原理 Android在Android端，appium基于WebDriver协议，利用Bootstrap.jar，最后通过调⽤用UiAutomator的">
+<meta name="twitter:image" content="http://yoursite.com/image/mobile-test-automation-using-appium-ios-android.jpg">
 
 
 
@@ -121,8 +118,8 @@ Android在Android端，appium基于WebDriver协议，利用Bootstrap.jar，最�
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -173,7 +170,7 @@ Android在Android端，appium基于WebDriver协议，利用Bootstrap.jar，最�
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -219,6 +216,26 @@ Android在Android端，appium基于WebDriver协议，利用Bootstrap.jar，最�
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -230,7 +247,7 @@ Android在Android端，appium基于WebDriver协议，利用Bootstrap.jar，最�
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -338,12 +355,12 @@ Android在Android端，appium基于WebDriver协议，利用Bootstrap.jar，最�
       
 
       
-        <h2 id="appium__u4ECB_u7ECD"><a href="#appium__u4ECB_u7ECD" class="headerlink" title="appium 介绍"></a>appium 介绍</h2><p>Appium 是一个开源的，跨平台的自动化测试工具。 它支持模拟器（iOS，FirefoxOS，Android）和真机（iOS， Android， FirefoxOS）上的原生应用，混合应用和移动 web 应用。</p>
-<h2 id="appium__u5DE5_u4F5C_u539F_u7406"><a href="#appium__u5DE5_u4F5C_u539F_u7406" class="headerlink" title="appium 工作原理"></a>appium 工作原理</h2><p><img src="/image/mobile-test-automation-using-appium-ios-android.jpg" alt="appium"></p>
+        <h2 id="appium-介绍"><a href="#appium-介绍" class="headerlink" title="appium 介绍"></a>appium 介绍</h2><p>Appium 是一个开源的，跨平台的自动化测试工具。 它支持模拟器（iOS，FirefoxOS，Android）和真机（iOS， Android， FirefoxOS）上的原生应用，混合应用和移动 web 应用。</p>
+<h2 id="appium-工作原理"><a href="#appium-工作原理" class="headerlink" title="appium 工作原理"></a>appium 工作原理</h2><p><img src="/image/mobile-test-automation-using-appium-ios-android.jpg" alt="appium"></p>
 <h3 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h3><p>在Android端，appium基于WebDriver协议，利用Bootstrap.jar，最后通过调⽤用UiAutomator的命令，实现App的自动化测试。</p>
 <p>UiAutomator测试框架是Android SDK自带的App UI自动化测试Java库。</p>
 <p>另外由于UiAutomator对H5的支持有限，appium引入了chromedriver以及safaridriver等来实现基于H5的自动化。</p>
-<h4 id="appium__u5728android_u7AEF_u5DE5_u4F5C_u6D41"><a href="#appium__u5728android_u7AEF_u5DE5_u4F5C_u6D41" class="headerlink" title="appium 在android端工作流"></a>appium 在android端工作流</h4><ol>
+<h4 id="appium-在android端工作流"><a href="#appium-在android端工作流" class="headerlink" title="appium 在android端工作流"></a>appium 在android端工作流</h4><ol>
 <li><p>client端也就是我们 test script是我们的webdriver测试脚本。</p>
 </li>
 <li><p>中间是起的Appium的服务，Appium在服务端起了一个Server（4723端口），跟selenium<br>Webdriver测试框架类似， Appium⽀持标准的WebDriver JSONWireProtocol。在这里提供它提供了一套REST的接口,Appium Server接收web driver client标准rest请求，解析请求内容，调⽤用对应的框架响应操作。</p>
@@ -357,7 +374,7 @@ Android在Android端，appium基于WebDriver协议，利用Bootstrap.jar，最�
 </li>
 </ol>
 <p>与Android端测试框架不同的是，appium ios封装了apple的 Instruments框架，主要用了Instrument里的UI Automation（Apple的⾃自动化测试框架），然后在设备中注⼊入bootstrap.js进⾏行监听。</p>
-<h4 id="appium__u5728ios_u7AEF_u5DE5_u4F5C_u6D41"><a href="#appium__u5728ios_u7AEF_u5DE5_u4F5C_u6D41" class="headerlink" title="appium 在ios端工作流"></a>appium 在ios端工作流</h4><ol>
+<h4 id="appium-在ios端工作流"><a href="#appium-在ios端工作流" class="headerlink" title="appium 在ios端工作流"></a>appium 在ios端工作流</h4><ol>
 <li><p>client端 依然是 test script是我们的webdriver测试脚本。</p>
 </li>
 <li><p>中间是起的Appium的服务，Appium在服务端起了一个Server（4723端口），跟selenium<br>Webdriver测试框架类似， Appium⽀持标准的WebDriver JSONWireProtocol。在这里提供它提供了一套REST的接口,Appium Server接收web driver client标准rest请求，解析请求内容，调⽤用对应的框架响应操作。</p>
@@ -370,9 +387,9 @@ Android在Android端，appium基于WebDriver协议，利用Bootstrap.jar，最�
 </li>
 </ol>
 <p>所以我们可以看到android与ios区别在于appium 将请求转发到bootstrap.js或者bootstrap.jar.然后由bootstrap 驱动UIAutomation和UiAutomator去devices上完成具体的动作。</p>
-<h2 id="appium__u5E76_u53D1"><a href="#appium__u5E76_u53D1" class="headerlink" title="appium 并发"></a>appium 并发</h2><p><img src="/image/appium 并发测试.png" alt="appium bingfa"></p>
+<h2 id="appium-并发"><a href="#appium-并发" class="headerlink" title="appium 并发"></a>appium 并发</h2><p><img src="/image/appium 并发测试.png" alt="appium bingfa"></p>
 <p>关于appium并发，我将之分为2类，第一类单机并发。第二类基于selenium grid 多节点并发测试,也可称之为云测。</p>
-<h3 id="appium__u5355_u673A_u5E76_u53D1"><a href="#appium__u5355_u673A_u5E76_u53D1" class="headerlink" title="appium 单机并发"></a>appium 单机并发</h3><p>Android并发测试<br>Appium提供了在一台设备上启动多个Android会话的方案。</p>
+<h3 id="appium-单机并发"><a href="#appium-单机并发" class="headerlink" title="appium 单机并发"></a>appium 单机并发</h3><p>Android并发测试<br>Appium提供了在一台设备上启动多个Android会话的方案。</p>
 <p>appium -p 4492 -bp 2251 -U 32456</p>
 <p>启动多个Android会话的重要指令包括：</p>
 <table>
@@ -408,7 +425,7 @@ Android在Android端，appium基于WebDriver协议，利用Bootstrap.jar，最�
 <p>iOS并发测试</p>
 <p>不幸的是，IOS不能进行本地并发测试。跟Android不一样，IOS在同一时间只能启动一个版本的模拟器来运行多个测试。</p>
 <p><strong>总结:<br>单机并发目前只能在android实现，且必须启动n个appium server 对应不同devices，这里devices可以是真机或模拟器。但是必须保证端口后没有重复使用。<br>接下来工作就是利用测试框架(testng,jasmine,rspec,cucumber等)将测试分发到不同appium server上。</strong></p>
-<h4 id="u4EE3_u7801_u793A_u4F8B"><a href="#u4EE3_u7801_u793A_u4F8B" class="headerlink" title="代码示例"></a>代码示例</h4><p> <a href="https://github.com/saikrishna321/AppiumTestDistribution" target="_blank" rel="external">github</a></p>
+<h4 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h4><p> <a href="https://github.com/saikrishna321/AppiumTestDistribution" target="_blank" rel="external">github</a></p>
 <p>代码解析：</p>
 <ol>
 <li><p>首先让我们来看下代码中的AppiumParallelTest这个类，他们先判断操作系统，并获取操作系统上连接的devices。<br>利用AndroidDeviceConfiguration.java 与 IOSDeviceConfiguration.java 中的getIOSUDID，getDevices方法分别获取真机与模拟器的id.</p>
@@ -418,18 +435,18 @@ Android在Android端，appium基于WebDriver协议，利用Bootstrap.jar，最�
 <li><p>aa</p>
 </li>
 </ol>
-<h3 id="appium_grid__u5206_u5E03_u5F0F_u5E76_u53D1"><a href="#appium_grid__u5206_u5E03_u5F0F_u5E76_u53D1" class="headerlink" title="appium grid 分布式并发"></a>appium grid 分布式并发</h3><ol>
+<h3 id="appium-grid-分布式并发"><a href="#appium-grid-分布式并发" class="headerlink" title="appium grid 分布式并发"></a>appium grid 分布式并发</h3><ol>
 <li><p>start selenium grid sever</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar selenium-server-standalone-<span class="number">2.47</span><span class="number">.1</span>.jar -port <span class="number">4444</span> -role hub   -hub http:<span class="comment">//192.168.199.140:4444/grid/registe</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar selenium-server-standalone-<span class="number">2.47</span>.<span class="number">1</span>.jar -port <span class="number">4444</span> -<span class="keyword">role</span> <span class="title">hub</span>   -hub http://<span class="number">192.168</span>.<span class="number">199.140</span>:<span class="number">4444</span>/grid/registe</div></pre></td></tr></table></figure>
 </li>
 <li><p>Registered appium server as the grid node</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">appium</span> <span class="tag">--nodeconfig</span> <span class="tag">appium_node_S3</span><span class="class">.json</span>  <span class="tag">-p</span> 4823  <span class="tag">-bp</span> 3356 <span class="tag">-U</span> "192<span class="class">.168</span><span class="class">.99</span><span class="class">.104</span><span class="pseudo">:5555"</span> <span class="tag">--chromedriver-port</span> 4738</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">appium</span> <span class="selector-tag">--nodeconfig</span> <span class="selector-tag">appium_node_S3</span><span class="selector-class">.json</span>  <span class="selector-tag">-p</span> 4823  <span class="selector-tag">-bp</span> 3356 <span class="selector-tag">-U</span> "192<span class="selector-class">.168</span><span class="selector-class">.99</span><span class="selector-class">.104</span><span class="selector-pseudo">:5555"</span> <span class="selector-tag">--chromedriver-port</span> 4738</div></pre></td></tr></table></figure>
 </li>
 <li><p>Configure the test script,run the tests</p>
-<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@BeforeTest</span></span><br><span class="line">    <span class="annotation">@Parameters</span>(&#123;<span class="string">"deviceName"</span>&#125;)</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">setUp</span><span class="params">(String deviceName)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        capabilities.setCapability(<span class="string">"deviceName"</span>,deviceName);</span><br><span class="line">        capabilities.setCapability(<span class="string">"platformVersion"</span>, <span class="string">"5.0"</span>);</span><br><span class="line">        capabilities.setCapability(<span class="string">"app"</span>, getApp(<span class="string">"ContactManager.apk"</span>));</span><br><span class="line"></span><br><span class="line">        setUpAndroidDriver();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@BeforeTest</span></div><div class="line">    <span class="variable">@Parameters</span>(&#123;<span class="string">"deviceName"</span>&#125;)</div><div class="line">    public void setUp(String deviceName) throws Exception &#123;</div><div class="line">        <span class="selector-tag">capabilities</span><span class="selector-class">.setCapability</span>(<span class="string">"deviceName"</span>,deviceName);</div><div class="line">        <span class="selector-tag">capabilities</span><span class="selector-class">.setCapability</span>(<span class="string">"platformVersion"</span>, <span class="string">"5.0"</span>);</div><div class="line">        <span class="selector-tag">capabilities</span><span class="selector-class">.setCapability</span>(<span class="string">"app"</span>, getApp(<span class="string">"ContactManager.apk"</span>));</div><div class="line"></div><div class="line">        <span class="selector-tag">setUpAndroidDriver</span>();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<h4 id="GRID_NODE_CONFIGURATION_EXAMPLE_JSON_FILE"><a href="#GRID_NODE_CONFIGURATION_EXAMPLE_JSON_FILE" class="headerlink" title="GRID NODE CONFIGURATION EXAMPLE JSON FILE"></a>GRID NODE CONFIGURATION EXAMPLE JSON FILE</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "<span class="attribute">capabilities</span>":</span><br><span class="line">      <span class="value">[</span><br><span class="line">        &#123; "<span class="attribute">deviceName</span>": <span class="value"><span class="string">"192.168.56.101:5555"</span></span>,</span><br><span class="line">          "<span class="attribute">browserName</span>": <span class="value"><span class="string">"&lt;e.g._iPhone5_or_iPad4&gt;"</span></span>,</span><br><span class="line">          "<span class="attribute">version</span>":<span class="value"><span class="string">"&lt;version_of_iOS_e.g._7.1&gt;"</span></span>,</span><br><span class="line">          "<span class="attribute">maxInstances</span>": <span class="value"><span class="number">1</span></span>,</span><br><span class="line">          "<span class="attribute">platform</span>":<span class="value"><span class="string">"&lt;platform_e.g._MAC_or_ANDROID&gt;"</span></span><br><span class="line">        </span>&#125;</span><br><span class="line">      ]</span>,</span><br><span class="line">  "<span class="attribute">configuration</span>":</span><br><span class="line">  <span class="value">&#123;</span><br><span class="line">    "<span class="attribute">cleanUpCycle</span>":<span class="value"><span class="number">2000</span></span>,</span><br><span class="line">    "<span class="attribute">timeout</span>":<span class="value"><span class="number">30000</span></span>,</span><br><span class="line">    "<span class="attribute">proxy</span>": <span class="value"><span class="string">"org.openqa.grid.selenium.proxy.DefaultRemoteProxy"</span></span>,</span><br><span class="line">    "<span class="attribute">url</span>":<span class="value"><span class="string">"http://&lt;host_name_appium_server_or_ip-address_appium_server&gt;:&lt;appium_port&gt;/wd/hub"</span></span>,</span><br><span class="line">    "<span class="attribute">host</span>": <span class="value">&lt;host_name_appium_server_or_ip-address_appium_server&gt;</span>,</span><br><span class="line">    "<span class="attribute">port</span>": <span class="value">&lt;appium_port&gt;</span>,</span><br><span class="line">    "<span class="attribute">maxSession</span>": <span class="value"><span class="number">1</span></span>,</span><br><span class="line">    "<span class="attribute">register</span>": <span class="value"><span class="literal">true</span></span>,</span><br><span class="line">    "<span class="attribute">registerCycle</span>": <span class="value"><span class="number">5000</span></span>,</span><br><span class="line">    "<span class="attribute">hubPort</span>": <span class="value">&lt;grid_port&gt;</span>,</span><br><span class="line">    "<span class="attribute">hubHost</span>": <span class="value"><span class="string">"&lt;Grid_host_name_or_grid_ip-address&gt;"</span></span><br><span class="line">  </span>&#125;</span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="GRID-NODE-CONFIGURATION-EXAMPLE-JSON-FILE"><a href="#GRID-NODE-CONFIGURATION-EXAMPLE-JSON-FILE" class="headerlink" title="GRID NODE CONFIGURATION EXAMPLE JSON FILE"></a>GRID NODE CONFIGURATION EXAMPLE JSON FILE</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"capabilities"</span>:</div><div class="line">      [</div><div class="line">        &#123; <span class="attr">"deviceName"</span>: <span class="string">"192.168.56.101:5555"</span>,</div><div class="line">          <span class="attr">"browserName"</span>: <span class="string">"&lt;e.g._iPhone5_or_iPad4&gt;"</span>,</div><div class="line">          <span class="attr">"version"</span>:<span class="string">"&lt;version_of_iOS_e.g._7.1&gt;"</span>,</div><div class="line">          <span class="attr">"maxInstances"</span>: <span class="number">1</span>,</div><div class="line">          <span class="attr">"platform"</span>:<span class="string">"&lt;platform_e.g._MAC_or_ANDROID&gt;"</span></div><div class="line">        &#125;</div><div class="line">      ],</div><div class="line">  <span class="attr">"configuration"</span>:</div><div class="line">  &#123;</div><div class="line">    <span class="attr">"cleanUpCycle"</span>:<span class="number">2000</span>,</div><div class="line">    <span class="attr">"timeout"</span>:<span class="number">30000</span>,</div><div class="line">    <span class="attr">"proxy"</span>: <span class="string">"org.openqa.grid.selenium.proxy.DefaultRemoteProxy"</span>,</div><div class="line">    <span class="attr">"url"</span>:<span class="string">"http://&lt;host_name_appium_server_or_ip-address_appium_server&gt;:&lt;appium_port&gt;/wd/hub"</span>,</div><div class="line">    <span class="attr">"host"</span>: &lt;host_name_appium_server_or_ip-address_appium_server&gt;,</div><div class="line">    <span class="attr">"port"</span>: &lt;appium_port&gt;,</div><div class="line">    <span class="attr">"maxSession"</span>: <span class="number">1</span>,</div><div class="line">    <span class="attr">"register"</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">"registerCycle"</span>: <span class="number">5000</span>,</div><div class="line">    <span class="attr">"hubPort"</span>: &lt;grid_port&gt;,</div><div class="line">    <span class="attr">"hubHost"</span>: <span class="string">"&lt;Grid_host_name_or_grid_ip-address&gt;"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <hr>
 <p>未完待续</p>
 
@@ -495,27 +512,10 @@ Android在Android端，appium基于WebDriver协议，利用Bootstrap.jar，最�
 
     <div class="post-spread">
       
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_weixin"></a>
-  <a class="jiathis_button_cqq"></a>
-  <a class="jiathis_button_douban"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" >
-  var jiathis_config={
-    hideMore:false
-  }
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
 
       
     </div>
@@ -568,7 +568,7 @@ Android在Android端，appium基于WebDriver协议，利用Bootstrap.jar，最�
                alt="qi lei" />
           <p class="site-author-name" itemprop="name">qi lei</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">小qa 在thoughtworks苦苦挣扎中</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -631,7 +631,7 @@ Android在Android端，appium基于WebDriver协议，利用Bootstrap.jar，最�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#appium__u4ECB_u7ECD"><span class="nav-number">1.</span> <span class="nav-text">appium 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#appium__u5DE5_u4F5C_u539F_u7406"><span class="nav-number">2.</span> <span class="nav-text">appium 工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Android"><span class="nav-number">2.1.</span> <span class="nav-text">Android</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#appium__u5728android_u7AEF_u5DE5_u4F5C_u6D41"><span class="nav-number">2.1.1.</span> <span class="nav-text">appium 在android端工作流</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ios"><span class="nav-number">2.2.</span> <span class="nav-text">ios</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#appium__u5728ios_u7AEF_u5DE5_u4F5C_u6D41"><span class="nav-number">2.2.1.</span> <span class="nav-text">appium 在ios端工作流</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#appium__u5E76_u53D1"><span class="nav-number">3.</span> <span class="nav-text">appium 并发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#appium__u5355_u673A_u5E76_u53D1"><span class="nav-number">3.1.</span> <span class="nav-text">appium 单机并发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u4EE3_u7801_u793A_u4F8B"><span class="nav-number">3.1.1.</span> <span class="nav-text">代码示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#appium_grid__u5206_u5E03_u5F0F_u5E76_u53D1"><span class="nav-number">3.2.</span> <span class="nav-text">appium grid 分布式并发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GRID_NODE_CONFIGURATION_EXAMPLE_JSON_FILE"><span class="nav-number">3.2.1.</span> <span class="nav-text">GRID NODE CONFIGURATION EXAMPLE JSON FILE</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#appium-介绍"><span class="nav-number">1.</span> <span class="nav-text">appium 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#appium-工作原理"><span class="nav-number">2.</span> <span class="nav-text">appium 工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Android"><span class="nav-number">2.1.</span> <span class="nav-text">Android</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#appium-在android端工作流"><span class="nav-number">2.1.1.</span> <span class="nav-text">appium 在android端工作流</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ios"><span class="nav-number">2.2.</span> <span class="nav-text">ios</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#appium-在ios端工作流"><span class="nav-number">2.2.1.</span> <span class="nav-text">appium 在ios端工作流</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#appium-并发"><span class="nav-number">3.</span> <span class="nav-text">appium 并发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#appium-单机并发"><span class="nav-number">3.1.</span> <span class="nav-text">appium 单机并发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码示例"><span class="nav-number">3.1.1.</span> <span class="nav-text">代码示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#appium-grid-分布式并发"><span class="nav-number">3.2.</span> <span class="nav-text">appium grid 分布式并发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GRID-NODE-CONFIGURATION-EXAMPLE-JSON-FILE"><span class="nav-number">3.2.1.</span> <span class="nav-text">GRID NODE CONFIGURATION EXAMPLE JSON FILE</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -669,7 +669,7 @@ Android在Android端，appium基于WebDriver协议，利用Bootstrap.jar，最�
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Pisces
   </a>
 </div>
 
@@ -748,6 +748,13 @@ Android在Android端，appium基于WebDriver协议，利用Bootstrap.jar，最�
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>

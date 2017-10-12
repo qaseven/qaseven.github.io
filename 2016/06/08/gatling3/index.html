@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -96,19 +96,18 @@
 
 
 
-<meta name="description" content="第三篇http://gatling.io/docs/2.2.1/migration_guides/1.5.x-to-2.0.html
-Migrating from 1.5.x to 2.0Global changesGatling requires at least JDK7u6As targeting newer JDKs provides bug fixes, speed improvemen">
+<meta name="description" content="第三篇http://gatling.io/docs/2.2.1/migration_guides/1.5.x-to-2.0.html Migrating from 1.5.x to 2.0Global changesGatling requires at least JDK7u6As targeting newer JDKs provides bug fixes, speed improvemen">
+<meta name="keywords" content="gatling">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gatling官方文档翻译3">
 <meta property="og:url" content="http://yoursite.com/2016/06/08/gatling3/index.html">
-<meta property="og:site_name" content="QA seven's blog">
-<meta property="og:description" content="第三篇http://gatling.io/docs/2.2.1/migration_guides/1.5.x-to-2.0.html
-Migrating from 1.5.x to 2.0Global changesGatling requires at least JDK7u6As targeting newer JDKs provides bug fixes, speed improvemen">
+<meta property="og:site_name" content="QA seven&#39;s blog">
+<meta property="og:description" content="第三篇http://gatling.io/docs/2.2.1/migration_guides/1.5.x-to-2.0.html Migrating from 1.5.x to 2.0Global changesGatling requires at least JDK7u6As targeting newer JDKs provides bug fixes, speed improvemen">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-09-21T07:39:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gatling官方文档翻译3">
-<meta name="twitter:description" content="第三篇http://gatling.io/docs/2.2.1/migration_guides/1.5.x-to-2.0.html
-Migrating from 1.5.x to 2.0Global changesGatling requires at least JDK7u6As targeting newer JDKs provides bug fixes, speed improvemen">
+<meta name="twitter:description" content="第三篇http://gatling.io/docs/2.2.1/migration_guides/1.5.x-to-2.0.html Migrating from 1.5.x to 2.0Global changesGatling requires at least JDK7u6As targeting newer JDKs provides bug fixes, speed improvemen">
 
 
 
@@ -116,8 +115,8 @@ Migrating from 1.5.x to 2.0Global changesGatling requires at least JDK7u6As targ
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -168,7 +167,7 @@ Migrating from 1.5.x to 2.0Global changesGatling requires at least JDK7u6As targ
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,6 +213,26 @@ Migrating from 1.5.x to 2.0Global changesGatling requires at least JDK7u6As targ
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -225,7 +244,7 @@ Migrating from 1.5.x to 2.0Global changesGatling requires at least JDK7u6As targ
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -357,7 +376,7 @@ Migrating from 1.5.x to 2.0Global changesGatling requires at least JDK7u6As targ
 <p>Structure Elements<br>The first parameter of foreach is now an Expression (e.g. a Gatling EL string), not the name of the attribute to loop over.<br>For example, if you have a list attribute in the user’s session holding a list of values:</p>
 <p>.foreach(“list”, “elem”) {<br>  …<br>}<br>becomes:</p>
 <p>.foreach(“${list}”, “elem”) {<br>  …<br>}<br>In asLongAs, exitASAP now defaults to true. For more information on the change of behaviour it introduces, see asLongAs documentation.<br>Session<br>Session has been under major refactoring:</p>
-<p>session.get(“foobar”) becomes session(“foobar”)<br>session.getTypedAttribute<a href="/&quot;foobar&quot;">T</a> becomes session(“foobar”).as[T]<br>session.getAttributeAsOption<a href="/&quot;foobar&quot;">T</a> becomes session(“foobar”).asOption[T]<br>session.setAttribute(“foobar”, 1234) becomes session.set(“foobar”, 1234)<br>session.setAttributes(Map(“foo” -&gt; 1, “bar” -&gt; 2) becomes session.setAll(“foo” -&gt; 1, “bar” -&gt; 2)<br>session.removeAttribute(“foobar”) becomes session.remove(“foobar”)<br>session.isAttributeDefined(“foobar”) becomes session.contains(“foobar”)<br>HTTP<br>Protocol<br>HTTP protocol bootstrapper, httpProtocol, has been renamed to http.</p>
+<p>session.get(“foobar”) becomes session(“foobar”)<br>session.getTypedAttribute<a href="&quot;foobar&quot;">T</a> becomes session(“foobar”).as[T]<br>session.getAttributeAsOption<a href="&quot;foobar&quot;">T</a> becomes session(“foobar”).asOption[T]<br>session.setAttribute(“foobar”, 1234) becomes session.set(“foobar”, 1234)<br>session.setAttributes(Map(“foo” -&gt; 1, “bar” -&gt; 2) becomes session.setAll(“foo” -&gt; 1, “bar” -&gt; 2)<br>session.removeAttribute(“foobar”) becomes session.remove(“foobar”)<br>session.isAttributeDefined(“foobar”) becomes session.contains(“foobar”)<br>HTTP<br>Protocol<br>HTTP protocol bootstrapper, httpProtocol, has been renamed to http.</p>
 <p>Query parameters<br>Removed</p>
 <p>Versions of queryParam and multivaluedQueryParam that took no other parameters than the key (resolving the value from the session, using the key’s name to find the attribute with the same name) have been removed.</p>
 <p>Modified</p>
@@ -431,7 +450,7 @@ Migrating from 1.5.x to 2.0Global changesGatling requires at least JDK7u6As targ
 <p>在 asLongAs exitASAP 现在默认设置是true.有关的行为改变的更多信息介绍,请看asLongAs文档。</p>
 <p>Session</p>
 <p>会话已经作为主要的重构:</p>
-<p>session.get(“foobar”) becomes session(“foobar”)<br>session.getTypedAttribute<a href="/&quot;foobar&quot;">T</a> becomes session(“foobar”).as[T]<br>session.getAttributeAsOption<a href="/&quot;foobar&quot;">T</a> becomes session(“foobar”).asOption[T]<br>session.setAttribute(“foobar”, 1234) becomes session.set(“foobar”, 1234)<br>session.setAttributes(Map(“foo” -&gt; 1, “bar” -&gt; 2) becomes session.setAll(“foo” -&gt; 1, “bar” -&gt; 2)<br>session.removeAttribute(“foobar”) becomes session.remove(“foobar”)<br>session.isAttributeDefined(“foobar”) becomes session.contains(“foobar”)</p>
+<p>session.get(“foobar”) becomes session(“foobar”)<br>session.getTypedAttribute<a href="&quot;foobar&quot;">T</a> becomes session(“foobar”).as[T]<br>session.getAttributeAsOption<a href="&quot;foobar&quot;">T</a> becomes session(“foobar”).asOption[T]<br>session.setAttribute(“foobar”, 1234) becomes session.set(“foobar”, 1234)<br>session.setAttributes(Map(“foo” -&gt; 1, “bar” -&gt; 2) becomes session.setAll(“foo” -&gt; 1, “bar” -&gt; 2)<br>session.removeAttribute(“foobar”) becomes session.remove(“foobar”)<br>session.isAttributeDefined(“foobar”) becomes session.contains(“foobar”)</p>
 <p>HTTP协议<br>HTTP协议启动加载器、httpProtocol已经更名为HTTP。<br>Query 参数<br>移除<br>版本的queryParam和multivaluedQueryParam,没有其他比的关键参数(解决会话中的值,使用关键的名字找到具有相同名称的属性)已被移除。</p>
 <p>Modified</p>
 <p>multivaluedFormParam现在可以解决直接从会话值,使用gatling的EL。</p>
@@ -526,27 +545,10 @@ Migrating from 1.5.x to 2.0Global changesGatling requires at least JDK7u6As targ
 
     <div class="post-spread">
       
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_weixin"></a>
-  <a class="jiathis_button_cqq"></a>
-  <a class="jiathis_button_douban"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" >
-  var jiathis_config={
-    hideMore:false
-  }
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
 
       
     </div>
@@ -590,7 +592,7 @@ Migrating from 1.5.x to 2.0Global changesGatling requires at least JDK7u6As targ
                alt="qi lei" />
           <p class="site-author-name" itemprop="name">qi lei</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">小qa 在thoughtworks苦苦挣扎中</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -675,7 +677,7 @@ Migrating from 1.5.x to 2.0Global changesGatling requires at least JDK7u6As targ
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Pisces
   </a>
 </div>
 
@@ -754,6 +756,13 @@ Migrating from 1.5.x to 2.0Global changesGatling requires at least JDK7u6As targ
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>

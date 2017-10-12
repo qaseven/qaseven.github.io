@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -96,22 +96,18 @@
 
 
 
-<meta name="description" content="第五篇
-http://gatling.io/docs/2.2.2/migration_guides/2.0-to-2.1.html
-Migrating from 2.0 to 2.1Global changesScala 2.11Gatling is now built with Scala 2.11. If you’re using Scala IDE, make sure you’re usi">
+<meta name="description" content="第五篇 http://gatling.io/docs/2.2.2/migration_guides/2.0-to-2.1.html Migrating from 2.0 to 2.1Global changesScala 2.11Gatling is now built with Scala 2.11. If you’re using Scala IDE, make sure you’re usi">
+<meta name="keywords" content="gatling">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gatling官方文档翻译5">
 <meta property="og:url" content="http://yoursite.com/2016/06/29/gatling5/index.html">
-<meta property="og:site_name" content="QA seven's blog">
-<meta property="og:description" content="第五篇
-http://gatling.io/docs/2.2.2/migration_guides/2.0-to-2.1.html
-Migrating from 2.0 to 2.1Global changesScala 2.11Gatling is now built with Scala 2.11. If you’re using Scala IDE, make sure you’re usi">
-<meta property="og:updated_time" content="2016-06-29T12:57:39.000Z">
+<meta property="og:site_name" content="QA seven&#39;s blog">
+<meta property="og:description" content="第五篇 http://gatling.io/docs/2.2.2/migration_guides/2.0-to-2.1.html Migrating from 2.0 to 2.1Global changesScala 2.11Gatling is now built with Scala 2.11. If you’re using Scala IDE, make sure you’re usi">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-25T09:15:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gatling官方文档翻译5">
-<meta name="twitter:description" content="第五篇
-http://gatling.io/docs/2.2.2/migration_guides/2.0-to-2.1.html
-Migrating from 2.0 to 2.1Global changesScala 2.11Gatling is now built with Scala 2.11. If you’re using Scala IDE, make sure you’re usi">
+<meta name="twitter:description" content="第五篇 http://gatling.io/docs/2.2.2/migration_guides/2.0-to-2.1.html Migrating from 2.0 to 2.1Global changesScala 2.11Gatling is now built with Scala 2.11. If you’re using Scala IDE, make sure you’re usi">
 
 
 
@@ -119,8 +115,8 @@ Migrating from 2.0 to 2.1Global changesScala 2.11Gatling is now built with Scala
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -171,7 +167,7 @@ Migrating from 2.0 to 2.1Global changesScala 2.11Gatling is now built with Scala
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -217,6 +213,26 @@ Migrating from 2.0 to 2.1Global changesScala 2.11Gatling is now built with Scala
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -228,7 +244,7 @@ Migrating from 2.0 to 2.1Global changesScala 2.11Gatling is now built with Scala
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -435,27 +451,10 @@ Migrating from 2.0 to 2.1Global changesScala 2.11Gatling is now built with Scala
 
     <div class="post-spread">
       
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_weixin"></a>
-  <a class="jiathis_button_cqq"></a>
-  <a class="jiathis_button_douban"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" >
-  var jiathis_config={
-    hideMore:false
-  }
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
 
       
     </div>
@@ -499,7 +498,7 @@ Migrating from 2.0 to 2.1Global changesScala 2.11Gatling is now built with Scala
                alt="qi lei" />
           <p class="site-author-name" itemprop="name">qi lei</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">小qa 在thoughtworks苦苦挣扎中</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -584,7 +583,7 @@ Migrating from 2.0 to 2.1Global changesScala 2.11Gatling is now built with Scala
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Pisces
   </a>
 </div>
 
@@ -663,6 +662,13 @@ Migrating from 2.0 to 2.1Global changesScala 2.11Gatling is now built with Scala
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>

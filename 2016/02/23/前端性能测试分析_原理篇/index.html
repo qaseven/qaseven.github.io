@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -96,70 +96,22 @@
 
 
 
-<meta name="description" content="原理篇browser工作原理web浏览器与web服务器之间通过HTTP协议进行通信的过程。所以，web C/S之间握手的协议就是HTTP协议。
-
-页面的请求过程请求阶段
-browser send url request
-
-
-
-递归寻找DNS server
-
-
-
-连接目标IP并建立TCP连接
-
-向目标服务器发送http请求
-
-web服务器接收请求后处理
-
-web服务器返回相应的结果【无效、重定向、正">
+<meta name="description" content="原理篇browser工作原理web浏览器与web服务器之间通过HTTP协议进行通信的过程。所以，web C/S之间握手的协议就是HTTP协议。  页面的请求过程请求阶段 browser send url request    递归寻找DNS server    连接目标IP并建立TCP连接  向目标服务器发送http请求  web服务器接收请求后处理  web服务器返回相应的结果【无效、重定向、正">
+<meta name="keywords" content="性能测试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端性能测试分析">
 <meta property="og:url" content="http://yoursite.com/2016/02/23/前端性能测试分析_原理篇/index.html">
-<meta property="og:site_name" content="QA seven's blog">
-<meta property="og:description" content="原理篇browser工作原理web浏览器与web服务器之间通过HTTP协议进行通信的过程。所以，web C/S之间握手的协议就是HTTP协议。
-
-页面的请求过程请求阶段
-browser send url request
-
-
-
-递归寻找DNS server
-
-
-
-连接目标IP并建立TCP连接
-
-向目标服务器发送http请求
-
-web服务器接收请求后处理
-
-web服务器返回相应的结果【无效、重定向、正">
+<meta property="og:site_name" content="QA seven&#39;s blog">
+<meta property="og:description" content="原理篇browser工作原理web浏览器与web服务器之间通过HTTP协议进行通信的过程。所以，web C/S之间握手的协议就是HTTP协议。  页面的请求过程请求阶段 browser send url request    递归寻找DNS server    连接目标IP并建立TCP连接  向目标服务器发送http请求  web服务器接收请求后处理  web服务器返回相应的结果【无效、重定向、正">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/image/front_end_performance_test.png">
 <meta property="og:image" content="http://yoursite.com/image/LSBAWS_HTTP_request_response.png">
 <meta property="og:image" content="http://yoursite.com/image/dns.jpg">
 <meta property="og:updated_time" content="2017-09-21T07:40:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端性能测试分析">
-<meta name="twitter:description" content="原理篇browser工作原理web浏览器与web服务器之间通过HTTP协议进行通信的过程。所以，web C/S之间握手的协议就是HTTP协议。
-
-页面的请求过程请求阶段
-browser send url request
-
-
-
-递归寻找DNS server
-
-
-
-连接目标IP并建立TCP连接
-
-向目标服务器发送http请求
-
-web服务器接收请求后处理
-
-web服务器返回相应的结果【无效、重定向、正">
+<meta name="twitter:description" content="原理篇browser工作原理web浏览器与web服务器之间通过HTTP协议进行通信的过程。所以，web C/S之间握手的协议就是HTTP协议。  页面的请求过程请求阶段 browser send url request    递归寻找DNS server    连接目标IP并建立TCP连接  向目标服务器发送http请求  web服务器接收请求后处理  web服务器返回相应的结果【无效、重定向、正">
+<meta name="twitter:image" content="http://yoursite.com/image/front_end_performance_test.png">
 
 
 
@@ -167,8 +119,8 @@ web服务器返回相应的结果【无效、重定向、正">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -219,7 +171,7 @@ web服务器返回相应的结果【无效、重定向、正">
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -265,6 +217,26 @@ web服务器返回相应的结果【无效、重定向、正">
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -276,7 +248,7 @@ web服务器返回相应的结果【无效、重定向、正">
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -384,9 +356,9 @@ web服务器返回相应的结果【无效、重定向、正">
       
 
       
-        <h1 id="u539F_u7406_u7BC7"><a href="#u539F_u7406_u7BC7" class="headerlink" title="原理篇"></a>原理篇</h1><h2 id="browser_u5DE5_u4F5C_u539F_u7406"><a href="#browser_u5DE5_u4F5C_u539F_u7406" class="headerlink" title="browser工作原理"></a>browser工作原理</h2><p>web浏览器与web服务器之间通过HTTP协议进行通信的过程。所以，web C/S之间握手的协议就是HTTP协议。</p>
+        <h1 id="原理篇"><a href="#原理篇" class="headerlink" title="原理篇"></a>原理篇</h1><h2 id="browser工作原理"><a href="#browser工作原理" class="headerlink" title="browser工作原理"></a>browser工作原理</h2><p>web浏览器与web服务器之间通过HTTP协议进行通信的过程。所以，web C/S之间握手的协议就是HTTP协议。</p>
 <p><img src="/image/front_end_performance_test.png" alt=""></p>
-<h2 id="u9875_u9762_u7684_u8BF7_u6C42_u8FC7_u7A0B"><a href="#u9875_u9762_u7684_u8BF7_u6C42_u8FC7_u7A0B" class="headerlink" title="页面的请求过程"></a>页面的请求过程</h2><h3 id="u8BF7_u6C42_u9636_u6BB5"><a href="#u8BF7_u6C42_u9636_u6BB5" class="headerlink" title="请求阶段"></a>请求阶段</h3><ol>
+<h2 id="页面的请求过程"><a href="#页面的请求过程" class="headerlink" title="页面的请求过程"></a>页面的请求过程</h2><h3 id="请求阶段"><a href="#请求阶段" class="headerlink" title="请求阶段"></a>请求阶段</h3><ol>
 <li>browser send url request</li>
 </ol>
 <p><img src="/image/LSBAWS_HTTP_request_response.png" alt=""></p>
@@ -406,7 +378,7 @@ web服务器返回相应的结果【无效、重定向、正">
 <li><p>浏览器接收返回的http内容</p>
 </li>
 </ol>
-<h2 id="u524D_u7AEF_u89E3_u6790_u9636_u6BB5"><a href="#u524D_u7AEF_u89E3_u6790_u9636_u6BB5" class="headerlink" title="前端解析阶段"></a>前端解析阶段</h2><p>渲染引擎—通过网络获得所请求文档的内容, 解析html以构建dom树-&gt;构建render树-&gt;布局render树-&gt;绘制render树</p>
+<h2 id="前端解析阶段"><a href="#前端解析阶段" class="headerlink" title="前端解析阶段"></a>前端解析阶段</h2><p>渲染引擎—通过网络获得所请求文档的内容, 解析html以构建dom树-&gt;构建render树-&gt;布局render树-&gt;绘制render树</p>
 <ol>
 <li><p>开始解析html文件，当然是自上而下，先是头部，后是body</p>
 </li>
@@ -425,11 +397,11 @@ web服务器返回相应的结果【无效、重定向、正">
 <li><p>同7步，如果渲染过程中出现js代码调整DOM树结构的情况，暂停其它渲染，再次重新来过，从修改DOM那步开始</p>
 </li>
 <li><p>最终所有节点和资源都会渲染完成</p>
-<h2 id="u5206_u6790_u7ED3_u675F"><a href="#u5206_u6790_u7ED3_u675F" class="headerlink" title="分析结束"></a>分析结束</h2></li>
+<h2 id="分析结束"><a href="#分析结束" class="headerlink" title="分析结束"></a>分析结束</h2></li>
 <li><p>渲染完成后开始page的onload事件</p>
 </li>
 <li><p>整个页面load完成</p>
-<h2 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h2></li>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2></li>
 </ol>
 <p><a href="http://blog.csdn.net/zzzaquarius/article/details/6532299" target="_blank" rel="external">浏览器工作原理</a></p>
 
@@ -493,27 +465,10 @@ web服务器返回相应的结果【无效、重定向、正">
 
     <div class="post-spread">
       
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_weixin"></a>
-  <a class="jiathis_button_cqq"></a>
-  <a class="jiathis_button_douban"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" >
-  var jiathis_config={
-    hideMore:false
-  }
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
 
       
     </div>
@@ -566,7 +521,7 @@ web服务器返回相应的结果【无效、重定向、正">
                alt="qi lei" />
           <p class="site-author-name" itemprop="name">qi lei</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">小qa 在thoughtworks苦苦挣扎中</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -629,7 +584,7 @@ web服务器返回相应的结果【无效、重定向、正">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u539F_u7406_u7BC7"><span class="nav-number">1.</span> <span class="nav-text">原理篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#browser_u5DE5_u4F5C_u539F_u7406"><span class="nav-number">1.1.</span> <span class="nav-text">browser工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u9875_u9762_u7684_u8BF7_u6C42_u8FC7_u7A0B"><span class="nav-number">1.2.</span> <span class="nav-text">页面的请求过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u8BF7_u6C42_u9636_u6BB5"><span class="nav-number">1.2.1.</span> <span class="nav-text">请求阶段</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u524D_u7AEF_u89E3_u6790_u9636_u6BB5"><span class="nav-number">1.3.</span> <span class="nav-text">前端解析阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u5206_u6790_u7ED3_u675F"><span class="nav-number">1.4.</span> <span class="nav-text">分析结束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u53C2_u8003"><span class="nav-number">1.5.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原理篇"><span class="nav-number">1.</span> <span class="nav-text">原理篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#browser工作原理"><span class="nav-number">1.1.</span> <span class="nav-text">browser工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面的请求过程"><span class="nav-number">1.2.</span> <span class="nav-text">页面的请求过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#请求阶段"><span class="nav-number">1.2.1.</span> <span class="nav-text">请求阶段</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端解析阶段"><span class="nav-number">1.3.</span> <span class="nav-text">前端解析阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析结束"><span class="nav-number">1.4.</span> <span class="nav-text">分析结束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.5.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -667,7 +622,7 @@ web服务器返回相应的结果【无效、重定向、正">
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Pisces
   </a>
 </div>
 
@@ -746,6 +701,13 @@ web服务器返回相应的结果【无效、重定向、正">
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>

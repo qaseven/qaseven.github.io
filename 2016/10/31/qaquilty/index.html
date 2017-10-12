@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -96,16 +96,14 @@
 
 
 
-<meta name="description" content="大部分人看到这个题目时，直接的反应是QA关心代码质量干嘛，能看懂代码吗？怎么给dev feedback？
-
-如果还有人持这样的观点后，那么我只能说too young too simple。首先我们得谈谈什么是代码质量？创建优秀的代码涉及到正确性、可维护性甚至优美性。正确性，最起码你的代码实现的业务逻辑是正确的。可维护性，公司中其他的小伙伴能看看懂你的代码逻辑，便于修改代码。优美性，符合各种代码规范">
+<meta name="description" content="大部分人看到这个题目时，直接的反应是QA关心代码质量干嘛，能看懂代码吗？怎么给dev feedback？  如果还有人持这样的观点后，那么我只能说too young too simple。首先我们得谈谈什么是代码质量？创建优秀的代码涉及到正确性、可维护性甚至优美性。正确性，最起码你的代码实现的业务逻辑是正确的。可维护性，公司中其他的小伙伴能看看懂你的代码逻辑，便于修改代码。优美性，符合各种代码规范">
+<meta name="keywords" content="QA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从QA的角度来谈谈代码质量的改进">
 <meta property="og:url" content="http://yoursite.com/2016/10/31/qaquilty/index.html">
-<meta property="og:site_name" content="QA seven's blog">
-<meta property="og:description" content="大部分人看到这个题目时，直接的反应是QA关心代码质量干嘛，能看懂代码吗？怎么给dev feedback？
-
-如果还有人持这样的观点后，那么我只能说too young too simple。首先我们得谈谈什么是代码质量？创建优秀的代码涉及到正确性、可维护性甚至优美性。正确性，最起码你的代码实现的业务逻辑是正确的。可维护性，公司中其他的小伙伴能看看懂你的代码逻辑，便于修改代码。优美性，符合各种代码规范">
+<meta property="og:site_name" content="QA seven&#39;s blog">
+<meta property="og:description" content="大部分人看到这个题目时，直接的反应是QA关心代码质量干嘛，能看懂代码吗？怎么给dev feedback？  如果还有人持这样的观点后，那么我只能说too young too simple。首先我们得谈谈什么是代码质量？创建优秀的代码涉及到正确性、可维护性甚至优美性。正确性，最起码你的代码实现的业务逻辑是正确的。可维护性，公司中其他的小伙伴能看看懂你的代码逻辑，便于修改代码。优美性，符合各种代码规范">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/image/qa.gif">
 <meta property="og:image" content="http://yoursite.com/image/mircosoft.jpg">
 <meta property="og:image" content="http://yoursite.com/image/google.jpg">
@@ -115,9 +113,8 @@
 <meta property="og:updated_time" content="2017-09-21T07:40:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从QA的角度来谈谈代码质量的改进">
-<meta name="twitter:description" content="大部分人看到这个题目时，直接的反应是QA关心代码质量干嘛，能看懂代码吗？怎么给dev feedback？
-
-如果还有人持这样的观点后，那么我只能说too young too simple。首先我们得谈谈什么是代码质量？创建优秀的代码涉及到正确性、可维护性甚至优美性。正确性，最起码你的代码实现的业务逻辑是正确的。可维护性，公司中其他的小伙伴能看看懂你的代码逻辑，便于修改代码。优美性，符合各种代码规范">
+<meta name="twitter:description" content="大部分人看到这个题目时，直接的反应是QA关心代码质量干嘛，能看懂代码吗？怎么给dev feedback？  如果还有人持这样的观点后，那么我只能说too young too simple。首先我们得谈谈什么是代码质量？创建优秀的代码涉及到正确性、可维护性甚至优美性。正确性，最起码你的代码实现的业务逻辑是正确的。可维护性，公司中其他的小伙伴能看看懂你的代码逻辑，便于修改代码。优美性，符合各种代码规范">
+<meta name="twitter:image" content="http://yoursite.com/image/qa.gif">
 
 
 
@@ -125,8 +122,8 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -177,7 +174,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -223,6 +220,26 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -234,7 +251,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -345,9 +362,9 @@
         <p>大部分人看到这个题目时，直接的反应是QA关心代码质量干嘛，能看懂代码吗？怎么给dev feedback？</p>
 <p><img src="/image/qa.gif" alt="qa"></p>
 <p>如果还有人持这样的观点后，那么我只能说too young too simple。<br>首先我们得谈谈什么是代码质量？<br>创建优秀的代码涉及到正确性、可维护性甚至优美性。<br>正确性，最起码你的代码实现的业务逻辑是正确的。<br>可维护性，公司中其他的小伙伴能看看懂你的代码逻辑，便于修改代码。<br>优美性，符合各种代码规范，其他人看到代码后惊为天人。<br>但是要做到以上几点绝非易事，首先你得有高超的编程能力，其次你对前端或后端的代码规范有深刻的理解，但是能有这样能力的人又有多少呢？<br>我们都知道软件开发是团队合作才能完成的工作。<br>那么项目的质量与客户的需求才是项目生存下去的关键。<br>所以怎么才能改进项目代码的质量？我们先看看业界巨头公司都是如何做的？</p>
-<h2 id="microsoft_u600E_u4E48_u505A_uFF1F"><a href="#microsoft_u600E_u4E48_u505A_uFF1F" class="headerlink" title="microsoft怎么做？"></a>microsoft怎么做？</h2><p><img src="/image/mircosoft.jpg" alt="microsoft"></p>
+<h2 id="microsoft怎么做？"><a href="#microsoft怎么做？" class="headerlink" title="microsoft怎么做？"></a>microsoft怎么做？</h2><p><img src="/image/mircosoft.jpg" alt="microsoft"></p>
 <p>我们都知道微软是做操作系统出身的，其实微软的测试能力与测试工具都是业界中领先的，以下是两张表展示的是微软如何从visual studio与开发过程中提高代码质量</p>
-<h4 id="Visual_Studio"><a href="#Visual_Studio" class="headerlink" title="Visual Studio"></a>Visual Studio</h4><table>
+<h4 id="Visual-Studio"><a href="#Visual-Studio" class="headerlink" title="Visual Studio"></a>Visual Studio</h4><table>
 <thead>
 <tr>
 <th>标准</th>
@@ -381,7 +398,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="u5F00_u53D1_u8FC7_u7A0B_u4E2D_u6539_u8FDB_u4EE3_u7801_u8D28_u91CF"><a href="#u5F00_u53D1_u8FC7_u7A0B_u4E2D_u6539_u8FDB_u4EE3_u7801_u8D28_u91CF" class="headerlink" title="开发过程中改进代码质量"></a>开发过程中改进代码质量</h4><table>
+<h4 id="开发过程中改进代码质量"><a href="#开发过程中改进代码质量" class="headerlink" title="开发过程中改进代码质量"></a>开发过程中改进代码质量</h4><table>
 <thead>
 <tr>
 <th>标准</th>
@@ -419,7 +436,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="google__u53C8_u662F_u600E_u4E48_u505A_uFF1F"><a href="#google__u53C8_u662F_u600E_u4E48_u505A_uFF1F" class="headerlink" title="google 又是怎么做？"></a>google 又是怎么做？</h2><p><img src="/image/google.jpg" alt="google"></p>
+<h2 id="google-又是怎么做？"><a href="#google-又是怎么做？" class="headerlink" title="google 又是怎么做？"></a>google 又是怎么做？</h2><p><img src="/image/google.jpg" alt="google"></p>
 <ul>
 <li><p>代码审查。在你提交任何代码改动之前，你得找去代码“主人”签字确认。为了实现，评审者（被鼓励去）建议大修代码，而不是让它成为根本没有经过思考的“图章”代码。</p>
 </li>
@@ -433,14 +450,14 @@
 <li>“Fix it.” 例如，一个工程师或许说，“我认为我们真应该别再用过时的  Cruft Map 类（class）了。我打算在 1 月 20 日组织一次 Fix it。” 当 1 月 20 日来临时，大家应当暂停其正常运作，把他们代码中的 Cruft Maps 都换掉。在 1 月 21 日，Google 就永远和 Cruft Map 说拜拜了！不过最近，核心库团队已经很优秀了，貌似没有啥东西可再值得类似的 fix it 了。</li>
 <li>测试文化。单元测试覆盖率可能接近 100%，我们有持续构建/整合/测试，还有知名的 “Testing on the Toilet” (请参见Google Testing Blog)</li>
 </ul>
-<h2 id="facebook__u5462_uFF1F__u53C8_u6709_u4EC0_u4E48_u4E0D_u4E00_u6837"><a href="#facebook__u5462_uFF1F__u53C8_u6709_u4EC0_u4E48_u4E0D_u4E00_u6837" class="headerlink" title="facebook 呢？ 又有什么不一样"></a>facebook 呢？ 又有什么不一样</h2><p><img src="/image/facebook.jpeg" alt="facebook"></p>
+<h2 id="facebook-呢？-又有什么不一样"><a href="#facebook-呢？-又有什么不一样" class="headerlink" title="facebook 呢？ 又有什么不一样"></a>facebook 呢？ 又有什么不一样</h2><p><img src="/image/facebook.jpeg" alt="facebook"></p>
 <ul>
 <li>开发对质量负责： 开发从设计，实现，测试，到部署都要自己做。其它做工具，流程的工程师通过开发工具和流程来帮助开发人员更为简单方便地做测试，做部署和做监控。每个开发人员有自己单独的测试环境，测试环境就是运行在开发本地机器上，部署非常简单快速。测试环境用的是真实的用户数据。</li>
 <li>持续集成和测试自动化：每周发布一次。星期天晚上，要发布的构建从主线上分支出来到发布分支，到星期二的中午如果没有大的问题，就可以上线了。所有的测试运行控制在10分钟以内，所以不需要考虑不运行哪些测试用例。运行所有测试用例。 （只是听说，没有经过考证。）</li>
 <li>严格实施代码审计：在Facebook 做 code review时间大约占50%，管理者对代码质量负有一定责任 。甚至代码质量高于一切：Facebook Code review是重点KPI考核的对象，实行连坐制，如果因为代码质量问题，那么产生的KPI责任包括领导30％、程序员50％、审核人员20％。 在代码checkin之前，都要由专人进行review。Facebook 创始人兼 CEO 马克扎克伯格会亲自对 News Feed 每个代码更新把关。在 Facebook，所有重大升级的代码都进行强制评估，任何一个改动都至少由一人把关。但是，无论工程师对 News Feed 做出任何改动，都将由扎克伯格亲自把关。</li>
 <li>内测 （dog food）：发布之前，公司员工使用要发布的功能。2－3天之内可以有几百个或上千个人在使用新功能。负责要发布功能的开发人员在星期天晚上到星期二中午之间会做大量的测试 。</li>
 <li>通过灰度发布控制风险：新功能本身质量可能有问题，新功能也可能影响其它现有功能。为了减少或控制这些风险。Facebook开发了一整套完善的发布，控制，监控流程和工具。做到：1.测试通过后，产品质量基本有保证。2.即使有漏测的bug，只会影响很少量的用户。3.及时监控到问题。4.及时修复。</li>
-<li>产品监控：通过社区讨论的正负面舆情，及与历史应用数据的对比情况，监控产品的系统的运行状态技术修复。<h2 id="thoughtworks__u4E1A_u754C_u4EE5_u654F_u6377_u8457_u79F0_u7684_u8F6F_u4EF6_u4F01_u4E1A_u53C8_u662F_u5982_u4F55_u6539_u8FDB_u7684"><a href="#thoughtworks__u4E1A_u754C_u4EE5_u654F_u6377_u8457_u79F0_u7684_u8F6F_u4EF6_u4F01_u4E1A_u53C8_u662F_u5982_u4F55_u6539_u8FDB_u7684" class="headerlink" title="thoughtworks 业界以敏捷著称的软件企业又是如何改进的"></a>thoughtworks 业界以敏捷著称的软件企业又是如何改进的</h2><img src="/image/thoughtworks.jpg" alt="thoughtworks"></li>
+<li>产品监控：通过社区讨论的正负面舆情，及与历史应用数据的对比情况，监控产品的系统的运行状态技术修复。<h2 id="thoughtworks-业界以敏捷著称的软件企业又是如何改进的"><a href="#thoughtworks-业界以敏捷著称的软件企业又是如何改进的" class="headerlink" title="thoughtworks 业界以敏捷著称的软件企业又是如何改进的"></a>thoughtworks 业界以敏捷著称的软件企业又是如何改进的</h2><img src="/image/thoughtworks.jpg" alt="thoughtworks"></li>
 </ul>
 <ul>
 <li>项目的初期，dev,BA,QA就会做到一起IPM,让不同的角色都能了解story，让dev尽早的分析story以及采用那种技术去完成工作。<br><img src="/image/twqa.jpg" alt="pair"></li>
@@ -524,27 +541,10 @@
 
     <div class="post-spread">
       
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_weixin"></a>
-  <a class="jiathis_button_cqq"></a>
-  <a class="jiathis_button_douban"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" >
-  var jiathis_config={
-    hideMore:false
-  }
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
 
       
     </div>
@@ -597,7 +597,7 @@
                alt="qi lei" />
           <p class="site-author-name" itemprop="name">qi lei</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">小qa 在thoughtworks苦苦挣扎中</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -660,7 +660,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#microsoft_u600E_u4E48_u505A_uFF1F"><span class="nav-number">1.</span> <span class="nav-text">microsoft怎么做？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Visual_Studio"><span class="nav-number">1.0.1.</span> <span class="nav-text">Visual Studio</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5F00_u53D1_u8FC7_u7A0B_u4E2D_u6539_u8FDB_u4EE3_u7801_u8D28_u91CF"><span class="nav-number">1.0.2.</span> <span class="nav-text">开发过程中改进代码质量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#google__u53C8_u662F_u600E_u4E48_u505A_uFF1F"><span class="nav-number">2.</span> <span class="nav-text">google 又是怎么做？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#facebook__u5462_uFF1F__u53C8_u6709_u4EC0_u4E48_u4E0D_u4E00_u6837"><span class="nav-number">3.</span> <span class="nav-text">facebook 呢？ 又有什么不一样</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#thoughtworks__u4E1A_u754C_u4EE5_u654F_u6377_u8457_u79F0_u7684_u8F6F_u4EF6_u4F01_u4E1A_u53C8_u662F_u5982_u4F55_u6539_u8FDB_u7684"><span class="nav-number">4.</span> <span class="nav-text">thoughtworks 业界以敏捷著称的软件企业又是如何改进的</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#microsoft怎么做？"><span class="nav-number">1.</span> <span class="nav-text">microsoft怎么做？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Visual-Studio"><span class="nav-number">1.0.1.</span> <span class="nav-text">Visual Studio</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开发过程中改进代码质量"><span class="nav-number">1.0.2.</span> <span class="nav-text">开发过程中改进代码质量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#google-又是怎么做？"><span class="nav-number">2.</span> <span class="nav-text">google 又是怎么做？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#facebook-呢？-又有什么不一样"><span class="nav-number">3.</span> <span class="nav-text">facebook 呢？ 又有什么不一样</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#thoughtworks-业界以敏捷著称的软件企业又是如何改进的"><span class="nav-number">4.</span> <span class="nav-text">thoughtworks 业界以敏捷著称的软件企业又是如何改进的</span></a></li></ol></div>
             
 
           </div>
@@ -698,7 +698,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Pisces
   </a>
 </div>
 
@@ -777,6 +777,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>

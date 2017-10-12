@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -96,42 +96,14 @@
 
 
 
-<meta name="description" content="引言前一章，我们讲了browser的工作原理,那么怎么样才能让了解整个主站前端的性能呢？监控！ 对，是的，我们可以利用各种工作对我们的website进行实时的监控,目前监控的方式有两种。
-
-
-
-类型
-优点
-缺点
-示例
-
-
-
-
-非侵入式
-指标齐全、客户端主动监测、竞品监控
-无法知道性能影响用户数、采样少容易失真、无法监控复杂应用与细分功能
-Pagespeed、yslow、PhantomJS、webp">
+<meta name="description" content="引言前一章，我们讲了browser的工作原理,那么怎么样才能让了解整个主站前端的性能呢？监控！ 对，是的，我们可以利用各种工作对我们的website进行实时的监控,目前监控的方式有两种。    类型 优点 缺点 示例     非侵入式 指标齐全、客户端主动监测、竞品监控 无法知道性能影响用户数、采样少容易失真、无法监控复杂应用与细分功能 Pagespeed、yslow、PhantomJS、webp">
+<meta name="keywords" content="性能测试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端性能测试之分析篇">
 <meta property="og:url" content="http://yoursite.com/2016/02/23/前端性能测试之分析篇/index.html">
-<meta property="og:site_name" content="QA seven's blog">
-<meta property="og:description" content="引言前一章，我们讲了browser的工作原理,那么怎么样才能让了解整个主站前端的性能呢？监控！ 对，是的，我们可以利用各种工作对我们的website进行实时的监控,目前监控的方式有两种。
-
-
-
-类型
-优点
-缺点
-示例
-
-
-
-
-非侵入式
-指标齐全、客户端主动监测、竞品监控
-无法知道性能影响用户数、采样少容易失真、无法监控复杂应用与细分功能
-Pagespeed、yslow、PhantomJS、webp">
+<meta property="og:site_name" content="QA seven&#39;s blog">
+<meta property="og:description" content="引言前一章，我们讲了browser的工作原理,那么怎么样才能让了解整个主站前端的性能呢？监控！ 对，是的，我们可以利用各种工作对我们的website进行实时的监控,目前监控的方式有两种。    类型 优点 缺点 示例     非侵入式 指标齐全、客户端主动监测、竞品监控 无法知道性能影响用户数、采样少容易失真、无法监控复杂应用与细分功能 Pagespeed、yslow、PhantomJS、webp">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/image/pagespeed.png">
 <meta property="og:image" content="http://yoursite.com/image/yslow.gif">
 <meta property="og:image" content="http://yoursite.com/image/page_perfor.png">
@@ -145,22 +117,8 @@ Pagespeed、yslow、PhantomJS、webp">
 <meta property="og:updated_time" content="2017-09-21T07:40:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端性能测试之分析篇">
-<meta name="twitter:description" content="引言前一章，我们讲了browser的工作原理,那么怎么样才能让了解整个主站前端的性能呢？监控！ 对，是的，我们可以利用各种工作对我们的website进行实时的监控,目前监控的方式有两种。
-
-
-
-类型
-优点
-缺点
-示例
-
-
-
-
-非侵入式
-指标齐全、客户端主动监测、竞品监控
-无法知道性能影响用户数、采样少容易失真、无法监控复杂应用与细分功能
-Pagespeed、yslow、PhantomJS、webp">
+<meta name="twitter:description" content="引言前一章，我们讲了browser的工作原理,那么怎么样才能让了解整个主站前端的性能呢？监控！ 对，是的，我们可以利用各种工作对我们的website进行实时的监控,目前监控的方式有两种。    类型 优点 缺点 示例     非侵入式 指标齐全、客户端主动监测、竞品监控 无法知道性能影响用户数、采样少容易失真、无法监控复杂应用与细分功能 Pagespeed、yslow、PhantomJS、webp">
+<meta name="twitter:image" content="http://yoursite.com/image/pagespeed.png">
 
 
 
@@ -168,8 +126,8 @@ Pagespeed、yslow、PhantomJS、webp">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -220,7 +178,7 @@ Pagespeed、yslow、PhantomJS、webp">
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -266,6 +224,26 @@ Pagespeed、yslow、PhantomJS、webp">
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -277,7 +255,7 @@ Pagespeed、yslow、PhantomJS、webp">
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -385,7 +363,7 @@ Pagespeed、yslow、PhantomJS、webp">
       
 
       
-        <h2 id="u5F15_u8A00"><a href="#u5F15_u8A00" class="headerlink" title="引言"></a>引言</h2><p>前一章，我们讲了browser的工作原理,那么怎么样才能让了解整个主站前端的性能呢？监控！ 对，是的，我们可以利用各种工作对我们的website进行实时的监控,目前监控的方式有两种。</p>
+        <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>前一章，我们讲了browser的工作原理,那么怎么样才能让了解整个主站前端的性能呢？监控！ 对，是的，我们可以利用各种工作对我们的website进行实时的监控,目前监控的方式有两种。</p>
 <table>
 <thead>
 <tr>
@@ -410,25 +388,25 @@ Pagespeed、yslow、PhantomJS、webp">
 </tr>
 </tbody>
 </table>
-<h2 id="u524D_u7AEF_u6027_u80FD_u5206_u6790_u5DE5_u5177"><a href="#u524D_u7AEF_u6027_u80FD_u5206_u6790_u5DE5_u5177" class="headerlink" title="前端性能分析工具"></a>前端性能分析工具</h2><p>那有哪些简易便利的工具能帮助我们更好的进行测试呢？<br>ok，工具集锦来临。</p>
-<h3 id="u6D4F_u89C8_u5668_u63D2_u4EF6_u7C7B"><a href="#u6D4F_u89C8_u5668_u63D2_u4EF6_u7C7B" class="headerlink" title="浏览器插件类"></a>浏览器插件类</h3><ol>
+<h2 id="前端性能分析工具"><a href="#前端性能分析工具" class="headerlink" title="前端性能分析工具"></a>前端性能分析工具</h2><p>那有哪些简易便利的工具能帮助我们更好的进行测试呢？<br>ok，工具集锦来临。</p>
+<h3 id="浏览器插件类"><a href="#浏览器插件类" class="headerlink" title="浏览器插件类"></a>浏览器插件类</h3><ol>
 <li>FireBug<br>它可以对页面进行调试，可以记录所有网页的访问耗时，下载的资源等</li>
 <li>Page Speed<br><img src="/image/pagespeed.png" alt=""></li>
 <li>Yslow<br><img src="/image/yslow.gif" alt=""></li>
 <li>page performance<br><img src="/image/page_perfor.png" alt=""></li>
 <li>performance analyse<br><img src="/image/performance_alay.png" alt=""></li>
 </ol>
-<h3 id="u5728_u7EBF_u7F51_u7AD9_u7C7B"><a href="#u5728_u7EBF_u7F51_u7AD9_u7C7B" class="headerlink" title="在线网站类"></a>在线网站类</h3><ol>
+<h3 id="在线网站类"><a href="#在线网站类" class="headerlink" title="在线网站类"></a>在线网站类</h3><ol>
 <li>WebPageTest<br><img src="/image/webpagespeed.png" alt=""></li>
 <li>showslow<br><img src="/image/showslow.png" alt=""></li>
 <li><p>sitespeed.io<br><img src="/image/sitespeed.png" alt=""></p>
-<h3 id="u5E73_u53F0_u7C7B"><a href="#u5E73_u53F0_u7C7B" class="headerlink" title="平台类"></a>平台类</h3><h4 id="u6536_u8D39_u670D_u52A1_u5E73_u53F0"><a href="#u6536_u8D39_u670D_u52A1_u5E73_u53F0" class="headerlink" title="收费服务平台"></a>收费服务平台</h4></li>
+<h3 id="平台类"><a href="#平台类" class="headerlink" title="平台类"></a>平台类</h3><h4 id="收费服务平台"><a href="#收费服务平台" class="headerlink" title="收费服务平台"></a>收费服务平台</h4></li>
 <li><p>google_analytics<br><img src="/image/google_alay.png" alt=""></p>
 </li>
 <li>new relic<br><img src="/image/relic1.png" alt=""></li>
 <li>oneapm<br><img src="/image/oneapm.png" alt=""></li>
 </ol>
-<h3 id="u5F00_u6E90_u5E73_u53F0"><a href="#u5F00_u6E90_u5E73_u53F0" class="headerlink" title="开源平台"></a>开源平台</h3><ol>
+<h3 id="开源平台"><a href="#开源平台" class="headerlink" title="开源平台"></a>开源平台</h3><ol>
 <li>InfluxDB + Grafana<br>参考文章</li>
 </ol>
 <p><a href="https://ruby-china.org/topics/23470" target="_blank" rel="external">InfluxDB + Grafana 快速搭建自己的 NewRelic，分析应用运行情况
@@ -499,27 +477,10 @@ Pagespeed、yslow、PhantomJS、webp">
 
     <div class="post-spread">
       
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_weixin"></a>
-  <a class="jiathis_button_cqq"></a>
-  <a class="jiathis_button_douban"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" >
-  var jiathis_config={
-    hideMore:false
-  }
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
 
       
     </div>
@@ -572,7 +533,7 @@ Pagespeed、yslow、PhantomJS、webp">
                alt="qi lei" />
           <p class="site-author-name" itemprop="name">qi lei</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">小qa 在thoughtworks苦苦挣扎中</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -635,7 +596,7 @@ Pagespeed、yslow、PhantomJS、webp">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u5F15_u8A00"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u524D_u7AEF_u6027_u80FD_u5206_u6790_u5DE5_u5177"><span class="nav-number">2.</span> <span class="nav-text">前端性能分析工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u6D4F_u89C8_u5668_u63D2_u4EF6_u7C7B"><span class="nav-number">2.1.</span> <span class="nav-text">浏览器插件类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5728_u7EBF_u7F51_u7AD9_u7C7B"><span class="nav-number">2.2.</span> <span class="nav-text">在线网站类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5E73_u53F0_u7C7B"><span class="nav-number">2.3.</span> <span class="nav-text">平台类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u6536_u8D39_u670D_u52A1_u5E73_u53F0"><span class="nav-number">2.3.1.</span> <span class="nav-text">收费服务平台</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5F00_u6E90_u5E73_u53F0"><span class="nav-number">2.4.</span> <span class="nav-text">开源平台</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端性能分析工具"><span class="nav-number">2.</span> <span class="nav-text">前端性能分析工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器插件类"><span class="nav-number">2.1.</span> <span class="nav-text">浏览器插件类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在线网站类"><span class="nav-number">2.2.</span> <span class="nav-text">在线网站类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平台类"><span class="nav-number">2.3.</span> <span class="nav-text">平台类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#收费服务平台"><span class="nav-number">2.3.1.</span> <span class="nav-text">收费服务平台</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开源平台"><span class="nav-number">2.4.</span> <span class="nav-text">开源平台</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -673,7 +634,7 @@ Pagespeed、yslow、PhantomJS、webp">
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Pisces
   </a>
 </div>
 
@@ -752,6 +713,13 @@ Pagespeed、yslow、PhantomJS、webp">
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>

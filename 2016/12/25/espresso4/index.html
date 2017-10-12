@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="android自动化," />
 
 
 
@@ -96,23 +96,20 @@
 
 
 
-<meta name="description" content="通过前3篇文章，大家应该对espresso有了大体上的了解，那么今天我们要深入了解它的API，看看espresso的整体架构。还是通过espresso cheat sheet来进入本次话题。
-
-Espresso备忘单是您在开发过程中可以使用的快速参考。 这个备忘单包含大多数可用的Matchers，ViewActions和ViewAsertions。让我们先来看看Matchers 都有哪些API可供">
+<meta name="description" content="通过前3篇文章，大家应该对espresso有了大体上的了解，那么今天我们要深入了解它的API，看看espresso的整体架构。还是通过espresso cheat sheet来进入本次话题。  Espresso备忘单是您在开发过程中可以使用的快速参考。 这个备忘单包含大多数可用的Matchers，ViewActions和ViewAsertions。让我们先来看看Matchers 都有哪些API可供">
+<meta name="keywords" content="android自动化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="espresso-api之Matchers探究">
 <meta property="og:url" content="http://yoursite.com/2016/12/25/espresso4/index.html">
-<meta property="og:site_name" content="QA seven's blog">
-<meta property="og:description" content="通过前3篇文章，大家应该对espresso有了大体上的了解，那么今天我们要深入了解它的API，看看espresso的整体架构。还是通过espresso cheat sheet来进入本次话题。
-
-Espresso备忘单是您在开发过程中可以使用的快速参考。 这个备忘单包含大多数可用的Matchers，ViewActions和ViewAsertions。让我们先来看看Matchers 都有哪些API可供">
+<meta property="og:site_name" content="QA seven&#39;s blog">
+<meta property="og:description" content="通过前3篇文章，大家应该对espresso有了大体上的了解，那么今天我们要深入了解它的API，看看espresso的整体架构。还是通过espresso cheat sheet来进入本次话题。  Espresso备忘单是您在开发过程中可以使用的快速参考。 这个备忘单包含大多数可用的Matchers，ViewActions和ViewAsertions。让我们先来看看Matchers 都有哪些API可供">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/image/espresso-cheat-sheet-2.1.0.png">
-<meta property="og:updated_time" content="2016-12-25T14:43:28.000Z">
+<meta property="og:updated_time" content="2017-09-25T09:15:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="espresso-api之Matchers探究">
-<meta name="twitter:description" content="通过前3篇文章，大家应该对espresso有了大体上的了解，那么今天我们要深入了解它的API，看看espresso的整体架构。还是通过espresso cheat sheet来进入本次话题。
-
-Espresso备忘单是您在开发过程中可以使用的快速参考。 这个备忘单包含大多数可用的Matchers，ViewActions和ViewAsertions。让我们先来看看Matchers 都有哪些API可供">
+<meta name="twitter:description" content="通过前3篇文章，大家应该对espresso有了大体上的了解，那么今天我们要深入了解它的API，看看espresso的整体架构。还是通过espresso cheat sheet来进入本次话题。  Espresso备忘单是您在开发过程中可以使用的快速参考。 这个备忘单包含大多数可用的Matchers，ViewActions和ViewAsertions。让我们先来看看Matchers 都有哪些API可供">
+<meta name="twitter:image" content="http://yoursite.com/image/espresso-cheat-sheet-2.1.0.png">
 
 
 
@@ -120,8 +117,8 @@ Espresso备忘单是您在开发过程中可以使用的快速参考。 这个�
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -172,7 +169,7 @@ Espresso备忘单是您在开发过程中可以使用的快速参考。 这个�
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -218,6 +215,26 @@ Espresso备忘单是您在开发过程中可以使用的快速参考。 这个�
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -229,7 +246,7 @@ Espresso备忘单是您在开发过程中可以使用的快速参考。 这个�
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -339,14 +356,14 @@ Espresso备忘单是您在开发过程中可以使用的快速参考。 这个�
       
         <p>通过前3篇文章，大家应该对espresso有了大体上的了解，那么今天我们要深入了解它的API，看看espresso的整体架构。<br>还是通过espresso cheat sheet来进入本次话题。</p>
 <p><img src="/image/espresso-cheat-sheet-2.1.0.png" alt=""></p>
-<p>Espresso备忘单是您在开发过程中可以使用的快速参考。 这个备忘单包含大多数可用的Matchers，ViewActions和ViewAsertions。<br>让我们先来看看Matchers 都有哪些API可供我们使用。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">android<span class="class">.support</span><span class="class">.test</span><span class="class">.espresso</span><span class="class">.matcher</span></span><br><span class="line">Classes</span><br><span class="line">BoundedMatcher&lt;T, S extends T&gt;	Some matcher sugar that lets you create <span class="tag">a</span> matcher <span class="keyword">for</span> <span class="tag">a</span> given type but only process items of <span class="tag">a</span> specific subtype of that matcher.</span><br><span class="line">CursorMatchers	A collection of Hamcrest matchers that matches <span class="tag">a</span> data row <span class="keyword">in</span> <span class="tag">a</span> Cursor.</span><br><span class="line">CursorMatchers<span class="class">.CursorMatcher</span>	A Matcher that matches Cursors based on values <span class="keyword">in</span> their <span class="attribute">columns</span>.</span><br><span class="line">LayoutMatchers	A collection of hamcrest matches to detect typical layout issues.</span><br><span class="line">PreferenceMatchers	A collection of hamcrest matchers that match Preferences.</span><br><span class="line">RootMatchers	A collection of matchers <span class="keyword">for</span> Root objects.</span><br><span class="line">ViewMatchers	A collection of hamcrest matchers that match Views.</span><br><span class="line">Enums</span><br><span class="line">ViewMatchers<span class="class">.Visibility</span>	Enumerates the possible list of values <span class="keyword">for</span> View.<span class="function"><span class="title">getVisibility</span><span class="params">()</span></span>.</span><br></pre></td></tr></table></figure></p>
+<p>Espresso备忘单是您在开发过程中可以使用的快速参考。 这个备忘单包含大多数可用的Matchers，ViewActions和ViewAsertions。<br>让我们先来看看Matchers 都有哪些API可供我们使用。<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">android.support.test.espresso.matcher</div><div class="line">Classes</div><div class="line">BoundedMatcher&lt;T, S extends T&gt;	Some matcher sugar <span class="keyword">that</span> lets you create a matcher <span class="keyword">for</span> a <span class="keyword">given</span> type <span class="keyword">but</span> only process items <span class="keyword">of</span> a specific subtype <span class="keyword">of</span> <span class="keyword">that</span> matcher.</div><div class="line">CursorMatchers	A collection <span class="keyword">of</span> Hamcrest matchers <span class="keyword">that</span> matches a data row <span class="keyword">in</span> a Cursor.</div><div class="line">CursorMatchers.CursorMatcher	A Matcher <span class="keyword">that</span> matches Cursors based <span class="keyword">on</span> values <span class="keyword">in</span> their columns.</div><div class="line">LayoutMatchers	A collection <span class="keyword">of</span> hamcrest matches <span class="keyword">to</span> detect typical layout issues.</div><div class="line">PreferenceMatchers	A collection <span class="keyword">of</span> hamcrest matchers <span class="keyword">that</span> match Preferences.</div><div class="line">RootMatchers	A collection <span class="keyword">of</span> matchers <span class="keyword">for</span> Root objects.</div><div class="line">ViewMatchers	A collection <span class="keyword">of</span> hamcrest matchers <span class="keyword">that</span> match Views.</div><div class="line">Enums</div><div class="line">ViewMatchers.Visibility	Enumerates <span class="keyword">the</span> possible <span class="built_in">list</span> <span class="keyword">of</span> values <span class="keyword">for</span> View.getVisibility().</div></pre></td></tr></table></figure></p>
 <p>7个类，1个Eums。接下来我们一个个欣赏谷歌大神的杰作。</p>
-<p><code>BoundedMatcher&lt;T, S extends T&gt;</code><br>一些匹配语法糖，允许您为给定类型创建匹配器，但只能处理该匹配器的特定子类型项。换句话说，就是能够自定义一些匹配器。<br>举个栗子，以下是一个自定义错误文本匹配器<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">ErrorTextMatchers</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span><br><span class="line">   * Returns a matcher that matches &#123;<span class="doctag">@link</span> TextView&#125;s based on text property value.</span><br><span class="line">   *</span><br><span class="line">   * <span class="doctag">@param</span> stringMatcher &#123;<span class="doctag">@link</span> Matcher&#125; of &#123;<span class="doctag">@link</span> String&#125; with text to match</span><br><span class="line">   */</span></span><br><span class="line">  <span class="annotation">@NonNull</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Matcher&lt;View&gt; <span class="title">withErrorText</span><span class="params">(<span class="keyword">final</span> Matcher&lt;String&gt; stringMatcher)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> BoundedMatcher&lt;View, TextView&gt;(TextView.class) &#123;</span><br><span class="line"></span><br><span class="line">      <span class="annotation">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">describeTo</span><span class="params">(<span class="keyword">final</span> Description description)</span> </span>&#123;</span><br><span class="line">        description.appendText(<span class="string">"with error text: "</span>);</span><br><span class="line">        stringMatcher.describeTo(description);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="annotation">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">matchesSafely</span><span class="params">(<span class="keyword">final</span> TextView textView)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> stringMatcher.matches(textView.getError().toString());</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>实现的主要细节如下。 我们通过从withErrorText()返回一个BoundedMatcher来确保匹配器只匹配TextView类的子类。 这使得很容易在BoundedMatcher.matchesSafely()中实现匹配逻辑本身：只需从TextView中获取getError()方法并将其送入下一个匹配器。 最后，我们有一个简单的describeTo()方法的实现，它只用于生成调试输出到控制台。<br><code>CursorMatchers</code><br>Hamcrest的集合匹配器，在Cursor匹配相应的数据行。<br>源码如下<br><figure class="highlight puppet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">   * Returns a matcher that matches <span class="name">a</span> &#123;@<span class="literal">link</span> String&#125; <span class="name">value</span> <span class="name">at</span> <span class="name">a</span> <span class="name">given</span> <span class="name">column</span> <span class="name">index</span></span><br><span class="line">   * in <span class="name">a</span> &#123;@<span class="literal">link</span> Cursor&#125;<span class="name">s</span> <span class="name">data</span> <span class="name">row</span>.</span><br><span class="line">   * &lt;br&gt;</span><br><span class="line">   * @param columnIndex int column index</span><br><span class="line">   * @param value <span class="name">a</span> &#123;@<span class="literal">link</span> String&#125; <span class="name">value</span> <span class="name">to</span> <span class="name">match</span></span><br><span class="line">   */</span><br><span class="line">  public static CursorMatcher withRowString(int columnIndex, String value) &#123;</span><br><span class="line">    return withRowString(columnIndex, is(value));</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<p>大部分的场景，大多发生于表单或者滚动menu时。<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">onData<span class="list">(</span><br><span class="line">    <span class="keyword">is</span><span class="list">(<span class="keyword">instanceOf</span><span class="list">(<span class="keyword">Cursor</span>.class)</span>)</span>,</span><br><span class="line">    CursorMatchers.withRowString<span class="list">(<span class="string">"job_title"</span>, is<span class="list">(<span class="string">"Barista"</span>)</span>)</span></span><br><span class="line">)</span><span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<p><code>BoundedMatcher&lt;T, S extends T&gt;</code><br>一些匹配语法糖，允许您为给定类型创建匹配器，但只能处理该匹配器的特定子类型项。换句话说，就是能够自定义一些匹配器。<br>举个栗子，以下是一个自定义错误文本匹配器<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">ErrorTextMatchers</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line"><span class="comment">   * Returns a matcher that matches &#123;<span class="doctag">@link</span> TextView&#125;s based on text property value.</span></div><div class="line"><span class="comment">   *</span></div><div class="line"><span class="comment">   * <span class="doctag">@param</span> stringMatcher &#123;<span class="doctag">@link</span> Matcher&#125; of &#123;<span class="doctag">@link</span> String&#125; with text to match</span></div><div class="line"><span class="comment">   */</span></div><div class="line">  <span class="meta">@NonNull</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Matcher&lt;View&gt; <span class="title">withErrorText</span><span class="params">(<span class="keyword">final</span> Matcher&lt;String&gt; stringMatcher)</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> BoundedMatcher&lt;View, TextView&gt;(TextView.class) &#123;</div><div class="line"></div><div class="line">      <span class="meta">@Override</span></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">describeTo</span><span class="params">(<span class="keyword">final</span> Description description)</span> </span>&#123;</div><div class="line">        description.appendText(<span class="string">"with error text: "</span>);</div><div class="line">        stringMatcher.describeTo(description);</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="meta">@Override</span></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">matchesSafely</span><span class="params">(<span class="keyword">final</span> TextView textView)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> stringMatcher.matches(textView.getError().toString());</div><div class="line">      &#125;</div><div class="line">    &#125;;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>实现的主要细节如下。 我们通过从withErrorText()返回一个BoundedMatcher来确保匹配器只匹配TextView类的子类。 这使得很容易在BoundedMatcher.matchesSafely()中实现匹配逻辑本身：只需从TextView中获取getError()方法并将其送入下一个匹配器。 最后，我们有一个简单的describeTo()方法的实现，它只用于生成调试输出到控制台。<br><code>CursorMatchers</code><br>Hamcrest的集合匹配器，在Cursor匹配相应的数据行。<br>源码如下<br><figure class="highlight puppet"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">   * Returns a matcher that matches <span class="keyword">a</span> &#123;@<span class="literal">link</span> String&#125; <span class="keyword">value</span> <span class="keyword">at</span> <span class="keyword">a</span> <span class="keyword">given</span> <span class="keyword">column</span> <span class="keyword">index</span></div><div class="line">   * in <span class="keyword">a</span> &#123;@<span class="literal">link</span> Cursor&#125;<span class="keyword">s</span> <span class="keyword">data</span> <span class="keyword">row</span>.</div><div class="line">   * &lt;br&gt;</div><div class="line">   * @param columnIndex int column index</div><div class="line">   * @param value <span class="keyword">a</span> &#123;@<span class="literal">link</span> String&#125; <span class="keyword">value</span> <span class="keyword">to</span> <span class="keyword">match</span></div><div class="line">   */</div><div class="line">  public static CursorMatcher withRowString(int columnIndex, String value) &#123;</div><div class="line">    return withRowString(columnIndex, is(value));</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<p>大部分的场景，大多发生于表单或者滚动menu时。<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">onData(</div><div class="line">    is(<span class="name">instanceOf</span>(<span class="name">Cursor</span>.class)),</div><div class="line">    CursorMatchers.withRowString(<span class="string">"job_title"</span>, is(<span class="string">"Barista"</span>))</div><div class="line">)<span class="comment">;</span></div></pre></td></tr></table></figure></p>
 <p>LayoutMatchers hamcrest的集合匹配以检测典型的布局问题。<br>   例如匹配具有椭圆形文本的TextView元素。 如果文本太长，无法适应TextView，<br>    它可以是椭圆形（’Too long’显示为’Too l …’或’… long’）或切断（’Too<br>    long“显示为”Too l“）。 虽然在某些情况下可以接受，但通常表示不好的用户体验。</p>
-<p>PreferenceMatchers hamcrest匹配器来匹配一组偏好。<br>Preference组件其实就是Android常见UI组件与SharePreferences的组合封装实现。<br><code>onData(Matchers.&lt;Object&gt;allOf(PreferenceMatchers.withKey(&quot;setting-name&quot;))).perform(click());</code><br>PreferenceMatchers还有以下方法可以应用到其他场景<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">withSummary</span><span class="params">(final int resourceId)</span></span></span><br><span class="line"><span class="function"><span class="title">withSummaryText</span><span class="params">(String summary)</span></span></span><br><span class="line"><span class="function"><span class="title">withSummaryText</span><span class="params">(final Matcher&lt;String&gt; summaryMatcher)</span></span></span><br><span class="line"><span class="function"><span class="title">withTitle</span><span class="params">(final int resourceId)</span></span></span><br><span class="line"><span class="function"><span class="title">withTitleText</span><span class="params">(String title)</span></span></span><br><span class="line"><span class="function"><span class="title">withTitleText</span><span class="params">(final Matcher&lt;String&gt; titleMatcher)</span></span></span><br><span class="line"><span class="function"><span class="title">isEnabled</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure></p>
-<p>RootMatchers Root对象的匹配器集合。<br>匹配root装饰视图匹配给定的视图匹配器。<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">onView</span>(<span class="function">withText</span>("<span class="value">Text</span>"))</span><br><span class="line">  <span class="class">.inRoot</span>(<span class="function">withDecorView</span>(<span class="function">not</span>(<span class="function">is</span>(<span class="function">getActivity</span>()<span class="class">.getWindow</span>()<span class="class">.getDecorView</span>()))))</span><br><span class="line">  <span class="class">.perform</span>(<span class="function">click</span>());</span><br></pre></td></tr></table></figure></p>
+<p>PreferenceMatchers hamcrest匹配器来匹配一组偏好。<br>Preference组件其实就是Android常见UI组件与SharePreferences的组合封装实现。<br><code>onData(Matchers.&lt;Object&gt;allOf(PreferenceMatchers.withKey(&quot;setting-name&quot;))).perform(click());</code><br>PreferenceMatchers还有以下方法可以应用到其他场景<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">withSummary</span><span class="params">(final int resourceId)</span></span></div><div class="line"><span class="function"><span class="title">withSummaryText</span><span class="params">(String summary)</span></span></div><div class="line"><span class="function"><span class="title">withSummaryText</span><span class="params">(final Matcher&lt;String&gt; summaryMatcher)</span></span></div><div class="line"><span class="function"><span class="title">withTitle</span><span class="params">(final int resourceId)</span></span></div><div class="line"><span class="function"><span class="title">withTitleText</span><span class="params">(String title)</span></span></div><div class="line"><span class="function"><span class="title">withTitleText</span><span class="params">(final Matcher&lt;String&gt; titleMatcher)</span></span></div><div class="line"><span class="function"><span class="title">isEnabled</span><span class="params">()</span></span></div></pre></td></tr></table></figure></p>
+<p>RootMatchers Root对象的匹配器集合。<br>匹配root装饰视图匹配给定的视图匹配器。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">onView</span>(<span class="selector-tag">withText</span>("<span class="selector-tag">Text</span>"))</div><div class="line">  <span class="selector-class">.inRoot</span>(<span class="selector-tag">withDecorView</span>(<span class="selector-tag">not</span>(<span class="selector-tag">is</span>(<span class="selector-tag">getActivity</span>()<span class="selector-class">.getWindow</span>()<span class="selector-class">.getDecorView</span>()))))</div><div class="line">  <span class="selector-class">.perform</span>(<span class="selector-tag">click</span>());</div></pre></td></tr></table></figure></p>
 <p>RootMatchers还有以下方法可以应用到其他场景</p>
 <table>
 <thead>
@@ -599,6 +616,12 @@ Espresso备忘单是您在开发过程中可以使用的快速参考。 这个�
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/android自动化/" rel="tag"># android自动化</a>
+          
+        </div>
+      
 
       
       
@@ -618,8 +641,8 @@ Espresso备忘单是您在开发过程中可以使用的快速参考。 这个�
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/02/16/code-coverage/" rel="prev" title="100% code coverage != 100% test">
-                100% code coverage != 100% test <i class="fa fa-chevron-right"></i>
+              <a href="/2017/02/16/code-coverage/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -639,27 +662,10 @@ Espresso备忘单是您在开发过程中可以使用的快速参考。 这个�
 
     <div class="post-spread">
       
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_weixin"></a>
-  <a class="jiathis_button_cqq"></a>
-  <a class="jiathis_button_douban"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" >
-  var jiathis_config={
-    hideMore:false
-  }
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
 
       
     </div>
@@ -703,7 +709,7 @@ Espresso备忘单是您在开发过程中可以使用的快速参考。 这个�
                alt="qi lei" />
           <p class="site-author-name" itemprop="name">qi lei</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">小qa 在thoughtworks苦苦挣扎中</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -788,7 +794,7 @@ Espresso备忘单是您在开发过程中可以使用的快速参考。 这个�
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Pisces
   </a>
 </div>
 
@@ -867,6 +873,13 @@ Espresso备忘单是您在开发过程中可以使用的快速参考。 这个�
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>

@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="capybara," />
+  <meta name="keywords" content="capybara - rails - webdriver," />
 
 
 
@@ -96,25 +96,18 @@
 
 
 
-<meta name="description" content="ruby环境配置capycaraCapybara 需要 Ruby 1.9.3或之后的版本. 所以首先我们需要在我们的操作系统中，配置ruby运行环境
-windows
-下载 &amp;amp; 安装 Ruby从http://rubyinstaller.org/或者 http://railsinstaller.org/ 下载已经打包好的安装程序。1.1安装 ruby版本
-安装 DevKit从 http://r">
+<meta name="description" content="ruby环境配置capycaraCapybara 需要 Ruby 1.9.3或之后的版本. 所以首先我们需要在我们的操作系统中，配置ruby运行环境 windows 下载 &amp;amp; 安装 Ruby从http://rubyinstaller.org/或者 http://railsinstaller.org/ 下载已经打包好的安装程序。1.1安装 ruby版本 安装 DevKit从 http://r">
+<meta name="keywords" content="capybara - rails - webdriver">
 <meta property="og:type" content="article">
 <meta property="og:title" content="capybara2--准备环境">
 <meta property="og:url" content="http://yoursite.com/2016/08/26/capybara2/index.html">
-<meta property="og:site_name" content="QA seven's blog">
-<meta property="og:description" content="ruby环境配置capycaraCapybara 需要 Ruby 1.9.3或之后的版本. 所以首先我们需要在我们的操作系统中，配置ruby运行环境
-windows
-下载 &amp;amp; 安装 Ruby从http://rubyinstaller.org/或者 http://railsinstaller.org/ 下载已经打包好的安装程序。1.1安装 ruby版本
-安装 DevKit从 http://r">
-<meta property="og:updated_time" content="2017-05-04T07:40:30.000Z">
+<meta property="og:site_name" content="QA seven&#39;s blog">
+<meta property="og:description" content="ruby环境配置capycaraCapybara 需要 Ruby 1.9.3或之后的版本. 所以首先我们需要在我们的操作系统中，配置ruby运行环境 windows 下载 &amp;amp; 安装 Ruby从http://rubyinstaller.org/或者 http://railsinstaller.org/ 下载已经打包好的安装程序。1.1安装 ruby版本 安装 DevKit从 http://r">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-25T09:15:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="capybara2--准备环境">
-<meta name="twitter:description" content="ruby环境配置capycaraCapybara 需要 Ruby 1.9.3或之后的版本. 所以首先我们需要在我们的操作系统中，配置ruby运行环境
-windows
-下载 &amp;amp; 安装 Ruby从http://rubyinstaller.org/或者 http://railsinstaller.org/ 下载已经打包好的安装程序。1.1安装 ruby版本
-安装 DevKit从 http://r">
+<meta name="twitter:description" content="ruby环境配置capycaraCapybara 需要 Ruby 1.9.3或之后的版本. 所以首先我们需要在我们的操作系统中，配置ruby运行环境 windows 下载 &amp;amp; 安装 Ruby从http://rubyinstaller.org/或者 http://railsinstaller.org/ 下载已经打包好的安装程序。1.1安装 ruby版本 安装 DevKit从 http://r">
 
 
 
@@ -122,8 +115,8 @@ windows
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -174,7 +167,7 @@ windows
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -220,6 +213,26 @@ windows
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -231,7 +244,7 @@ windows
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -339,7 +352,7 @@ windows
       
 
       
-        <h2 id="ruby_u73AF_u5883_u914D_u7F6E"><a href="#ruby_u73AF_u5883_u914D_u7F6E" class="headerlink" title="ruby环境配置"></a>ruby环境配置</h2><p>capycara<br>Capybara 需要 Ruby 1.9.3或之后的版本. 所以首先我们需要在我们的操作系统中，配置ruby运行环境</p>
+        <h2 id="ruby环境配置"><a href="#ruby环境配置" class="headerlink" title="ruby环境配置"></a>ruby环境配置</h2><p>capycara<br>Capybara 需要 Ruby 1.9.3或之后的版本. 所以首先我们需要在我们的操作系统中，配置ruby运行环境</p>
 <h3 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h3><ol>
 <li>下载 &amp; 安装 Ruby<br>从<a href="http://rubyinstaller.org/或者" target="_blank" rel="external">http://rubyinstaller.org/或者</a> <a href="http://railsinstaller.org/" target="_blank" rel="external">http://railsinstaller.org/</a> 下载已经打包好的安装程序。<br>1.1安装 ruby版本</li>
 <li>安装 DevKit<br>从 <a href="http://rubyinstaller.org/downloads/下载安装DevKit" target="_blank" rel="external">http://rubyinstaller.org/downloads/下载安装DevKit</a><br>2.1 RubyInstaller Development Kit (DevKit)的安装<br>在使用RubyGems安装Ruby on Rails的同时，还有几个一起被安装的类库。这些类库中，有一些是保持C语言编写的代码的形式来发布的，它们需要通过使用“gcc”编译器等结合环境一起来编译，但在Windows上是不能用gcc来编译的。<br>安装了本次所介绍的“RubyInstaller Development Kit (DevKit)”后，编译器就可以很容易地安装使用所需的类库。</li>
@@ -357,33 +370,33 @@ windows
 <p>利用uru，这个工具可以帮助我们在windows系统上 管理多个ruby版本<br>下载安装uru</p>
 <ol>
 <li><p>安装uru<br>解压uru到某一目录<br>例如C:\tools下<br>运行以下命令安装</p>
-<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">C:</span>\tools&gt; uru_rt admin install</span><br></pre></td></tr></table></figure>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">C:</span>\tools&gt; uru_rt admin install</div></pre></td></tr></table></figure>
 </li>
 <li><p>安装ruby版本，可以安装任意个ruby版本</p>
 </li>
 <li><p>在uru中注册ruby版本</p>
 </li>
 </ol>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">C</span>:\&gt; <span class="tag">uru</span> <span class="tag">admin</span> <span class="tag">add</span> <span class="tag">c</span>:\<span class="tag">ruby</span>\<span class="tag">jruby-1</span><span class="class">.7</span><span class="class">.18</span>\<span class="tag">bin</span>\</span><br><span class="line"><span class="tag">---</span>&gt; <span class="tag">Registered</span> <span class="tag">jruby</span> <span class="tag">at</span> `<span class="tag">c</span>:\<span class="tag">ruby</span>\<span class="tag">jruby-1</span><span class="class">.7</span><span class="class">.18</span>\<span class="tag">bin</span>` <span class="tag">as</span> `1718`</span><br><span class="line"></span><br><span class="line"><span class="tag">C</span>:\&gt; <span class="tag">uru</span> <span class="tag">ls</span></span><br><span class="line">    1718        : <span class="tag">jruby</span> 1<span class="class">.7</span><span class="class">.18</span> (1<span class="class">.9</span><span class="class">.3p551</span>) 2014<span class="tag">-12-22</span> 625381<span class="tag">c</span> <span class="tag">on</span> <span class="tag">Java</span> <span class="tag">HotSpot</span>(<span class="tag">TM</span>) ...</span><br><span class="line">    193         : <span class="tag">ruby</span> 1<span class="class">.9</span><span class="class">.3p551</span> (2014<span class="tag">-11-13</span>) <span class="attr_selector">[i386-mingw32]</span></span><br><span class="line">    215         : <span class="tag">ruby</span> 2<span class="class">.1</span><span class="class">.5p273</span> (2014<span class="tag">-11-13</span> <span class="tag">revision</span> 48405) <span class="attr_selector">[x64-mingw32]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">C</span>:\&gt; <span class="selector-tag">uru</span> <span class="selector-tag">admin</span> <span class="selector-tag">add</span> <span class="selector-tag">c</span>:\<span class="selector-tag">ruby</span>\<span class="selector-tag">jruby-1</span><span class="selector-class">.7</span><span class="selector-class">.18</span>\<span class="selector-tag">bin</span>\</div><div class="line"><span class="selector-tag">---</span>&gt; <span class="selector-tag">Registered</span> <span class="selector-tag">jruby</span> <span class="selector-tag">at</span> `<span class="selector-tag">c</span>:\<span class="selector-tag">ruby</span>\<span class="selector-tag">jruby-1</span><span class="selector-class">.7</span><span class="selector-class">.18</span>\<span class="selector-tag">bin</span>` <span class="selector-tag">as</span> `1718`</div><div class="line"></div><div class="line"><span class="selector-tag">C</span>:\&gt; <span class="selector-tag">uru</span> <span class="selector-tag">ls</span></div><div class="line">    1718        : <span class="selector-tag">jruby</span> 1<span class="selector-class">.7</span><span class="selector-class">.18</span> (1<span class="selector-class">.9</span><span class="selector-class">.3p551</span>) 2014<span class="selector-tag">-12-22</span> 625381<span class="selector-tag">c</span> <span class="selector-tag">on</span> <span class="selector-tag">Java</span> <span class="selector-tag">HotSpot</span>(<span class="selector-tag">TM</span>) ...</div><div class="line">    193         : <span class="selector-tag">ruby</span> 1<span class="selector-class">.9</span><span class="selector-class">.3p551</span> (2014<span class="selector-tag">-11-13</span>) <span class="selector-attr">[i386-mingw32]</span></div><div class="line">    215         : <span class="selector-tag">ruby</span> 2<span class="selector-class">.1</span><span class="selector-class">.5p273</span> (2014<span class="selector-tag">-11-13</span> <span class="selector-tag">revision</span> 48405) <span class="selector-attr">[x64-mingw32]</span></div></pre></td></tr></table></figure>
 <p>详细操作命令查看<br><a href="http://www.neverletdown.net/2015/08/managing-multiple-ruby-versions-with-uru.html" target="_blank" rel="external">http://www.neverletdown.net/2015/08/managing-multiple-ruby-versions-with-uru.html</a></p>
 <p><strong>强烈不建议用windows来开发,原因请查看<br><a href="https://bitbucket.org/jonforums/uru" target="_blank" rel="external">https://bitbucket.org/jonforums/uru</a>
 </strong></p>
 <p>linux（Ubuntu）或者mac os更适合你用来开发。<br>详细请看 <a href="https://ruby-china.org/topics/1020" target="_blank" rel="external">https://ruby-china.org/topics/1020</a></p>
 <h3 id="linux-ubuntu"><a href="#linux-ubuntu" class="headerlink" title="linux-ubuntu"></a>linux-ubuntu</h3><p>Installing Ruby</p>
-<p>第一步安装配置ruby环境所需要的一些基础库<br><figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="built_in">get</span> <span class="keyword">update</span></span><br><span class="line">sudo apt-<span class="built_in">get</span> install git-core curl zlib1g-<span class="built_in">dev</span> build-essential libssl-<span class="built_in">dev</span> libreadline-<span class="built_in">dev</span> libyaml-<span class="built_in">dev</span> libsqlite3-<span class="built_in">dev</span> sqlite3 libxml2-<span class="built_in">dev</span> libxslt1-<span class="built_in">dev</span> libcurl4-openssl-<span class="built_in">dev</span> python-software-properties libffi-<span class="built_in">dev</span></span><br></pre></td></tr></table></figure></p>
-<p>利用工具来管理的ruby版本，rbenv 就是一个很好的工具<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span></span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/rbenv/rbenv.git ~/.rbenv</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'export PATH="$HOME/.rbenv/bin:$PATH"'</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'eval "$(rbenv init -)"'</span> &gt;&gt; ~/.bashrc</span><br><span class="line">exec $SHELL</span><br><span class="line"></span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/rbenv/<span class="keyword">ruby</span>-build.git ~/.rbenv/plugins/<span class="keyword">ruby</span>-build</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"'</span> &gt;&gt; ~/.bashrc</span><br><span class="line">exec $SHELL</span><br><span class="line"></span><br><span class="line">rbenv install <span class="number">2.3</span>.<span class="number">1</span></span><br><span class="line">rbenv <span class="keyword">global</span> <span class="number">2.3</span>.<span class="number">1</span></span><br><span class="line"><span class="keyword">ruby</span> -<span class="keyword">v</span></span><br><span class="line">http<span class="variable">s:</span>//gorails.<span class="keyword">com</span>/setup/ubuntu/<span class="number">16.10</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="mac_os"><a href="#mac_os" class="headerlink" title="mac os"></a>mac os</h3><p>利用homebrew 来安装管理mac的应用<br>安装 Homebrew</p>
-<p>首先，我们需要安装homebrew。homebrew 允许我们方便从源码安装和编译软件包<br>当homebrew需要安装xcode 命令行工具，输入yes.打开命令行并且运行以下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby <span class="operator">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure></p>
+<p>第一步安装配置ruby环境所需要的一些基础库<br><figure class="highlight q"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt-<span class="built_in">get</span> <span class="keyword">update</span></div><div class="line">sudo apt-<span class="built_in">get</span> install git-core curl zlib1g-<span class="built_in">dev</span> build-essential libssl-<span class="built_in">dev</span> libreadline-<span class="built_in">dev</span> libyaml-<span class="built_in">dev</span> libsqlite3-<span class="built_in">dev</span> sqlite3 libxml2-<span class="built_in">dev</span> libxslt1-<span class="built_in">dev</span> libcurl4-openssl-<span class="built_in">dev</span> python-software-properties libffi-<span class="built_in">dev</span></div></pre></td></tr></table></figure></p>
+<p>利用工具来管理的ruby版本，rbenv 就是一个很好的工具<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cd</span></div><div class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/rbenv/rbenv.git ~/.rbenv</div><div class="line"><span class="keyword">echo</span> <span class="string">'export PATH="$HOME/.rbenv/bin:$PATH"'</span> &gt;&gt; ~/.bashrc</div><div class="line"><span class="keyword">echo</span> <span class="string">'eval "$(rbenv init -)"'</span> &gt;&gt; ~/.bashrc</div><div class="line">exec $SHELL</div><div class="line"></div><div class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/rbenv/<span class="keyword">ruby</span>-build.git ~/.rbenv/plugins/<span class="keyword">ruby</span>-build</div><div class="line"><span class="keyword">echo</span> <span class="string">'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"'</span> &gt;&gt; ~/.bashrc</div><div class="line">exec $SHELL</div><div class="line"></div><div class="line">rbenv install <span class="number">2.3</span>.<span class="number">1</span></div><div class="line">rbenv <span class="keyword">global</span> <span class="number">2.3</span>.<span class="number">1</span></div><div class="line"><span class="keyword">ruby</span> -v</div><div class="line">http<span class="variable">s:</span>//gorails.<span class="keyword">com</span>/setup/ubuntu/<span class="number">16.10</span></div></pre></td></tr></table></figure></p>
+<h3 id="mac-os"><a href="#mac-os" class="headerlink" title="mac os"></a>mac os</h3><p>利用homebrew 来安装管理mac的应用<br>安装 Homebrew</p>
+<p>首先，我们需要安装homebrew。homebrew 允许我们方便从源码安装和编译软件包<br>当homebrew需要安装xcode 命令行工具，输入yes.打开命令行并且运行以下命令：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/<span class="keyword">install</span>/<span class="keyword">master</span>/<span class="keyword">install</span>)<span class="string">"</span></div></pre></td></tr></table></figure></p>
 <p>Installing Ruby</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew <span class="operator"><span class="keyword">install</span> rbenv ruby-<span class="keyword">build</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">brew </span><span class="keyword">install </span>rbenv ruby-<span class="keyword">build</span></div></pre></td></tr></table></figure>
 <p>Add rbenv to bash so that it loads every time you open a terminal</p>
-<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo '<span class="keyword">if</span> which rbenv &gt; /dev/<span class="keyword">null</span>; <span class="keyword">then</span> eval <span class="string">"$(rbenv init -)"</span>; fi' &gt;&gt; ~/.bash_profile</span><br><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">echo</span> '<span class="keyword">if</span> which rbenv &gt; <span class="string">/dev/null</span>; then eval <span class="string">"$(rbenv init -)"</span>; fi' &gt;&gt; ~<span class="string">/.bash_profile</span></div><div class="line">source ~<span class="string">/.bash_profile</span></div></pre></td></tr></table></figure>
 <p>Install Ruby</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rbenv install <span class="number">2.3</span><span class="number">.1</span></span><br><span class="line">rbenv global <span class="number">2.3</span><span class="number">.1</span></span><br><span class="line">ruby -v</span><br></pre></td></tr></table></figure>
-<h2 id="u5B89_u88C5capybara"><a href="#u5B89_u88C5capybara" class="headerlink" title="安装capybara"></a>安装capybara</h2><h3 id="u5B89_u88C5_u7CFB_u7EDF_u4F9D_u8D56_u5E93"><a href="#u5B89_u88C5_u7CFB_u7EDF_u4F9D_u8D56_u5E93" class="headerlink" title="安装系统依赖库"></a>安装系统依赖库</h3><p>在某些操作系统中ruby环境可能需要一些第三方库的支持，通常是出于性能方面的原因，ruby是一种解释性语言所以在处理某些任务时，例如解析XML会非常慢，这时把这些任务交给第三方库处理，效率就会成倍增加。<br>对于windows平台，你不用担心第三依赖库的问题，不过你要确保您已经安装了Ruby DevKit;<br>详细说明如何做到这一点，请参阅<a href="http://rubyinstaller.org/add-ons/" target="_blank" rel="external">http://rubyinstaller.org/add-ons/</a> devkit</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">rbenv</span> <span class="selector-tag">install</span> 2<span class="selector-class">.3</span><span class="selector-class">.1</span></div><div class="line"><span class="selector-tag">rbenv</span> <span class="selector-tag">global</span> 2<span class="selector-class">.3</span><span class="selector-class">.1</span></div><div class="line"><span class="selector-tag">ruby</span> <span class="selector-tag">-v</span></div></pre></td></tr></table></figure>
+<h2 id="安装capybara"><a href="#安装capybara" class="headerlink" title="安装capybara"></a>安装capybara</h2><h3 id="安装系统依赖库"><a href="#安装系统依赖库" class="headerlink" title="安装系统依赖库"></a>安装系统依赖库</h3><p>在某些操作系统中ruby环境可能需要一些第三方库的支持，通常是出于性能方面的原因，ruby是一种解释性语言所以在处理某些任务时，例如解析XML会非常慢，这时把这些任务交给第三方库处理，效率就会成倍增加。<br>对于windows平台，你不用担心第三依赖库的问题，不过你要确保您已经安装了Ruby DevKit;<br>详细说明如何做到这一点，请参阅<a href="http://rubyinstaller.org/add-ons/" target="_blank" rel="external">http://rubyinstaller.org/add-ons/</a> devkit</p>
 <p>capybara依赖于nokogirl，一个流行的基于ruby的XML的解析器，该库可能需要以下第三方库的支持：<br>• libxml2<br>• libxml2-dev • libxslt<br>• libxslt-dev<br>对于不同的操作系统安装这些库的方式可能略有不同，对于linux 例如Ubuntu 可以使用apt-get ，对于redhat 请使用yum install 对于mac os x 那么brew 是你最好的选择。<br>完成这些第三方依赖后 我们就可以安装capybara了</p>
-<p>添加以下的代码到你的Gemfile里，并且运行bundle install。<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">gem</span> <span class="string">'capybara'</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="u4EC0_u4E48_u662FBundle"><a href="#u4EC0_u4E48_u662FBundle" class="headerlink" title="什么是Bundle"></a>什么是Bundle</h3><p>相当于多个RubyGems批处理运行。在配置文件gemfilel里说明你的应用依赖哪些第三方包，他自动帮你下载安装多个包，并且会下载这些包依赖的包.<br><a href="http://bundler.io/" target="_blank" rel="external">http://bundler.io/</a></p>
+<p>添加以下的代码到你的Gemfile里，并且运行bundle install。<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">gem</span> <span class="string">'capybara'</span></div></pre></td></tr></table></figure></p>
+<h3 id="什么是Bundle"><a href="#什么是Bundle" class="headerlink" title="什么是Bundle"></a>什么是Bundle</h3><p>相当于多个RubyGems批处理运行。在配置文件gemfilel里说明你的应用依赖哪些第三方包，他自动帮你下载安装多个包，并且会下载这些包依赖的包.<br><a href="http://bundler.io/" target="_blank" rel="external">http://bundler.io/</a></p>
 
       
     </div>
@@ -401,7 +414,7 @@ windows
       
         <div class="post-tags">
           
-            <a href="/tags/capybara/" rel="tag"># capybara</a>
+            <a href="/tags/capybara-rails-webdriver/" rel="tag"># capybara - rails - webdriver</a>
           
         </div>
       
@@ -445,27 +458,10 @@ windows
 
     <div class="post-spread">
       
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_weixin"></a>
-  <a class="jiathis_button_cqq"></a>
-  <a class="jiathis_button_douban"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" >
-  var jiathis_config={
-    hideMore:false
-  }
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
 
       
     </div>
@@ -518,7 +514,7 @@ windows
                alt="qi lei" />
           <p class="site-author-name" itemprop="name">qi lei</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">小qa 在thoughtworks苦苦挣扎中</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -581,7 +577,7 @@ windows
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ruby_u73AF_u5883_u914D_u7F6E"><span class="nav-number">1.</span> <span class="nav-text">ruby环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#windows"><span class="nav-number">1.1.</span> <span class="nav-text">windows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux-ubuntu"><span class="nav-number">1.2.</span> <span class="nav-text">linux-ubuntu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mac_os"><span class="nav-number">1.3.</span> <span class="nav-text">mac os</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u5B89_u88C5capybara"><span class="nav-number">2.</span> <span class="nav-text">安装capybara</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u5B89_u88C5_u7CFB_u7EDF_u4F9D_u8D56_u5E93"><span class="nav-number">2.1.</span> <span class="nav-text">安装系统依赖库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4EC0_u4E48_u662FBundle"><span class="nav-number">2.2.</span> <span class="nav-text">什么是Bundle</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ruby环境配置"><span class="nav-number">1.</span> <span class="nav-text">ruby环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#windows"><span class="nav-number">1.1.</span> <span class="nav-text">windows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux-ubuntu"><span class="nav-number">1.2.</span> <span class="nav-text">linux-ubuntu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mac-os"><span class="nav-number">1.3.</span> <span class="nav-text">mac os</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装capybara"><span class="nav-number">2.</span> <span class="nav-text">安装capybara</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装系统依赖库"><span class="nav-number">2.1.</span> <span class="nav-text">安装系统依赖库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Bundle"><span class="nav-number">2.2.</span> <span class="nav-text">什么是Bundle</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -619,7 +615,7 @@ windows
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Pisces
   </a>
 </div>
 
@@ -698,6 +694,13 @@ windows
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>

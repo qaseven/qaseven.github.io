@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="capybara," />
+  <meta name="keywords" content="capybara - rails - webdriver," />
 
 
 
@@ -96,23 +96,20 @@
 
 
 
-<meta name="description" content="rspec配置我们知道Capybara 只是是一个用来以模拟用户对web应用的操作来测试web应用的工具包，不能真正的称之为测试框架，它需要其他的测试驱动框架来帮助我们完成测试工作。所以我们需要一个测试驱动框架.
-
-RSpec由Steven Baker开发并在2005年发布，全面支持Ruby程序的BDD开发测试方式，并且对于Rails程序有着良好的支持，针对View，Controller和Mode">
+<meta name="description" content="rspec配置我们知道Capybara 只是是一个用来以模拟用户对web应用的操作来测试web应用的工具包，不能真正的称之为测试框架，它需要其他的测试驱动框架来帮助我们完成测试工作。所以我们需要一个测试驱动框架.  RSpec由Steven Baker开发并在2005年发布，全面支持Ruby程序的BDD开发测试方式，并且对于Rails程序有着良好的支持，针对View，Controller和Mode">
+<meta name="keywords" content="capybara - rails - webdriver">
 <meta property="og:type" content="article">
 <meta property="og:title" content="capybara3--rspec配置">
 <meta property="og:url" content="http://yoursite.com/2016/08/30/capybara3/index.html">
-<meta property="og:site_name" content="QA seven's blog">
-<meta property="og:description" content="rspec配置我们知道Capybara 只是是一个用来以模拟用户对web应用的操作来测试web应用的工具包，不能真正的称之为测试框架，它需要其他的测试驱动框架来帮助我们完成测试工作。所以我们需要一个测试驱动框架.
-
-RSpec由Steven Baker开发并在2005年发布，全面支持Ruby程序的BDD开发测试方式，并且对于Rails程序有着良好的支持，针对View，Controller和Mode">
+<meta property="og:site_name" content="QA seven&#39;s blog">
+<meta property="og:description" content="rspec配置我们知道Capybara 只是是一个用来以模拟用户对web应用的操作来测试web应用的工具包，不能真正的称之为测试框架，它需要其他的测试驱动框架来帮助我们完成测试工作。所以我们需要一个测试驱动框架.  RSpec由Steven Baker开发并在2005年发布，全面支持Ruby程序的BDD开发测试方式，并且对于Rails程序有着良好的支持，针对View，Controller和Mode">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/image/rspec.png">
-<meta property="og:updated_time" content="2016-09-01T04:45:20.000Z">
+<meta property="og:updated_time" content="2017-09-25T09:15:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="capybara3--rspec配置">
-<meta name="twitter:description" content="rspec配置我们知道Capybara 只是是一个用来以模拟用户对web应用的操作来测试web应用的工具包，不能真正的称之为测试框架，它需要其他的测试驱动框架来帮助我们完成测试工作。所以我们需要一个测试驱动框架.
-
-RSpec由Steven Baker开发并在2005年发布，全面支持Ruby程序的BDD开发测试方式，并且对于Rails程序有着良好的支持，针对View，Controller和Mode">
+<meta name="twitter:description" content="rspec配置我们知道Capybara 只是是一个用来以模拟用户对web应用的操作来测试web应用的工具包，不能真正的称之为测试框架，它需要其他的测试驱动框架来帮助我们完成测试工作。所以我们需要一个测试驱动框架.  RSpec由Steven Baker开发并在2005年发布，全面支持Ruby程序的BDD开发测试方式，并且对于Rails程序有着良好的支持，针对View，Controller和Mode">
+<meta name="twitter:image" content="http://yoursite.com/image/rspec.png">
 
 
 
@@ -120,8 +117,8 @@ RSpec由Steven Baker开发并在2005年发布，全面支持Ruby程序的BDD开�
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -172,7 +169,7 @@ RSpec由Steven Baker开发并在2005年发布，全面支持Ruby程序的BDD开�
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -218,6 +215,26 @@ RSpec由Steven Baker开发并在2005年发布，全面支持Ruby程序的BDD开�
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -229,7 +246,7 @@ RSpec由Steven Baker开发并在2005年发布，全面支持Ruby程序的BDD开�
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -337,19 +354,19 @@ RSpec由Steven Baker开发并在2005年发布，全面支持Ruby程序的BDD开�
       
 
       
-        <h2 id="rspec_u914D_u7F6E"><a href="#rspec_u914D_u7F6E" class="headerlink" title="rspec配置"></a>rspec配置</h2><p>我们知道Capybara 只是是一个用来以模拟用户对web应用的操作来测试web应用的工具包，不能真正的称之为测试框架，它需要其他的测试驱动框架来帮助我们完成测试工作。所以我们需要一个测试驱动框架.</p>
+        <h2 id="rspec配置"><a href="#rspec配置" class="headerlink" title="rspec配置"></a>rspec配置</h2><p>我们知道Capybara 只是是一个用来以模拟用户对web应用的操作来测试web应用的工具包，不能真正的称之为测试框架，它需要其他的测试驱动框架来帮助我们完成测试工作。所以我们需要一个测试驱动框架.</p>
 <p><img src="/image/rspec.png" alt=""></p>
 <p>RSpec由Steven Baker开发并在2005年发布，全面支持Ruby程序的BDD开发测试方式，并且对于Rails程序有着良好的支持，针对View，Controller和Model每一层都有良好的支持。RSpec目前的最新版本是：3.5。</p>
 <p>它在 BDD 流程的开发中被用来写高可读性的测试，引导并验证你开发的应用程序。</p>
 <p>minitest与rspec都是ruby和rails比较流行的框架。这里我们选择rspec。</p>
-<p>安装rspec很简单,打开command line运行一下操作：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem <span class="keyword">install</span> rspec</span><br></pre></td></tr></table></figure></p>
-<p>或者将rspec 添加到gemfile里<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">gem</span> <span class="string">'rspec'</span></span><br></pre></td></tr></table></figure></p>
+<p>安装rspec很简单,打开command line运行一下操作：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem <span class="keyword">install</span> rspec</div></pre></td></tr></table></figure></p>
+<p>或者将rspec 添加到gemfile里<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">gem</span> <span class="string">'rspec'</span></div></pre></td></tr></table></figure></p>
 <p>执行bundle install 来安装<br>如果你的项目采用的时rails,那么<strong>rspec-rails</strong> 或许更适合你</p>
-<p>在gemfile里添加<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">group <span class="symbol">:development</span>, <span class="symbol">:test</span> <span class="keyword">do</span></span><br><span class="line">  gem <span class="string">'rspec-rails'</span>, <span class="string">'~&gt; 3.4'</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<p>在gemfile里添加<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">group <span class="symbol">:development</span>, <span class="symbol">:test</span> <span class="keyword">do</span></div><div class="line">  gem <span class="string">'rspec-rails'</span>, <span class="string">'~&gt; 3.4'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
 <p>执行 bundle install</p>
 <p>初始化测试目录</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rails generate rspec:<span class="keyword">install</span></span><br></pre></td></tr></table></figure>
-<p>这增加了以下文件用于配置:<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.rspec</span></span><br><span class="line">spec/spec_helper<span class="class">.rb</span></span><br><span class="line">spec/rails_helper.rb</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rails <span class="keyword">generate</span> rspec:install</div></pre></td></tr></table></figure>
+<p>这增加了以下文件用于配置:<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.rspec</div><div class="line">spec/spec_helper.rb</div><div class="line">spec/rails_helper.rb</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -367,7 +384,7 @@ RSpec由Steven Baker开发并在2005年发布，全面支持Ruby程序的BDD开�
       
         <div class="post-tags">
           
-            <a href="/tags/capybara/" rel="tag"># capybara</a>
+            <a href="/tags/capybara-rails-webdriver/" rel="tag"># capybara - rails - webdriver</a>
           
         </div>
       
@@ -411,27 +428,10 @@ RSpec由Steven Baker开发并在2005年发布，全面支持Ruby程序的BDD开�
 
     <div class="post-spread">
       
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_weixin"></a>
-  <a class="jiathis_button_cqq"></a>
-  <a class="jiathis_button_douban"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" >
-  var jiathis_config={
-    hideMore:false
-  }
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
 
       
     </div>
@@ -484,7 +484,7 @@ RSpec由Steven Baker开发并在2005年发布，全面支持Ruby程序的BDD开�
                alt="qi lei" />
           <p class="site-author-name" itemprop="name">qi lei</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">小qa 在thoughtworks苦苦挣扎中</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -547,7 +547,7 @@ RSpec由Steven Baker开发并在2005年发布，全面支持Ruby程序的BDD开�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#rspec_u914D_u7F6E"><span class="nav-number">1.</span> <span class="nav-text">rspec配置</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#rspec配置"><span class="nav-number">1.</span> <span class="nav-text">rspec配置</span></a></li></ol></div>
             
 
           </div>
@@ -585,7 +585,7 @@ RSpec由Steven Baker开发并在2005年发布，全面支持Ruby程序的BDD开�
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Pisces
   </a>
 </div>
 
@@ -664,6 +664,13 @@ RSpec由Steven Baker开发并在2005年发布，全面支持Ruby程序的BDD开�
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
