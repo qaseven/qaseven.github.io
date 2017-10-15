@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="vuex," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="QA seven's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="小QA学习前端系列之练习实践vuex-shopping-cart代码地址https://github.com/vuejs/vuex/tree/dev/examples/shopping-cart 直接 npm install 或者yarn ，安装依赖 之后，npm run dev 运行 页面如下  废话不多说，直接看源码。 源码解析先来看看文件目录  该demo包含了2个module，一个叫car">
+<meta name="keywords" content="vuex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小QA学习前端系列之练习实践vuex-shopping-cart">
+<meta property="og:url" content="http://yoursite.com/2017/10/15/vuex-shopping-cart/index.html">
+<meta property="og:site_name" content="QA seven&#39;s blog">
+<meta property="og:description" content="小QA学习前端系列之练习实践vuex-shopping-cart代码地址https://github.com/vuejs/vuex/tree/dev/examples/shopping-cart 直接 npm install 或者yarn ，安装依赖 之后，npm run dev 运行 页面如下  废话不多说，直接看源码。 源码解析先来看看文件目录  该demo包含了2个module，一个叫car">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/source/image/vuex-demo.png">
+<meta property="og:image" content="http://yoursite.com/source/image/vuex-demo2.png">
+<meta property="og:updated_time" content="2017-10-15T15:56:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小QA学习前端系列之练习实践vuex-shopping-cart">
+<meta name="twitter:description" content="小QA学习前端系列之练习实践vuex-shopping-cart代码地址https://github.com/vuejs/vuex/tree/dev/examples/shopping-cart 直接 npm install 或者yarn ，安装依赖 之后，npm run dev 运行 页面如下  废话不多说，直接看源码。 源码解析先来看看文件目录  该demo包含了2个module，一个叫car">
+<meta name="twitter:image" content="http://yoursite.com/source/image/vuex-demo.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/15/vuex-shopping-cart/"/>
+
+
+
+
+
+  <title>小QA学习前端系列之练习实践vuex-shopping-cart | QA seven's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">QA seven's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/15/vuex-shopping-cart/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">小QA学习前端系列之练习实践vuex-shopping-cart</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-15T22:29:44+08:00">
+                2017-10-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="小QA学习前端系列之练习实践vuex-shopping-cart"><a href="#小QA学习前端系列之练习实践vuex-shopping-cart" class="headerlink" title="小QA学习前端系列之练习实践vuex-shopping-cart"></a>小QA学习前端系列之练习实践vuex-shopping-cart</h1><h2 id="代码地址"><a href="#代码地址" class="headerlink" title="代码地址"></a>代码地址</h2><p><a href="https://github.com/vuejs/vuex/tree/dev/examples/shopping-cart" target="_blank" rel="external">https://github.com/vuejs/vuex/tree/dev/examples/shopping-cart</a></p>
+<p>直接 npm install 或者yarn ，安装依赖</p>
+<p>之后，npm run dev 运行</p>
+<p>页面如下</p>
+<p><img src="/source/image/vuex-demo.png" alt="shop"></p>
+<p>废话不多说，直接看源码。</p>
+<h2 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a>源码解析</h2><p>先来看看文件目录</p>
+<p><img src="/source/image/vuex-demo2.png" alt="文件"></p>
+<p>该demo包含了2个module，一个叫cart,另一个叫product.</p>
+<p>先看cart<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#shop是获取数据的api</span></div><div class="line">import shop <span class="keyword">from</span> '../../api/shop'</div><div class="line"><span class="comment">#引入了 mutation-types 使用常量替代 Mutation 事件类型</span></div><div class="line">import * as types <span class="keyword">from</span> '../mutation-types'</div><div class="line"></div><div class="line">// initial <span class="keyword">state</span> 初始化了<span class="number">2</span>个状态也可叫数据对象，added:</div><div class="line">// shape: [&#123; id, quantity &#125;]</div><div class="line">const <span class="keyword">state</span> = &#123;</div><div class="line">  added: [],</div><div class="line">  checkoutStatus: null</div><div class="line">&#125;</div><div class="line"></div><div class="line">// getters getters过滤条件必须是bollean值.根据bolean的条件返回具体数据对象。null在JavaScript中if条件下 均被视为false</div><div class="line"></div><div class="line">const getters = &#123;</div><div class="line">  checkoutStatus: <span class="keyword">state</span> =&gt; <span class="keyword">state</span>.checkoutStatus</div><div class="line">&#125;</div><div class="line"></div><div class="line">// actions 在actions中提交mutation，并且可以包含任何的异步操作。actions可以理解为通过将mutations里面处里数据的方法变成可异步的处理数据的方法，简单的说就是异步操作数据（但是还是通过mutation来操作，因为只有它能操作</div><div class="line"></div><div class="line">const actions = &#123;</div><div class="line">  checkout (&#123; commit, <span class="keyword">state</span> &#125;, products) &#123;</div><div class="line">    //解构 <span class="keyword">state</span>.added对象里面的值，并将至存放到savedCartItems对象中</div><div class="line">    </div><div class="line">    const savedCartItems = [...<span class="keyword">state</span>.added]</div><div class="line"></div><div class="line">    commit(types.CHECKOUT_REQUEST)</div><div class="line">    shop.buyProducts(</div><div class="line">      products,</div><div class="line">      () =&gt; commit(types.CHECKOUT_SUCCESS),</div><div class="line">      () =&gt; commit(types.CHECKOUT_FAILURE, &#123; savedCartItems &#125;)</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// mutations 在Vuex中store数据改变的唯一方法就是mutation</div><div class="line"><span class="variable">&lt;!-- </span></div><div class="line"><span class="variable">mutations,里面装着一些改变数据方法的集合，这是Veux设计很重要的一点，就是把处理数据逻辑方法全部放在mutations里面，使得数据和视图分离。 --&gt;</span></div><div class="line"></div><div class="line">const mutations = &#123;</div><div class="line">  [types.ADD_TO_CART] (<span class="keyword">state</span>, &#123; id &#125;) &#123;</div><div class="line">    <span class="keyword">state</span>.lastCheckout = null</div><div class="line">    const record = <span class="keyword">state</span>.added.find(p =&gt; p.id === id)</div><div class="line">    if (!record) &#123;</div><div class="line">      <span class="keyword">state</span>.added.push(&#123;</div><div class="line">        id,</div><div class="line">        quantity: <span class="number">1</span></div><div class="line">      &#125;)</div><div class="line">    &#125; else &#123;</div><div class="line">      record.quantity++</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  [types.CHECKOUT_REQUEST] (<span class="keyword">state</span>) &#123;</div><div class="line">    // clear cart</div><div class="line">    <span class="keyword">state</span>.added = []</div><div class="line">    <span class="keyword">state</span>.checkoutStatus = null</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  [types.CHECKOUT_SUCCESS] (<span class="keyword">state</span>) &#123;</div><div class="line">    <span class="keyword">state</span>.checkoutStatus = 'successful'</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  [types.CHECKOUT_FAILURE] (<span class="keyword">state</span>, &#123; savedCartItems &#125;) &#123;</div><div class="line">    // rollback <span class="keyword">to</span> the cart saved before sending the request</div><div class="line">    <span class="keyword">state</span>.added = savedCartItems</div><div class="line">    <span class="keyword">state</span>.checkoutStatus = 'failed'</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export <span class="keyword">default</span> &#123;</div><div class="line">  <span class="keyword">state</span>,</div><div class="line">  getters,</div><div class="line">  actions,</div><div class="line">  mutations</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在来看看 product<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">import shop <span class="keyword">from</span> '../../api/shop'</div><div class="line">import * as types <span class="keyword">from</span> '../mutation-types'</div><div class="line"></div><div class="line">// initial <span class="keyword">state</span></div><div class="line">const <span class="keyword">state</span> = &#123;</div><div class="line">  <span class="literal">all</span>: []</div><div class="line">&#125;</div><div class="line"></div><div class="line">// getters JS中数组(不管是不是空的)属于对象类型，对象类型转为boolean类型(内部对应ToBoolean()操作)时都是true。</div><div class="line"></div><div class="line">const getters = &#123;</div><div class="line">  <span class="literal">all</span>Products: <span class="keyword">state</span> =&gt; <span class="keyword">state</span>.<span class="literal">all</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">// actions</div><div class="line">const actions = &#123;</div><div class="line">  getAllProducts (&#123; commit &#125;) &#123;</div><div class="line">    shop.getProducts(products =&gt; &#123;</div><div class="line">      commit(types.RECEIVE_PRODUCTS, &#123; products &#125;)</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// mutations</div><div class="line">const mutations = &#123;</div><div class="line">  [types.RECEIVE_PRODUCTS] (<span class="keyword">state</span>, &#123; products &#125;) &#123;</div><div class="line">    <span class="keyword">state</span>.<span class="literal">all</span> = products</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  [types.ADD_TO_CART] (<span class="keyword">state</span>, &#123; id &#125;) &#123;</div><div class="line">    <span class="keyword">state</span>.<span class="literal">all</span>.find(p =&gt; p.id === id).inventory--</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export <span class="keyword">default</span> &#123;</div><div class="line">  <span class="keyword">state</span>,</div><div class="line">  getters,</div><div class="line">  actions,</div><div class="line">  mutations</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>看完了 module,再来看看 action<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这个是总得action 每个module 都可以有自己的action</span></div><div class="line"><span class="keyword">import</span> * <span class="keyword">as</span> types <span class="keyword">from</span> <span class="string">'./mutation-types'</span></div><div class="line"><span class="comment">//很简单 判断存货是否大于0 然后提交给mutation具体id</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> addToCart = <span class="function">(<span class="params">&#123; commit &#125;, product</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (product.inventory &gt; <span class="number">0</span>) &#123;</div><div class="line">    commit(types.ADD_TO_CART, &#123;</div><div class="line">      id: product.id</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>继续 再来看看总得getter<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//查询 返回对象</div><div class="line">export const cartProducts = <span class="keyword">state</span> =&gt; &#123;</div><div class="line">  return <span class="keyword">state</span>.cart.added.map((&#123; id, quantity &#125;) =&gt; &#123;</div><div class="line">    const product = <span class="keyword">state</span>.products.<span class="literal">all</span>.find(p =&gt; p.id === id)</div><div class="line">    return &#123;</div><div class="line">      title: product.title,</div><div class="line">      price: product.price,</div><div class="line">      quantity</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>再来看定义所有mutation类型文件mutation-types.js<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> ADD_TO_CART = <span class="string">'ADD_TO_CART'</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> CHECKOUT_REQUEST = <span class="string">'CHECKOUT_REQUEST'</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> CHECKOUT_SUCCESS = <span class="string">'CHECKOUT_SUCCESS'</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> CHECKOUT_FAILURE = <span class="string">'CHECKOUT_FAILURE'</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> RECEIVE_PRODUCTS = <span class="string">'RECEIVE_PRODUCTS'</span></div></pre></td></tr></table></figure></p>
+<p>最后index.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></div><div class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></div><div class="line"><span class="keyword">import</span> * <span class="keyword">as</span> actions <span class="keyword">from</span> <span class="string">'./actions'</span></div><div class="line"><span class="keyword">import</span> * <span class="keyword">as</span> getters <span class="keyword">from</span> <span class="string">'./getters'</span></div><div class="line"><span class="keyword">import</span> cart <span class="keyword">from</span> <span class="string">'./modules/cart'</span></div><div class="line"><span class="keyword">import</span> products <span class="keyword">from</span> <span class="string">'./modules/products'</span></div><div class="line"><span class="keyword">import</span> createLogger <span class="keyword">from</span> <span class="string">'../../../src/plugins/logger'</span></div><div class="line"></div><div class="line">Vue.use(Vuex)</div><div class="line"></div><div class="line"><span class="keyword">const</span> debug = process.env.NODE_ENV !== <span class="string">'production'</span></div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Vuex.Store(&#123;</div><div class="line">  actions,</div><div class="line">  getters,</div><div class="line">  modules: &#123;</div><div class="line">    cart,</div><div class="line">    products</div><div class="line">  &#125;,</div><div class="line">  strict: debug,</div><div class="line">  plugins: debug ? [createLogger()] : []</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>至此 所有vuex介绍完毕，然后让我们看这些vuex怎么应用的component中</p>
+<p>先来到cart组件</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cart"</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Your Cart<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-show</span>=<span class="string">"!products.length"</span>&gt;</span><span class="tag">&lt;<span class="name">i</span>&gt;</span>Please add some products to cart.<span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></div><div class="line"><span class="xml">      <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"p in products"</span>&gt;</span></span></div><div class="line"><span class="xml">        </span><span class="template-variable">&#123;&#123; p.title &#125;&#125;</span><span class="xml"> - </span><span class="template-variable">&#123;&#123; p.price | currency &#125;&#125;</span><span class="xml"> x </span><span class="template-variable">&#123;&#123; p.quantity &#125;&#125;</span><span class="xml"></span></div><div class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Total: </span><span class="template-variable">&#123;&#123; total | currency &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">button</span> <span class="attr">:disabled</span>=<span class="string">"!products.length"</span> @<span class="attr">click</span>=<span class="string">"checkout(products)"</span>&gt;</span>Checkout<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-show</span>=<span class="string">"checkoutStatus"</span>&gt;</span>Checkout </span><span class="template-variable">&#123;&#123; checkoutStatus &#125;&#125;</span><span class="xml">.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span></div><div class="line"><span class="xml">//通过mapgetters方法解构数据</span></div><div class="line"><span class="xml">import &#123; mapGetters &#125; from 'vuex'</span></div><div class="line"><span class="xml">export default &#123;</span></div><div class="line"><span class="xml">  computed: &#123;</span></div><div class="line"><span class="xml">    ...mapGetters(&#123;</span></div><div class="line"><span class="xml">      products: 'cartProducts',</span></div><div class="line"><span class="xml">      checkoutStatus: 'checkoutStatus'</span></div><div class="line"><span class="xml">    &#125;),</span></div><div class="line"><span class="xml">    total () &#123;</span></div><div class="line"><span class="xml">      return this.products.reduce((total, p) =&gt; &#123;</span></div><div class="line"><span class="xml">        return total + p.price * p.quantity</span></div><div class="line"><span class="xml">      &#125;, 0)</span></div><div class="line"><span class="xml">    &#125;</span></div><div class="line"><span class="xml">  &#125;,</span></div><div class="line"><span class="xml">  </span></div><div class="line"><span class="xml">  methods: &#123;</span></div><div class="line"><span class="xml">    //分发action</span></div><div class="line"><span class="xml">    checkout (products) &#123;</span></div><div class="line"><span class="xml">      this.$store.dispatch('checkout', products)</span></div><div class="line"><span class="xml">    &#125;</span></div><div class="line"><span class="xml">  &#125;</span></div><div class="line"><span class="xml">&#125;</span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p>在来看看<br><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"p in products"</span>&gt;</span></span></div><div class="line"><span class="xml">      </span><span class="template-variable">&#123;&#123; p.title &#125;&#125;</span><span class="xml"> - </span><span class="template-variable">&#123;&#123; p.price | currency &#125;&#125;</span><span class="xml"></span></div><div class="line"><span class="xml">      <span class="tag">&lt;<span class="name">br</span>&gt;</span></span></div><div class="line"><span class="xml">      <span class="tag">&lt;<span class="name">button</span></span></span></div><div class="line"><span class="xml">        :disabled="!p.inventory"</span></div><div class="line"><span class="xml">        @click="addToCart(p)"&gt;</span></div><div class="line"><span class="xml">        Add to cart</span></div><div class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span></div><div class="line"><span class="xml">import &#123; mapGetters, mapActions &#125; from 'vuex'</span></div><div class="line"><span class="xml">export default &#123;</span></div><div class="line"><span class="xml">  computed: mapGetters(&#123;</span></div><div class="line"><span class="xml">    products: 'allProducts'</span></div><div class="line"><span class="xml">  &#125;),</span></div><div class="line"><span class="xml">  methods: mapActions([</span></div><div class="line"><span class="xml">    'addToCart'</span></div><div class="line"><span class="xml">  ]),</span></div><div class="line"><span class="xml">  created () &#123;</span></div><div class="line"><span class="xml">    this.$store.dispatch('getAllProducts')</span></div><div class="line"><span class="xml">  &#125;</span></div><div class="line"><span class="xml">&#125;</span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<p>最后将这两个component 引入到app.vue<br><figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Shopping Cart Example<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Products<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">product-list</span>&gt;</span><span class="tag">&lt;/<span class="name">product-list</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">cart</span>&gt;</span><span class="tag">&lt;/<span class="name">cart</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span></div><div class="line"><span class="xml">import ProductList from './ProductList.vue'</span></div><div class="line"><span class="xml">import Cart from './Cart.vue'</span></div><div class="line"><span class="xml">export default </span><span class="template-variable">&#123;</span></div><div class="line"><span class="template-variable">  components: &#123; ProductList, Cart &#125;</span><span class="xml"></span></div><div class="line"><span class="xml">&#125;</span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<p>基本上这个demo就介绍完毕</p>
+<p>下来我通过vue-cli初始化一个新项目，将上面所有的代码进行练习 谢谢大家欣赏。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vuex/" rel="tag"># vuex</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/12/vuex/" rel="next" title="小QA学习前端系列之vuex">
+                <i class="fa fa-chevron-left"></i> 小QA学习前端系列之vuex
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="qi lei" />
+          <p class="site-author-name" itemprop="name">qi lei</p>
+           
+              <p class="site-description motion-element" itemprop="description">小qa 在thoughtworks苦苦挣扎中</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#小QA学习前端系列之练习实践vuex-shopping-cart"><span class="nav-number">1.</span> <span class="nav-text">小QA学习前端系列之练习实践vuex-shopping-cart</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码地址"><span class="nav-number">1.1.</span> <span class="nav-text">代码地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码解析"><span class="nav-number">1.2.</span> <span class="nav-text">源码解析</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">qi lei</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
