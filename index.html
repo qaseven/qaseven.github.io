@@ -285,6 +285,140 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/17/vue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/17/vue/" itemprop="url">小QA学习前端系列之vue实例</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-17T10:35:18+08:00">
+                2017-10-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="小QA学习前端系列之vue实例"><a href="#小QA学习前端系列之vue实例" class="headerlink" title="小QA学习前端系列之vue实例"></a>小QA学习前端系列之vue实例</h1><p>不管是学习任何语言和框架，或者工具，都应该先把官方文档略读一遍，之后找个demo项目，开始看代码，然后照着人家的demo 敲一遍，基本上就入门，我是笨人，这是我认为学习效率最高的方式。<br>API:<a href="https://cn.vuejs.org/v2/api/#v-bind" target="_blank" rel="external">https://cn.vuejs.org/v2/api/#v-bind</a></p>
+<h2 id="啥是vue"><a href="#啥是vue" class="headerlink" title="啥是vue"></a>啥是vue</h2><p>就是一个前端框架，他吸收了react的优点例如：</p>
+<pre><code>1. 使用 Virtual DOM
+2. 提供了响应式 (Reactive) 和组件化 (Composable) 的视图组件。
+3. 将注意力集中保持在核心库，而将其他功能如路由和全局状态管理交给相关的库。
+</code></pre><p>同时它也融合了AngularJS 的一些优点</p>
+<pre><code>1. 数据绑定
+2. 指令与组件
+</code></pre><p>还有其他的一些优秀框架例如konckout等<br>详细内容大家可以看<br><a href="https://cn.vuejs.org/v2/guide/comparison.html" target="_blank" rel="external">https://cn.vuejs.org/v2/guide/comparison.html</a></p>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p><img src="https://cn.vuejs.org/images/lifecycle.png" alt="https://cn.vuejs.org/images/lifecycle.png
+"><br>现在的软件设计都利用了生命周期概念，帮助在开发者在开发中更好的处理数据，例如Android的生命周期，React的生命周期。<br>VUE大概的流程如下<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">beforeCreateed<span class="function"><span class="params">()</span>-&gt;</span> created<span class="function"><span class="params">()</span>-&gt;</span>beforeMount<span class="function"><span class="params">()</span>-&gt;</span>mounted()&#123;<span class="function">-&gt;</span>beforeUpdate()</div><div class="line"></div><div class="line"><span class="function">-&gt;</span>updated<span class="function"><span class="params">()</span>&#125;-&gt;</span>beforeDestroy<span class="function"><span class="params">()</span>-&gt;</span>destroyed()</div><div class="line">我们先大致了解下 vue 的生命周期，这对于以后我们看别人的代码有很大好处</div></pre></td></tr></table></figure></p>
+<h2 id="开始实践"><a href="#开始实践" class="headerlink" title="开始实践"></a>开始实践</h2><h3 id="vue实例"><a href="#vue实例" class="headerlink" title="vue实例"></a>vue实例</h3><p>创建vue实例</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> <span class="type">Vue</span>(&#123;</div><div class="line">  <span class="comment">// 选项</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="数据与方法"><a href="#数据与方法" class="headerlink" title="数据与方法"></a>数据与方法</h3><p>data 对象中能找到的所有的属性。<br>值得注意的是只有当实例被创建时 data 中存在的属性是响应式的。<br>所以后面添加的属性 <strong>都无效</strong><br>Vue 实例暴露了一些有用的实例属性与方法。都有前缀$<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">var</span> <span class="built_in">data</span> = &#123; a: <span class="number">1</span> &#125;</div><div class="line"><span class="built_in">var</span> vm = <span class="literal">new</span> Vue(&#123;</div><div class="line">  el: <span class="string">'#example'</span>,</div><div class="line">  <span class="built_in">data</span>: <span class="built_in">data</span></div><div class="line">&#125;)</div><div class="line">vm.$data === <span class="built_in">data</span> <span class="comment">// =&gt; true</span></div><div class="line">vm.$el === document.getElementById(<span class="string">'example'</span>) <span class="comment">// =&gt; true</span></div><div class="line"><span class="comment">// $watch 是一个实例方法</span></div><div class="line">vm.$watch(<span class="string">'a'</span>, function (newValue, oldValue) &#123;</div><div class="line">  <span class="comment">// 这个回调将在 `vm.a` 改变后调用</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>具体的API如下<a href="https://cn.vuejs.org/v2/api/#实例属性" target="_blank" rel="external">https://cn.vuejs.org/v2/api/#实例属性</a><br>因为我已经熟悉了node与webpack，所以直接上vue-cli 初始化项目<br>不熟悉的同学 还是建议在<br><a href="https://jsfiddle.net/chrisvfritz/50wL7mdz/" target="_blank" rel="external">https://jsfiddle.net/chrisvfritz/50wL7mdz/</a><br>这个模板下学习<br>OK 第一节完毕 明天继续按着文档看模板语法</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/15/vuex-shopping-cart/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2058,246 +2192,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/31/qaquilty/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="qi lei">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QA seven's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/31/qaquilty/" itemprop="url">从QA的角度来谈谈代码质量的改进</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-31T22:15:46+08:00">
-                2016-10-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>大部分人看到这个题目时，直接的反应是QA关心代码质量干嘛，能看懂代码吗？怎么给dev feedback？</p>
-<p><img src="/image/qa.gif" alt="qa"></p>
-<p>如果还有人持这样的观点后，那么我只能说too young too simple。<br>首先我们得谈谈什么是代码质量？<br>创建优秀的代码涉及到正确性、可维护性甚至优美性。<br>正确性，最起码你的代码实现的业务逻辑是正确的。<br>可维护性，公司中其他的小伙伴能看看懂你的代码逻辑，便于修改代码。<br>优美性，符合各种代码规范，其他人看到代码后惊为天人。<br>但是要做到以上几点绝非易事，首先你得有高超的编程能力，其次你对前端或后端的代码规范有深刻的理解，但是能有这样能力的人又有多少呢？<br>我们都知道软件开发是团队合作才能完成的工作。<br>那么项目的质量与客户的需求才是项目生存下去的关键。<br>所以怎么才能改进项目代码的质量？我们先看看业界巨头公司都是如何做的？</p>
-<h2 id="microsoft怎么做？"><a href="#microsoft怎么做？" class="headerlink" title="microsoft怎么做？"></a>microsoft怎么做？</h2><p><img src="/image/mircosoft.jpg" alt="microsoft"></p>
-<p>我们都知道微软是做操作系统出身的，其实微软的测试能力与测试工具都是业界中领先的，以下是两张表展示的是微软如何从visual studio与开发过程中提高代码质量</p>
-<h4 id="Visual-Studio"><a href="#Visual-Studio" class="headerlink" title="Visual Studio"></a>Visual Studio</h4><table>
-<thead>
-<tr>
-<th>标准</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>使用代码分析工具分析应用程序质量</td>
-<td>静态代码分析工具可查找 C++ 和托管代码里的设计、使用、可维护性和样式问题。 其中的许多问题可能导致难以在标准测试环境中重现的 bug。</td>
-</tr>
-<tr>
-<td>单元测试代码</td>
-<td>“测试资源管理器”可以在开发实践中轻松地集成单元测试。 可以使用 Microsoft 单元测试框架或若干第三方和开源框架之一。</td>
-</tr>
-<tr>
-<td>  测量托管代码的复杂性和可维护性</td>
-<td>代码度量是一组软件度量值，使开发人员可以更好地了解他们正在开发的代码。 度量值包括函数和类的可维护性指数、函数的圈复杂度、类的继承深度和类耦合度的数值。</td>
-</tr>
-<tr>
-<td>  使用代码克隆检测功能查找重复代码</td>
-<td>代码克隆工具可用于在整个 Visual Studio 解决方案内搜索 Visual C# 和 Visual Basic 项目中重复或高度相似的代码。 可以经常重构代码以消除重复代码，从而创建更易于维护的解决方案。</td>
-</tr>
-<tr>
-<td>  PreEmptive Analytics for Team Foundation Server</td>
-<td>PreEmptive Analytics for TFS CE 有助于将反馈驱动的开发过程集成到开发工作流中。 当应用程序在执行过程中发生错误时，它会自动将异常报告数据发回给 PreEmptive Analytics 服务。 然后，该服务将根据你定义的规则和阈值创建或更新 Microsoft Team Foundation Server 中的工作项。  </td>
-</tr>
-<tr>
-<td>  PreEmptive Dotfuscator 和 Analytics CE</td>
-<td>PreEmptive Dotfuscator 是 .NET 模糊处理程序和压缩程序，有助于防止程序遭遇反向工程，同时使程序更小更高效。</td>
-</tr>
-</tbody>
-</table>
-<h4 id="开发过程中改进代码质量"><a href="#开发过程中改进代码质量" class="headerlink" title="开发过程中改进代码质量"></a>开发过程中改进代码质量</h4><table>
-<thead>
-<tr>
-<th>标准</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>  设计和代码的检查准则</td>
-<td>提供若干帮助进行设计和代码检查的技术，通过让其他同事检查代码来发现 bug 和不正确的假设。</td>
-</tr>
-<tr>
-<td>  安全代码编写准则</td>
-<td>描述编写安全代码的技术和策略。  </td>
-</tr>
-<tr>
-<td>  高质量代码签入准则</td>
-<td>列出以不同方式检查代码以确保代码实现您的预期高质量设计目的的准则。</td>
-</tr>
-<tr>
-<td>  代码分析工具使用准则</td>
-<td>提供几条使用代码分析工具的准则。  </td>
-</tr>
-<tr>
-<td>  检测和更正 C/C++ 代码缺陷</td>
-<td>描述如何使用用于托管代码的代码分析工具检测和更正代码缺陷。</td>
-</tr>
-<tr>
-<td>  代码分析签入策略</td>
-<td>描述如何创建与 Team Foundation 源控件签入关联的自定义签入策略。</td>
-</tr>
-<tr>
-<td>调试准则</td>
-<td>提供几条查找代码缺陷的准则。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="google-又是怎么做？"><a href="#google-又是怎么做？" class="headerlink" title="google 又是怎么做？"></a>google 又是怎么做？</h2><p><img src="/image/google.jpg" alt="google"></p>
-<ul>
-<li><p>代码审查。在你提交任何代码改动之前，你得找去代码“主人”签字确认。为了实现，评审者（被鼓励去）建议大修代码，而不是让它成为根本没有经过思考的“图章”代码。</p>
-</li>
-<li><p>按语言可读性要求坚持代码风格指南（请参阅这里）。除了让我们代码有统一的外观（所以我们能快速识别方法、变了等），我们的风格指南禁止了一些复杂、混乱、易出错的 C++ 特性（比如：class 类型的静态和全局变量）。</p>
-</li>
-<li><p>整个团队都致力改进我们代码库的质量，维护我们的核心库，不断做出更好的工具。</p>
-</li>
-<li><p>一个活跃的“code health”课题组。</p>
-</li>
-<li>发布软件时，不对外部期限承担责任。一般而言，这让我们可以正确做事，而非为了期限内完成任务把乱七八糟的代码拼凑起来。</li>
-<li>“Fix it.” 例如，一个工程师或许说，“我认为我们真应该别再用过时的  Cruft Map 类（class）了。我打算在 1 月 20 日组织一次 Fix it。” 当 1 月 20 日来临时，大家应当暂停其正常运作，把他们代码中的 Cruft Maps 都换掉。在 1 月 21 日，Google 就永远和 Cruft Map 说拜拜了！不过最近，核心库团队已经很优秀了，貌似没有啥东西可再值得类似的 fix it 了。</li>
-<li>测试文化。单元测试覆盖率可能接近 100%，我们有持续构建/整合/测试，还有知名的 “Testing on the Toilet” (请参见Google Testing Blog)</li>
-</ul>
-<h2 id="facebook-呢？-又有什么不一样"><a href="#facebook-呢？-又有什么不一样" class="headerlink" title="facebook 呢？ 又有什么不一样"></a>facebook 呢？ 又有什么不一样</h2><p><img src="/image/facebook.jpeg" alt="facebook"></p>
-<ul>
-<li>开发对质量负责： 开发从设计，实现，测试，到部署都要自己做。其它做工具，流程的工程师通过开发工具和流程来帮助开发人员更为简单方便地做测试，做部署和做监控。每个开发人员有自己单独的测试环境，测试环境就是运行在开发本地机器上，部署非常简单快速。测试环境用的是真实的用户数据。</li>
-<li>持续集成和测试自动化：每周发布一次。星期天晚上，要发布的构建从主线上分支出来到发布分支，到星期二的中午如果没有大的问题，就可以上线了。所有的测试运行控制在10分钟以内，所以不需要考虑不运行哪些测试用例。运行所有测试用例。 （只是听说，没有经过考证。）</li>
-<li>严格实施代码审计：在Facebook 做 code review时间大约占50%，管理者对代码质量负有一定责任 。甚至代码质量高于一切：Facebook Code review是重点KPI考核的对象，实行连坐制，如果因为代码质量问题，那么产生的KPI责任包括领导30％、程序员50％、审核人员20％。 在代码checkin之前，都要由专人进行review。Facebook 创始人兼 CEO 马克扎克伯格会亲自对 News Feed 每个代码更新把关。在 Facebook，所有重大升级的代码都进行强制评估，任何一个改动都至少由一人把关。但是，无论工程师对 News Feed 做出任何改动，都将由扎克伯格亲自把关。</li>
-<li>内测 （dog food）：发布之前，公司员工使用要发布的功能。2－3天之内可以有几百个或上千个人在使用新功能。负责要发布功能的开发人员在星期天晚上到星期二中午之间会做大量的测试 。</li>
-<li>通过灰度发布控制风险：新功能本身质量可能有问题，新功能也可能影响其它现有功能。为了减少或控制这些风险。Facebook开发了一整套完善的发布，控制，监控流程和工具。做到：1.测试通过后，产品质量基本有保证。2.即使有漏测的bug，只会影响很少量的用户。3.及时监控到问题。4.及时修复。</li>
-<li>产品监控：通过社区讨论的正负面舆情，及与历史应用数据的对比情况，监控产品的系统的运行状态技术修复。<h2 id="thoughtworks-业界以敏捷著称的软件企业又是如何改进的"><a href="#thoughtworks-业界以敏捷著称的软件企业又是如何改进的" class="headerlink" title="thoughtworks 业界以敏捷著称的软件企业又是如何改进的"></a>thoughtworks 业界以敏捷著称的软件企业又是如何改进的</h2><img src="/image/thoughtworks.jpg" alt="thoughtworks"></li>
-</ul>
-<ul>
-<li>项目的初期，dev,BA,QA就会做到一起IPM,让不同的角色都能了解story，让dev尽早的分析story以及采用那种技术去完成工作。<br><img src="/image/twqa.jpg" alt="pair"></li>
-</ul>
-<ul>
-<li>开发阶段，dev会采用pair的方式，和QA，其他dev共同完成story，这样的好处是，一让不熟悉的新人尽快的了解项目架构，二与QApair,QA将会提供dev考虑不足的点，一起编写单元测试以及feature test。</li>
-<li>当dev完成代码工作后，会在github上发出pull request 或邀请其他dev，一起评审代码。</li>
-<li>各个项目都有自己完备的cd流程，确保发布过程的正确性，减少人为手工操作的失误。</li>
-</ul>
-<p>从以上业界代表公司的改进方式，我们可以看出它们都是从以下几点出发的：</p>
-<ol>
-<li>完整的单元测试覆盖率<br>UI自动化测试的覆盖率很难被保证，不断的改变的ui,使使用UI测试来验证产品的功能变得十分麻烦，但是单元测试则不同，各种语言都有自己的测试工具以及测试覆盖率工具帮助我们更好的完善我们的代码质量，我们也可以用接口测试与pact测试来保证第三方集成服务的正确性，所以高覆盖率的单元测试时产品的质量的基础。</li>
-<li>严格的代码审查机制<br>facebook，google，微软等公司严格的代码审查机制，是确保代码不被破坏的关键点，不会因为团队成员的某次粗心的提交，造成整个项目的失败。</li>
-<li><p>强大的代码分析工具<br>代码级别的规范化，以及动态与静态扫描，进一步的帮助软件开发人员、质量保证人员查找代码中存在的结构性错误、安全漏洞等问题，从而保证软件的整体质量。与CI,CD的集成，能够让我们尽早的发现代码中存在的错误。</p>
-</li>
-<li><p>规范化的测试流程<br>各个公司规范化的测试流程，保证项目在每一阶段都能够输出高质量的代码。</p>
-</li>
-<li>完善的风险控制<br>完善的风险控制，不仅仅表现的google与Facebook的A/B测试，也表现在当有任何重大问题时，能够随意的切换到旧的版本，保证产品不因为该问题，就造成宕机。</li>
-<li>实时的监控<br>这些行业的巨头，都有着非常强大的运维团队，从产品的开发阶段就开始实施了各种监控手段，监控范围包括编译阶段，部署阶段，产品环境，硬件服务器的状态等，帮助项目的中所有成员及时的发现产品中存在的问题，快速跟踪以及定位问题。</li>
-</ol>
-<p><strong>第一篇分析各个公司都采取了那些代码质量改进措施完毕，接下来我会从不同的角度去详细介绍这些改进措施。
-</strong></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2348,7 +2242,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2361,7 +2255,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
