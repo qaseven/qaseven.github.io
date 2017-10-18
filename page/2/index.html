@@ -285,6 +285,271 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/30/expresso/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/11/30/expresso/" itemprop="url">espresso系列一简介</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-30T16:59:53+08:00">
+                2016-11-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="espresso是什么？"><a href="#espresso是什么？" class="headerlink" title="espresso是什么？"></a>espresso是什么？</h2><p> Espresso 测试框架提供了一系列的API用于构建UI测试来测试app内用户流操作。这些API让你可以编写简洁可靠的自动化UI测试。Espresso非常适合用来编写白盒测试，其中测试代码的编写是利用了被测试app中程序代码实现细节。</p>
+<p>Espresso测试可运行android 2.3.3(API 10 level)以及更高版本的设备上。使用Espresso的主要好处是,当你运行测试时它提供了自动的同步测试动作与应用程序UI。Espresso会检测你的主线程是否为空闲状态,如果你的没有被利用,这时候他就会抢占主线程运行测试，所以它能够在恰当的时间运行您的测试命令,提高测试的可靠性。这种能力也使您无须添加任何额外的措施,例如在测试代码中加入<code>thread.sleep()</code>。</p>
+<p>Espresso测试框架基于 instrumentation-based API 并且使用 AndroidJUnitRunner测试驱动运行测试。</p>
+<p>Espresso测试框架的关键特性包括：</p>
+<ul>
+<li>[ ] 提供了灵活的API用于匹配目标app中view和adapter。更多的信息，见<a href="https://developer.android.com/topic/libraries/testing-support-library/index.html#espresso-matching" target="_blank" rel="external">View匹配</a></li>
+<li>[ ] 大而全的 行为 api（action APIs） 用于自动化UI交互。更多的信息，见<a href="https://developer.android.com/topic/libraries/testing-support-library/index.html#espresso-actions" target="_blank" rel="external">行为APIs</a></li>
+<li>[ ] UI线程同步来提高测试可靠性。更多信息，<a href="https://developer.android.com/topic/libraries/testing-support-library/index.html#espresso-thread-sync" target="_blank" rel="external">见UI线程同步</a></li>
+</ul>
+<h2 id="版本兼容"><a href="#版本兼容" class="headerlink" title="版本兼容"></a>版本兼容</h2><p>Espresso 支持如下 API：</p>
+<table>
+<thead>
+<tr>
+<th>代号</th>
+<th>API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Froyo</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Gingerbread</td>
+<td>10</td>
+</tr>
+<tr>
+<td>  Ice Cream Sandwich</td>
+<td>15</td>
+</tr>
+<tr>
+<td>  Jelly Bean</td>
+<td>16, 17 ,18</td>
+</tr>
+<tr>
+<td>  KitKat</td>
+<td>19</td>
+</tr>
+<tr>
+<td>  Lollipop</td>
+<td>21</td>
+</tr>
+</tbody>
+</table>
+<p>注意：<br>切记 espresso 有版本断层，并不是全版本支持，请注意你设备android系统的版本，以免造成不必要的免费。<br>不过最新的android系统版本 espresso都是支持的。</p>
+<h2 id="配置espresso"><a href="#配置espresso" class="headerlink" title="配置espresso"></a>配置espresso</h2><p>官方文档建议我们在开始配置之前，先看看如何开始测试，我觉得非常有必要，很多新手上来就拿着不知道那找来的例子运行下，就以为自己真的什么都会。这样的真的很不好，官方文档才是最好的老师，让我们一步一步慢慢来。</p>
+<p>android是基于JUnit测试框架,单元测试,您可以运行任意本地的单元测试在JVM或instrumented tests在Android设备上。</p>
+<h3 id="测试类型"><a href="#测试类型" class="headerlink" title="测试类型"></a>测试类型</h3><p>当使用Android studio 编写任何你的测试时,你的测试代码必须进入两个不同的代码目录(源集)。每个模块在您的项目中,Android Studio都包括源集,对应于以下测试类型:</p>
+<h4 id="本地单元测试"><a href="#本地单元测试" class="headerlink" title="本地单元测试"></a>本地单元测试</h4><p>位于 <code>module-name/src/test/java/.</code></p>
+<p>这些测试运行在本地JVM并没有访问Android框架api功能的权限。<br>让我们首先开始如何构建本地单元测试。</p>
+<h3 id="构建本地单元测试"><a href="#构建本地单元测试" class="headerlink" title="构建本地单元测试"></a>构建本地单元测试</h3><p>如果您的单元测试没有依赖或只有简单的依赖Android系统,你应该在本地开发机器上运行您的测试。这种测试方法是有效的,因为它可以帮助你避免加载目标应用程序时的开销以及单元测试需要在一个物理设备或模拟器运行。因此,运行单元测试的时间将大大的减少。使用这种方法,您通常使用mocking 框架,列如Mockito、这可以帮助我们mock测试需要的依赖。</p>
+<h3 id="设置测试环境"><a href="#设置测试环境" class="headerlink" title="设置测试环境"></a>设置测试环境</h3><p>在你的Android Studio项目时,您必须为本地单元测试存储源文件在 module-name/src/test/java/。当你创建一个新项目，这个目录就已经存在。您还需要为您的项目配置测试依赖,因为需要使用JUnit 4的框架提供标准的api。<br>如果您的测试需要与Android依赖关系,包括使用Mockito来简化你的单元测试。更多地使用 mock objects在本地的单元测试中,请查看Mocking Android依赖关系。在你的应用程序的顶层目录的build.gradle文件里,您需要指定这些库的依赖关系:</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">dependencies</span> &#123;</div><div class="line">    <span class="comment">// Required -- JUnit 4 framework</span></div><div class="line">    testCompile <span class="string">'junit:junit:4.12'</span></div><div class="line">    <span class="comment">// Optional -- Mockito framework</span></div><div class="line">    testCompile <span class="string">'org.mockito:mockito-core:1.10.19'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="创建本地单元测试类"><a href="#创建本地单元测试类" class="headerlink" title="创建本地单元测试类"></a>创建本地单元测试类</h3><p>你当地的单元测试类应该写成一个JUnit 4测试类。JUnit是最受欢迎和广泛使用为Java单元测试框架。这个框架的最新版本,JUnit4,允许您在一个比之前的版更清洁和更灵活的方法中编写测试。之前的Android单元测试基于JUnit3框架,使用JUnit4,您不需要扩展junit.framework。TestCase类。你也不需要在测试方法名称包含“test”关键字,或者使用junit的任何类在junit.framework或junit.extensions包。</p>
+<p>创建一个基本的JUnit 4测试类,首先需要创建一个Java类,它包含一个或多个测试方法。一个测试方法以@Test annotation标注并且包含代码的实现和验证的代码中包含您想要测试的一个功能组件。</p>
+<p>下面的例子展示了如何实现一个本地的单元测试类。测试方法emailValidator_CorrectEmailSimple_ReturnsTrue验证isValidEmail()方法，应用程序返回正确的结果。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta"><span class="meta-keyword">import</span> org.junit.Test;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> java.util.regex.Pattern;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> static org.junit.Assert.assertFalse;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> static org.junit.Assert.assertTrue;</span></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmailValidatorTest</span> </span>&#123;</div><div class="line"></div><div class="line">    @Test</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> emailValidator_CorrectEmailSimple_ReturnsTrue() &#123;</div><div class="line">        assertThat(EmailValidator.isValidEmail(<span class="string">"name@email.com"</span>), <span class="keyword">is</span>(<span class="literal">true</span>));</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>测试组件在应用程序返回预期的结果,使用junit.Assert方法来执行验证检查(或断言)来对比测试组件的状态和一些期望值。为了使测试具有更好的可读的,您可以使用Hamcrest matchers(如 is()和equalTo()方法)来匹配返回的结果与预期的结果。</p>
+<h3 id="Mock-Android依赖关系"><a href="#Mock-Android依赖关系" class="headerlink" title="Mock Android依赖关系"></a>Mock Android依赖关系</h3><p>默认情况下,Android插件Gradle执行本地的单元测试与修改后的版本的Android.jar库,它不包含任何实际的代码。相反,从你的单元测试方法调用安卓类抛出异常。这确保你的测试代码和不依赖于任何特定的行为的Android平台(你没有显式地mock)。<br>您可以使用模拟框架在代码中存根外部依赖关系，以便轻松测试您的组件是否按照预期的方式与依赖关系交互。 通过用模拟对象替换Android依赖项，您可以将单元测试与Android系统的其余部分隔离，同时验证这些依赖关系中的正确方法是否被调用。 Java的Mockito mocking框架（1.9.5及更高版本）提供了与Android单元测试的兼容性。 使用Mockito，您可以配置模拟对象以在调用时返回一些特定值。</p>
+<p>要使用此框架将mock对象添加到本地单元测试，请遵循以下编程模型：</p>
+<ul>
+<li>在build.gradle文件中包含Mockito库依赖关系，如设置测试环境中所述。</li>
+<li>在单元测试类定义的开始，添加@RunWith（MockitoJUnitRunner.class）注释。 这个注释告诉Mockito测试运行器验证你的框架的使用是正确的，并简化了你的模拟对象的初始化。</li>
+<li>要为Android依赖项创建模拟对象，请在字段声明之前添加@Mock注释。</li>
+<li>要存根依赖关系的行为，可以使用when（）和thenReturn（）方法指定条件并返回值。</li>
+</ul>
+<p>以下示例显示如何创建使用mock上下文对象的单元测试。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="meta"><span class="meta-keyword">import</span> static org.hamcrest.MatcherAssert.assertThat;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> static org.hamcrest.CoreMatchers.*;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> static org.mockito.Mockito.*;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> org.junit.Test;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> org.junit.runner.RunWith;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> org.mockito.Mock;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> org.mockito.runners.MockitoJUnitRunner;</span></div><div class="line"><span class="meta"><span class="meta-keyword">import</span> android.content.SharedPreferences;</span></div><div class="line"></div><div class="line">@RunWith(MockitoJUnitRunner.class)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UnitTestSample</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String FAKE_STRING = <span class="string">"HELLO WORLD"</span>;</div><div class="line"></div><div class="line">    @Mock</div><div class="line">    Context mMockContext;</div><div class="line"></div><div class="line">    @Test</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> readStringFromContext_LocalizedString() &#123;</div><div class="line">        <span class="comment">// Given a mocked Context injected into the object under test...</span></div><div class="line">        when(mMockContext.getString(R.string.hello_word))</div><div class="line">                .thenReturn(FAKE_STRING);</div><div class="line">        ClassUnderTest myObjectUnderTest = <span class="keyword">new</span> ClassUnderTest(mMockContext);</div><div class="line"></div><div class="line">        <span class="comment">// ...when the string is returned from the object under test...</span></div><div class="line">        String result = myObjectUnderTest.getHelloWorldString();</div><div class="line"></div><div class="line">        <span class="comment">// ...then the result should be the expected one.</span></div><div class="line">        assertThat(result, <span class="keyword">is</span>(FAKE_STRING));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>要了解有关使用Mockito框架的更多信息，请参阅示例代码中的Mockito API参考和SharedPreferencesHelperTest类。<br>如果Android.jar中的Android API抛出的异常对于测试有问题，您可以更改行为，以使方法通过在项目的顶级build.gradle文件中添加以下配置来返回null或零：<br><code>android {
+  ...
+  testOptions {
+    unitTests.returnDefaultValues = true
+  }
+}</code></p>
+<p>警告：将returnDefaultValues属性设置为true应该小心。  null/zero 返回值可以在测试中引入回归，这难以调试，并且可能允许失败的测试通过。 只能使用它作为最后的手段。</p>
+<h3 id="运行本地测试"><a href="#运行本地测试" class="headerlink" title="运行本地测试"></a>运行本地测试</h3><p>要运行本地单元测试，请按照下列步骤操作：</p>
+<ol>
+<li>通过单击工具栏中的 Sync Project，确保您的项目与Gradle同步。</li>
+<li>使用以下方法之一运行测试：</li>
+</ol>
+<ul>
+<li>要运行单个测试，请打开“Project”窗口，然后右键单击测试，然后单击RUN。</li>
+<li>要测试类中的所有方法，请右键单击测试文件中的类或方法，然后单击Run。</li>
+<li>要在目录中运行所有测试，请右键单击目录并选择Run test。<br>Gradle的Android插件编译位于默认目录（src / test / java /）中的本地单元测试代码，构建一个测试应用程序，并使用默认的测试运行器类在本地执行它。 然后，Android Studio将在“运行”窗口中显示结果。</li>
+</ul>
+<h4 id="Instrumented-tests"><a href="#Instrumented-tests" class="headerlink" title="Instrumented tests"></a>Instrumented tests</h4><p>位于module-name/src/androidTest/java/。<br>这些都是必须在Android硬件设备或Android模拟器上运行的测试。</p>
+<p>仪表化测试内置于在测试下的应用旁边的设备上运行的APK。 系统在同一个过程中运行测试APK和您的应用程序，因此您的测试可以调用方法和修改应用程序中的字段，并自动化用户与您的应用程序的互动。</p>
+<p>有关如何创建检测测试的信息，请参阅以下主题：</p>
+<p>构建测试单元测试：使用Android依赖项构建复杂的单元测试，这些测试不能满足模拟对象。<br>自动化用户界面测试：创建测试以验证用户界面在单个应用程序内的用户交互或多个应用程序之间的交互操作正确。<br>测试应用程序组件集成：验证用户不直接与之交互的组件（例如服务或内容提供者）的行为。<br><img src="https://developer.android.com/images/testing/test-types_2x.png" alt=""><br>但是，上述的本地单元测试和instrumented tests只是用于区分在本地JVM上运行的测试和在Android平台（在硬件设备或模拟器上）运行的测试之间的术语。 在构建完整测试套件时应该理解的真实测试类型在下表中描述。</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>子类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unit tests</td>
+<td>Local Unit Tests</td>
+<td>本地单元测试在Java虚拟机（JVM）上本地运行的单元测试。当您的测试没有Android框架依赖项或者可以模拟Android框架依赖项时，使用这些测试来最小化执行时间。</td>
+</tr>
+<tr>
+<td>Unit tests</td>
+<td>Instrumented unit tests</td>
+<td>测试单元测试在Android设备或模拟器上运行的单元测试。这些测试可以访问Instrumentation信息，例如您要测试的应用程序的上下文。当你的测试有Android依赖，模拟对象不能满足时，使用这些测试。</td>
+</tr>
+<tr>
+<td>Integration Tests</td>
+<td>Components within your app only</td>
+<td>您的应用程序中的组件仅当用户执行特定操作或在其活动中输入特定输入时，此类型的测试验证目标应用程序的行为如预期。例如，它允许您检查目标应用程序返回正确的UI输出，以响应用户在应用程序活动中的互动。 Espresso等UI测试框架允许您以编程方式模拟用户操作并测试复杂的应用内用户交互。</td>
+</tr>
+<tr>
+<td>Integration Tests</td>
+<td>Cross-app Components</td>
+<td>跨应用程序组件此类型的测试验证不同用户应用程序之间或用户应用程序和系统应用程序之间的交互的正确行为。例如，当用户在Android设置菜单中执行操作时，您可能需要测试您的应用是否正确运行。支持跨应用程序交互的UI测试框架（如UI Automator）允许您为这些场景创建测试。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Test-APIs"><a href="#Test-APIs" class="headerlink" title="Test APIs"></a>Test APIs</h4><p>以下是用于在Android上测试应用的常见API。<br>JUnit<br>您应该将您的单元或集成测试类写为JUnit 4测试类。 该框架提供了一种方便的方法来在测试中执行常见的setup, teardown, and assertion操作。</p>
+<p>基本的JUnit 4测试类是包含一个或多个测试方法的Java类。 测试方法以@Test注释开始，包含练习和验证要测试的组件中的单个功能（即逻辑单元）的代码。</p>
+<p>以下代码段显示了一个示例JUnit 4集成测试，它使用Espresso API对UI元素执行单击操作，然后检查是否显示预期的字符串。<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@RunWith</span>(AndroidJUnit4.class)</div><div class="line"><span class="variable">@LargeTest</span></div><div class="line">public class MainActivityInstrumentationTest &#123;</div><div class="line"></div><div class="line">    <span class="variable">@Rule</span></div><div class="line">    public ActivityTestRule mActivityRule = new ActivityTestRule&lt;&gt;(</div><div class="line">            MainActivity.class);</div><div class="line"></div><div class="line">    <span class="variable">@Test</span></div><div class="line">    public void sayHello()&#123;</div><div class="line">        <span class="selector-tag">onView</span>(withText(<span class="string">"Say hello!"</span>))<span class="selector-class">.perform</span>(click());</div><div class="line"></div><div class="line">        <span class="selector-tag">onView</span>(withId(R.id.textView))<span class="selector-class">.check</span>(matches(withText(<span class="string">"Hello, World!"</span>)));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在您的JUnit 4测试类中，您可以通过使用以下注释调用测试代码中的部分进行特殊处理：</p>
+<ul>
+<li>@Before：使用此注释来指定包含测试设置操作的代码块。测试类在每次测试之前调用此代码块。你可以有多个@Before方法，但是测试类调用这些方法的顺序不能保证。</li>
+<li>@After：此注释指定一个包含测试拆分操作的代码块。测试类在每个测试方法之后调用这个代码块。您可以在测试代码中定义多个@After操作。使用此注释从内存释放任何资源。</li>
+<li>@Test：使用此注释标记测试方法。单个测试类可以包含多个测试方法，每个测试方法都以此注释作为前缀。</li>
+<li>@Rule：规则允许您以可重用的方式灵活地添加或重新定义每个测试方法的行为。在Android测试中，将此注释与Android测试支持库提供的测试规则类之一一起使用，例如ActivityTestRule或ServiceTestRule。</li>
+<li>@BeforeClass：使用此注释为每个测试类指定仅调用一次的静态方法。此测试步骤对于消耗大的操作（例如连接到数据库）很有用。</li>
+<li>@AfterClass：使用此注释为测试类指定静态方法，仅在类中的所有测试运行后调用。 这个测试步骤对释放在@BeforeClass块中分配的任何资源很有用。</li>
+<li>@Test（timeout =）：一些注释支持传递元素的能力，您可以为其设置值。 例如，您可以为测试指定超时期限。 如果测试开始，但没有在给定的超时期间内完成，它会自动失败。 您必须以毫秒为单位指定超时期限，例如：@Test（timeout = 5000）。<br>使用JUnit Assert类来验证对象状态的正确性。 assert方法将您从测试所期望的值与实际结果进行比较，如果比较失败，则抛出异常。 断言类更详细地描述这些方法。<h4 id="Android测试支持库"><a href="#Android测试支持库" class="headerlink" title="Android测试支持库"></a>Android测试支持库</h4>Android测试支持库提供了一组API，允许您快速构建和运行应用程序的测试代码，包括JUnit 4和功能UI测试。 库包括以下基于工具的API，当您想要自动化测试时，这些API是有用的：</li>
+</ul>
+<p>AndroidJUnitRunner<br>适用于Android的JUnit 4兼容测试运行器。<br>espresso<br>一个UI测试框架; 适用于在应用程序内的功能UI测试。<br>UI automator<br>适用于系统和已安装应用程序之间跨应用程序功能UI测试的UI测试框架。</p>
+<h4 id="断言类"><a href="#断言类" class="headerlink" title="断言类"></a>断言类</h4><p>由于Android测试支持库API扩展JUnit，因此可以使用断言方法显示测试结果。断言方法将测试返回的实际值与预期值进行比较，如果比较测试失败，则抛出AssertionException异常。使用断言比记录更方便，并提供更好的测试性能。</p>
+<p>为了简化测试开发，您应该使用Hamcrest库，它允许您使用Hamcrest匹配器API创建更灵活的测试。</p>
+<p>Monkey 和 monkeyrunner<br>Android SDK包含两个用于功能级应用测试的工具：</p>
+<p>Monkey<br>这是一个命令行工具，用于向设备发送按键，触摸和手势的伪随机流。您使用Android Debug Bridge（adb）工具运行它，并使用它来压力测试您的应用程序，报告所遇到的错误，或通过使用相同的随机数种子多次运行该工具来重复事件流。<br>monkeyrunner<br>此工具是用Python编写的测试程序的API和执行环境。 API包括用于连接到设备，安装和卸载包，截取屏幕截图，比较两个图像以及针对应用运行测试包的功能。使用API​​，您可以编写大量，强大和复杂的测试。您使用monkeyrunner命令行工具运行使用API​​的程序。</p>
+<h4 id="构建Android测试的指南"><a href="#构建Android测试的指南" class="headerlink" title="构建Android测试的指南"></a>构建Android测试的指南</h4><p>以下文档提供了有关如何构建和运行各种测试类型的更多详细信息：</p>
+<p>建立本地单元测试<br>构建单元测试没有依赖或只有简单的依赖，你可以mock，它运行在本地JVM上。<br>建筑仪表单元测试<br>使用Android依赖项构建复杂的单元测试，这对于在硬件设备或模拟器上运行的模拟对象无法满足。<br>自动化用户界面测试<br>创建测试以验证用户界面在单个应用程序内的用户交互或多个应用程序之间的交互正确运行。<br>测试应用程序集成<br>验证用户不直接与之交互的组件（例如服务或内容提供者）的行为。<br>测试显示性能<br>编写测试应用程序UI性能的测试，以确保持续流畅的用户体验。<br>ok 我们已经看完了 怎么开始android测试，我想大家一定有了很深入的了解了吧<br>让我们进入正题 配置espresso<br>在Android应用程序模块的build.gradle文件中，必须为Espresso引入jar依赖：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">dependencies</span> &#123;</div><div class="line">    <span class="comment">// Other dependencies ...</span></div><div class="line">    androidTestCompile <span class="string">'com.android.support.test.espresso:espresso-core:2.2.2'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>关闭测试设备上的动画 - 在测试设备中打开系统动画可能会导致意外的结果，或可能导致测试失败。 通过打开开发者选项并关闭所有以下选项，从设置中关闭动画：</p>
+<ul>
+<li>在设备上的设置-&gt;开发者选项中禁用一下三项设置： &gt; 窗口动画缩放 &gt; 过渡动画缩放 &gt; 动画程序时长缩放</li>
+<li>确保你已经安装了最新的 Extras 下的 Android Support Repository<br>设置junit为测试驱动框架<br>在build.gradle 中 添加<br><code>testInstrumentationRunner &quot;android.support.test.runner.AndroidJUnitRunner&quot;</code><h2 id="完整的build-gradle-示例文件如下"><a href="#完整的build-gradle-示例文件如下" class="headerlink" title="完整的build.gradle 示例文件如下"></a>完整的build.gradle 示例文件如下</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">​android.defaultConfigpply plugin: <span class="string">'com.android.application'</span></div><div class="line"></div><div class="line">android &#123;</div><div class="line">    compileSdkVersion <span class="number">24</span></div><div class="line">    buildToolsVersion rootProject.buildToolsVersion</div><div class="line">    defaultConfig &#123;</div><div class="line">        applicationId <span class="string">"com.example.android.testing.espresso.BasicSample"</span></div><div class="line">        minSdkVersion <span class="number">10</span></div><div class="line">        targetSdkVersion <span class="number">24</span></div><div class="line">        versionCode <span class="number">1</span></div><div class="line">        versionName <span class="string">"1.0"</span></div><div class="line"></div><div class="line">        testInstrumentationRunner <span class="string">"android.support.test.runner.AndroidJUnitRunner"</span></div><div class="line">    &#125;</div><div class="line">    lintOptions &#123;</div><div class="line">        abortOnError <span class="keyword">false</span></div><div class="line">    &#125;</div><div class="line">    productFlavors &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">dependencies</span> &#123;</div><div class="line">    <span class="comment">// App dependencies</span></div><div class="line">    <span class="keyword">compile</span> <span class="string">'com.android.support:support-annotations:'</span> + rootProject.supportLibVersion;</div><div class="line">    <span class="keyword">compile</span> <span class="string">'com.google.guava:guava:18.0'</span></div><div class="line">    <span class="comment">// Testing-only dependencies</span></div><div class="line">    <span class="comment">// Force usage of support annotations in the test app, since it is internally used by the runner module.</span></div><div class="line">    androidTestCompile <span class="string">'com.android.support:support-annotations:'</span> + rootProject.supportLibVersion;</div><div class="line">    androidTestCompile <span class="string">'com.android.support.test:runner:'</span> + rootProject.runnerVersion;</div><div class="line">    androidTestCompile <span class="string">'com.android.support.test:rules:'</span> + rootProject.rulesVersion;</div><div class="line">    androidTestCompile <span class="string">'com.android.support.test.espresso:espresso-core:'</span> + rootProject.espressoVersion;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>之后我们只需要在命令行中输入gradle就会帮我们下载依赖运行测试了，对了记着要安装gradle到你的系统中.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/31/qaquilty/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1789,169 +2054,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/02/gatling2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="qi lei">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QA seven's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/06/02/gatling2/" itemprop="url">gatling官方文档翻译2</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-02T22:37:03+08:00">
-                2016-06-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>第二篇<br><a href="http://gatling.io/docs/2.2.1/whats_new/2.2.html" target="_blank" rel="external">http://gatling.io/docs/2.2.1/whats_new/2.2.html</a></p>
-<p>What’s New in 2.2<br>JDK<br>Gatling now requires JDK8. JVM default tuning uses G1 Garbage Collector, so we strongly advice you use a very up-to-date JDK, not early versions.</p>
-<p>Core<br>Feeder Shuffle<br>You can now shuffle a feeder content before enqueuing its content, see Feeder documentation for more details.</p>
-<p>Assertions<br>Gatling now supports “per-million” assertions, similar to “percent” ones.</p>
-<p>Conditional Checks (since 2.2.1)<br>It’s now possible to only perform a given check when a given condition is met. See Conditional Checks documentation for more details.</p>
-<p>HTTP<br>Native Transport<br>Gatling is now based on Netty 4 that provide an optional native epoll-based NIO re-implementation (different from JDK NIO) which can give better throughput. This option is only available on Linux. See Netty documentation for more details.</p>
-<p>Gatling ships with the required jar, but the option is turned down by default.</p>
-<p>In order to enable it, set gatling.http.ahc.useNativeTransport to true in gatling.conf.</p>
-<p>OpenSSL Support<br>Netty 4 also provides a support for OpenSSL and BoringSSL. See Netty documentation for more details.</p>
-<p>Gatling doesn’t ship the required jar and it depends on your operating system and if you want static or dynamic binding. You’re expected to manually add the suited library to Gatling’s classpath.</p>
-<p>In order to enable it, set gatling.http.ahc.useOpenSsl to true in gatling.conf.</p>
-<p>Forms Support<br>You can now use the form(“cssSelector”).saveAs(“myForm”) check to capture a Map[String, Seq[String]] of all the inputs of an HTML form at once.</p>
-<p>You can then feed them back to a later request. See HTTP request documentation for more details.</p>
-<p>Polling Support<br>Gatling now supports HTTP polling, see HTTP polling documentation for more details.</p>
-<p>Hostname Resolution<br>By default, virtual users now use a shuffled list of the DNS records Gatling gets from the JDK. If you use DNS round-robin, this will balance your virtual users amongst the nodes of a static cluster.</p>
-<p>Alternatively, you can enable perUserNameResolution on the HTTP protocol and have each virtual user perform DNS resolution on its own. This, way, your virtual users would be properly balanced if your cluster grows elastically under load. See HTTP protocol documentation for more details.</p>
-<p>We also support DNS fail-over, meaning that virtual users will try the next DNS record of they couldn’t connect to the first address.</p>
-<p>Hostname Aliasing<br>You can bypass hostname resolution and define aliases in hostNameAliases on the HTTP protocol. See HTTP protocol documentation for more details.</p>
-<p>Local Addresses<br>It’s now possible to pass multiple local addresses to the HTTP protocol in localAddresses. See HTTP protocol documentation for more details.</p>
-<p>Reports<br>JUnit Format Report File<br>Gatling now generates a JUNIt format report file based on the assertions in your simulation. This file is generated as /js/assertions.xml.</p>
-<p>Groups Duration<br>You can switch from Group cumulated response times to duration when generating the reports. See gatling.charting.useGroupDurationMetric option in gatling.conf</p>
-<p>Maven Plugin<br>The Gatling Maven plugin now provides test and integration-test that are bound to the phases of the same name.</p>
-<p>It also now provides a useOldJenkinsJUnitSupport that exposes our JUnit file to Jenkins. At some point, we’ll provide a native support.</p>
-<p>在2.2的新增了那些功能<br>JDK<br>gatling现在需要JDK8支持。 JVM默认调整使用G1垃圾收集器，因此我们强烈建议您升级到最新的JDK，而不是早期版本。</p>
-<p>核心<br>Feeder Shuffle（不会翻…）<br>现在，You can now shuffle a feeder content before enqueuing its content，请参阅Feeder文档了解更多信息。</p>
-<p>断言<br>gatling现在支持“per-million”的断言，类似于“percent”。</p>
-<p>条件检查（自2.2.1）<br>现在只要当给定条件满足时就可以执行一个给定的检查。有关详细信息，请参阅条件检查文档。</p>
-<p>HTTP<br>本机传输<br>虽然我也不知道 epoll-based NIO是什么。。。</p>
-<p>gatling现在基于Netty 4提供一个可选的基于原生的epoll-NIO重新实现（从JDK NIO不同），它可以提供更好的吞吐量。此选项仅在Linux上可用。详见的Netty文档,了解更多信息。</p>
-<p>gatling不需要携带需要的jar包，它取决于你的操作系统,如果你想要静态或动态绑定。你需要手动配置需要的jar的path到gatling的classpath。<br>加特林附带所需的jar,但默认选项是关闭的。</p>
-<p>为了启用它,设置gatling.http.ahc。在gatling.conf useNativeTransport为true。</p>
-<p>为了启用他，需要在gatling.conf里将 gatling.http.ahc.useOpenSsl设置为true。</p>
-<p>表单支持<br>您现在可以使用的form(“cssSelector”).saveAs（“myForm”）检查捕捉Map[String, Seq[String]]在HTML表单的所有输入。</p>
-<p>然后，您可以传递给以后的请求。见HTTP请求的文档了解更多信息。</p>
-<p>轮训支持<br>gatling现在支持HTTP轮询，请参阅HTTP轮询文档了解更多信息。</p>
-<p>hostname解析<br>默认情况下，, virtual users now use a shuffled list of the DNS records Gatling gets from the JDK. If you use DNS round-robin。如果您使用DNS循环，这将你的虚拟用户的静态群集的节点之间平衡。</p>
-<p>或者，也可以在HTTP协议使用perUserNameResolution，并让每个虚拟用户自身进行DNS解析。这样，如果你的集群负载下的弹性增长时，你的虚拟用户会保持良好的平衡。见HTTP协议文档了解更多信息。</p>
-<p>我们也支持DNS故障转移，这意味着虚拟用户会尝试下一个DNS记录，当他们无法连接到第一个地址时。</p>
-<p>别名主机名<br>您可以绕过主机名解析和HTTP协议定义hostNameAliases别名。见HTTP协议文档了解更多信息。</p>
-<p>本地地址<br>它现在可以将多个本地地址传递给在localAddresses HTTP协议。见HTTP协议文档了解更多信息。</p>
-<p>报告<br>JUnit的格式报告文件<br>加特林现在根据你的模拟断言产成一个JUnit格式的报告文件。此文件将生成如/js/assertions.xml。</p>
-<p>group持续时间<br>您可以切换组累计响应时间当时间生成报告时。见gatling.conf gatling.charting.useGroupDurationMetric选项</p>
-<p>Maven插件<br>gatling Maven插件现在提供测试和集成测试绑定到同名的阶段。</p>
-<p>它还现在提供一个公开的JUnit我们的文件，jenkins一useOldJenkinsJUnitSupport。在某些时候，我们将提供原生支持。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2002,7 +2104,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
