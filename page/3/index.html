@@ -285,6 +285,163 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/29/gatling5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/06/29/gatling5/" itemprop="url">gatling官方文档翻译5</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-29T17:45:25+08:00">
+                2016-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>第五篇</p>
+<p><a href="http://gatling.io/docs/2.2.2/migration_guides/2.0-to-2.1.html" target="_blank" rel="external">http://gatling.io/docs/2.2.2/migration_guides/2.0-to-2.1.html</a></p>
+<p>Migrating from 2.0 to 2.1<br>Global changes<br>Scala 2.11<br>Gatling is now built with Scala 2.11. If you’re using Scala IDE, make sure you’re using a version compatible with Scala 2.11.</p>
+<p>Compiler runs standalone<br>Gatling itself doesn’t compile the Simulations anymore and expects that the simulations are already compiled. This means that gatling.sh/gatling.bat and the Maven plugin runs the compiler prior to running Gatling. Consequently, a few options in gatling.conf have been removed:</p>
+<p>gatling.core.disableCompiler<br>gatling.core.zinc.jvmArgs<br>Please note that, as this change implied that the Maven Plugin was heavily modified so that it compiles the simulations separately prior to running Gatling, you’ll need to upgrade the Maven Plugin to its version 2.1.0 too.</p>
+<p>Percentiles<br>Gatling now publishes 4 percentiles instead of 2. These percentiles are published in the reports and in the Graphite integration module. Beware that keys in gatling.conf file have been translated:</p>
+<p>Gatling 2.0:<br>percentile1 = 95<br>percentile2 = 99<br>Gatling 2.1+:<br>percentile1 = 50<br>percentile2 = 75<br>percentile3 = 95<br>percentile4 = 99<br>Core<br>Mute mode<br>The “mute mode” option, which was previously restricted to the SBT Plugin, is now also usable by the bundle scripts and the Maven Archetype.</p>
+<p>Assertions<br>Validating assertions in combination with the reports-only / ro option does not require to pass the simulation (using -s) for which the assertions will be validated anymore.</p>
+<p>Throttling<br>Throttling now automatically adds a maxDuration of either the simulation throttling duration, or the minimum of the scenarios throttling durations.</p>
+<p>HTTP<br>Parameters<br>Form parameters are no longer specific to POST method, you can use them with all methods.</p>
+<p>Request Bodies Directory<br>The directory name was changed from request-bodies to bodies as it now can host both request bodies and response bodies. The latter one are now captured by the recorder, and can be used as template for checking the response body.</p>
+<p>CLI option was renamed from rbf to bdf.</p>
+<p>Checks<br>Deprecated dontValidate was dropped in 2.1 as previously announced. Please use optional instead.</p>
+<p>Protocol<br>Deprecated baseHeaders was dropped in 2.1 as previously announced. Please use headers instead.</p>
+<p>Maven Archetype<br>Due to some necessary changes to allow Gatling to use Scala 2.11, you’ll have to update IDEPathHelper.scala, Engine.scala and Recorder.scala if you’re using the Maven archetype.</p>
+<p>Either generate a new project with the 2.1.1 archetype (there was a bug in 2.1), or override your classes with the ones here. If you choose the latter, don’t forget to fix the simulationPackage in Recorder.scala.</p>
+<p>SBT Plugin<br>The SBT Plugin’s test framework has been moved to the core project in 2.1. As a consequence, the test framework name has be modified to follow the naming conventions of all core modules and share its versionning.</p>
+<p>The SBT Plugin will also share the same versionning schema as all other Gatling modules, and has been renamed to ‘gatling-sbt’.</p>
+<p>The new coordinates are therefore :</p>
+<p>“io.gatling” % “gatling-sbt” % “2.1.0” for the SBT Plugin<br>“io.gatling” % “gatling-test-framework” % “2.1.0” for the testing framework.</p>
+<p>从2.0 合并到2.1<br>全局变化<br>Scala 2.11<br>gatling 现在用2.11 构建，如果你使用Scala IDE, 确认你是使用的版本能够兼容scala2.11.</p>
+<p>Compiler runs standalone<br>编译器独立的运行</p>
+<p>gatling本身不再编译模拟器和预测模拟已经编译。</p>
+<p>这就意味着 gatling.sh/gatling.bat 和maven插件编译在运行gatling之前。因此,一些选项在gatling.conf 已经被移除</p>
+<p>请注意，这种变化意味着Maven插件大量修改，单独编译仿真运行gatling之前，你需要升级版本2.1.0的Maven插件。</p>
+<p>Percentiles<br>gatling 发布4位百分数来代替2位。<br>这些百分位数发布在生成的报告和图表的集成模块<br>注意键在gatling.conf 文件已经被翻译。</p>
+<p>Gatling 2.0:<br>percentile1 = 95<br>percentile2 = 99<br>Gatling 2.1+:<br>percentile1 = 50<br>percentile2 = 75<br>percentile3 = 95<br>percentile4 = 99<br>Core</p>
+<p>Mute mode</p>
+<p>“静音模式”选项,该选项以前局限于SBT插件,现在也可用bundle的脚本和Maven Archetype。<br>Assertions</p>
+<p>验证断言结合the reports-only / ro option不需要通过仿真(using- s)的断言将被验证了。</p>
+<p>Throttling<br>节流现在自动添加一个maxDuration仿真节流的持续时间、节流时间或最低的场景。<br>HTTP<br>Parameters<br>形式参数不再是特定于POST方法,您可以使用它们在全部的方法。<br>Request Bodies Directory<br>目录更名从请求体的body,因为它现在可以主机请求body和响应。后者现在被记录,并可以用作模板检查响应的body。</p>
+<p>CLI option被重新命名从 rbf 到 bdf.</p>
+<p>Checks<br>此前宣布弃用dontValidate下降2.1。请使用optional。</p>
+<p>Protocol<br>此前宣布弃用baseHeaders下降2.1。请使用headers。</p>
+<p>Maven Archetype</p>
+<p>由于一些必要的改变,允许gatling使用Scala 2.11中,你将不得不更新IDEPathHelper.scala, Engine.scala and Recorder.scala。如果你使用Maven archetype 。</p>
+<p>SBT Plugin<br>SBT插件的测试框架已经被转移到2.1的核心项目。因此,测试框架的名称已被修改遵循所有核心模块的命名约定和分享它的版本。</p>
+<p>SBT插件还将共享相同的版本模式和其他gatling模块,并重新命名为“gatling-sbt”。<br>因此,新坐标:<br>“io.gatling” % “gatling-sbt” % “2.1.0” 关于 the SBT 插件<br>“io.gatling” % “gatling-test-framework” % “2.1.0” 关于测试框架.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/15/gatling3-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2022,147 +2179,6 @@ describe(&apos;router testing&apos;, function () {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/01/26/前端测试进化论2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="qi lei">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QA seven's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/01/26/前端测试进化论2/" itemprop="url">前端测试进化论2</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-01-26T18:01:07+08:00">
-                2016-01-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="前端测试进化论2"><a href="#前端测试进化论2" class="headerlink" title="前端测试进化论2"></a>前端测试进化论2</h1><p>=============</p>
-<p>说完了，前端技术的发展史，那么对应的前端测试发展史也随之发展。</p>
-<h2 id="石器时代——纯手工测试"><a href="#石器时代——纯手工测试" class="headerlink" title="石器时代——纯手工测试"></a>石器时代——纯手工测试</h2><p>早期的页面基本都是静态化的页面，只有几个链接或者图片，那么相对测试工作量不大，只需要我们打开页面查看加载是否正确。</p>
-<h2 id="铁器时代–xunit"><a href="#铁器时代–xunit" class="headerlink" title="铁器时代–xunit"></a>铁器时代–xunit</h2><p>到了javascript时代，随着其他语言xunit 风靡天下,js 也出现了它的xunit 框架。</p>
-<p>Jsunit，以往在测试js的时候，都是以alert方式来检测错误，很不专业。</p>
-<p>2001年 jsunit 出现，让js调试称为可能。</p>
-<p>Jsunit 主要参考junit的设计，只要你会使用junit 那么jsunit 对你来说，根本不是什么事，具体使用参考</p>
-<p><a href="http://llying.iteye.com/blog/258605" target="_blank" rel="external">http://llying.iteye.com/blog/258605</a><br>DEMO:</p>
-<p>测试代码<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">HTML</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">HEAD</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">TITLE</span>&gt;</span>testHtml<span class="tag">&lt;/<span class="name">TITLE</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">HEAD</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"myjs.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"jsunit\app\jsUnitCore.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">&lt;!--</span></div><div class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">testAdd</span><span class="params">()</span></span>&#123;</span></div><div class="line"><span class="actionscript">	<span class="keyword">var</span> result = add(arg1,arg2);</span></div><div class="line"><span class="actionscript">	warn(<span class="string">"result"</span>, result);</span></div><div class="line"><span class="actionscript">	debug(<span class="string">"result"</span>, result);</span></div><div class="line"><span class="actionscript">	info(<span class="string">"result"</span>, result);</span></div><div class="line"><span class="undefined">	assertEquals(6,result);</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">testMinus</span><span class="params">()</span></span>&#123;</span></div><div class="line"><span class="actionscript">	<span class="keyword">var</span> result = minus(arg1,arg2)</span></div><div class="line"><span class="undefined">	assertEquals(2,result);</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">testMultiply</span><span class="params">()</span></span>&#123;</span></div><div class="line"><span class="actionscript">	<span class="keyword">var</span> result = multiply(arg1,arg2)</span></div><div class="line"><span class="undefined">	assertEquals(8,result);</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">testDivide</span><span class="params">()</span></span>&#123;</span></div><div class="line"><span class="actionscript">	<span class="keyword">var</span> result = divide(arg1,arg2)</span></div><div class="line"><span class="actionscript">	assertEquals(<span class="string">"4 divide 2 is 2"</span>,<span class="number">2</span>,result);</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">setUpPage</span><span class="params">()</span></span>&#123;</span></div><div class="line"><span class="undefined">	arg1 = 4;</span></div><div class="line"><span class="undefined">	arg2 = 2;</span></div><div class="line"><span class="actionscript">	setUpPageStatus = <span class="string">"complete"</span>;</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">exposeTestFunctionNames</span><span class="params">()</span></span>&#123;</span></div><div class="line"><span class="javascript">	<span class="keyword">var</span> tests = <span class="keyword">new</span> <span class="built_in">Array</span>();</span></div><div class="line"><span class="actionscript">	tests[<span class="number">0</span>]=<span class="string">"testAdd"</span>;</span></div><div class="line"><span class="actionscript">	tests[<span class="number">1</span>]=<span class="string">"testMinus"</span>;</span></div><div class="line"><span class="actionscript">	tests[<span class="number">2</span>]=<span class="string">"testMultiply"</span>;</span></div><div class="line"><span class="actionscript">	<span class="keyword">return</span> tests;</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="actionscript"><span class="comment">//--&gt;</span></span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">SCRIPT</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">BODY</span>&gt;</span></div><div class="line"></div><div class="line"> <span class="tag">&lt;/<span class="name">BODY</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">HTML</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>测试驱动</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">HTML</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">HEAD</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">TITLE</span>&gt;</span>suit test<span class="tag">&lt;/<span class="name">TITLE</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">HEAD</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"jsunit\app\jsUnitCore.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">&lt;!--</span></div><div class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">suite</span><span class="params">()</span></span></span></div><div class="line"><span class="undefined">&#123;</span></div><div class="line"><span class="actionscript">	<span class="keyword">var</span> testSuite = <span class="keyword">new</span> top.jsUnitTestSuite();</span></div><div class="line"><span class="actionscript">	<span class="comment">//增加的测试页面的路径是相对于测试运行器的路径的（testRunner.html），而不是相对于当前的页面</span></span></div><div class="line"><span class="actionscript">	testSuite.addTestPage(<span class="string">"../mytest1.html"</span>);</span></div><div class="line"><span class="actionscript">    <span class="comment">//套件里还可以在包含套件</span></span></div><div class="line"><span class="undefined">	testSuite.addTestSuite(Suite2());</span></div><div class="line"><span class="actionscript">	<span class="keyword">return</span> testSuite;</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">Suite2</span>(<span class="params"></span>) //需要与<span class="title">suite</span>定义在同一个页面中</span></span></div><div class="line"><span class="undefined">&#123;</span></div><div class="line"><span class="actionscript">	<span class="keyword">var</span> testSuite = <span class="keyword">new</span> top.jsUnitTestSuite();</span></div><div class="line"><span class="actionscript">	testSuite.addTestPage(<span class="string">"../mytest2.html"</span>);</span></div><div class="line"><span class="actionscript">	<span class="keyword">return</span> testSuite;</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="actionscript"><span class="comment">//--&gt;</span></span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">SCRIPT</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">BODY</span>&gt;</span></div><div class="line"></div><div class="line"> <span class="tag">&lt;/<span class="name">BODY</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">HTML</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><a href="http://www.jsunit.net/" target="_blank" rel="external">http://www.jsunit.net/</a> </p>
-<h2 id="工业革命–ajax流行"><a href="#工业革命–ajax流行" class="headerlink" title="工业革命–ajax流行"></a>工业革命–ajax流行</h2><p>随着ajax的流行，jquery框架在前端开发中的普及，让开发者看到了前端的新纪元，<br>jquery 团队也为广大开发人员开发了Qunit.QUnit 是一款强大而且容易使用的JavaScript 测试框架，它被用于jQuery 与其插件的测试，同时它也同样可以测试普通的JavaScript 代码.</p>
-<h3 id="TDD的时代来临-QUnit框架版本"><a href="#TDD的时代来临-QUnit框架版本" class="headerlink" title="TDD的时代来临 QUnit框架版本"></a>TDD的时代来临 QUnit框架版本</h3><p>将要被测试的代码需要添加到myProject.js中，并且你的测试用例应该插入到myTest.js。要运行这些测试，只需在一个浏览器中打开这个html文件。现在需要写一些测试用例了。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>QUnit Test Suite<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"http://github.com/jquery/qunit/raw/master/qunit/qunit.css"</span> <span class="attr">mce_href</span>=<span class="string">"http://github.com/jquery/qunit/raw/master/qunit/qunit.css"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">media</span>=<span class="string">"screen"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">mce:script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://github.com/jquery/qunit/raw/master/qunit/qunit.js"</span> <span class="attr">mce_src</span>=<span class="string">"http://github.com/jquery/qunit/raw/master/qunit/qunit.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">mce:script</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- Your project file goes here --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">mce:script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"myProject.js"</span> <span class="attr">mce_src</span>=<span class="string">"myProject.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">mce:script</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- Your tests file goes here --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">mce:script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"myTests.js"</span> <span class="attr">mce_src</span>=<span class="string">"myTests.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">mce:script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">"qunit-header"</span>&gt;</span>QUnit Test Suite<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"qunit-banner"</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"qunit-testrunner-toolbar"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"qunit-userAgent"</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ol</span> <span class="attr">id</span>=<span class="string">"qunit-tests"</span>&gt;</span><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>参考<br><a href="http://www.cnblogs.com/nuaalfm/archive/2010/02/26/1674235.html" target="_blank" rel="external">http://www.cnblogs.com/nuaalfm/archive/2010/02/26/1674235.html</a><br><a href="http://qunitjs.com/" target="_blank" rel="external">http://qunitjs.com/</a></p>
-<h2 id="现代化技术-BBD"><a href="#现代化技术-BBD" class="headerlink" title="现代化技术-BBD"></a>现代化技术-BBD</h2><p>紧着angluar react 等框架大行其道的同时，bdd也在开发中兴起，基于bdd的测试框架开始在前端如雨后春笋般冒出,jasmine,mocha,karma都是其中的代表，但是各得其道，到底谁好，没惹能说得清楚。但google 在前端测试的贡献，绝对是业界良心。</p>
-<p><img src="/image/JASMINE.png" alt=""><br><a href="http://jasmine.github.io/" target="_blank" rel="external">http://jasmine.github.io/</a></p>
-<p><img src="/image/KARMA.png" alt=""><br><a href="https://karma-runner.github.io/0.13/index.html" target="_blank" rel="external">https://karma-runner.github.io/0.13/index.html</a></p>
-<p><img src="/image/MOCHA.png" alt=""><br><a href="https://mochajs.org/" target="_blank" rel="external">https://mochajs.org/</a></p>
-<p>这些框架本人就不举列子了，会在以后的篇章里面一一介绍。</p>
-<h2 id="前端的未来"><a href="#前端的未来" class="headerlink" title="前端的未来"></a>前端的未来</h2><p>未来，我希望有一种框架能够解救苦逼的qa,简单的语法与api，使得我们能够处理所有前端框架而不用考虑控件问题，良好的性能，支持并发，跑ui和单元测试都在秒级，当然越快越好，最好能够自动更新ui自动化中页面对象的路径等等。也许只是个梦。Qa 还需努力。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2213,7 +2229,7 @@ describe(&apos;router testing&apos;, function () {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
