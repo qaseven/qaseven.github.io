@@ -285,6 +285,372 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/25/espresso4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/25/espresso4/" itemprop="url">espresso-api之Matchers探究</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-25T21:00:09+08:00">
+                2016-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>通过前3篇文章，大家应该对espresso有了大体上的了解，那么今天我们要深入了解它的API，看看espresso的整体架构。<br>还是通过espresso cheat sheet来进入本次话题。</p>
+<p><img src="/image/espresso-cheat-sheet-2.1.0.png" alt=""></p>
+<p>Espresso备忘单是您在开发过程中可以使用的快速参考。 这个备忘单包含大多数可用的Matchers，ViewActions和ViewAsertions。<br>让我们先来看看Matchers 都有哪些API可供我们使用。<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">android.support.test.espresso.matcher</div><div class="line">Classes</div><div class="line">BoundedMatcher&lt;T, S extends T&gt;	Some matcher sugar <span class="keyword">that</span> lets you create a matcher <span class="keyword">for</span> a <span class="keyword">given</span> type <span class="keyword">but</span> only process items <span class="keyword">of</span> a specific subtype <span class="keyword">of</span> <span class="keyword">that</span> matcher.</div><div class="line">CursorMatchers	A collection <span class="keyword">of</span> Hamcrest matchers <span class="keyword">that</span> matches a data row <span class="keyword">in</span> a Cursor.</div><div class="line">CursorMatchers.CursorMatcher	A Matcher <span class="keyword">that</span> matches Cursors based <span class="keyword">on</span> values <span class="keyword">in</span> their columns.</div><div class="line">LayoutMatchers	A collection <span class="keyword">of</span> hamcrest matches <span class="keyword">to</span> detect typical layout issues.</div><div class="line">PreferenceMatchers	A collection <span class="keyword">of</span> hamcrest matchers <span class="keyword">that</span> match Preferences.</div><div class="line">RootMatchers	A collection <span class="keyword">of</span> matchers <span class="keyword">for</span> Root objects.</div><div class="line">ViewMatchers	A collection <span class="keyword">of</span> hamcrest matchers <span class="keyword">that</span> match Views.</div><div class="line">Enums</div><div class="line">ViewMatchers.Visibility	Enumerates <span class="keyword">the</span> possible <span class="built_in">list</span> <span class="keyword">of</span> values <span class="keyword">for</span> View.getVisibility().</div></pre></td></tr></table></figure></p>
+<p>7个类，1个Eums。接下来我们一个个欣赏谷歌大神的杰作。</p>
+<p><code>BoundedMatcher&lt;T, S extends T&gt;</code><br>一些匹配语法糖，允许您为给定类型创建匹配器，但只能处理该匹配器的特定子类型项。换句话说，就是能够自定义一些匹配器。<br>举个栗子，以下是一个自定义错误文本匹配器<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">ErrorTextMatchers</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line"><span class="comment">   * Returns a matcher that matches &#123;<span class="doctag">@link</span> TextView&#125;s based on text property value.</span></div><div class="line"><span class="comment">   *</span></div><div class="line"><span class="comment">   * <span class="doctag">@param</span> stringMatcher &#123;<span class="doctag">@link</span> Matcher&#125; of &#123;<span class="doctag">@link</span> String&#125; with text to match</span></div><div class="line"><span class="comment">   */</span></div><div class="line">  <span class="meta">@NonNull</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Matcher&lt;View&gt; <span class="title">withErrorText</span><span class="params">(<span class="keyword">final</span> Matcher&lt;String&gt; stringMatcher)</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> BoundedMatcher&lt;View, TextView&gt;(TextView.class) &#123;</div><div class="line"></div><div class="line">      <span class="meta">@Override</span></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">describeTo</span><span class="params">(<span class="keyword">final</span> Description description)</span> </span>&#123;</div><div class="line">        description.appendText(<span class="string">"with error text: "</span>);</div><div class="line">        stringMatcher.describeTo(description);</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="meta">@Override</span></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">matchesSafely</span><span class="params">(<span class="keyword">final</span> TextView textView)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> stringMatcher.matches(textView.getError().toString());</div><div class="line">      &#125;</div><div class="line">    &#125;;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>实现的主要细节如下。 我们通过从withErrorText()返回一个BoundedMatcher来确保匹配器只匹配TextView类的子类。 这使得很容易在BoundedMatcher.matchesSafely()中实现匹配逻辑本身：只需从TextView中获取getError()方法并将其送入下一个匹配器。 最后，我们有一个简单的describeTo()方法的实现，它只用于生成调试输出到控制台。<br><code>CursorMatchers</code><br>Hamcrest的集合匹配器，在Cursor匹配相应的数据行。<br>源码如下<br><figure class="highlight puppet"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">   * Returns a matcher that matches <span class="keyword">a</span> &#123;@<span class="literal">link</span> String&#125; <span class="keyword">value</span> <span class="keyword">at</span> <span class="keyword">a</span> <span class="keyword">given</span> <span class="keyword">column</span> <span class="keyword">index</span></div><div class="line">   * in <span class="keyword">a</span> &#123;@<span class="literal">link</span> Cursor&#125;<span class="keyword">s</span> <span class="keyword">data</span> <span class="keyword">row</span>.</div><div class="line">   * &lt;br&gt;</div><div class="line">   * @param columnIndex int column index</div><div class="line">   * @param value <span class="keyword">a</span> &#123;@<span class="literal">link</span> String&#125; <span class="keyword">value</span> <span class="keyword">to</span> <span class="keyword">match</span></div><div class="line">   */</div><div class="line">  public static CursorMatcher withRowString(int columnIndex, String value) &#123;</div><div class="line">    return withRowString(columnIndex, is(value));</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<p>大部分的场景，大多发生于表单或者滚动menu时。<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">onData(</div><div class="line">    is(<span class="name">instanceOf</span>(<span class="name">Cursor</span>.class)),</div><div class="line">    CursorMatchers.withRowString(<span class="string">"job_title"</span>, is(<span class="string">"Barista"</span>))</div><div class="line">)<span class="comment">;</span></div></pre></td></tr></table></figure></p>
+<p>LayoutMatchers hamcrest的集合匹配以检测典型的布局问题。<br>   例如匹配具有椭圆形文本的TextView元素。 如果文本太长，无法适应TextView，<br>    它可以是椭圆形（’Too long’显示为’Too l …’或’… long’）或切断（’Too<br>    long“显示为”Too l“）。 虽然在某些情况下可以接受，但通常表示不好的用户体验。</p>
+<p>PreferenceMatchers hamcrest匹配器来匹配一组偏好。<br>Preference组件其实就是Android常见UI组件与SharePreferences的组合封装实现。<br><code>onData(Matchers.&lt;Object&gt;allOf(PreferenceMatchers.withKey(&quot;setting-name&quot;))).perform(click());</code><br>PreferenceMatchers还有以下方法可以应用到其他场景<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">withSummary</span><span class="params">(final int resourceId)</span></span></div><div class="line"><span class="function"><span class="title">withSummaryText</span><span class="params">(String summary)</span></span></div><div class="line"><span class="function"><span class="title">withSummaryText</span><span class="params">(final Matcher&lt;String&gt; summaryMatcher)</span></span></div><div class="line"><span class="function"><span class="title">withTitle</span><span class="params">(final int resourceId)</span></span></div><div class="line"><span class="function"><span class="title">withTitleText</span><span class="params">(String title)</span></span></div><div class="line"><span class="function"><span class="title">withTitleText</span><span class="params">(final Matcher&lt;String&gt; titleMatcher)</span></span></div><div class="line"><span class="function"><span class="title">isEnabled</span><span class="params">()</span></span></div></pre></td></tr></table></figure></p>
+<p>RootMatchers Root对象的匹配器集合。<br>匹配root装饰视图匹配给定的视图匹配器。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">onView</span>(<span class="selector-tag">withText</span>("<span class="selector-tag">Text</span>"))</div><div class="line">  <span class="selector-class">.inRoot</span>(<span class="selector-tag">withDecorView</span>(<span class="selector-tag">not</span>(<span class="selector-tag">is</span>(<span class="selector-tag">getActivity</span>()<span class="selector-class">.getWindow</span>()<span class="selector-class">.getDecorView</span>()))))</div><div class="line">  <span class="selector-class">.perform</span>(<span class="selector-tag">click</span>());</div></pre></td></tr></table></figure></p>
+<p>RootMatchers还有以下方法可以应用到其他场景</p>
+<table>
+<thead>
+<tr>
+<th>Public methods</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>static Matcher<root></root></td>
+<td>isDialog()Matches Roots that are dialogs (i.e.)</td>
+</tr>
+<tr>
+<td>static Matcher<root></root></td>
+<td>isFocusable()Matches Roots that can take window focus.</td>
+</tr>
+<tr>
+<td>  static Matcher<root></root></td>
+<td>isPlatformPopup()Matches Roots that are popups - like autocomplete suggestions or the actionbar spinner.  </td>
+</tr>
+<tr>
+<td>  static Matcher<root></root></td>
+<td>isTouchable()Matches Roots that can receive touch events.  </td>
+</tr>
+<tr>
+<td>  static Matcher<root></root></td>
+<td>withDecorView(Matcher<view> decorViewMatcher)Matches Roots with decor views that match the given view matcher.</view></td>
+</tr>
+</tbody>
+</table>
+<p>  ViewMatchers 最重要也是应用最广的匹配器，通过一个或者多个来定位层级里面的控件。</p>
+<table>
+<thead>
+<tr>
+<th>Public methods</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>  static <t> void</t></td>
+<td>assertThat(String message, T actual, Matcher<t> matcher) A replacement for MatcherAssert.assertThat that renders View objects nicely.</t></td>
+</tr>
+<tr>
+<td>  static <t> void</t></td>
+<td>assertThat(T actual, Matcher<t> matcher) A replacement for MatcherAssert.assertThat that renders View objects nicely.</t></td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>hasContentDescription() Returns an Matcher that matches Views with any content description.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>hasDescendant(Matcher<view> descendantMatcher) Returns a matcher that matches Views based on the presence of a descendant in its view hierarchy.</view></td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>hasErrorText(String expectedError) Returns a matcher that matches EditText based on edit text error string value.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>hasErrorText(Matcher<string> stringMatcher) Returns a matcher that matches EditText based on edit text error string value.</string></td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>hasFocus() Returns a matcher that matches Views currently have focus.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>hasImeAction(int imeAction) Returns a matcher that matches views that support input methods (e.g.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>hasImeAction(Matcher<integer> imeActionMatcher) Returns a matcher that matches views that support input methods (e.g.</integer></td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>hasLinks() Returns a matcher that matches TextViews that have links.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>hasSibling(Matcher<view> siblingMatcher) Returns an Matcher that matches Views based on their siblings.</view></td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>isAssignableFrom(Class&lt;? extends View&gt; clazz) Returns a matcher that matches Views which are an instance of or subclass of the provided class.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>isChecked() Returns a matcher that accepts if and only if the view is a CompoundButton (or subtype of) and is in checked state.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>isClickable() Returns a matcher that matches Views that are clickable.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>isCompletelyDisplayed() Returns a matcher which only accepts a view whose height and width fit perfectly within the currently displayed region of this view.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>isDescendantOfA(Matcher<view> ancestorMatcher) Returns a matcher that matches Views based on the given ancestor type.</view></td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>isDisplayed() Returns a matcher that matches Views that are currently displayed on the screen to the user.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>isDisplayingAtLeast(int areaPercentage) Returns a matcher which accepts a view so long as a given percentage of that view’s area is not obscured by any other view and is thus visible to the user.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>isEnabled() Returns a matcher that matches Views that are enabled.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>isFocusable() Returns a matcher that matches Views that are focusable.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>isJavascriptEnabled() Returns a matcher that matches WebView if they are evaluating Javascript.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>isNotChecked() Returns a matcher that accepts if and only if the view is a CompoundButton (or subtype of) and is not in checked state.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>isRoot() Returns a matcher that matches root View.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>isSelected() Returns a matcher that matches Views that are selected.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>supportsInputMethods() Returns a matcher that matches views that support input methods.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withChild(Matcher<view> childMatcher) A matcher that returns true if and only if the view’s child is accepted by the provided matcher.</view></td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withClassName(Matcher<string> classNameMatcher) Returns a matcher that matches Views with class name matching the given matcher.</string></td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withContentDescription(int resourceId) Returns a Matcher that matches Views based on content description property value.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withContentDescription(String text) Returns an Matcher that matches Views based on content description property value.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withContentDescription(Matcher&lt;? extends CharSequence&gt; charSequenceMatcher) Returns an Matcher that matches Views based on content description property value.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withEffectiveVisibility(ViewMatchers.Visibility visibility) Returns a matcher that matches Views that have “effective” visibility set to the given value.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withHint(Matcher<string> stringMatcher) Returns a matcher that matches TextViews based on hint property value.</string></td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withHint(int resourceId) Returns a matcher that matches a descendant of TextView that is displaying the hint associated with the given resource id.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withHint(String hintText) Returns a matcher that matches TextView based on it’s hint property value.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withId(Matcher<integer> integerMatcher) Returns a matcher that matches Views based on resource ids.</integer></td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withId(int id) Same as withId(is(int)), but attempts to look up resource name of the given id and use an R.id.myView style description with describeTo.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withInputType(int inputType) Returns a matcher that matches InputType.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withParent(Matcher<view> parentMatcher) A matcher that accepts a view if and only if the view’s parent is accepted by the provided matcher.</view></td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withResourceName(String name) Returns a matcher that matches Views based on resource id names, (for instance, channel_avatar).</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withResourceName(Matcher<string> stringMatcher) Returns a matcher that matches Views based on resource id names, (for instance, channel_avatar).</string></td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withSpinnerText(int resourceId) Returns a matcher that matches a descendant of Spinner that is displaying the string of the selected item associated with the given resource id.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withSpinnerText(String text) Returns a matcher that matches Spinner based on it’s selected item’s toString value.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withSpinnerText(Matcher<string> stringMatcher) Returns a matcher that matches Spinners based on toString value of the selected item.</string></td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withTagKey(int key) Returns a matcher that matches View based on tag keys.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withTagKey(int key, Matcher<object> objectMatcher) Returns a matcher that matches Views based on tag keys.</object></td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withTagValue(Matcher<object> tagValueMatcher) Returns a matcher that matches Views based on tag property values.</object></td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withText(Matcher<string> stringMatcher) Returns a matcher that matches TextViews based on text property value.</string></td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withText(String text) Returns a matcher that matches TextView based on its text property value.</td>
+</tr>
+<tr>
+<td>  static Matcher<view></view></td>
+<td>withText(int resourceId) Returns a matcher that matches a descendant of TextView that is displaying the string associated with the given resource id.</td>
+</tr>
+</tbody>
+</table>
+<p>ok 这次主要介绍Matchers的API 更多的内容 大家还是要查看官方API去学习。<br>以下是android espresso matchers的地址<br><a href="https://developer.android.com/reference/android/support/test/espresso/matcher/ViewMatchers.html" target="_blank" rel="external">espresso matchers</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/13/qa-heart/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1845,130 +2211,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/08/26/capybara1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="qi lei">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QA seven's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/08/26/capybara1/" itemprop="url">capybara1-capybara简介</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-26T14:17:36+08:00">
-                2016-08-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="capybara简介"><a href="#capybara简介" class="headerlink" title="capybara简介"></a>capybara简介</h2><p>capybara是一个ruby的gem,它是一个用来测试web应用的工具包，使用它可以模拟用户对web应用的操作。它可以通过CSS或xpath选择器选中页面上的元素，然后对这些元素应用一些操作，从而实现模拟用户行为。</p>
-<h3 id="底层driver的实现"><a href="#底层driver的实现" class="headerlink" title="底层driver的实现"></a>底层driver的实现</h3><p>基于底层driver的基础上，提供一套统一的 界面交互api，如visit, right_click，hover等。它内置 Rack::Test 和 Selenium 支持，也支持其他驱动。WebKit 通过外部 gem 的形式支持。</p>
-<p>底层的driver有很多，可以是完全打开浏览器方式的driver(如：RackTest，selenium-webdriver)，也可以是基于headless webkit 的 driver(如：capybara-webkit, poltergeist).</p>
-<h3 id="capybara-优点"><a href="#capybara-优点" class="headerlink" title="capybara 优点"></a>capybara 优点</h3><p>  ● 无需配置 对于 Rails 和 Rack 应用而言，开箱即用。<br>  ● 符合直觉的 API 模拟真实用户行为。<br>  ● 可替换后端 可以替换测试后端，例如从快速的 headless 模式切换到实际的浏览器，无需更改测试。<br>  ● 强力同步 你不用手动等待异步过程结束。</p>
-<p>因为capyybara提供了以下好处：<br>  ● 这是一个更高层次的API，这意味着当你使用不同driver时，例如（headless或者browser）可以使用同样的API处理动态页面或静态HTML.<br>  ● 它是专门为U自动化测试web应用而设计的程序,<br>  ● 因此它拥有十分有用的断言的方法判断页面是否正确。<br>  ● 当我们测试真实的浏览器时，他会自动帮助我们处理许多棘手的异步问题<br>  ● 它被设计用于测试机架的应用，因此它会开机并为您管理后台服务器<br>  ● 它为设计为rack应用的测试框架,所以它将引导和管理后台服务。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2019,7 +2261,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

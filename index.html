@@ -285,6 +285,170 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/23/vue6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/23/vue6/" itemprop="url">小QA学习前端系列之vue 列表渲染</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-23T09:30:10+08:00">
+                2017-10-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="小QA学习前端系列之vue-列表渲染"><a href="#小QA学习前端系列之vue-列表渲染" class="headerlink" title="小QA学习前端系列之vue 列表渲染"></a>小QA学习前端系列之vue 列表渲染</h1><h2 id="用-v-for-把一个数组对应为一组元素"><a href="#用-v-for-把一个数组对应为一组元素" class="headerlink" title="用 v-for 把一个数组对应为一组元素"></a>用 v-for 把一个数组对应为一组元素</h2><p>我们用 v-for 指令根据一组数组的选项列表进行渲染。v-for 指令需要使用 item in items 形式的特殊语法，items 是源数据数组并且 item 是数组元素迭代的别名。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">ul</span> id=<span class="string">"example-1"</span>&gt;</div><div class="line">  &lt;<span class="selector-tag">li</span> v-<span class="keyword">for</span>=<span class="string">"item in items"</span>&gt;</div><div class="line">    &#123;&#123; item<span class="selector-class">.message</span> &#125;&#125;</div><div class="line">  &lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line"></div><div class="line"><span class="selector-tag">var</span> example1 = new Vue(&#123;</div><div class="line">  el: <span class="string">'#example-1'</span>,</div><div class="line">  data: &#123;</div><div class="line">    items: [</div><div class="line">      &#123; message: <span class="string">'Foo'</span> &#125;,</div><div class="line">      &#123; message: <span class="string">'Bar'</span> &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="在v-for-使用index"><a href="#在v-for-使用index" class="headerlink" title="在v-for 使用index"></a>在v-for 使用index</h2><p>v-for 还支持一个可选的第二个参数为当前项的索引。</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;ul id=<span class="string">"example-2"</span>&gt;</div><div class="line">  &lt;li v-for=<span class="string">"(item, index) in items"</span>&gt;</div><div class="line">    &#123;&#123; parentMessage &#125;&#125; - &#123;&#123; index &#125;&#125; - &#123;&#123; item.message &#125;&#125;</div><div class="line">  &lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line"></div><div class="line">var example2 = new Vue(&#123;</div><div class="line">  el: <span class="string">'#example-2'</span>,</div><div class="line">  data: &#123;</div><div class="line">    parentMessage: <span class="string">'Parent'</span>,</div><div class="line">    items: [</div><div class="line">      &#123; message: <span class="string">'Foo'</span> &#125;,</div><div class="line">      &#123; message: <span class="string">'Bar'</span> &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p> of 替代 in 作为分隔符，因为它是最接近 JavaScript 迭代器的语法</p>
+<h2 id="一个对象的-v-for"><a href="#一个对象的-v-for" class="headerlink" title="一个对象的 v-for"></a>一个对象的 v-for</h2> <figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"> </div><div class="line">&lt;ul id=<span class="string">"v-for-object"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"demo"</span>&gt;</div><div class="line">  &lt;li v-<span class="keyword">for</span>=<span class="string">"value in object"</span>&gt;</div><div class="line">    &#123;&#123; value &#125;&#125;</div><div class="line">  &lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line"></div><div class="line"><span class="keyword">new</span> <span class="type">Vue</span>(&#123;</div><div class="line">  el: '#v-<span class="keyword">for</span>-<span class="class"><span class="keyword">object</span>',</span></div><div class="line"><span class="class">  <span class="title">data</span></span>: &#123;</div><div class="line">    <span class="class"><span class="keyword">object</span></span>: &#123;</div><div class="line">      firstName: <span class="symbol">'Joh</span>n',</div><div class="line">      lastName: <span class="symbol">'Do</span>e',</div><div class="line">      age: <span class="number">30</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p> 你也可以提供第二个的参数为键名：<br><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"(value, key) in object"</span>&gt;</span></span></div><div class="line"><span class="xml">  </span><span class="template-variable">&#123;&#123; key &#125;&#125;</span><span class="xml">: </span><span class="template-variable">&#123;&#123; value &#125;&#125;</span><span class="xml"></span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<p>第三个参数为索引：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div v-for=<span class="string">"(value, key, index) in object"</span>&gt;</div><div class="line">  &#123;&#123; index &#125;&#125;. &#123;&#123; key &#125;&#125;: &#123;&#123; value &#125;&#125;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h2 id="数组更新检测"><a href="#数组更新检测" class="headerlink" title="数组更新检测"></a>数组更新检测</h2><h3 id="变异方法"><a href="#变异方法" class="headerlink" title="变异方法"></a>变异方法</h3><p>Vue 包含一组观察数组的变异方法，所以它们也将会触发视图更新。这些方法如下：</p>
+<pre><code>push()
+pop()
+shift()
+unshift()
+splice()
+sort()
+reverse()
+</code></pre><p>你打开控制台，然后用前面例子的 items 数组调用变异方法：example1.items.push({ message: ‘Baz’ }) 。</p>
+<h3 id="替换数组"><a href="#替换数组" class="headerlink" title="替换数组"></a>替换数组</h3><p>变异方法 (mutation method)，顾名思义，会改变被这些方法调用的原始数组。相比之下，也有非变异 (non-mutating method) 方法，例如：filter(), concat() 和 slice() 。这些不会改变原始数组，但总是返回一个新数组。当使用非变异方法时，可以用新数组替换旧数组：</p>
+<p>example1.items = example1.items.filter(function (item) {<br>  return item.message.match(/Foo/)<br>})</p>
+<p>你可能认为这将导致 Vue 丢弃现有 DOM 并重新渲染整个列表。幸运的是，事实并非如此。Vue 为了使得 DOM 元素得到最大范围的重用而实现了一些智能的、启发式的方法，所以用一个含有相同元素的数组去替换原来的数组是非常高效的操作。</p>
+<h3 id="对象更改检测注意事项"><a href="#对象更改检测注意事项" class="headerlink" title="对象更改检测注意事项"></a>对象更改检测注意事项</h3><p>Vue 不能检测对象属性的添加或删除：<br>对于已经创建的实例，Vue 不能动态添加根级别的响应式属性。但是，可以使用 Vue.set(object, key, value) 方法向嵌套对象添加响应式属性。例如，对于：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="title">var</span> vm = new <span class="type">Vue</span>(&#123;</div><div class="line">  <span class="class"><span class="keyword">data</span>: &#123;</span></div><div class="line"><span class="class">    <span class="title">userProfile</span>: &#123;</span></div><div class="line"><span class="class">      <span class="title">name</span>: '<span class="type">Anika</span>'</span></div><div class="line"><span class="class">    &#125;</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>你可以添加一个新的 age 属性到嵌套的 userProfile 对象：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Vue.set(vm<span class="selector-class">.userProfile</span>, <span class="string">'age'</span>, <span class="number">27</span>)</div></pre></td></tr></table></figure></p>
+<p>你还可以使用 vm.$set 实例方法，它只是全局 Vue.set 的别名：<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.$<span class="keyword">set</span>(<span class="keyword">this</span>.userProfile, <span class="string">'age'</span>, <span class="number">27</span>)</div></pre></td></tr></table></figure></p>
+<p>有时你可能需要为已有对象赋予多个新属性，比如使用 Object.assign() 或 _.extend()。在这种情况下，你应该用两个对象的属性创建一个新的对象。所以，如果你想添加新的响应式属性，不要像这样：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">Object</span><span class="selector-class">.assign</span>(<span class="selector-tag">this</span><span class="selector-class">.userProfile</span>, &#123;</div><div class="line">  <span class="attribute">age</span>: <span class="number">27</span>,</div><div class="line">  favoriteColor: <span class="string">'Vue Green'</span></div><div class="line">&#125;)</div><div class="line">``</div><div class="line">你应该这样做：</div></pre></td></tr></table></figure></p>
+<p>this.userProfile = Object.assign({}, this.userProfile, {<br>  age: 27,<br>  favoriteColor: ‘Vue Green’<br>})<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 显示过滤/排序结果</span></span></div><div class="line">有时，我们想要显示一个数组的过滤或排序副本，而不实际改变或重置原始数据。在这种情况下，可以创建返回过滤或排序数组的计算属性。</div><div class="line"></div><div class="line">例如：</div></pre></td></tr></table></figure></p>
+<li v-for="n in evenNumbers"></li>
+
+<p>data: {<br>  numbers: [ 1, 2, 3, 4, 5 ]<br>},<br>computed: {<br>  evenNumbers: function () {<br>    return this.numbers.filter(function (number) {<br>      return number % 2 === 0<br>    })<br>  }<br>}<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在计算属性不适用的情况下 (例如，在嵌套 v-<span class="keyword">for</span> 循环中) 你可以使用一个 <span class="function"><span class="keyword">method</span> 方法：</span></div></pre></td></tr></table></figure></p>
+<li v-for="n in even(numbers)"></li>
+
+<p>data: {<br>  numbers: [ 1, 2, 3, 4, 5 ]<br>},<br>methods: {<br>  even: function (numbers) {<br>    return numbers.filter(function (number) {<br>      return number % 2 === 0<br>    })<br>  }<br>}<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 一段取值范围的 v-for</span></span></div><div class="line"></div><div class="line">v-for 也可以取整数。在这种情况下，它将重复多次模板。</div></pre></td></tr></table></figure></p>
+<p><div><br>  <span v-for="n in 10"> </span><br></div><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">## v-<span class="keyword">for</span> <span class="keyword">on</span> <span class="keyword">a</span> <span class="symbol">&lt;template&gt;</span></div><div class="line">类似于 v-<span class="keyword">if</span>，你也可以利用带有 v-<span class="keyword">for</span> 的 <span class="symbol">&lt;template&gt;</span> 渲染多个元素。比如：</div></pre></td></tr></table></figure></p>
+<p><ul><br>  <template v-for="item in items"><br>    <li></li><br>    <li class="divider"></li><br>  </template><br></ul><br><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">## v-<span class="keyword">for</span> <span class="keyword">with</span> v-<span class="keyword">if</span></div><div class="line">当它们处于同一节点，v-<span class="keyword">for</span> 的优先级比 v-<span class="keyword">if</span> 更高，这意味着 v-<span class="keyword">if</span> 将分别重复运行于每个 v-<span class="keyword">for</span> 循环中。当你想为仅有的一些项渲染节点时，这种优先级的机制会十分有用，如下：</div></pre></td></tr></table></figure></p>
+<p><li v-for="todo in todos" v-if="!todo.isComplete"><br>  <br></li><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">上面的代码只传递了未 <span class="built_in">complete</span> 的 todos。</div><div class="line"></div><div class="line">而如果你的目的是有条件地跳过循环的执行，那么可以将 v-<span class="keyword">if</span> 置于外层元素 (或 <span class="symbol">&lt;template&gt;</span>)上。如：</div></pre></td></tr></table></figure></p>
+<p><ul v-if="todos.length"><br>  <li v-for="todo in todos"><br>    <br>  </li><br></ul></p>
+<p></p><p v-else="">No todos left!</p><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 一个组件的 v-for</span></span></div><div class="line">在自定义组件里，你可以像任何普通元素一样用 v-for 。</div></pre></td></tr></table></figure><p></p>
+<p><my-component v-for="item in items" :key="item.id"></my-component><br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">    <span class="number">2.2</span><span class="number">.0</span>+ 的版本里，当在组件中使用 v-for 时，<span class="type">key</span> 现在是必须的。</div><div class="line"></div><div class="line">然而，任何数据都不会被自动传递到组件里，因为组件有自己独立的作用域。为了把迭代数据传递到组件里，我们要用 props ：</div></pre></td></tr></table></figure></p>
+<p>&lt;my-component<br>  v-for=”(item, index) in items”<br>  v-bind:item=”item”<br>  v-bind:index=”index”<br>  v-bind:key=”item.id”</p>
+<blockquote>
+<p><br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">不自动将 <span class="built_in">item</span> 注入到组件里的原因是，这会使得组件与 v-<span class="keyword">for</span> 的运作紧密耦合。明确组件数据的来源能够使组件在其他场合重复使用。</div><div class="line"></div><div class="line">下面是一个简单的 todo <span class="built_in">list</span> 的完整例子：</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><div id="todo-list-example"><br>  <input v-model="newTodoText" v-on:keyup.enter="addNewTodo" placeholder="Add a todo"><br>  <ul><br>    &lt;li<br>      is=”todo-item”<br>      v-for=”(todo, index) in todos”<br>      v-bind:key=”todo.id”<br>      v-bind:title=”todo.title”<br>      v-on:remove=”todos.splice(index, 1)”</ul></div></p>
+<pre><code>&gt;&lt;/li&gt;
+</code></pre><p>  <br><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">注意这里的 <span class="keyword">is</span>=<span class="string">"todo-item"</span> 属性。这种做法在使用 DOM 模板时是十分必要的，因为在 <span class="symbol">&lt;ul&gt;</span> 元素内只有 <span class="symbol">&lt;li&gt;</span> 元素会被看作有效内容。这样做实现的效果与 <span class="symbol">&lt;todo-item&gt;</span> 相同，但是可以避开一些潜在的浏览器解析错误。查看 DOM 模板解析说明 来了解更多信息。</div></pre></td></tr></table></figure></p>
+<p>Vue.component(‘todo-item’, {<br>  template: ‘\<br>    <li>\<br>      小QA学习前端系列之vue 列表渲染\<br>      <button v-on:click="$emit(\'remove\')">X</button>\<br>    </li>\<br>  ‘,<br>  props: [‘title’]<br>})<br>new Vue({<br>  el: ‘#todo-list-example’,<br>  data: {<br>    newTodoText: ‘’,<br>    todos: [<br>      {<br>        id: 1,<br>        title: ‘Do the dishes’,<br>      },<br>      {<br>        id: 2,<br>        title: ‘Take out the trash’,<br>      },<br>      {<br>        id: 3,<br>        title: ‘Mow the lawn’<br>      }<br>    ],<br>    nextTodoId: 4<br>  },<br>  methods: {<br>    addNewTodo: function () {<br>      this.todos.push({<br>        id: this.nextTodoId++,<br>        title: this.newTodoText<br>      })<br>      this.newTodoText = ‘’<br>    }<br>  }<br>})<br>```</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/22/vue5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1653,372 +1817,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/25/espresso4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="qi lei">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QA seven's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/12/25/espresso4/" itemprop="url">espresso-api之Matchers探究</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-25T21:00:09+08:00">
-                2016-12-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>通过前3篇文章，大家应该对espresso有了大体上的了解，那么今天我们要深入了解它的API，看看espresso的整体架构。<br>还是通过espresso cheat sheet来进入本次话题。</p>
-<p><img src="/image/espresso-cheat-sheet-2.1.0.png" alt=""></p>
-<p>Espresso备忘单是您在开发过程中可以使用的快速参考。 这个备忘单包含大多数可用的Matchers，ViewActions和ViewAsertions。<br>让我们先来看看Matchers 都有哪些API可供我们使用。<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">android.support.test.espresso.matcher</div><div class="line">Classes</div><div class="line">BoundedMatcher&lt;T, S extends T&gt;	Some matcher sugar <span class="keyword">that</span> lets you create a matcher <span class="keyword">for</span> a <span class="keyword">given</span> type <span class="keyword">but</span> only process items <span class="keyword">of</span> a specific subtype <span class="keyword">of</span> <span class="keyword">that</span> matcher.</div><div class="line">CursorMatchers	A collection <span class="keyword">of</span> Hamcrest matchers <span class="keyword">that</span> matches a data row <span class="keyword">in</span> a Cursor.</div><div class="line">CursorMatchers.CursorMatcher	A Matcher <span class="keyword">that</span> matches Cursors based <span class="keyword">on</span> values <span class="keyword">in</span> their columns.</div><div class="line">LayoutMatchers	A collection <span class="keyword">of</span> hamcrest matches <span class="keyword">to</span> detect typical layout issues.</div><div class="line">PreferenceMatchers	A collection <span class="keyword">of</span> hamcrest matchers <span class="keyword">that</span> match Preferences.</div><div class="line">RootMatchers	A collection <span class="keyword">of</span> matchers <span class="keyword">for</span> Root objects.</div><div class="line">ViewMatchers	A collection <span class="keyword">of</span> hamcrest matchers <span class="keyword">that</span> match Views.</div><div class="line">Enums</div><div class="line">ViewMatchers.Visibility	Enumerates <span class="keyword">the</span> possible <span class="built_in">list</span> <span class="keyword">of</span> values <span class="keyword">for</span> View.getVisibility().</div></pre></td></tr></table></figure></p>
-<p>7个类，1个Eums。接下来我们一个个欣赏谷歌大神的杰作。</p>
-<p><code>BoundedMatcher&lt;T, S extends T&gt;</code><br>一些匹配语法糖，允许您为给定类型创建匹配器，但只能处理该匹配器的特定子类型项。换句话说，就是能够自定义一些匹配器。<br>举个栗子，以下是一个自定义错误文本匹配器<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">ErrorTextMatchers</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line"><span class="comment">   * Returns a matcher that matches &#123;<span class="doctag">@link</span> TextView&#125;s based on text property value.</span></div><div class="line"><span class="comment">   *</span></div><div class="line"><span class="comment">   * <span class="doctag">@param</span> stringMatcher &#123;<span class="doctag">@link</span> Matcher&#125; of &#123;<span class="doctag">@link</span> String&#125; with text to match</span></div><div class="line"><span class="comment">   */</span></div><div class="line">  <span class="meta">@NonNull</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Matcher&lt;View&gt; <span class="title">withErrorText</span><span class="params">(<span class="keyword">final</span> Matcher&lt;String&gt; stringMatcher)</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> BoundedMatcher&lt;View, TextView&gt;(TextView.class) &#123;</div><div class="line"></div><div class="line">      <span class="meta">@Override</span></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">describeTo</span><span class="params">(<span class="keyword">final</span> Description description)</span> </span>&#123;</div><div class="line">        description.appendText(<span class="string">"with error text: "</span>);</div><div class="line">        stringMatcher.describeTo(description);</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="meta">@Override</span></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">matchesSafely</span><span class="params">(<span class="keyword">final</span> TextView textView)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> stringMatcher.matches(textView.getError().toString());</div><div class="line">      &#125;</div><div class="line">    &#125;;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>实现的主要细节如下。 我们通过从withErrorText()返回一个BoundedMatcher来确保匹配器只匹配TextView类的子类。 这使得很容易在BoundedMatcher.matchesSafely()中实现匹配逻辑本身：只需从TextView中获取getError()方法并将其送入下一个匹配器。 最后，我们有一个简单的describeTo()方法的实现，它只用于生成调试输出到控制台。<br><code>CursorMatchers</code><br>Hamcrest的集合匹配器，在Cursor匹配相应的数据行。<br>源码如下<br><figure class="highlight puppet"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">   * Returns a matcher that matches <span class="keyword">a</span> &#123;@<span class="literal">link</span> String&#125; <span class="keyword">value</span> <span class="keyword">at</span> <span class="keyword">a</span> <span class="keyword">given</span> <span class="keyword">column</span> <span class="keyword">index</span></div><div class="line">   * in <span class="keyword">a</span> &#123;@<span class="literal">link</span> Cursor&#125;<span class="keyword">s</span> <span class="keyword">data</span> <span class="keyword">row</span>.</div><div class="line">   * &lt;br&gt;</div><div class="line">   * @param columnIndex int column index</div><div class="line">   * @param value <span class="keyword">a</span> &#123;@<span class="literal">link</span> String&#125; <span class="keyword">value</span> <span class="keyword">to</span> <span class="keyword">match</span></div><div class="line">   */</div><div class="line">  public static CursorMatcher withRowString(int columnIndex, String value) &#123;</div><div class="line">    return withRowString(columnIndex, is(value));</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
-<p>大部分的场景，大多发生于表单或者滚动menu时。<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">onData(</div><div class="line">    is(<span class="name">instanceOf</span>(<span class="name">Cursor</span>.class)),</div><div class="line">    CursorMatchers.withRowString(<span class="string">"job_title"</span>, is(<span class="string">"Barista"</span>))</div><div class="line">)<span class="comment">;</span></div></pre></td></tr></table></figure></p>
-<p>LayoutMatchers hamcrest的集合匹配以检测典型的布局问题。<br>   例如匹配具有椭圆形文本的TextView元素。 如果文本太长，无法适应TextView，<br>    它可以是椭圆形（’Too long’显示为’Too l …’或’… long’）或切断（’Too<br>    long“显示为”Too l“）。 虽然在某些情况下可以接受，但通常表示不好的用户体验。</p>
-<p>PreferenceMatchers hamcrest匹配器来匹配一组偏好。<br>Preference组件其实就是Android常见UI组件与SharePreferences的组合封装实现。<br><code>onData(Matchers.&lt;Object&gt;allOf(PreferenceMatchers.withKey(&quot;setting-name&quot;))).perform(click());</code><br>PreferenceMatchers还有以下方法可以应用到其他场景<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">withSummary</span><span class="params">(final int resourceId)</span></span></div><div class="line"><span class="function"><span class="title">withSummaryText</span><span class="params">(String summary)</span></span></div><div class="line"><span class="function"><span class="title">withSummaryText</span><span class="params">(final Matcher&lt;String&gt; summaryMatcher)</span></span></div><div class="line"><span class="function"><span class="title">withTitle</span><span class="params">(final int resourceId)</span></span></div><div class="line"><span class="function"><span class="title">withTitleText</span><span class="params">(String title)</span></span></div><div class="line"><span class="function"><span class="title">withTitleText</span><span class="params">(final Matcher&lt;String&gt; titleMatcher)</span></span></div><div class="line"><span class="function"><span class="title">isEnabled</span><span class="params">()</span></span></div></pre></td></tr></table></figure></p>
-<p>RootMatchers Root对象的匹配器集合。<br>匹配root装饰视图匹配给定的视图匹配器。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">onView</span>(<span class="selector-tag">withText</span>("<span class="selector-tag">Text</span>"))</div><div class="line">  <span class="selector-class">.inRoot</span>(<span class="selector-tag">withDecorView</span>(<span class="selector-tag">not</span>(<span class="selector-tag">is</span>(<span class="selector-tag">getActivity</span>()<span class="selector-class">.getWindow</span>()<span class="selector-class">.getDecorView</span>()))))</div><div class="line">  <span class="selector-class">.perform</span>(<span class="selector-tag">click</span>());</div></pre></td></tr></table></figure></p>
-<p>RootMatchers还有以下方法可以应用到其他场景</p>
-<table>
-<thead>
-<tr>
-<th>Public methods</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>static Matcher<root></root></td>
-<td>isDialog()Matches Roots that are dialogs (i.e.)</td>
-</tr>
-<tr>
-<td>static Matcher<root></root></td>
-<td>isFocusable()Matches Roots that can take window focus.</td>
-</tr>
-<tr>
-<td>  static Matcher<root></root></td>
-<td>isPlatformPopup()Matches Roots that are popups - like autocomplete suggestions or the actionbar spinner.  </td>
-</tr>
-<tr>
-<td>  static Matcher<root></root></td>
-<td>isTouchable()Matches Roots that can receive touch events.  </td>
-</tr>
-<tr>
-<td>  static Matcher<root></root></td>
-<td>withDecorView(Matcher<view> decorViewMatcher)Matches Roots with decor views that match the given view matcher.</view></td>
-</tr>
-</tbody>
-</table>
-<p>  ViewMatchers 最重要也是应用最广的匹配器，通过一个或者多个来定位层级里面的控件。</p>
-<table>
-<thead>
-<tr>
-<th>Public methods</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>  static <t> void</t></td>
-<td>assertThat(String message, T actual, Matcher<t> matcher) A replacement for MatcherAssert.assertThat that renders View objects nicely.</t></td>
-</tr>
-<tr>
-<td>  static <t> void</t></td>
-<td>assertThat(T actual, Matcher<t> matcher) A replacement for MatcherAssert.assertThat that renders View objects nicely.</t></td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>hasContentDescription() Returns an Matcher that matches Views with any content description.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>hasDescendant(Matcher<view> descendantMatcher) Returns a matcher that matches Views based on the presence of a descendant in its view hierarchy.</view></td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>hasErrorText(String expectedError) Returns a matcher that matches EditText based on edit text error string value.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>hasErrorText(Matcher<string> stringMatcher) Returns a matcher that matches EditText based on edit text error string value.</string></td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>hasFocus() Returns a matcher that matches Views currently have focus.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>hasImeAction(int imeAction) Returns a matcher that matches views that support input methods (e.g.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>hasImeAction(Matcher<integer> imeActionMatcher) Returns a matcher that matches views that support input methods (e.g.</integer></td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>hasLinks() Returns a matcher that matches TextViews that have links.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>hasSibling(Matcher<view> siblingMatcher) Returns an Matcher that matches Views based on their siblings.</view></td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>isAssignableFrom(Class&lt;? extends View&gt; clazz) Returns a matcher that matches Views which are an instance of or subclass of the provided class.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>isChecked() Returns a matcher that accepts if and only if the view is a CompoundButton (or subtype of) and is in checked state.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>isClickable() Returns a matcher that matches Views that are clickable.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>isCompletelyDisplayed() Returns a matcher which only accepts a view whose height and width fit perfectly within the currently displayed region of this view.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>isDescendantOfA(Matcher<view> ancestorMatcher) Returns a matcher that matches Views based on the given ancestor type.</view></td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>isDisplayed() Returns a matcher that matches Views that are currently displayed on the screen to the user.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>isDisplayingAtLeast(int areaPercentage) Returns a matcher which accepts a view so long as a given percentage of that view’s area is not obscured by any other view and is thus visible to the user.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>isEnabled() Returns a matcher that matches Views that are enabled.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>isFocusable() Returns a matcher that matches Views that are focusable.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>isJavascriptEnabled() Returns a matcher that matches WebView if they are evaluating Javascript.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>isNotChecked() Returns a matcher that accepts if and only if the view is a CompoundButton (or subtype of) and is not in checked state.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>isRoot() Returns a matcher that matches root View.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>isSelected() Returns a matcher that matches Views that are selected.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>supportsInputMethods() Returns a matcher that matches views that support input methods.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withChild(Matcher<view> childMatcher) A matcher that returns true if and only if the view’s child is accepted by the provided matcher.</view></td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withClassName(Matcher<string> classNameMatcher) Returns a matcher that matches Views with class name matching the given matcher.</string></td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withContentDescription(int resourceId) Returns a Matcher that matches Views based on content description property value.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withContentDescription(String text) Returns an Matcher that matches Views based on content description property value.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withContentDescription(Matcher&lt;? extends CharSequence&gt; charSequenceMatcher) Returns an Matcher that matches Views based on content description property value.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withEffectiveVisibility(ViewMatchers.Visibility visibility) Returns a matcher that matches Views that have “effective” visibility set to the given value.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withHint(Matcher<string> stringMatcher) Returns a matcher that matches TextViews based on hint property value.</string></td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withHint(int resourceId) Returns a matcher that matches a descendant of TextView that is displaying the hint associated with the given resource id.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withHint(String hintText) Returns a matcher that matches TextView based on it’s hint property value.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withId(Matcher<integer> integerMatcher) Returns a matcher that matches Views based on resource ids.</integer></td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withId(int id) Same as withId(is(int)), but attempts to look up resource name of the given id and use an R.id.myView style description with describeTo.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withInputType(int inputType) Returns a matcher that matches InputType.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withParent(Matcher<view> parentMatcher) A matcher that accepts a view if and only if the view’s parent is accepted by the provided matcher.</view></td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withResourceName(String name) Returns a matcher that matches Views based on resource id names, (for instance, channel_avatar).</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withResourceName(Matcher<string> stringMatcher) Returns a matcher that matches Views based on resource id names, (for instance, channel_avatar).</string></td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withSpinnerText(int resourceId) Returns a matcher that matches a descendant of Spinner that is displaying the string of the selected item associated with the given resource id.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withSpinnerText(String text) Returns a matcher that matches Spinner based on it’s selected item’s toString value.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withSpinnerText(Matcher<string> stringMatcher) Returns a matcher that matches Spinners based on toString value of the selected item.</string></td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withTagKey(int key) Returns a matcher that matches View based on tag keys.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withTagKey(int key, Matcher<object> objectMatcher) Returns a matcher that matches Views based on tag keys.</object></td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withTagValue(Matcher<object> tagValueMatcher) Returns a matcher that matches Views based on tag property values.</object></td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withText(Matcher<string> stringMatcher) Returns a matcher that matches TextViews based on text property value.</string></td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withText(String text) Returns a matcher that matches TextView based on its text property value.</td>
-</tr>
-<tr>
-<td>  static Matcher<view></view></td>
-<td>withText(int resourceId) Returns a matcher that matches a descendant of TextView that is displaying the string associated with the given resource id.</td>
-</tr>
-</tbody>
-</table>
-<p>ok 这次主要介绍Matchers的API 更多的内容 大家还是要查看官方API去学习。<br>以下是android espresso matchers的地址<br><a href="https://developer.android.com/reference/android/support/test/espresso/matcher/ViewMatchers.html" target="_blank" rel="external">espresso matchers</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2069,7 +1867,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
