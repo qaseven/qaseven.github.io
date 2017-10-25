@@ -285,6 +285,162 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/16/code-coverage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/02/16/code-coverage/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-16T10:32:59+08:00">
+                2017-02-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>title: 100% code coverage != 100% test<br>date: 2017-02-16 10:32:59<br>tags:</p>
+<h2 id="QA"><a href="#QA" class="headerlink" title="  - QA"></a>  - QA</h2><h1 id="100-code-coverage-100-test"><a href="#100-code-coverage-100-test" class="headerlink" title="100% code coverage != 100% test"></a>100% code coverage != 100% test</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p><img src="http://upload-images.jianshu.io/upload_images/3732075-d1c1bc5652c294e5.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="avatar"></p>
+<p>很多人看到这个标题时，就在想你都100%代码覆盖了，怎么还会有问题呢？</p>
+<p>让我们看看一下代码栗子：</p>
+<p><strong>Code example</strong></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestCalculator</span> </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="built_in">Double</span> add(<span class="built_in">Double</span> a, <span class="built_in">Double</span> b) &#123;</div><div class="line"></div><div class="line"><span class="keyword">return</span> a + b;&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>再让我们看看用junit写出的测试代码：</p>
+<p>@Test</p>
+<p>public void testAdd() {</p>
+<p>Double a = new Double(1);</p>
+<p>Double b = new Double(2);</p>
+<p>Double c = new Double(3);</p>
+<p>assertEquals(c, testCalculator.add(a, b));</p>
+<p>}<br>当我们在Eclipse使用 EclEmme Code Coverage 插件测试时， 对于这个类我们将得到 100% Line-Coverage.<br><img src="http://upload-images.jianshu.io/upload_images/3732075-236eb1a30b91a0a1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="avatar"></p>
+<p>一切看起来都那么的完美，真是这样的吗？</p>
+<p>好吧，让我们来来看看另一个测试，当其中一个变量为null时，返回值将会怎样？</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">@Test</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> testAddNullPointerException() &#123;</div><div class="line"></div><div class="line"><span class="keyword">Double</span> a = <span class="keyword">new</span> <span class="keyword">Double</span>(<span class="number">1</span>);</div><div class="line"></div><div class="line"><span class="keyword">Double</span> b = <span class="keyword">null</span>;</div><div class="line"></div><div class="line"><span class="keyword">Double</span> c = <span class="keyword">new</span> <span class="keyword">Double</span>(<span class="number">3</span>);</div><div class="line"></div><div class="line">assertEquals(c, testCalculator.add(a, b));</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>好了，你会发现尽管你的覆盖率为100%，但程序却抛出了NullPointerException异常。</p>
+<p>对于很多PM来说会选择第一个测试代码,因为100%的单元测试覆盖率总比50%的测试代码要更好!</p>
+<p>但是这有用么？我们可能忽略了更重要的业务场景测试。</p>
+<p>哈哈，小小的嘲讽了部分PM。</p>
+<p>我们应当转换下思维，思考以下问题。</p>
+<p><strong>100%的覆盖率并不意味你的测试代码质量很高，上面那个列子就是典型。</strong></p>
+<p><strong>100%的覆盖率并不意味着所有的业务场景都被覆盖。</strong></p>
+<p><strong>对于项目我们是否有足够的测试？</strong><br><img src="http://upload-images.jianshu.io/upload_images/3732075-b6a0abab1778f170.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="avatar"></p>
+<p>这里的测试不仅仅包括代码级别的单元测试，还要集成测试，接口测试，黑盒测试，可用性测试等等。只有全部得测试通过后，才能说明功能的完整性，仅仅单一的单元测试，对于整个项目来说，基本没用。</p>
+<p><strong>所以100%的代码覆盖率值得追求吗?</strong><br><img src="http://upload-images.jianshu.io/upload_images/3732075-80f3e850430d8615.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="avatar"></p>
+<p>  是的，这应该是每个程序猿毕生追求的之一，但是如果从项目角度考虑，ROI(投入产出比)，如果你的项目是一个短期项目，需要快速上线，那么这时候你需要注重的是测试应覆盖核心功能代码。如果你的项目是一个长期项目，那么高覆盖率是非要有必要的，它意味着可维护性，以及更少的bug。(前提是你的测试采用TDD/BDD方式编写，我见过将测试代码写的一团糟的人，看着他的代码，我宁愿重新一遍)</p>
+<p><strong>那么对于一个项目来说覆盖率应该达到多少？</strong></p>
+<p>  其实没有具体数值能够覆盖到所有的项目，每个项目都应有自己的阈值，但共性是，必须测试必须覆盖主要业务场景，代码的逻辑分支也必须覆盖。</p>
+<p><strong>如何改进你的项目代码覆盖率？</strong></p>
+<p>  阅读和理解项目代码，找出其中需要测试并且与业务强相关的代码。</p>
+<p>  将之前可读性差测试代码，采用TDD与BDD方式进行重写，提高项目的可维护性与可读性。</p>
+<p><strong>代码覆盖率非常重要的意义在于：</strong></p>
+<p>  分析未覆盖部分的代码，从而反推在前期黑盒测试设计是否充分，没有覆盖到的代码是否是测试设计的盲点，为什么没有考虑到？是需求/设计不够清晰，还是测试设计的理解有误。</p>
+<p>  检测出程序中的废代码，可以逆向反推在代码设计中不合理的地方，提醒设计/开发人员理清代码逻辑关系，提升代码质量。</p>
+<p>  代码覆盖率高不能说明代码质量高，但是反过来看，代码覆盖率低，代码质量绝对不会高到哪里去，可以作为测试自我审视的重要工具之一。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/25/espresso4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2047,170 +2203,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/08/26/capybara2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="qi lei">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QA seven's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/08/26/capybara2/" itemprop="url">capybara2--准备环境</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-26T22:48:50+08:00">
-                2016-08-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="ruby环境配置"><a href="#ruby环境配置" class="headerlink" title="ruby环境配置"></a>ruby环境配置</h2><p>capycara<br>Capybara 需要 Ruby 1.9.3或之后的版本. 所以首先我们需要在我们的操作系统中，配置ruby运行环境</p>
-<h3 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h3><ol>
-<li>下载 &amp; 安装 Ruby<br>从<a href="http://rubyinstaller.org/或者" target="_blank" rel="external">http://rubyinstaller.org/或者</a> <a href="http://railsinstaller.org/" target="_blank" rel="external">http://railsinstaller.org/</a> 下载已经打包好的安装程序。<br>1.1安装 ruby版本</li>
-<li>安装 DevKit<br>从 <a href="http://rubyinstaller.org/downloads/下载安装DevKit" target="_blank" rel="external">http://rubyinstaller.org/downloads/下载安装DevKit</a><br>2.1 RubyInstaller Development Kit (DevKit)的安装<br>在使用RubyGems安装Ruby on Rails的同时，还有几个一起被安装的类库。这些类库中，有一些是保持C语言编写的代码的形式来发布的，它们需要通过使用“gcc”编译器等结合环境一起来编译，但在Windows上是不能用gcc来编译的。<br>安装了本次所介绍的“RubyInstaller Development Kit (DevKit)”后，编译器就可以很容易地安装使用所需的类库。</li>
-</ol>
-<p>Ruby环境配置</p>
-<ol>
-<li><p>在windows中配置环境变量</p>
-<p> RUBY_HOME=rubyinstaller_dir （实际的ruby所在路径）</p>
-<p> 在path中添加 %RUBY_HOME%\bin</p>
-</li>
-<li><p>在命令行下运行 ruby –version，如果显示ruby版本信息说明安装正常。</p>
-</li>
-</ol>
-<p>多版本ruby环境配置</p>
-<p>利用uru，这个工具可以帮助我们在windows系统上 管理多个ruby版本<br>下载安装uru</p>
-<ol>
-<li><p>安装uru<br>解压uru到某一目录<br>例如C:\tools下<br>运行以下命令安装</p>
-<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">C:</span>\tools&gt; uru_rt admin install</div></pre></td></tr></table></figure>
-</li>
-<li><p>安装ruby版本，可以安装任意个ruby版本</p>
-</li>
-<li><p>在uru中注册ruby版本</p>
-</li>
-</ol>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">C</span>:\&gt; <span class="selector-tag">uru</span> <span class="selector-tag">admin</span> <span class="selector-tag">add</span> <span class="selector-tag">c</span>:\<span class="selector-tag">ruby</span>\<span class="selector-tag">jruby-1</span><span class="selector-class">.7</span><span class="selector-class">.18</span>\<span class="selector-tag">bin</span>\</div><div class="line"><span class="selector-tag">---</span>&gt; <span class="selector-tag">Registered</span> <span class="selector-tag">jruby</span> <span class="selector-tag">at</span> `<span class="selector-tag">c</span>:\<span class="selector-tag">ruby</span>\<span class="selector-tag">jruby-1</span><span class="selector-class">.7</span><span class="selector-class">.18</span>\<span class="selector-tag">bin</span>` <span class="selector-tag">as</span> `1718`</div><div class="line"></div><div class="line"><span class="selector-tag">C</span>:\&gt; <span class="selector-tag">uru</span> <span class="selector-tag">ls</span></div><div class="line">    1718        : <span class="selector-tag">jruby</span> 1<span class="selector-class">.7</span><span class="selector-class">.18</span> (1<span class="selector-class">.9</span><span class="selector-class">.3p551</span>) 2014<span class="selector-tag">-12-22</span> 625381<span class="selector-tag">c</span> <span class="selector-tag">on</span> <span class="selector-tag">Java</span> <span class="selector-tag">HotSpot</span>(<span class="selector-tag">TM</span>) ...</div><div class="line">    193         : <span class="selector-tag">ruby</span> 1<span class="selector-class">.9</span><span class="selector-class">.3p551</span> (2014<span class="selector-tag">-11-13</span>) <span class="selector-attr">[i386-mingw32]</span></div><div class="line">    215         : <span class="selector-tag">ruby</span> 2<span class="selector-class">.1</span><span class="selector-class">.5p273</span> (2014<span class="selector-tag">-11-13</span> <span class="selector-tag">revision</span> 48405) <span class="selector-attr">[x64-mingw32]</span></div></pre></td></tr></table></figure>
-<p>详细操作命令查看<br><a href="http://www.neverletdown.net/2015/08/managing-multiple-ruby-versions-with-uru.html" target="_blank" rel="external">http://www.neverletdown.net/2015/08/managing-multiple-ruby-versions-with-uru.html</a></p>
-<p><strong>强烈不建议用windows来开发,原因请查看<br><a href="https://bitbucket.org/jonforums/uru" target="_blank" rel="external">https://bitbucket.org/jonforums/uru</a>
-</strong></p>
-<p>linux（Ubuntu）或者mac os更适合你用来开发。<br>详细请看 <a href="https://ruby-china.org/topics/1020" target="_blank" rel="external">https://ruby-china.org/topics/1020</a></p>
-<h3 id="linux-ubuntu"><a href="#linux-ubuntu" class="headerlink" title="linux-ubuntu"></a>linux-ubuntu</h3><p>Installing Ruby</p>
-<p>第一步安装配置ruby环境所需要的一些基础库<br><figure class="highlight q"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt-<span class="built_in">get</span> <span class="keyword">update</span></div><div class="line">sudo apt-<span class="built_in">get</span> install git-core curl zlib1g-<span class="built_in">dev</span> build-essential libssl-<span class="built_in">dev</span> libreadline-<span class="built_in">dev</span> libyaml-<span class="built_in">dev</span> libsqlite3-<span class="built_in">dev</span> sqlite3 libxml2-<span class="built_in">dev</span> libxslt1-<span class="built_in">dev</span> libcurl4-openssl-<span class="built_in">dev</span> python-software-properties libffi-<span class="built_in">dev</span></div></pre></td></tr></table></figure></p>
-<p>利用工具来管理的ruby版本，rbenv 就是一个很好的工具<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cd</span></div><div class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/rbenv/rbenv.git ~/.rbenv</div><div class="line"><span class="keyword">echo</span> <span class="string">'export PATH="$HOME/.rbenv/bin:$PATH"'</span> &gt;&gt; ~/.bashrc</div><div class="line"><span class="keyword">echo</span> <span class="string">'eval "$(rbenv init -)"'</span> &gt;&gt; ~/.bashrc</div><div class="line">exec $SHELL</div><div class="line"></div><div class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/rbenv/<span class="keyword">ruby</span>-build.git ~/.rbenv/plugins/<span class="keyword">ruby</span>-build</div><div class="line"><span class="keyword">echo</span> <span class="string">'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"'</span> &gt;&gt; ~/.bashrc</div><div class="line">exec $SHELL</div><div class="line"></div><div class="line">rbenv install <span class="number">2.3</span>.<span class="number">1</span></div><div class="line">rbenv <span class="keyword">global</span> <span class="number">2.3</span>.<span class="number">1</span></div><div class="line"><span class="keyword">ruby</span> -v</div><div class="line">http<span class="variable">s:</span>//gorails.<span class="keyword">com</span>/setup/ubuntu/<span class="number">16.10</span></div></pre></td></tr></table></figure></p>
-<h3 id="mac-os"><a href="#mac-os" class="headerlink" title="mac os"></a>mac os</h3><p>利用homebrew 来安装管理mac的应用<br>安装 Homebrew</p>
-<p>首先，我们需要安装homebrew。homebrew 允许我们方便从源码安装和编译软件包<br>当homebrew需要安装xcode 命令行工具，输入yes.打开命令行并且运行以下命令：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/<span class="keyword">install</span>/<span class="keyword">master</span>/<span class="keyword">install</span>)<span class="string">"</span></div></pre></td></tr></table></figure></p>
-<p>Installing Ruby</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">brew </span><span class="keyword">install </span>rbenv ruby-<span class="keyword">build</span></div></pre></td></tr></table></figure>
-<p>Add rbenv to bash so that it loads every time you open a terminal</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">echo</span> '<span class="keyword">if</span> which rbenv &gt; <span class="string">/dev/null</span>; then eval <span class="string">"$(rbenv init -)"</span>; fi' &gt;&gt; ~<span class="string">/.bash_profile</span></div><div class="line">source ~<span class="string">/.bash_profile</span></div></pre></td></tr></table></figure>
-<p>Install Ruby</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">rbenv</span> <span class="selector-tag">install</span> 2<span class="selector-class">.3</span><span class="selector-class">.1</span></div><div class="line"><span class="selector-tag">rbenv</span> <span class="selector-tag">global</span> 2<span class="selector-class">.3</span><span class="selector-class">.1</span></div><div class="line"><span class="selector-tag">ruby</span> <span class="selector-tag">-v</span></div></pre></td></tr></table></figure>
-<h2 id="安装capybara"><a href="#安装capybara" class="headerlink" title="安装capybara"></a>安装capybara</h2><h3 id="安装系统依赖库"><a href="#安装系统依赖库" class="headerlink" title="安装系统依赖库"></a>安装系统依赖库</h3><p>在某些操作系统中ruby环境可能需要一些第三方库的支持，通常是出于性能方面的原因，ruby是一种解释性语言所以在处理某些任务时，例如解析XML会非常慢，这时把这些任务交给第三方库处理，效率就会成倍增加。<br>对于windows平台，你不用担心第三依赖库的问题，不过你要确保您已经安装了Ruby DevKit;<br>详细说明如何做到这一点，请参阅<a href="http://rubyinstaller.org/add-ons/" target="_blank" rel="external">http://rubyinstaller.org/add-ons/</a> devkit</p>
-<p>capybara依赖于nokogirl，一个流行的基于ruby的XML的解析器，该库可能需要以下第三方库的支持：<br>• libxml2<br>• libxml2-dev • libxslt<br>• libxslt-dev<br>对于不同的操作系统安装这些库的方式可能略有不同，对于linux 例如Ubuntu 可以使用apt-get ，对于redhat 请使用yum install 对于mac os x 那么brew 是你最好的选择。<br>完成这些第三方依赖后 我们就可以安装capybara了</p>
-<p>添加以下的代码到你的Gemfile里，并且运行bundle install。<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">gem</span> <span class="string">'capybara'</span></div></pre></td></tr></table></figure></p>
-<h3 id="什么是Bundle"><a href="#什么是Bundle" class="headerlink" title="什么是Bundle"></a>什么是Bundle</h3><p>相当于多个RubyGems批处理运行。在配置文件gemfilel里说明你的应用依赖哪些第三方包，他自动帮你下载安装多个包，并且会下载这些包依赖的包.<br><a href="http://bundler.io/" target="_blank" rel="external">http://bundler.io/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2261,7 +2253,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

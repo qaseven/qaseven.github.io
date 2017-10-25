@@ -285,6 +285,147 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/24/vue7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/24/vue7/" itemprop="url">小QA学习前端系列之vue 事件处理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-24T09:49:07+08:00">
+                2017-10-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h1><h2 id="用-v-on-指令监听-DOM-事件来触发一些-JavaScript-代码。"><a href="#用-v-on-指令监听-DOM-事件来触发一些-JavaScript-代码。" class="headerlink" title="用 v-on 指令监听 DOM 事件来触发一些 JavaScript 代码。"></a>用 v-on 指令监听 DOM 事件来触发一些 JavaScript 代码。</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span> id=<span class="string">"example-1"</span>&gt;</div><div class="line">  &lt;<span class="selector-tag">button</span> v-on:click=<span class="string">"counter += 1"</span>&gt;增加 <span class="number">1</span>&lt;/button&gt;</div><div class="line">  &lt;p&gt;这个按钮被点击了 &#123;&#123; counter &#125;&#125; 次。&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line"><span class="selector-tag">var</span> example1 = new Vue(&#123;</div><div class="line">  el: <span class="string">'#example-1'</span>,</div><div class="line">  data: &#123;</div><div class="line">    counter: <span class="number">0</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="方法事件处理器"><a href="#方法事件处理器" class="headerlink" title="方法事件处理器"></a>方法事件处理器</h2><p>v-on 可以接收一个定义的方法来调用。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">示例：</div><div class="line"></div><div class="line">&lt;div id=<span class="string">"example-2"</span>&gt;</div><div class="line">  &lt;!-- <span class="string">`greet`</span> 是在下面定义的方法名 --&gt;</div><div class="line">  &lt;button v-on:click=<span class="string">"greet"</span>&gt;Greet&lt;<span class="regexp">/button&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>div&gt;</div><div class="line"></div><div class="line"><span class="keyword">var</span> example2 = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  el: <span class="string">'#example-2'</span>,</div><div class="line">  data: &#123;</div><div class="line">    name: <span class="string">'Vue.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="comment">// 在 `methods` 对象中定义方法</span></div><div class="line">  methods: &#123;</div><div class="line">    greet: <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</div><div class="line">      <span class="comment">// `this` 在方法里指当前 Vue 实例</span></div><div class="line">      alert(<span class="string">'Hello '</span> + <span class="keyword">this</span>.name + <span class="string">'!'</span>)</div><div class="line">      <span class="comment">// `event` 是原生 DOM 事件</span></div><div class="line">      <span class="keyword">if</span> (event) &#123;</div><div class="line">        alert(event.target.tagName)</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"><span class="comment">// 也可以用 JavaScript 直接调用方法</span></div><div class="line">example2.greet() <span class="comment">// =&gt; 'Hello Vue.js!'</span></div></pre></td></tr></table></figure></p>
+<h2 id="内联处理器里的方法"><a href="#内联处理器里的方法" class="headerlink" title="内联处理器里的方法"></a>内联处理器里的方法</h2><p>除了直接绑定到一个方法，也可以用内联 JavaScript 语句：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;<span class="keyword">div</span> <span class="built_in">id</span>=<span class="string">"example-3"</span>&gt;</div><div class="line">  &lt;button v-<span class="keyword">on</span>:click=<span class="string">"say('hi')"</span>&gt;Say hi&lt;/button&gt;</div><div class="line">  &lt;button v-<span class="keyword">on</span>:click=<span class="string">"say('what')"</span>&gt;Say what&lt;/button&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div><div class="line"></div><div class="line">new Vue(&#123;</div><div class="line">  el: '<span class="comment">#example-3',</span></div><div class="line">  methods: &#123;</div><div class="line">    <span class="built_in">say</span>: function (message) &#123;</div><div class="line">      alert(message)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>内联语句处理器中访问原生 DOM 事件。可以用特殊变量 $event 把它传入方法：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;button v-<span class="keyword">on</span>:click=<span class="string">"warn('Form cannot be submitted yet.', $event)"</span>&gt;</div><div class="line">  Submit</div><div class="line">&lt;/button&gt;</div><div class="line"></div><div class="line"><span class="comment">// ...</span></div><div class="line">methods: &#123;</div><div class="line">  warn: function (message, <span class="keyword">event</span>) &#123;</div><div class="line">    <span class="comment">// 现在我们可以访问原生事件对象</span></div><div class="line">    <span class="keyword">if</span> (<span class="keyword">event</span>) <span class="keyword">event</span>.preventDefault()</div><div class="line">    alert(message)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="事件修饰符"><a href="#事件修饰符" class="headerlink" title="事件修饰符"></a>事件修饰符</h2><p>在事件处理程序中调用 event.preventDefault() 或 event.stopPropagation() 是非常常见的需求。<br>Vue.js 为 v-on 提供了事件修饰符。通过由点 (.) 表示的指令后缀来调用修饰符。</p>
+<pre><code>.stop
+.prevent
+.capture
+.self
+.once
+</code></pre><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 阻止单击事件冒泡 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click.stop</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 提交事件不再重载页面 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">v-on:submit.prevent</span>=<span class="string">"onSubmit"</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 修饰符可以串联 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click.stop.prevent</span>=<span class="string">"doThat"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 只有修饰符 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">v-on:submit.prevent</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 添加事件侦听器时使用事件捕获模式 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:click.capture</span>=<span class="string">"doThis"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 只当事件在该元素本身 (比如不是子元素) 触发时触发回调 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:click.self</span>=<span class="string">"doThat"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 点击事件将只会触发一次 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click.once</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="键值修饰符"><a href="#键值修饰符" class="headerlink" title="键值修饰符"></a>键值修饰符</h2><p>Vue 允许为 v-on 在监听键盘事件时添加关键修饰符：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 只有在 keyCode 是 13 时调用 vm.submit() --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-on:keyup.13</span>=<span class="string">"submit"</span>&gt;</span></div><div class="line"></div><div class="line">记住所有的 keyCode 比较困难，所以 Vue 为最常用的按键提供了别名：</div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 同上 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-on:keyup.enter</span>=<span class="string">"submit"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 缩写语法 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> @<span class="attr">keyup.enter</span>=<span class="string">"submit"</span></span></div></pre></td></tr></table></figure></p>
+<h2 id="自动匹配按键修饰符"><a href="#自动匹配按键修饰符" class="headerlink" title="自动匹配按键修饰符"></a>自动匹配按键修饰符</h2><p>你也可以通过将它们转换到 kebab-case 来直接使用由 KeyboardEvent.key 暴露的任意有效按键名作为修饰符：</p>
+<input @keyup.page-down="onPageDown">
+
+<p>在上面的例子中，处理函数仅在 $event.key === ‘PageDown’ 时被调用。</p>
+<h2 id="系统修饰键"><a href="#系统修饰键" class="headerlink" title="系统修饰键"></a>系统修饰键</h2><p>可以用如下修饰符开启鼠标或键盘事件监听，使在按键按下时发生响应。<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.ctrl</div><div class="line">.alt</div><div class="line">.shift</div><div class="line">.<span class="keyword">meta</span></div><div class="line"></div><div class="line">注意：在 Mac 系统键盘上，<span class="keyword">meta</span> 对应命令键 (⌘)。在 Windows 系统键盘 <span class="keyword">meta</span> 对应 windows 徽标键 (⊞)。在 Sun 操作系统键盘上，<span class="keyword">meta</span> 对应实心宝石键 (◆)。在其他特定键盘上，尤其在 MIT 和 Lisp 键盘及其后续，比如 Knight 键盘，space-cadet 键盘，<span class="keyword">meta</span> 被标记为“<span class="keyword">META</span>”。在 Symbolics 键盘上，<span class="keyword">meta</span> 被标记为“<span class="keyword">META</span>”或者“<span class="keyword">Meta</span>”。</div></pre></td></tr></table></figure></p>
+<p>例如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- Alt + C --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> @<span class="attr">keyup.alt.67</span>=<span class="string">"clear"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- Ctrl + Click --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> @<span class="attr">click.ctrl</span>=<span class="string">"doSomething"</span>&gt;</span>Do something<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="exact-修饰符"><a href="#exact-修饰符" class="headerlink" title=".exact 修饰符"></a>.exact 修饰符</h2><p>.exact 修饰符应与其他系统修饰符组合使用，以指示处理程序只在精确匹配该按键组合时触发。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">  <span class="comment">&lt;!-- 即使 Alt 或 Shift 被一同按下时也会触发 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.ctrl</span>=<span class="string">"onClick"</span>&gt;</span>A<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"> </div><div class="line">  <span class="comment">&lt;!-- 只有在 Ctrl 被按下的时候触发 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.ctrl.exact</span>=<span class="string">"onCtrlClick"</span>&gt;</span>A<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="鼠标按钮修饰符"><a href="#鼠标按钮修饰符" class="headerlink" title="鼠标按钮修饰符"></a>鼠标按钮修饰符</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">    .<span class="attribute">left</span></div><div class="line">    .<span class="attribute">right</span></div><div class="line">    .middle</div><div class="line"></div><div class="line">这些修饰符会限制处理程序监听特定的滑鼠按键。</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/23/vue6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1661,162 +1802,6 @@ reverse()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/16/code-coverage/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="qi lei">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QA seven's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/02/16/code-coverage/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-16T10:32:59+08:00">
-                2017-02-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>title: 100% code coverage != 100% test<br>date: 2017-02-16 10:32:59<br>tags:</p>
-<h2 id="QA"><a href="#QA" class="headerlink" title="  - QA"></a>  - QA</h2><h1 id="100-code-coverage-100-test"><a href="#100-code-coverage-100-test" class="headerlink" title="100% code coverage != 100% test"></a>100% code coverage != 100% test</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p><img src="http://upload-images.jianshu.io/upload_images/3732075-d1c1bc5652c294e5.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="avatar"></p>
-<p>很多人看到这个标题时，就在想你都100%代码覆盖了，怎么还会有问题呢？</p>
-<p>让我们看看一下代码栗子：</p>
-<p><strong>Code example</strong></p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestCalculator</span> </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="built_in">Double</span> add(<span class="built_in">Double</span> a, <span class="built_in">Double</span> b) &#123;</div><div class="line"></div><div class="line"><span class="keyword">return</span> a + b;&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>再让我们看看用junit写出的测试代码：</p>
-<p>@Test</p>
-<p>public void testAdd() {</p>
-<p>Double a = new Double(1);</p>
-<p>Double b = new Double(2);</p>
-<p>Double c = new Double(3);</p>
-<p>assertEquals(c, testCalculator.add(a, b));</p>
-<p>}<br>当我们在Eclipse使用 EclEmme Code Coverage 插件测试时， 对于这个类我们将得到 100% Line-Coverage.<br><img src="http://upload-images.jianshu.io/upload_images/3732075-236eb1a30b91a0a1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="avatar"></p>
-<p>一切看起来都那么的完美，真是这样的吗？</p>
-<p>好吧，让我们来来看看另一个测试，当其中一个变量为null时，返回值将会怎样？</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">@Test</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> testAddNullPointerException() &#123;</div><div class="line"></div><div class="line"><span class="keyword">Double</span> a = <span class="keyword">new</span> <span class="keyword">Double</span>(<span class="number">1</span>);</div><div class="line"></div><div class="line"><span class="keyword">Double</span> b = <span class="keyword">null</span>;</div><div class="line"></div><div class="line"><span class="keyword">Double</span> c = <span class="keyword">new</span> <span class="keyword">Double</span>(<span class="number">3</span>);</div><div class="line"></div><div class="line">assertEquals(c, testCalculator.add(a, b));</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>好了，你会发现尽管你的覆盖率为100%，但程序却抛出了NullPointerException异常。</p>
-<p>对于很多PM来说会选择第一个测试代码,因为100%的单元测试覆盖率总比50%的测试代码要更好!</p>
-<p>但是这有用么？我们可能忽略了更重要的业务场景测试。</p>
-<p>哈哈，小小的嘲讽了部分PM。</p>
-<p>我们应当转换下思维，思考以下问题。</p>
-<p><strong>100%的覆盖率并不意味你的测试代码质量很高，上面那个列子就是典型。</strong></p>
-<p><strong>100%的覆盖率并不意味着所有的业务场景都被覆盖。</strong></p>
-<p><strong>对于项目我们是否有足够的测试？</strong><br><img src="http://upload-images.jianshu.io/upload_images/3732075-b6a0abab1778f170.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="avatar"></p>
-<p>这里的测试不仅仅包括代码级别的单元测试，还要集成测试，接口测试，黑盒测试，可用性测试等等。只有全部得测试通过后，才能说明功能的完整性，仅仅单一的单元测试，对于整个项目来说，基本没用。</p>
-<p><strong>所以100%的代码覆盖率值得追求吗?</strong><br><img src="http://upload-images.jianshu.io/upload_images/3732075-80f3e850430d8615.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="avatar"></p>
-<p>  是的，这应该是每个程序猿毕生追求的之一，但是如果从项目角度考虑，ROI(投入产出比)，如果你的项目是一个短期项目，需要快速上线，那么这时候你需要注重的是测试应覆盖核心功能代码。如果你的项目是一个长期项目，那么高覆盖率是非要有必要的，它意味着可维护性，以及更少的bug。(前提是你的测试采用TDD/BDD方式编写，我见过将测试代码写的一团糟的人，看着他的代码，我宁愿重新一遍)</p>
-<p><strong>那么对于一个项目来说覆盖率应该达到多少？</strong></p>
-<p>  其实没有具体数值能够覆盖到所有的项目，每个项目都应有自己的阈值，但共性是，必须测试必须覆盖主要业务场景，代码的逻辑分支也必须覆盖。</p>
-<p><strong>如何改进你的项目代码覆盖率？</strong></p>
-<p>  阅读和理解项目代码，找出其中需要测试并且与业务强相关的代码。</p>
-<p>  将之前可读性差测试代码，采用TDD与BDD方式进行重写，提高项目的可维护性与可读性。</p>
-<p><strong>代码覆盖率非常重要的意义在于：</strong></p>
-<p>  分析未覆盖部分的代码，从而反推在前期黑盒测试设计是否充分，没有覆盖到的代码是否是测试设计的盲点，为什么没有考虑到？是需求/设计不够清晰，还是测试设计的理解有误。</p>
-<p>  检测出程序中的废代码，可以逆向反推在代码设计中不合理的地方，提醒设计/开发人员理清代码逻辑关系，提升代码质量。</p>
-<p>  代码覆盖率高不能说明代码质量高，但是反过来看，代码覆盖率低，代码质量绝对不会高到哪里去，可以作为测试自我审视的重要工具之一。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1867,7 +1852,7 @@ reverse()
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

@@ -285,6 +285,178 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/02/23/前端性能测试之分析篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/02/23/前端性能测试之分析篇/" itemprop="url">前端性能测试之分析篇</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-02-23T11:31:51+08:00">
+                2016-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>前一章，我们讲了browser的工作原理,那么怎么样才能让了解整个主站前端的性能呢？监控！ 对，是的，我们可以利用各种工作对我们的website进行实时的监控,目前监控的方式有两种。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th style="text-align:center">优点</th>
+<th style="text-align:center">缺点</th>
+<th style="text-align:right">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>非侵入式</td>
+<td style="text-align:center">指标齐全、客户端主动监测、竞品监控</td>
+<td style="text-align:center">无法知道性能影响用户数、采样少容易失真、无法监控复杂应用与细分功能</td>
+<td style="text-align:right">Pagespeed、yslow、PhantomJS、webpagetest、sitespeedio</td>
+</tr>
+<tr>
+<td>侵入式</td>
+<td style="text-align:center">真实海量用户数据、能监控复杂应用与业务功能、用户点击与区域渲染</td>
+<td style="text-align:center">需插入脚本统计、网络指标不全、无法监控竞品</td>
+<td style="text-align:right">new relic、Google analyse、oneapm</td>
+</tr>
+</tbody>
+</table>
+<h2 id="前端性能分析工具"><a href="#前端性能分析工具" class="headerlink" title="前端性能分析工具"></a>前端性能分析工具</h2><p>那有哪些简易便利的工具能帮助我们更好的进行测试呢？<br>ok，工具集锦来临。</p>
+<h3 id="浏览器插件类"><a href="#浏览器插件类" class="headerlink" title="浏览器插件类"></a>浏览器插件类</h3><ol>
+<li>FireBug<br>它可以对页面进行调试，可以记录所有网页的访问耗时，下载的资源等</li>
+<li>Page Speed<br><img src="/image/pagespeed.png" alt=""></li>
+<li>Yslow<br><img src="/image/yslow.gif" alt=""></li>
+<li>page performance<br><img src="/image/page_perfor.png" alt=""></li>
+<li>performance analyse<br><img src="/image/performance_alay.png" alt=""></li>
+</ol>
+<h3 id="在线网站类"><a href="#在线网站类" class="headerlink" title="在线网站类"></a>在线网站类</h3><ol>
+<li>WebPageTest<br><img src="/image/webpagespeed.png" alt=""></li>
+<li>showslow<br><img src="/image/showslow.png" alt=""></li>
+<li><p>sitespeed.io<br><img src="/image/sitespeed.png" alt=""></p>
+<h3 id="平台类"><a href="#平台类" class="headerlink" title="平台类"></a>平台类</h3><h4 id="收费服务平台"><a href="#收费服务平台" class="headerlink" title="收费服务平台"></a>收费服务平台</h4></li>
+<li><p>google_analytics<br><img src="/image/google_alay.png" alt=""></p>
+</li>
+<li>new relic<br><img src="/image/relic1.png" alt=""></li>
+<li>oneapm<br><img src="/image/oneapm.png" alt=""></li>
+</ol>
+<h3 id="开源平台"><a href="#开源平台" class="headerlink" title="开源平台"></a>开源平台</h3><ol>
+<li>InfluxDB + Grafana<br>参考文章</li>
+</ol>
+<p><a href="https://ruby-china.org/topics/23470" target="_blank" rel="external">InfluxDB + Grafana 快速搭建自己的 NewRelic，分析应用运行情况
+</a><br><a href="http://www.rittmanmead.com/2015/02/obiee-monitoring-and-diagnostics-with-influxdb-and-grafana/" target="_blank" rel="external">OBIEE Monitoring and Diagnostics with InfluxDB and Grafana
+</a></p>
+<ol>
+<li>Nagios</li>
+<li>Zabbix</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/02/23/前端性能测试分析_原理篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -958,7 +1130,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
