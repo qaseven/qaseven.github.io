@@ -285,6 +285,142 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/25/vue8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/25/vue8/" itemprop="url">小QA学习前端系列之vue 表单输入绑定</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T09:43:35+08:00">
+                2017-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h2><p>v-model 指令在表单控件元素上创建双向数据绑定。<br>v-model 本质上不过是语法糖，它负责监听用户的输入事件以更新数据，并特别处理一些极端的例子。<br> v-model 会忽略所有表单元素的 value、checked、selected 特性的初始值。因为它会选择 Vue 实例数据来作为具体的值。你应该通过 JavaScript 在组件的 data 选项中声明初始值。</p>
+<p>对于要求 IME (如中文、日语、韩语等) (IME 意为“输入法”)的语言，你会发现 v-model 不会在 ime 输入中得到更新。如果你也想实现更新，请使用 input 事件。</p>
+<h2 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h2><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"message"</span> <span class="attr">placeholder</span>=<span class="string">"edit me"</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Message is: </span><span class="template-variable">&#123;&#123; message &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<h2 id="多行文本"><a href="#多行文本" class="headerlink" title="多行文本"></a>多行文本</h2><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>Multiline message is:<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">"white-space: pre-line;"</span>&gt;</span></span><span class="template-variable">&#123;&#123; message &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">v-model</span>=<span class="string">"message"</span> <span class="attr">placeholder</span>=<span class="string">"add multiple lines"</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<h2 id="复选框"><a href="#复选框" class="headerlink" title="复选框"></a>复选框</h2><p>单个勾选框，逻辑值：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"checkbox"</span> id=<span class="string">"checkbox"</span> v-model=<span class="string">"checked"</span>&gt;</div><div class="line">&lt;<span class="keyword">label</span> <span class="keyword">for</span>=<span class="string">"checkbox"</span>&gt;&#123;&#123; checked &#125;&#125;&lt;/<span class="keyword">label</span>&gt;</div></pre></td></tr></table></figure></p>
+<p>多个勾选框，绑定到同一个数组：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">div</span> id=<span class="string">'example-3'</span>&gt;</div><div class="line">  &lt;<span class="selector-tag">input</span> type=<span class="string">"checkbox"</span> id=<span class="string">"jack"</span> value=<span class="string">"Jack"</span> v-model=<span class="string">"checkedNames"</span>&gt;</div><div class="line">  &lt;<span class="selector-tag">label</span> <span class="keyword">for</span>=<span class="string">"jack"</span>&gt;Jack&lt;/label&gt;</div><div class="line">  &lt;<span class="selector-tag">input</span> type=<span class="string">"checkbox"</span> id=<span class="string">"john"</span> value=<span class="string">"John"</span> v-model=<span class="string">"checkedNames"</span>&gt;</div><div class="line">  &lt;<span class="selector-tag">label</span> <span class="keyword">for</span>=<span class="string">"john"</span>&gt;John&lt;/label&gt;</div><div class="line">  &lt;<span class="selector-tag">input</span> type=<span class="string">"checkbox"</span> id=<span class="string">"mike"</span> value=<span class="string">"Mike"</span> v-model=<span class="string">"checkedNames"</span>&gt;</div><div class="line">  &lt;<span class="selector-tag">label</span> <span class="keyword">for</span>=<span class="string">"mike"</span>&gt;Mike&lt;/label&gt;</div><div class="line">  &lt;br&gt;</div><div class="line">  &lt;span&gt;Checked names: &#123;&#123; checkedNames &#125;&#125;&lt;/span&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">new Vue(&#123;</div><div class="line">  el: <span class="string">'#example-3'</span>,</div><div class="line">  data: &#123;</div><div class="line">    checkedNames: []</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="单选按钮"><a href="#单选按钮" class="headerlink" title="单选按钮"></a>单选按钮</h2><figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example-4"</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">id</span>=<span class="string">"one"</span> <span class="attr">value</span>=<span class="string">"One"</span> <span class="attr">v-model</span>=<span class="string">"picked"</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"one"</span>&gt;</span>One<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">br</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">id</span>=<span class="string">"two"</span> <span class="attr">value</span>=<span class="string">"Two"</span> <span class="attr">v-model</span>=<span class="string">"picked"</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"two"</span>&gt;</span>Two<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">br</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>Picked: </span><span class="template-variable">&#123;&#123; picked &#125;</span><span class="xml">&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">new Vue(</span><span class="template-variable">&#123;</span></div><div class="line"><span class="template-variable">  el: '#example-4',</span></div><div class="line"><span class="template-variable">  data: &#123;</span></div><div class="line"><span class="template-variable">    picked: ''</span></div><div class="line"><span class="template-variable">  &#125;</span><span class="xml"></span></div><div class="line"><span class="xml">&#125;)</span></div></pre></td></tr></table></figure>
+<h2 id="选择列表"><a href="#选择列表" class="headerlink" title="选择列表"></a>选择列表</h2><p>单选列表：<br><figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example-5"</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">select</span> <span class="attr">v-model</span>=<span class="string">"selected"</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">disabled</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span>请选择<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>A<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>B<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>C<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>Selected: </span><span class="template-variable">&#123;&#123; selected &#125;</span><span class="xml">&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">new Vue(</span><span class="template-variable">&#123;</span></div><div class="line"><span class="template-variable">  el: '...',</span></div><div class="line"><span class="template-variable">  data: &#123;</span></div><div class="line"><span class="template-variable">    selected: ''</span></div><div class="line"><span class="template-variable">  &#125;</span><span class="xml"></span></div><div class="line"><span class="xml">&#125;)</span></div></pre></td></tr></table></figure></p>
+<p>多选列表 (绑定到一个数组)：</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example-6"</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">select</span> <span class="attr">v-model</span>=<span class="string">"selected"</span> <span class="attr">multiple</span> <span class="attr">style</span>=<span class="string">"width: 50px;"</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>A<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>B<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>C<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">br</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>Selected: </span><span class="template-variable">&#123;&#123; selected &#125;</span><span class="xml">&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">new Vue(</span><span class="template-variable">&#123;</span></div><div class="line"><span class="template-variable">  el: '#example-6',</span></div><div class="line"><span class="template-variable">  data: &#123;</span></div><div class="line"><span class="template-variable">    selected: []</span></div><div class="line"><span class="template-variable">  &#125;</span><span class="xml"></span></div><div class="line"><span class="xml">&#125;)</span></div></pre></td></tr></table></figure>
+<p>动态选项，用 v-for 渲染：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;select v-model=<span class="string">"selected"</span>&gt;</div><div class="line">  &lt;<span class="keyword">option</span> v-for=<span class="string">"option in options"</span> v-bind:value=<span class="string">"option.value"</span>&gt;</div><div class="line">    &#123;&#123; option.text &#125;&#125;</div><div class="line">  &lt;/<span class="keyword">option</span>&gt;</div><div class="line">&lt;/select&gt;</div><div class="line">&lt;span&gt;Selected: &#123;&#123; selected &#125;&#125;&lt;/span&gt;</div><div class="line"></div><div class="line">new Vue(&#123;</div><div class="line">  el: <span class="string">'...'</span>,</div><div class="line">  data: &#123;</div><div class="line">    selected: <span class="string">'A'</span>,</div><div class="line">    options: [</div><div class="line">      &#123; text: <span class="string">'One'</span>, value: <span class="string">'A'</span> &#125;,</div><div class="line">      &#123; text: <span class="string">'Two'</span>, value: <span class="string">'B'</span> &#125;,</div><div class="line">      &#123; text: <span class="string">'Three'</span>, value: <span class="string">'C'</span> &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="值绑定"><a href="#值绑定" class="headerlink" title="值绑定"></a>值绑定</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">&lt;!-- 当选中时，`picked` 为字符串 "a" --&gt;</div><div class="line">&lt;input type="radio" v-model="picked" value="a"&gt;</div><div class="line">&lt;!-- `toggle` 为 true 或 false --&gt;</div><div class="line">&lt;input type="checkbox" v-model="toggle"&gt;</div><div class="line">&lt;!-- 当选中时，`selected` 为字符串 "abc" --&gt;</div><div class="line">&lt;select v-model="selected"&gt;</div><div class="line">  &lt;option value="abc"&gt;ABC&lt;/option&gt;</div><div class="line">&lt;/select&gt;</div></pre></td></tr></table></figure>
+<h2 id="复选框-1"><a href="#复选框-1" class="headerlink" title="复选框"></a>复选框</h2><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;input</div><div class="line">  type=<span class="string">"checkbox"</span></div><div class="line">  v-model=<span class="string">"toggle"</span></div><div class="line">  v-bind:<span class="literal">true</span>-<span class="built_in">value</span>=<span class="string">"a"</span></div><div class="line">  v-bind:<span class="literal">false</span>-<span class="built_in">value</span>=<span class="string">"b"</span></div><div class="line">&gt;</div><div class="line"></div><div class="line">// 当选中时</div><div class="line">vm.toggle === vm.<span class="keyword">a</span></div><div class="line">// 当没有选中时</div><div class="line">vm.toggle === vm.b</div></pre></td></tr></table></figure>
+<h2 id="单选按钮-1"><a href="#单选按钮-1" class="headerlink" title="单选按钮"></a>单选按钮</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"radio"</span> v-model=<span class="string">"pick"</span> v-<span class="keyword">bind</span>:value=<span class="string">"a"</span>&gt;</div><div class="line"></div><div class="line"><span class="comment">// 当选中时</span></div><div class="line">vm<span class="variable">.pick</span> === vm<span class="variable">.a</span></div></pre></td></tr></table></figure>
+<h2 id="选择列表的选项"><a href="#选择列表的选项" class="headerlink" title="选择列表的选项"></a>选择列表的选项</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">select v-model=<span class="string">"selected"</span>&gt;</div><div class="line">    &lt;!-- 内联对象字面量 --&gt;</div><div class="line">  &lt;option v-bind:value=<span class="string">"&#123; number: 123 &#125;"</span>&gt;<span class="number">123</span>&lt;<span class="regexp">/option&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>select&gt;</div><div class="line"></div><div class="line"><span class="comment">// 当选中时</span></div><div class="line"><span class="keyword">typeof</span> vm.selected <span class="comment">// =&gt; 'object'</span></div><div class="line">vm.selected.number <span class="comment">// =&gt; 123</span></div></pre></td></tr></table></figure>
+<h2 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">.lazy</div><div class="line"></div><div class="line">在默认情况下，v-model 在 <span class="selector-tag">input</span> 事件中同步输入框的值与数据 (除了 上述 IME 部分)，但你可以添加一个修饰符 lazy ，从而转变为在 change 事件中同步：</div><div class="line"></div><div class="line">&lt;!-- 在 <span class="string">"change"</span> 而不是 <span class="string">"input"</span> 事件中更新 --&gt;</div><div class="line">&lt;<span class="selector-tag">input</span> v-model.lazy=<span class="string">"msg"</span> &gt;</div><div class="line"></div><div class="line">.number</div><div class="line"></div><div class="line">如果想自动将用户的输入值转为 Number 类型 (如果原值的转换结果为 NaN 则返回原值)，可以添加一个修饰符 number 给 v-model 来处理输入值：</div><div class="line"></div><div class="line">&lt;<span class="selector-tag">input</span> v-model.number=<span class="string">"age"</span> type=<span class="string">"number"</span>&gt;</div><div class="line"></div><div class="line">这通常很有用，因为在 type=<span class="string">"number"</span> 时 HTML 中输入的值也总是会返回字符串类型。</div><div class="line">.trim</div><div class="line"></div><div class="line">如果要自动过滤用户输入的首尾空格，可以添加 trim 修饰符到 v-model 上过滤输入：</div><div class="line"></div><div class="line">&lt;<span class="selector-tag">input</span> v-model.trim=<span class="string">"msg"</span>&gt;</div><div class="line"></div><div class="line">v-model 与组件</div><div class="line"></div><div class="line">    如果你还不熟悉 Vue 的组件，跳过这里即可。</div><div class="line"></div><div class="line">HTML 内建的 <span class="selector-tag">input</span> 类型有时不能满足你的需求。还好，Vue 的组件系统允许你创建一个具有自定义行为可复用的 <span class="selector-tag">input</span> 类型，这些 <span class="selector-tag">input</span> 类型甚至可以和 v-model 一起使用！要了解更多，请参阅自定义 <span class="selector-tag">input</span> 类型。</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/24/vue7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1661,147 +1797,6 @@ reverse()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/06/devopsforqa/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="qi lei">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QA seven's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/06/devopsforqa/" itemprop="url">2017年qa应掌握的技能</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-06T11:24:00+08:00">
-                2017-04-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="DevOps-amp-敏捷方法"><a href="#DevOps-amp-敏捷方法" class="headerlink" title="DevOps &amp; 敏捷方法"></a>DevOps &amp; 敏捷方法</h2><p>随着对于在交付期限内完成项目的迫切需求，测试人员需要学习敏捷方法和DevOps，因为它们可以帮助促进团队之间的协作和改进迭代间工作模式。敏捷方法为测试项目提供了项目开发所需要速度与效率，而DevOps可以从开发，分析和质量保证流程中协助跨职能的团队合作，从而在更短的时间内产生出高质量的产品。此外，学习这些方法最终消除了角色间僵化和孤岛，让团队密切关注开发流程和持续发布。<br><img src="/image/timg.jpeg" alt="devops"><br>向上面devops工作流一样，devops 打通项目流程每一个环节，从代码的管理，到build、test 到最好部署到prod环境，对于qa来说，了解其中的流程，对于qa工作有非常的好处，通过devops一些监控工具例如airbrake我们可以实施查看系统发生的问题，与dev一起分析问题发生的原因，通过GA newrelic这些工具，我们可以分析系统用户行为，给系统性能测试与分析提供数据上的支持。通过对于了解devops工作流，我们可以分析项目中存在风险，及时改进流程，通过docker等容器化的工具，我们可以将测试放到容器中执行，降低测试对于环境的依赖，进一步改进自动化测试，所以说了解devops知识对于qa来说百利无一害，何乐而不为呢。</p>
-<p>自动化<br>面对应用程序日益增加复杂性和系统集成，依靠手动测试已经无法完成全部测试工作。为了测试浏览器兼容性，性能，无头以及数据库和集成层面，测试人员应该学习自动化相关的技能，因为它可以提供业务逻辑和技术层面更高更准确更可靠支持。此外，还有几种自动化测试工具专门支持特定领域的测试类型，并具有快速高效地完成任务的功能。<br><img src="/image/selenium.jpg" alt="selenium"><br>如上图，很多QA或者tester有一个误区，提到自动化张嘴闭嘴都是selenium，甚至有的人连webdriver与selenium区别都不知道，所以这里我要澄清，ui自动化测试只是自动化测试中的一小部分，还包括api，接口，单元测试，集成测试，甚至性能测试我们都应该称为自动化测试。</p>
-<p>网络与移动技术<br><img src="/image/webandmobile.jpeg" alt="webandmobile"></p>
-<p>每个测试人员还必须熟悉web和mobile相关技术，以便他们能够更好了解应用程序的类型与架构，如何构建，以及相应的可扩展性，并为以后测试提供相应背景知识。这对于测试人员非常重要，因为它能够指导QA理解项目架构与所面临技术挑战，提供更有效的QA解决方案。<br>这里学问更多，完全是两大方向，知识领域都非常的广大，例如web端我们可能要测试不同浏览器兼容性，对于mobile来说，尤其是android这种版本碎片化以及各种自定义系统以及ui改更能会造成各种个样的问题，对于mobile我们甚至要考虑更多场景，例如app是否具有内存泄露，电量消耗的快慢，横竖屏的影响等等。不同构建工具，开发环境的区别等对于qa来说又要面对一堆未知领域，没事，继续加油。</p>
-<p>SDLC 软件开发生命周期（Systems Development Life Cycle）<br><img src="/image/sdlc.jpeg" alt="sdlc"></p>
-<p>测试人员也被建议学习软件生命周期管理技能，这将有助于QA更轻松了解应用程序开发任务和测试计划周期。对SDLC周期的深入了解还有助于预测应用程序的复杂性，从而提前采取正确的措施。因此，测试人员还必须学习适用于项目开发生命周期流程的几种开发方法，如瀑布，看板，Scrum，精益等。<br>作为一个qa,我们应关注软件开发生命周期中的每一步，了解敏捷开发迭代中的各个环节及时作出反馈，所以有时qa也需要承担scrum master的责任，例如某个story进度超过预定期限未完成，我们就应当了解原因，及时与团队成员以及客户沟通。</p>
-<p>理性分析与逻辑思维<br><img src="/image/logic.jpeg" alt="sdlc"><br>为了保持竞争力，QA还应该学使用理性，分析性和逻辑性思维来思考问题，因为这些技能在测试应用时可以帮助QA识别错误，了解问题的复杂性，评估应用程序的不熟悉的功能并相应地进行测试。具有良好的分析和推理能力有助于根据在不同场景下验证应用程序，并根据预先定义的标准来评估应用程序。这进一步有助于评估相关信息，提出明确的问题，确定优势和弱点，而不会持有偏见，这有助于实施正确的行动方案和解决方案。</p>
-<p>社交网络<br><img src="/image/contact.jpeg" alt="contact"><br>任何行业的任何专业人士都需要社交网络技能。由于社交网络可以即时访问讨论，资源和内容，因此在这方面的技巧有助于与其它QA进行互动，学习新事物并更新自己的知识体系的广度与深度。拥有社交网络技能还可让您与各种专家进行交流，交流疑问，当然也可以建立长期的合作关系，帮助您的专业技能和企业达到所需目标。</p>
-<p>测试工具和技术<br><img src="/image/tools.jpg" alt="tools"><br>每个QA都必须了解不同的测试技术和使用工具。无论你的项目属于那个领域和应用程序类型，都应具有黑盒测试，渗透测试，安全测试，系统测试，单元测试等，测试人员具有多功能性，可以帮助他们在任何类型的项目上工作。此外，随着商业化的专业测试工具数量的增加，例如bug跟踪工具，测试管理工具，GUI测试工具，自动化工具等，测试人员可以了解这些工具的特点，选择适用于所在项目需求工具，以满足不同的需求和复杂性。</p>
-<p>编程<br><img src="/image/coding.jpeg" alt="tools"></p>
-<p>当我们谈论编程时，QA当然不会像开发人员一样工作，但是QA需要理解应用程序的实现原理与项目架构，这样我们可以更容易的创建所需的测试。编程知识有助于识别应用程序代码中的可能发生的错误，这就进一步降低了应用程序发生错误的概率。所以建议学习至少两种编程语言，这样的话测试人员就能够更好的了解应用程序的解决方案，以确保的应用程序生命周期的质量。</p>
-<p>沟通 - 书面和口头<br><img src="/image/communicate.jpeg" alt="communicate"></p>
-<p>每个QA还应具备良好的沟通能力。通过良好的沟通，对于项目的所有角色来说，QA应该是一个好的作家，演讲者，听众和读者，例如将项目的状态更新给客户，向团队通知story的需求变更，与开发人员交流bug的细节，将需求文档转化为测试用例，准备测试报告等。除此之外，良好的沟通有助于表现出个人高度的理解能力，进一步帮助QA在逻辑思维和理性分析基础上向技术人员和非技术人员提供反馈意见。</p>
-<p>智力与创意<br>软件测试并不是一个程序化或平凡的任务，而是一个需要创造力和逻辑分析的过程。智力和创造力无法改变，但是，可以通过质疑应用程序行为并分析应用程序的不同方面来了解其工作原理。另外，通过设计一些应用场景，测试人员可以尝试探索性测试，来识别更多缺陷，并寻求提供有效产品质量的可能解决方案。</p>
-<p>测试计划和文档</p>
-<p>测试计划和文档对于每个QA至关重要，因为它有助于确定正确的需求以及采取合理的步骤。此外还可以帮助跟踪需求变化，检查测试过程和跟踪偏差，并有助于报告和记录工作。一个记录良好的测试过程也可以帮助个别测试者和企业将正确的预算和资源分配给一个项目，这就是为什么测试计划和文档技能是每个测试人员必须学习的重要技能之一。</p>
-<p>项目管理<br>学习项目管理的技能，帮助QA提高对于处理问题的能力。例如项目中某个环节发生问题，通过项目管理技能，能够及时的分析问题影响广度，及时寻找相关人员协作处理问题，项目管理技能有助于QA了解项目流程中所存在的问题，来帮助更好改进整个测试过程。</p>
-<p>客户支持<br><img src="/image/customers.jpeg" alt="customers"></p>
-<p>与过去项目有所不同，现代测试项目要求QA提供客户支持并从他们的角度思考。作为QA并不意味着我只是关心功能是否正确，因为测试项目的成功或失败因素很多，而不仅仅只是局限于功能层面，因此QA应及时应对和支持客户提出的需求，并所他们角度思考哪些方面仍然需要改善。</p>
-<p>报告<br><img src="/image/report.jpeg" alt="report"><br>优秀的QA必须拥有良好报告技能，才能向项目的成员与客户提供测试项目和被测试应用的确切状态。这种报告实践可以更好地协调整个测试项目，同时也为高层管理人员提供执行详细的数据，例如测试用例覆盖率，bug的数量，发布时间表等，最终有助于其做出正确的决策。</p>
-<p>独立工作<br>最后，QA应该学习如何独立工作的技能。这将提高他们从需求理解（技术和业务需求）到产出的最终交付工作的能力，采取正确的步骤，在没有他人的帮助或经理的监督。学习独立工作将会增加对他们的信心。</p>
-<p>无论经验多少，QA都应努力不断学习和提高软件测试技能和知识。无论是自学习还是参与培训计划，测试人员应不断学习新的方法，以提高测试工作中的效率，并继续应用新技能和学习，使自己处于领先地位。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1852,7 +1847,7 @@ reverse()
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

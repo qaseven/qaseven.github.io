@@ -285,6 +285,138 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/08/30/capybara3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/08/30/capybara3/" itemprop="url">capybara3--rspec配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-30T12:42:49+08:00">
+                2016-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="rspec配置"><a href="#rspec配置" class="headerlink" title="rspec配置"></a>rspec配置</h2><p>我们知道Capybara 只是是一个用来以模拟用户对web应用的操作来测试web应用的工具包，不能真正的称之为测试框架，它需要其他的测试驱动框架来帮助我们完成测试工作。所以我们需要一个测试驱动框架.</p>
+<p><img src="/image/rspec.png" alt=""></p>
+<p>RSpec由Steven Baker开发并在2005年发布，全面支持Ruby程序的BDD开发测试方式，并且对于Rails程序有着良好的支持，针对View，Controller和Model每一层都有良好的支持。RSpec目前的最新版本是：3.5。</p>
+<p>它在 BDD 流程的开发中被用来写高可读性的测试，引导并验证你开发的应用程序。</p>
+<p>minitest与rspec都是ruby和rails比较流行的框架。这里我们选择rspec。</p>
+<p>安装rspec很简单,打开command line运行一下操作：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem <span class="keyword">install</span> rspec</div></pre></td></tr></table></figure></p>
+<p>或者将rspec 添加到gemfile里<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">gem</span> <span class="string">'rspec'</span></div></pre></td></tr></table></figure></p>
+<p>执行bundle install 来安装<br>如果你的项目采用的时rails,那么<strong>rspec-rails</strong> 或许更适合你</p>
+<p>在gemfile里添加<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">group <span class="symbol">:development</span>, <span class="symbol">:test</span> <span class="keyword">do</span></div><div class="line">  gem <span class="string">'rspec-rails'</span>, <span class="string">'~&gt; 3.4'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>执行 bundle install</p>
+<p>初始化测试目录</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rails <span class="keyword">generate</span> rspec:install</div></pre></td></tr></table></figure>
+<p>这增加了以下文件用于配置:<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.rspec</div><div class="line">spec/spec_helper.rb</div><div class="line">spec/rails_helper.rb</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/08/26/capybara2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1923,211 +2055,6 @@ describe(&apos;router testing&apos;, function () {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/02/23/前端性能分析优化/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="qi lei">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QA seven's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/02/23/前端性能分析优化/" itemprop="url">前端性能分析优化</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-02-23T21:05:28+08:00">
-                2016-02-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="分析问题"><a href="#分析问题" class="headerlink" title="分析问题"></a>分析问题</h2><p>我们并不仅仅关注页面资源的解析和展示响应时间，而是要关注总时间；我们进行web前端性能测试的目的是计算出包含页面渲染、网络传输以及服务器端解析等综合因素在内的加载时间等指标，对该页面性能进行评估分析，找出影响性能的主要因素和瓶颈，并在此结果的基础上，给出一定的优化建议和解决方案，从而提升用户体验。</p>
-<p> 根据雅虎团队经验：网站页面性能优化的34条黄金守则，我们逐条分析。</p>
-<p> <strong>性能黄金法则</strong></p>
-<blockquote>
-<p>只有10%-20%的最终用户响应时间花在接收请求的HTML文档上，剩下的80%-90%时间花在HTML文档所引用的所有组件(图片，script，css，flash等等)进行的HTTP请求上。</p>
-</blockquote>
-<ol>
-<li><p>尽量减少HTTP请求次数</p>
-<ul>
-<li><p>合并文件.</p>
-<p><code>例如将项目中用的资源文件合并。所有的CSS文件都放入一个样式表中.或者将js文件合并压缩</code></p>
-<p><code>利用gulp,grunt,webpack等构建工具将项目资源文件整合</code></p>
-</li>
-<li><p>利用CSS Sprites 减少图像请求.</p>
-<p><code>通过使用合并图片，通过指定css的backgroud-image和backgroud-position来显示元素。</code></p>
-</li>
-</ul>
-</li>
-<li><p>启用浏览器缓存</p>
-<ul>
-<li><p>要利用浏览器缓存存储可缓存的资源</p>
-<p><code>在HTTP标头中为静态资源设置有效期或最长存在时间，可指示浏览器从本地磁盘中加载以前下载的资源而不是从网络中加载。</code></p>
-</li>
-</ul>
-</li>
-<li><p>减少DNS查找</p>
-<ul>
-<li><p>DNS缓存</p>
-<p><code>当客户端的DNS缓存为空时，DNS查找的数量与Web页面中唯一主机名的数量相等。减少唯一主机名的数量就可以减少DNS查找的数量。</code></p>
-</li>
-</ul>
-</li>
-<li><p>使用内容分发网络</p>
-<ul>
-<li><p>页面静态化,取决于发布系统</p>
-<p><code>按页面内容划分域名，在合适的资源服务器上存放文件</code></p>
-</li>
-</ul>
-</li>
-<li><p>避免404错误</p>
-<ul>
-<li>避免内部无效的链接</li>
-</ul>
-</li>
-<li><p>避免重定向</p>
-</li>
-<li><p>压缩组件</p>
-</li>
-<li><p>精简Javascript和Css</p>
-</li>
-<li><p>尽量缩减页面大小</p>
-<ul>
-<li><p>页面必须小于150K(不含图片）</p>
-<p>a) 静态文件是否gzip</p>
-<p>b) 图片是否压缩优化过</p>
-</li>
-</ul>
-</li>
-<li><p>预处理</p>
-<ul>
-<li>浏览器空闲时请求将来可能会用到的页面内容</li>
-</ul>
-<p><code>无条件加载：触发onload事件时，直接加载额外的页面内容</code></p>
-<p><code>有预期的加载：载入重新设计过的页面时使用预加载。</code></p>
-</li>
-<li><p>移除重复脚本</p>
-</li>
-<li><p>使iframe的数量最小</p>
-<ul>
-<li>异步加载</li>
-</ul>
-</li>
-<li><p>js 开发规范</p>
-<ul>
-<li>代码逻辑分层</li>
-<li>避免全局变量</li>
-<li>便于多人协作开发</li>
-<li>各部分代码模块化，可以按需加载 利用requirejs和seajs等模块化工具加载</li>
-<li>保持全局变量的清洁</li>
-<li>可进行单元测试</li>
-</ul>
-</li>
-</ol>
-<p>参考</p>
-<p><a href="http://www.cnblogs.com/li0803/archive/2009/09/20/1570581.html" target="_blank" rel="external">yahoo前端性能优化指南中文版</a></p>
-<p><a href="https://developer.yahoo.com/performance/" target="_blank" rel="external">yahoo前端性能优化指南</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2178,7 +2105,7 @@ describe(&apos;router testing&apos;, function () {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

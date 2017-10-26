@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="vue," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="QA seven's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="基础用法v-model 指令在表单控件元素上创建双向数据绑定。v-model 本质上不过是语法糖，它负责监听用户的输入事件以更新数据，并特别处理一些极端的例子。 v-model 会忽略所有表单元素的 value、checked、selected 特性的初始值。因为它会选择 Vue 实例数据来作为具体的值。你应该通过 JavaScript 在组件的 data 选项中声明初始值。 对于要求 IME (">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小QA学习前端系列之vue 表单输入绑定">
+<meta property="og:url" content="http://yoursite.com/2017/10/25/vue8/index.html">
+<meta property="og:site_name" content="QA seven&#39;s blog">
+<meta property="og:description" content="基础用法v-model 指令在表单控件元素上创建双向数据绑定。v-model 本质上不过是语法糖，它负责监听用户的输入事件以更新数据，并特别处理一些极端的例子。 v-model 会忽略所有表单元素的 value、checked、selected 特性的初始值。因为它会选择 Vue 实例数据来作为具体的值。你应该通过 JavaScript 在组件的 data 选项中声明初始值。 对于要求 IME (">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-25T03:30:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小QA学习前端系列之vue 表单输入绑定">
+<meta name="twitter:description" content="基础用法v-model 指令在表单控件元素上创建双向数据绑定。v-model 本质上不过是语法糖，它负责监听用户的输入事件以更新数据，并特别处理一些极端的例子。 v-model 会忽略所有表单元素的 value、checked、selected 特性的初始值。因为它会选择 Vue 实例数据来作为具体的值。你应该通过 JavaScript 在组件的 data 选项中声明初始值。 对于要求 IME (">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/25/vue8/"/>
+
+
+
+
+
+  <title>小QA学习前端系列之vue 表单输入绑定 | QA seven's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">QA seven's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/25/vue8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">小QA学习前端系列之vue 表单输入绑定</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T09:43:35+08:00">
+                2017-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h2><p>v-model 指令在表单控件元素上创建双向数据绑定。<br>v-model 本质上不过是语法糖，它负责监听用户的输入事件以更新数据，并特别处理一些极端的例子。<br> v-model 会忽略所有表单元素的 value、checked、selected 特性的初始值。因为它会选择 Vue 实例数据来作为具体的值。你应该通过 JavaScript 在组件的 data 选项中声明初始值。</p>
+<p>对于要求 IME (如中文、日语、韩语等) (IME 意为“输入法”)的语言，你会发现 v-model 不会在 ime 输入中得到更新。如果你也想实现更新，请使用 input 事件。</p>
+<h2 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h2><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"message"</span> <span class="attr">placeholder</span>=<span class="string">"edit me"</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Message is: </span><span class="template-variable">&#123;&#123; message &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<h2 id="多行文本"><a href="#多行文本" class="headerlink" title="多行文本"></a>多行文本</h2><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>Multiline message is:<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">"white-space: pre-line;"</span>&gt;</span></span><span class="template-variable">&#123;&#123; message &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">v-model</span>=<span class="string">"message"</span> <span class="attr">placeholder</span>=<span class="string">"add multiple lines"</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<h2 id="复选框"><a href="#复选框" class="headerlink" title="复选框"></a>复选框</h2><p>单个勾选框，逻辑值：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"checkbox"</span> id=<span class="string">"checkbox"</span> v-model=<span class="string">"checked"</span>&gt;</div><div class="line">&lt;<span class="keyword">label</span> <span class="keyword">for</span>=<span class="string">"checkbox"</span>&gt;&#123;&#123; checked &#125;&#125;&lt;/<span class="keyword">label</span>&gt;</div></pre></td></tr></table></figure></p>
+<p>多个勾选框，绑定到同一个数组：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">div</span> id=<span class="string">'example-3'</span>&gt;</div><div class="line">  &lt;<span class="selector-tag">input</span> type=<span class="string">"checkbox"</span> id=<span class="string">"jack"</span> value=<span class="string">"Jack"</span> v-model=<span class="string">"checkedNames"</span>&gt;</div><div class="line">  &lt;<span class="selector-tag">label</span> <span class="keyword">for</span>=<span class="string">"jack"</span>&gt;Jack&lt;/label&gt;</div><div class="line">  &lt;<span class="selector-tag">input</span> type=<span class="string">"checkbox"</span> id=<span class="string">"john"</span> value=<span class="string">"John"</span> v-model=<span class="string">"checkedNames"</span>&gt;</div><div class="line">  &lt;<span class="selector-tag">label</span> <span class="keyword">for</span>=<span class="string">"john"</span>&gt;John&lt;/label&gt;</div><div class="line">  &lt;<span class="selector-tag">input</span> type=<span class="string">"checkbox"</span> id=<span class="string">"mike"</span> value=<span class="string">"Mike"</span> v-model=<span class="string">"checkedNames"</span>&gt;</div><div class="line">  &lt;<span class="selector-tag">label</span> <span class="keyword">for</span>=<span class="string">"mike"</span>&gt;Mike&lt;/label&gt;</div><div class="line">  &lt;br&gt;</div><div class="line">  &lt;span&gt;Checked names: &#123;&#123; checkedNames &#125;&#125;&lt;/span&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">new Vue(&#123;</div><div class="line">  el: <span class="string">'#example-3'</span>,</div><div class="line">  data: &#123;</div><div class="line">    checkedNames: []</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="单选按钮"><a href="#单选按钮" class="headerlink" title="单选按钮"></a>单选按钮</h2><figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example-4"</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">id</span>=<span class="string">"one"</span> <span class="attr">value</span>=<span class="string">"One"</span> <span class="attr">v-model</span>=<span class="string">"picked"</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"one"</span>&gt;</span>One<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">br</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">id</span>=<span class="string">"two"</span> <span class="attr">value</span>=<span class="string">"Two"</span> <span class="attr">v-model</span>=<span class="string">"picked"</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"two"</span>&gt;</span>Two<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">br</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>Picked: </span><span class="template-variable">&#123;&#123; picked &#125;</span><span class="xml">&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">new Vue(</span><span class="template-variable">&#123;</span></div><div class="line"><span class="template-variable">  el: '#example-4',</span></div><div class="line"><span class="template-variable">  data: &#123;</span></div><div class="line"><span class="template-variable">    picked: ''</span></div><div class="line"><span class="template-variable">  &#125;</span><span class="xml"></span></div><div class="line"><span class="xml">&#125;)</span></div></pre></td></tr></table></figure>
+<h2 id="选择列表"><a href="#选择列表" class="headerlink" title="选择列表"></a>选择列表</h2><p>单选列表：<br><figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example-5"</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">select</span> <span class="attr">v-model</span>=<span class="string">"selected"</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">disabled</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span>请选择<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>A<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>B<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>C<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>Selected: </span><span class="template-variable">&#123;&#123; selected &#125;</span><span class="xml">&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">new Vue(</span><span class="template-variable">&#123;</span></div><div class="line"><span class="template-variable">  el: '...',</span></div><div class="line"><span class="template-variable">  data: &#123;</span></div><div class="line"><span class="template-variable">    selected: ''</span></div><div class="line"><span class="template-variable">  &#125;</span><span class="xml"></span></div><div class="line"><span class="xml">&#125;)</span></div></pre></td></tr></table></figure></p>
+<p>多选列表 (绑定到一个数组)：</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example-6"</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">select</span> <span class="attr">v-model</span>=<span class="string">"selected"</span> <span class="attr">multiple</span> <span class="attr">style</span>=<span class="string">"width: 50px;"</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>A<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>B<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>C<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">br</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>Selected: </span><span class="template-variable">&#123;&#123; selected &#125;</span><span class="xml">&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">new Vue(</span><span class="template-variable">&#123;</span></div><div class="line"><span class="template-variable">  el: '#example-6',</span></div><div class="line"><span class="template-variable">  data: &#123;</span></div><div class="line"><span class="template-variable">    selected: []</span></div><div class="line"><span class="template-variable">  &#125;</span><span class="xml"></span></div><div class="line"><span class="xml">&#125;)</span></div></pre></td></tr></table></figure>
+<p>动态选项，用 v-for 渲染：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;select v-model=<span class="string">"selected"</span>&gt;</div><div class="line">  &lt;<span class="keyword">option</span> v-for=<span class="string">"option in options"</span> v-bind:value=<span class="string">"option.value"</span>&gt;</div><div class="line">    &#123;&#123; option.text &#125;&#125;</div><div class="line">  &lt;/<span class="keyword">option</span>&gt;</div><div class="line">&lt;/select&gt;</div><div class="line">&lt;span&gt;Selected: &#123;&#123; selected &#125;&#125;&lt;/span&gt;</div><div class="line"></div><div class="line">new Vue(&#123;</div><div class="line">  el: <span class="string">'...'</span>,</div><div class="line">  data: &#123;</div><div class="line">    selected: <span class="string">'A'</span>,</div><div class="line">    options: [</div><div class="line">      &#123; text: <span class="string">'One'</span>, value: <span class="string">'A'</span> &#125;,</div><div class="line">      &#123; text: <span class="string">'Two'</span>, value: <span class="string">'B'</span> &#125;,</div><div class="line">      &#123; text: <span class="string">'Three'</span>, value: <span class="string">'C'</span> &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="值绑定"><a href="#值绑定" class="headerlink" title="值绑定"></a>值绑定</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">&lt;!-- 当选中时，`picked` 为字符串 "a" --&gt;</div><div class="line">&lt;input type="radio" v-model="picked" value="a"&gt;</div><div class="line">&lt;!-- `toggle` 为 true 或 false --&gt;</div><div class="line">&lt;input type="checkbox" v-model="toggle"&gt;</div><div class="line">&lt;!-- 当选中时，`selected` 为字符串 "abc" --&gt;</div><div class="line">&lt;select v-model="selected"&gt;</div><div class="line">  &lt;option value="abc"&gt;ABC&lt;/option&gt;</div><div class="line">&lt;/select&gt;</div></pre></td></tr></table></figure>
+<h2 id="复选框-1"><a href="#复选框-1" class="headerlink" title="复选框"></a>复选框</h2><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;input</div><div class="line">  type=<span class="string">"checkbox"</span></div><div class="line">  v-model=<span class="string">"toggle"</span></div><div class="line">  v-bind:<span class="literal">true</span>-<span class="built_in">value</span>=<span class="string">"a"</span></div><div class="line">  v-bind:<span class="literal">false</span>-<span class="built_in">value</span>=<span class="string">"b"</span></div><div class="line">&gt;</div><div class="line"></div><div class="line">// 当选中时</div><div class="line">vm.toggle === vm.<span class="keyword">a</span></div><div class="line">// 当没有选中时</div><div class="line">vm.toggle === vm.b</div></pre></td></tr></table></figure>
+<h2 id="单选按钮-1"><a href="#单选按钮-1" class="headerlink" title="单选按钮"></a>单选按钮</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"radio"</span> v-model=<span class="string">"pick"</span> v-<span class="keyword">bind</span>:value=<span class="string">"a"</span>&gt;</div><div class="line"></div><div class="line"><span class="comment">// 当选中时</span></div><div class="line">vm<span class="variable">.pick</span> === vm<span class="variable">.a</span></div></pre></td></tr></table></figure>
+<h2 id="选择列表的选项"><a href="#选择列表的选项" class="headerlink" title="选择列表的选项"></a>选择列表的选项</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">select v-model=<span class="string">"selected"</span>&gt;</div><div class="line">    &lt;!-- 内联对象字面量 --&gt;</div><div class="line">  &lt;option v-bind:value=<span class="string">"&#123; number: 123 &#125;"</span>&gt;<span class="number">123</span>&lt;<span class="regexp">/option&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>select&gt;</div><div class="line"></div><div class="line"><span class="comment">// 当选中时</span></div><div class="line"><span class="keyword">typeof</span> vm.selected <span class="comment">// =&gt; 'object'</span></div><div class="line">vm.selected.number <span class="comment">// =&gt; 123</span></div></pre></td></tr></table></figure>
+<h2 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">.lazy</div><div class="line"></div><div class="line">在默认情况下，v-model 在 <span class="selector-tag">input</span> 事件中同步输入框的值与数据 (除了 上述 IME 部分)，但你可以添加一个修饰符 lazy ，从而转变为在 change 事件中同步：</div><div class="line"></div><div class="line">&lt;!-- 在 <span class="string">"change"</span> 而不是 <span class="string">"input"</span> 事件中更新 --&gt;</div><div class="line">&lt;<span class="selector-tag">input</span> v-model.lazy=<span class="string">"msg"</span> &gt;</div><div class="line"></div><div class="line">.number</div><div class="line"></div><div class="line">如果想自动将用户的输入值转为 Number 类型 (如果原值的转换结果为 NaN 则返回原值)，可以添加一个修饰符 number 给 v-model 来处理输入值：</div><div class="line"></div><div class="line">&lt;<span class="selector-tag">input</span> v-model.number=<span class="string">"age"</span> type=<span class="string">"number"</span>&gt;</div><div class="line"></div><div class="line">这通常很有用，因为在 type=<span class="string">"number"</span> 时 HTML 中输入的值也总是会返回字符串类型。</div><div class="line">.trim</div><div class="line"></div><div class="line">如果要自动过滤用户输入的首尾空格，可以添加 trim 修饰符到 v-model 上过滤输入：</div><div class="line"></div><div class="line">&lt;<span class="selector-tag">input</span> v-model.trim=<span class="string">"msg"</span>&gt;</div><div class="line"></div><div class="line">v-model 与组件</div><div class="line"></div><div class="line">    如果你还不熟悉 Vue 的组件，跳过这里即可。</div><div class="line"></div><div class="line">HTML 内建的 <span class="selector-tag">input</span> 类型有时不能满足你的需求。还好，Vue 的组件系统允许你创建一个具有自定义行为可复用的 <span class="selector-tag">input</span> 类型，这些 <span class="selector-tag">input</span> 类型甚至可以和 v-model 一起使用！要了解更多，请参阅自定义 <span class="selector-tag">input</span> 类型。</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/24/vue7/" rel="next" title="小QA学习前端系列之vue 事件处理">
+                <i class="fa fa-chevron-left"></i> 小QA学习前端系列之vue 事件处理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="qi lei" />
+          <p class="site-author-name" itemprop="name">qi lei</p>
+           
+              <p class="site-description motion-element" itemprop="description">小qa 在thoughtworks苦苦挣扎中</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础用法"><span class="nav-number">1.</span> <span class="nav-text">基础用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本"><span class="nav-number">2.</span> <span class="nav-text">文本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多行文本"><span class="nav-number">3.</span> <span class="nav-text">多行文本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复选框"><span class="nav-number">4.</span> <span class="nav-text">复选框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单选按钮"><span class="nav-number">5.</span> <span class="nav-text">单选按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择列表"><span class="nav-number">6.</span> <span class="nav-text">选择列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#值绑定"><span class="nav-number">7.</span> <span class="nav-text">值绑定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复选框-1"><span class="nav-number">8.</span> <span class="nav-text">复选框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单选按钮-1"><span class="nav-number">9.</span> <span class="nav-text">单选按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择列表的选项"><span class="nav-number">10.</span> <span class="nav-text">选择列表的选项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修饰符"><span class="nav-number">11.</span> <span class="nav-text">修饰符</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">qi lei</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
