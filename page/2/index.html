@@ -285,6 +285,247 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/12/vuex/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/12/vuex/" itemprop="url">小QA学习前端系列之vuex</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T21:51:51+08:00">
+                2017-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一个QA如何学习vuex"><a href="#一个QA如何学习vuex" class="headerlink" title="一个QA如何学习vuex"></a>一个QA如何学习vuex</h1><h2 id="什么vuex"><a href="#什么vuex" class="headerlink" title="什么vuex"></a>什么vuex</h2><p>其实之前也学习过redux，虽然redux已经把我看得云里雾里的，里面的educer 应该如何拆分、action 应该怎么定义、dispatch 异步怎么做、Ajax 怎么使用、middleware 什么时候需要用、enhancer 干什么的、高阶函数怎么这么多 等等一系列问题，就算是看懂了，放上半年又全还给度娘了，相反vuex却让我记忆犹新，vuex的api 我花半天时间，就已经理解的很透彻了，跟着getting started，已经可以把demo中todo-list搞定了。说了这么多，那么vuex到底是什么，vuex和redux一样都是用来管理状态的，只不过vuex只能用在vue项目中，redux则没有限制，如果你想在react项目使用类似vuex的框架，最近有一个MobX的框架可以值得一试，虽然我也没看，但是大神推荐了，应该没错。</p>
+<p>Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。</p>
+<p>以上是官方的解释，很清晰明了，想更进一步的话，我们需要知道vuex是基于flux架构，同时也吸收redux的一些优点，而redux又是基于flux的改进:</p>
+<pre><code>把store和Dispatcher合并,结构更加简单清晰
+新增state角色，代表每个时间点store对应的值，对状态的管理更加明确
+</code></pre><p>Redux数据流的顺序是:</p>
+<pre><code>View调用store.dispatch发起Action-&gt;store接受Action(action传入reducer函数,reducer函数返回一个新的state)-&gt;通知store.subscribe订阅的重新渲染函数
+</code></pre><p>Flux数据流的顺序是:</p>
+<pre><code>View发起Action-&gt;Action传递到Dispatcher-&gt;Dispatcher将通知Store-&gt;Store的状态改变通知View进行改变
+而Vuex是专门为Vue设计的状态管理框架,
+同样基于Flux架构，并吸收了Redux的优点
+</code></pre><p>Vuex相对于Redux的不同点有:</p>
+<pre><code>改进了Redux中的Action和Reducer函数，以mutations变化函数取代Reducer，
+无需switch,只需在对应的mutation函数里改变state值即可
+
+由于Vue自动重新渲染的特性，无需订阅重新渲染函数，只要生成新的State即可
+</code></pre><p>Vuex数据流的顺序是:</p>
+<pre><code>View调用store.commit提交对应的请求到Store中对应的mutation函数-&gt;store改变(vue检测到数据变化自动渲染)
+</code></pre><h2 id="vuex的核心概念"><a href="#vuex的核心概念" class="headerlink" title="vuex的核心概念"></a>vuex的核心概念</h2><p>Vuex 中 Store 的模板化定义如下：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue from <span class="string">'vue'</span></div><div class="line"><span class="keyword">import</span> Vuex from <span class="string">'vuex'</span></div><div class="line">Vue.use(Vuex)</div><div class="line">const store = new Vuex.Store(&#123;</div><div class="line">  state: &#123;</div><div class="line">  &#125;,</div><div class="line">  actions: &#123;</div><div class="line">  &#125;,</div><div class="line">  mutations: &#123;</div><div class="line">  &#125;,</div><div class="line">  getters: &#123;</div><div class="line">  &#125;,  </div><div class="line">  modules: &#123;</div><div class="line">    </div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line">export <span class="keyword">default</span> store</div></pre></td></tr></table></figure>
+<ul>
+<li>State</li>
+<li>Getter</li>
+<li>Mutation</li>
+<li>Action</li>
+<li>Module<h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3>Vuex就是提供一个仓库，仓库里面放了很多对象。其中state就是数据源存放地，对应于与一般Vue对象里面的data（后面讲到的actions和mutations对应于methods）。<br>state: state 定义了应用状态的数据结构，同样可以在这里设置默认的初始状态。</li>
+</ul>
+<p>响应书存储：state里面存放的数据是响应式的，Vue组件从store中读取数据，若是store中的数据发生改变，依赖这个数据的组件也会发生更新。（这里“状态”=“数据”），也就是是说数据和视图是同步的。<br>例如:</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">state</span>: &#123;</div><div class="line">  projects: [],</div><div class="line">  <span class="keyword">user</span>Profile: &#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="在-Vue-组件中获得-Vuex-状态的几种方法"><a href="#在-Vue-组件中获得-Vuex-状态的几种方法" class="headerlink" title="在 Vue 组件中获得 Vuex 状态的几种方法"></a>在 Vue 组件中获得 Vuex 状态的几种方法</h4><p><code>通用方法:全局的放vuex，局部的放在component的data里</code></p>
+<p>Vuex 通过 store 选项，提供了一种机制将状态从根组件“注入”到每一个子组件中（需调用 Vue.use(Vuex)）：<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">const app = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  el: <span class="string">'#app'</span>,</div><div class="line">  <span class="regexp">//</span> 把 store 对象提供给 “store” 选项，这可以把 store 的实例注入所有的子组件</div><div class="line">  store,</div><div class="line">  components: &#123; Counter &#125;,</div><div class="line">  template: `<span class="javascript"></span></div><div class="line"><span class="javascript">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"app"</span>&gt;</span></div><div class="line"><span class="javascript">      &lt;counter&gt;<span class="xml"><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span></span></div><div class="line"><span class="javascript">    &lt;<span class="regexp">/div&gt;</span></span></div><div class="line"><span class="javascript">  </span>`</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>通过在根实例中注册 store 选项，该 store 实例会注入到根组件下的所有子组件中，且子组件能通过 this.$store 访问到。让我们更新下 Counter 的实现：</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">const Counter = &#123;</div><div class="line">  template: `&lt;<span class="keyword">div</span>&gt;&#123;&#123; <span class="keyword">count</span> &#125;&#125;&lt;/<span class="keyword">div</span>&gt;`,</div><div class="line">  computed: &#123;</div><div class="line">    <span class="keyword">count</span> () &#123;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.$store.state.<span class="keyword">count</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="mapState"><a href="#mapState" class="headerlink" title="mapState"></a>mapState</h4><p>mapState的作用是把全局的 state 和 getters 映射到当前组件的 computed 计算属性中，this.$store.state。</p>
+<p>使用示例</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"> import &#123;mapState&#125; <span class="keyword">from</span> 'vuex' </div><div class="line"> export <span class="keyword">default</span> &#123;</div><div class="line">  computer :</div><div class="line">  mapState(&#123;</div><div class="line">   count: <span class="keyword">state</span> =&gt; <span class="keyword">state</span>.count,</div><div class="line"></div><div class="line">    // 方法一 传字符串参数 'count' 等同于 `<span class="keyword">state</span> =&gt; <span class="keyword">state</span>.count`</div><div class="line">    countAlias: 'count',</div><div class="line"></div><div class="line">    // 方法二 为了能够使用 `this` 获取局部状态，必须使用常规函数</div><div class="line">    countPlusLocalState (<span class="keyword">state</span>) &#123;</div><div class="line">      return <span class="keyword">state</span>.count + this.localCount</div><div class="line">    &#125;,</div><div class="line">     // 映射 this.count 为 store.<span class="keyword">state</span>.count</div><div class="line">  'count'</div><div class="line"></div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line">对象展开运算符</div><div class="line">import Vue <span class="keyword">from</span> 'vue'</div><div class="line">import Vuex <span class="keyword">from</span> 'vuex'</div><div class="line">import mutations <span class="keyword">from</span> './mutations'</div><div class="line">import actions <span class="keyword">from</span> './action'</div><div class="line">import getters <span class="keyword">from</span> './getters'</div><div class="line"></div><div class="line">Vue.use(Vuex)</div><div class="line"></div><div class="line">const <span class="keyword">state</span> = &#123;</div><div class="line">    <span class="keyword">user</span>Info: &#123; phone: <span class="number">111</span> &#125;, //用户信息</div><div class="line">    orderList: [&#123; orderno: '<span class="number">1111</span>' &#125;], //订单列表</div><div class="line">    orderDetail: null, //订单产品详情</div><div class="line">    login: false, //是否登录</div><div class="line">&#125;</div><div class="line"></div><div class="line">export <span class="keyword">default</span> new Vuex.Store(&#123;</div><div class="line">    <span class="keyword">state</span>,</div><div class="line">    getters,</div><div class="line">    actions,</div><div class="line">    mutations,</div><div class="line">&#125;)</div><div class="line"></div><div class="line">computed: &#123;</div><div class="line">            ...mapState([</div><div class="line">                'orderList',</div><div class="line">                'login'</div><div class="line">            ]),</div><div class="line">        &#125;,   </div><div class="line">        mounted()&#123;  </div><div class="line">            console.<span class="keyword">log</span>(typeof orderList); ==&gt;undefind</div><div class="line">            console.<span class="keyword">log</span>(typeof this.orderList)==&gt;object</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<h3 id="getter"><a href="#getter" class="headerlink" title="getter"></a>getter</h3><p>一句话 getter就是用来进行数据过滤的，然后把过滤后的数据，共享给所有component。</p>
+<p>所以getters是store的计算属性</p>
+<p>getters过滤条件必须是bollean值.根据bolean的条件返回具体数据对象。</p>
+<p>🌰🌰🌰🌰🌰🌰</p>
+<p>定义：我们可以在store中定义getters，第一个参数是state</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">const store = new Vuex.Store(&#123;</div><div class="line">  <span class="keyword">state</span>: &#123;</div><div class="line">    todos: [</div><div class="line">      &#123; id: <span class="number">1</span>, text: '...', done: true &#125;,</div><div class="line">      &#123; id: <span class="number">2</span>, text: '...', done: false &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  getters: &#123;</div><div class="line">    doneTodos: <span class="keyword">state</span> =&gt; &#123;</div><div class="line">      return <span class="keyword">state</span>.todos.filter(todo =&gt; todo.done)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>传参：定义的Getters会暴露为store.getters对象，也可以接受其他的getters作为第二个参数；<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">getters: &#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  doneTodosCount: (state, getters) =&gt; &#123;</div><div class="line">    return getters<span class="selector-class">.doneTodos</span><span class="selector-class">.length</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">store<span class="selector-class">.getters</span><span class="selector-class">.doneTodosCount</span> <span class="comment">// -&gt; 1</span></div></pre></td></tr></table></figure></p>
+<p>调用<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">computed: &#123;</div><div class="line">  doneTodosCount () &#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.$store.getters.doneTodosCount</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>通过mapGetters调用<br>mapGetters辅助函数仅仅是将store中的getters映射到局部计算属性中，用法和mapState类似</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; mapGetters &#125; <span class="keyword">from</span> <span class="string">'vuex'</span></div><div class="line">computed: &#123;</div><div class="line">   <span class="comment">// 使用对象展开运算符将 getters 混入 computed 对象中</span></div><div class="line">    ...mapGetters([</div><div class="line">    <span class="string">'doneTodosCount'</span>,</div><div class="line">    <span class="string">'anotherGetter'</span>,])&#125;</div><div class="line"> <span class="comment">//给getter属性换名字</span></div><div class="line">  mapGetters(&#123;</div><div class="line"> <span class="comment">// 映射 this.doneCount 为 store.getters.doneTodosCount</span></div><div class="line">  doneCount: <span class="string">'doneTodosCount'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="Mutation"><a href="#Mutation" class="headerlink" title="Mutation"></a>Mutation</h2><p>在Vuex中store数据改变的唯一方法就是mutation</p>
+<p>mutations,里面装着一些改变数据方法的集合，这是Veux设计很重要的一点，就是把处理数据逻辑方法全部放在mutations里面，使得数据和视图分离。</p>
+<p>重要的原则就是要记住 mutation 必须是同步函数</p>
+<p>如何使用</p>
+<ul>
+<li>mutation结构</li>
+</ul>
+<p>每一个mutation都有一个字符串类型的事件类型(type)和回调函数(handler)，也可以理解为{type:handler()},这和订阅发布有点类似。先注册事件，当触发响应类型的时候调用handker()，调用type的时候需要用到store.commit方法。</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">const store = new Vuex.Store(&#123;</div><div class="line">    <span class="keyword">state</span>: &#123;</div><div class="line">        count: <span class="number">1</span></div><div class="line">        &#125;,</div><div class="line">    mutations: &#123;</div><div class="line">    increment (<span class="keyword">state</span>) &#123;      //注册事件，type:increment，handler第一个参数是<span class="keyword">state</span>；</div><div class="line">         // 变更状态</div><div class="line">       <span class="keyword">state</span>.count++&#125;&#125;&#125;)</div><div class="line">       </div><div class="line">    store.commit('increment')   //调用type，触发handler（<span class="keyword">state</span>）</div></pre></td></tr></table></figure>
+<ul>
+<li>载荷（payload)</li>
+</ul>
+<p>简单的理解就是往handler(stage)中传参handler(stage,pryload)；一般是个对象。</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mutations: &#123;</div><div class="line">increment (<span class="keyword">state</span>, n) &#123;</div><div class="line">    <span class="keyword">state</span>.count += n&#125;&#125;</div><div class="line">store.commit('increment', <span class="number">10</span>)</div></pre></td></tr></table></figure>
+<p>在大多数情况下，载荷应该是一个对象，这样可以包含多个字段并且记录的 mutation 会更易读：</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// ...</div><div class="line">mutations: &#123;</div><div class="line">  increment (<span class="keyword">state</span>, payload) &#123;</div><div class="line">    <span class="keyword">state</span>.count += payload.amount</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">store.commit('increment', &#123;</div><div class="line">  amount: <span class="number">10</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li>对象风格的提交方式</li>
+</ul>
+<p>提交 mutation 的另一种方式是直接使用包含 type 属性的对象：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">store</span><span class="selector-class">.commit</span>(&#123;</div><div class="line">  <span class="attribute">type</span>: <span class="string">'increment'</span>,</div><div class="line">  amount: <span class="number">10</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>当使用对象风格的提交方式，整个对象都作为载荷传给 mutation 函数，因此 handler 保持不变：</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mutations: &#123;</div><div class="line">  increment (<span class="keyword">state</span>, payload) &#123;</div><div class="line">    <span class="keyword">state</span>.count += payload.amount</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>Mutation 需遵守 Vue 的响应规则</li>
+</ul>
+<p>最好提前在你的 store 中初始化好所有所需属性。</p>
+<p>当需要在对象上添加新属性时，你应该</p>
+<p>使用 Vue.set(obj, ‘newProp’, 123), 或者以新对象替换老对象。例如，利用 stage-3 的对象展开运算符我们可以这样写：</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">state</span>.obj = &#123; ...<span class="keyword">state</span>.obj, newProp: <span class="number">123</span> &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>使用常量替代 Mutation 事件类型</li>
+</ul>
+<p>将常量放在单独的文件中，方便协作开发。</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// mutation-types.js</div><div class="line">export const SOME_MUTATION = 'SOME_MUTATION'</div><div class="line"></div><div class="line">// store.js</div><div class="line">import Vuex <span class="keyword">from</span> 'vuex'</div><div class="line">import &#123; SOME_MUTATION &#125; <span class="keyword">from</span> './mutation-types'</div><div class="line"></div><div class="line">const store = new Vuex.Store(&#123;</div><div class="line">  <span class="keyword">state</span>: &#123; ... &#125;,</div><div class="line">  mutations: &#123;</div><div class="line">    // 我们可以使用 ES2015 风格的计算属性命名功能来使用一个常量作为函数名</div><div class="line">    [SOME_MUTATION] (<span class="keyword">state</span>) &#123;</div><div class="line">      // mutate <span class="keyword">state</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li>在组件中提交 Mutation</li>
+</ul>
+<p>提交可以在组件中使用 this.$store.commit(‘xxx’) 提交 mutation，或者使用 mapMutations 辅助函数将组件中的 methods 映射为 store.commit 调用（需要在根节点注入 store）。</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; mapMutations &#125; <span class="keyword">from</span> <span class="string">'vuex'</span></div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  <span class="regexp">//</span> ...</div><div class="line">  methods: &#123;</div><div class="line">    ...mapMutations([</div><div class="line">      <span class="string">'increment'</span>, <span class="regexp">//</span> 将 `<span class="javascript"><span class="keyword">this</span>.increment()</span>` 映射为 `<span class="javascript"><span class="keyword">this</span>.$store.commit(<span class="string">'increment'</span>)</span>`</div><div class="line"></div><div class="line">      <span class="regexp">//</span> `<span class="javascript">mapMutations</span>` 也支持载荷：</div><div class="line">      <span class="string">'incrementBy'</span> <span class="regexp">//</span> 将 `<span class="javascript"><span class="keyword">this</span>.incrementBy(amount)</span>` 映射为 `<span class="javascript"><span class="keyword">this</span>.$store.commit(<span class="string">'incrementBy'</span>, amount)</span>`</div><div class="line">    ]),</div><div class="line">    ...mapMutations(&#123;</div><div class="line">      add: <span class="string">'increment'</span> <span class="regexp">//</span> 将 `<span class="javascript"><span class="keyword">this</span>.add()</span>` 映射为 `<span class="javascript"><span class="keyword">this</span>.$store.commit(<span class="string">'increment'</span>)</span>`</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="action"><a href="#action" class="headerlink" title="action"></a>action</h2><p>前面我们讲了mutation中是存放处理数据的方法的集合，我们使用的时候需要commit。但是commit是同步函数，而且只能是同步执行。</p>
+<p>所以action出现了。在actions中提交mutation，并且可以包含任何的异步操作。actions可以理解为通过将mutations里面处里数据的方法变成可异步的处理数据的方法，简单的说就是异步操作数据（但是还是通过mutation来操作，因为只有它能操作）</p>
+<p>定义actions<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">const store = new Vuex.Store(&#123;//创建store实例</div><div class="line">      <span class="keyword">state</span>: &#123;</div><div class="line">         count: <span class="number">0</span></div><div class="line">             &#125;,</div><div class="line">      mutations: &#123;                </div><div class="line">         increment (<span class="keyword">state</span>) &#123;</div><div class="line">          <span class="keyword">state</span>.count++</div><div class="line">         &#125;,</div><div class="line">         sub(<span class="keyword">state</span>)&#123;</div><div class="line">    <span class="keyword">state</span>.count--;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">          &#125;,</div><div class="line">      actions: &#123;         //只是提交`commit`了`mutations`里面的方法。</div><div class="line">         increment (context) &#123;</div><div class="line">          context.commit('increment')</div><div class="line">   &#125;,</div><div class="line">   subplus(&#123;commit&#125;)&#123;</div><div class="line">    commit('sub');</div><div class="line">  &#125;</div><div class="line"> &#125;</div><div class="line">    &#125;)</div><div class="line"> </div><div class="line"> Action 函数接受一个与 store 实例具有相同方法和属性的 context 对象，因此你可以调用 context.commit 提交一个 mutation，或者通过 context.<span class="keyword">state</span> 和 context.getters 来获取 <span class="keyword">state</span> 和 getters。当我们在之后介绍到 Modules 时，你就知道 context 对象为什么不是 store 实例本身了。</div><div class="line"></div><div class="line">  一般我们会简写成这样</div><div class="line">  actions: &#123;</div><div class="line">   increment (&#123; commit &#125;) &#123;</div><div class="line">         commit('increment')</div><div class="line">      &#125;,</div><div class="line">subplus(&#123;commit&#125;)&#123;</div><div class="line">    commit('sub')</div><div class="line">  &#125;</div><div class="line">         &#125;</div></pre></td></tr></table></figure></p>
+<h2 id="分发-Action"><a href="#分发-Action" class="headerlink" title="分发 Action"></a>分发 Action</h2><p>Action 通过 store.dispatch 方法触发：</p>
+<p><code>store.dispatch(&#39;increment&#39;)</code></p>
+<p>乍一眼看上去感觉多此一举，我们直接分发 mutation 岂不更方便？实际上并非如此，还记得 mutation 必须同步执行这个限制么？Action 就不受约束！我们可以在 action 内部执行异步操作：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">actions: &#123;</div><div class="line">  incrementAsync (&#123; commit &#125;) &#123;</div><div class="line">    setTimeout(() =&gt; &#123;</div><div class="line">      commit(<span class="string">'increment'</span>)</div><div class="line">    &#125;, <span class="number">1000</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Actions 支持同样的载荷方式和对象方式进行分发：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 以载荷形式分发</span></div><div class="line"><span class="selector-tag">store</span><span class="selector-class">.dispatch</span>(<span class="string">'incrementAsync'</span>, &#123;</div><div class="line">  <span class="attribute">amount</span>: <span class="number">10</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>// 以对象形式分发<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">store</span><span class="selector-class">.dispatch</span>(&#123;</div><div class="line">  <span class="attribute">type</span>: <span class="string">'incrementAsync'</span>,</div><div class="line">  amount: <span class="number">10</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<ul>
+<li>在组件中分发 Action<br>你在组件中使用 this.$store.dispatch(‘xxx’) 分发 action，或者使用 mapActions 辅助函数将组件的 methods 映射为 store.dispatch 调用（需要先在根节点注入 store）：<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; mapActions &#125; <span class="keyword">from</span> <span class="string">'vuex'</span></div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  <span class="regexp">//</span> ...</div><div class="line">  methods: &#123;</div><div class="line">    ...mapActions([</div><div class="line">      <span class="string">'increment'</span>, <span class="regexp">//</span> 将 `<span class="javascript"><span class="keyword">this</span>.increment()</span>` 映射为 `<span class="javascript"><span class="keyword">this</span>.$store.dispatch(<span class="string">'increment'</span>)</span>`</div><div class="line"></div><div class="line">      <span class="regexp">//</span> `<span class="javascript">mapActions</span>` 也支持载荷：</div><div class="line">      <span class="string">'incrementBy'</span> <span class="regexp">//</span> 将 `<span class="javascript"><span class="keyword">this</span>.incrementBy(amount)</span>` 映射为 `<span class="javascript"><span class="keyword">this</span>.$store.dispatch(<span class="string">'incrementBy'</span>, amount)</span>`</div><div class="line">    ]),</div><div class="line">    ...mapActions(&#123;</div><div class="line">      add: <span class="string">'increment'</span> <span class="regexp">//</span> 将 `<span class="javascript"><span class="keyword">this</span>.add()</span>` 映射为 `<span class="javascript"><span class="keyword">this</span>.$store.dispatch(<span class="string">'increment'</span>)</span>`</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h2><p>背景：在Vue中State使用是单一状态树结构，应该的所有的状态都放在state里面，如果项目比较复杂，那state是一个很大的对象，store对象也将对变得非常大，难于管理。</p>
+<p>module：可以让每一个模块拥有自己的state、mutation、action、getters,使得结构非常清晰，方便管理。<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">const moduleA = &#123;</div><div class="line">  <span class="keyword">state</span>: &#123; ... &#125;,</div><div class="line">  mutations: &#123; ... &#125;,</div><div class="line">  actions: &#123; ... &#125;,</div><div class="line">  getters: &#123; ... &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const moduleB = &#123;</div><div class="line">  <span class="keyword">state</span>: &#123; ... &#125;,</div><div class="line">  mutations: &#123; ... &#125;,</div><div class="line">  actions: &#123; ... &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const store = new Vuex.Store(&#123;</div><div class="line">  modules: &#123;</div><div class="line">    a: moduleA,</div><div class="line">    b: moduleB</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">store.<span class="keyword">state</span>.a // -&gt; moduleA 的状态</div><div class="line">store.<span class="keyword">state</span>.b // -&gt; moduleB 的状态</div></pre></td></tr></table></figure></p>
+<p>模块的局部状态</p>
+<p>对于模块内部的 mutation 和 getter，接收的第一个参数是模块的局部状态对象。</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">const moduleA = &#123;</div><div class="line">  <span class="keyword">state</span>: &#123; count: <span class="number">0</span> &#125;,</div><div class="line">  mutations: &#123;</div><div class="line">    increment (<span class="keyword">state</span>) &#123;</div><div class="line">      // 这里的 `<span class="keyword">state</span>` 对象是模块的局部状态</div><div class="line">      <span class="keyword">state</span>.count++</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  getters: &#123;</div><div class="line">    doubleCount (<span class="keyword">state</span>) &#123;</div><div class="line">      return <span class="keyword">state</span>.count * <span class="number">2</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>对于模块内部的 action，局部状态通过 context.state 暴露出来，根节点状态则为 context.rootState<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">const moduleA = &#123;</div><div class="line">  // ...</div><div class="line">  actions: &#123;</div><div class="line">    incrementIfOddOnRootSum (&#123; <span class="keyword">state</span>, commit, rootState &#125;) &#123;</div><div class="line">      if ((<span class="keyword">state</span>.count + rootState.count) % <span class="number">2</span> === <span class="number">1</span>) &#123;</div><div class="line">        commit('increment')</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>对于模块内部的 getter，根节点状态会作为第三个参数暴露出来：</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">const moduleA = &#123;</div><div class="line">  // ...</div><div class="line">  getters: &#123;</div><div class="line">    sumWithRootCount (<span class="keyword">state</span>, getters, rootState) &#123;</div><div class="line">      return <span class="keyword">state</span>.count + rootState.count</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>命名空间</p>
+<p>默认情况下，模块内部的 action、mutation 和 getter 是注册在全局命名空间的——这样使得多个模块能够对同一 mutation 或 action 作出响应。</p>
+<p>如果希望你的模块具有更高的封装度和复用性，你可以通过添加 namespaced: true 的方式使其成为命名空间模块。当模块被注册后，它的所有 getter、action 及 mutation 都会自动根据模块注册的路径调整命名。例如：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">const store = new Vuex.Store(&#123;</div><div class="line"><span class="symbol">  modules:</span> &#123;</div><div class="line"><span class="symbol">    account:</span> &#123;</div><div class="line"><span class="symbol">      namespaced:</span> true,</div><div class="line"></div><div class="line">      <span class="comment">// 模块内容（module assets）</span></div><div class="line"><span class="symbol">      state:</span> &#123; ... &#125;, <span class="comment">// 模块内的状态已经是嵌套的了，使用 `namespaced` 属性不会对其产生影响</span></div><div class="line"><span class="symbol">      getters:</span> &#123;</div><div class="line">        isAdmin () &#123; ... &#125; <span class="comment">// -&gt; getters['account/isAdmin']</span></div><div class="line">      &#125;,</div><div class="line"><span class="symbol">      actions:</span> &#123;</div><div class="line">        login () &#123; ... &#125; <span class="comment">// -&gt; dispatch('account/login')</span></div><div class="line">      &#125;,</div><div class="line"><span class="symbol">      mutations:</span> &#123;</div><div class="line">        login () &#123; ... &#125; <span class="comment">// -&gt; commit('account/login')</span></div><div class="line">      &#125;,</div><div class="line"></div><div class="line">      <span class="comment">// 嵌套模块</span></div><div class="line"><span class="symbol">      modules:</span> &#123;</div><div class="line">        <span class="comment">// 继承父模块的命名空间</span></div><div class="line"><span class="symbol">        myPage:</span> &#123;</div><div class="line"><span class="symbol">          state:</span> &#123; ... &#125;,</div><div class="line"><span class="symbol">          getters:</span> &#123;</div><div class="line">            profile () &#123; ... &#125; <span class="comment">// -&gt; getters['account/profile']</span></div><div class="line">          &#125;</div><div class="line">        &#125;,</div><div class="line"></div><div class="line">        <span class="comment">// 进一步嵌套命名空间</span></div><div class="line"><span class="symbol">        posts:</span> &#123;</div><div class="line"><span class="symbol">          namespaced:</span> true,</div><div class="line"></div><div class="line"><span class="symbol">          state:</span> &#123; ... &#125;,</div><div class="line"><span class="symbol">          getters:</span> &#123;</div><div class="line">            popular () &#123; ... &#125; <span class="comment">// -&gt; getters['account/posts/popular']</span></div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>带命名空间的绑定函数</p>
+<p>当使用 mapState, mapGetters, mapActions 和 mapMutations 这些函数来绑定命名空间模块时，写起来可能比较繁琐：</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">computed: &#123;</div><div class="line">  ...mapState(&#123;</div><div class="line">    a: <span class="keyword">state</span> =&gt; <span class="keyword">state</span>.some.nested.module.a,</div><div class="line">    b: <span class="keyword">state</span> =&gt; <span class="keyword">state</span>.some.nested.module.b</div><div class="line">  &#125;)</div><div class="line">&#125;,</div><div class="line">methods: &#123;</div><div class="line">  ...mapActions([</div><div class="line">    'some/nested/module/foo',</div><div class="line">    'some/nested/module/bar'</div><div class="line">  ])</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>对于这种情况，你可以将模块的空间名称字符串作为第一个参数传递给上述函数，这样所有绑定都会自动将该模块作为上下文。于是上面的例子可以简化为：</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">computed: &#123;</div><div class="line">  ...mapState('some/nested/module', &#123;</div><div class="line">    a: <span class="keyword">state</span> =&gt; <span class="keyword">state</span>.a,</div><div class="line">    b: <span class="keyword">state</span> =&gt; <span class="keyword">state</span>.b</div><div class="line">  &#125;)</div><div class="line">&#125;,</div><div class="line">methods: &#123;</div><div class="line">  ...mapActions('some/nested/module', [</div><div class="line">    'foo',</div><div class="line">    'bar'</div><div class="line">  ])</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">```而且，你可以通过使用 createNamespacedHelpers 创建基于某个命名空间辅助函数。它返回一个对象，对象里有新的绑定在给定命名空间值上的组件绑定辅助函数：</div></pre></td></tr></table></figure>
+<p>import { createNamespacedHelpers } from ‘vuex’</p>
+<p>const { mapState, mapActions } = createNamespacedHelpers(‘some/nested/module’)</p>
+<p>export default {<br>  computed: {<br>    // 在 <code>some/nested/module</code> 中查找<br>    …mapState({<br>      a: state =&gt; state.a,<br>      b: state =&gt; state.b<br>    })<br>  },<br>  methods: {<br>    // 在 <code>some/nested/module</code> 中查找<br>    …mapActions([<br>      ‘foo’,<br>      ‘bar’<br>    ])<br>  }<br>}</p>
+<p>```</p>
+<p>以上便是我2天来学习vuex的心得，大部分参考的是官方的文档，不得不说vuex的文档比redux文档容易理解多，接下来我会把官方的列子购物车玩一下，然后自己在写一个todo-list,vue2 还是大略的过了一遍，还是要写个小项目熟悉框架，一个QA在前端的路途上越走越远，希望学到前端知识能够帮我在测试和自动化的道路上有所突破。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/06/devopsforqa/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2070,148 +2311,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/08/30/capybara4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="qi lei">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QA seven's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/08/30/capybara4/" itemprop="url">capybara4--安装cucumber</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-30T15:54:19+08:00">
-                2016-08-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>capybara是一个简单的API,它提供了抽象层在你真实自动化库之上。如果它帮助,认为capybara是你的翻译,你告诉它做一些事情，它将优雅的将命令转换为你应用驱动的API。</p>
-<p>所以当我们使用capybara进行翻译时，我们需要告诉capybara做什么并且需要一个API自动化库去进行翻译。<br>capybara是一个非常灵活的库,<br>通过这本书我们将看到它在各种场景中应用。然而。目前为止最常见的情景是应用cucumber作为capybara测试驱动，去驱动selenium webdriver 开展浏览器自动化。<br>当cucumber被调用来解析这些简单易懂的英语场景时，它将使用正则表达式去将这些匹配</p>
-<h2 id="cucumber介绍"><a href="#cucumber介绍" class="headerlink" title="cucumber介绍"></a>cucumber介绍</h2><p>cucumber是一种可以使用文本描述语言来执行自动测试用例的工具，使用的语言叫做Gherkin.</p>
-<p>Gherkin用于描述软件的行为而不需要了解具体的实现，使用Gherkin主要有两个目的文档和自动测试用例（我们希望能够和手工测试用例也统一）。 Gherkin支持超过40种语言，包括英文、中文。 Gherkin可以在任何地方新增注释，注释以#开头，每一个文件都是已.feature结尾，在feature文件中输入功能描述、场景、步骤，当执行这个功能时每一个步骤都需要编写ruby代码块来实现具体的功能，当前cucumber支持多种语言，除了ruby还可以使用java、javascript来编写具体定义层的实现。</p>
-<h3 id="以下是一个cucumber-场景的例子"><a href="#以下是一个cucumber-场景的例子" class="headerlink" title="以下是一个cucumber 场景的例子"></a>以下是一个cucumber 场景的例子</h3><p>   Feature: Search for Videos on Baidu</p>
-<pre><code>Scenario: Search for Videos
-    Given I am on the  baidu home page
-    When I search for &quot;capybara&quot;
-    Then search result are returned
-</code></pre><p>我们设置可以采用中文实现场景<br>中文的话最前面必须增加# language: zh-CN</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># language: zh-CN</span></div><div class="line"></div><div class="line"><span class="section">功能:第一个中文程序</span></div><div class="line"></div><div class="line">中文实现</div><div class="line"></div><div class="line"><span class="section">场景:中文实现场景</span></div><div class="line"></div><div class="line">假如当前是中文</div><div class="line"></div><div class="line">当输入是测试</div><div class="line"></div><div class="line">那么能看到中文测试</div></pre></td></tr></table></figure>
-<p>下面的流程图说明了从cucumber到底层驱动如何实现，capybara在整个流程里面充当是中间价的作用。</p>
-<p><img src="/image/capybaraflow.png" alt=""></p>
-<p>安装<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem <span class="keyword">install</span> cucumber</div></pre></td></tr></table></figure></p>
-<p>如果你使用的是 bundler，只是需要添加以下代码到Gemfile:</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">group <span class="symbol">:test</span> <span class="keyword">do</span></div><div class="line">  gem <span class="string">'cucumber'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p>初始化features目录：<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cucumber <span class="comment">--init</span></div></pre></td></tr></table></figure></p>
-<p>查看完帮助列表：<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cucumber <span class="comment">--help</span></div></pre></td></tr></table></figure></p>
-<p>运行所有features：<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">cucumber</span></div></pre></td></tr></table></figure></p>
-<h2 id="Cucumber-Rails"><a href="#Cucumber-Rails" class="headerlink" title="Cucumber-Rails"></a>Cucumber-Rails</h2><p>如果你使用capybara 来测试rails应用，你应该安装cucumber－rails gem 而不是标准的rails gem。<br>这个gem需要capybara和cucumber作为依赖。<br>所以当你安装cucumber－rails gem时，会自动安装这些依赖，我们只需要运行以下命令<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem <span class="keyword">install</span> cucumber-rails</div></pre></td></tr></table></figure></p>
-<p>如果你使用bundle，只需要将以下代码添加进gemfile:<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">group <span class="symbol">:test</span>, <span class="symbol">:development</span> <span class="keyword">do</span></div><div class="line">  gem <span class="string">'cucumber-rails'</span>, <span class="symbol">:require</span> =&gt; <span class="keyword">false</span></div><div class="line">  <span class="comment"># database_cleaner is not required, but highly recommended</span></div><div class="line">  gem <span class="string">'database_cleaner'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
-<p>然后运行<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">bundle </span>install</div></pre></td></tr></table></figure></p>
-<p>运行生成器帮助我们生成目录<br><figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rails <span class="keyword">generate</span> cucumber:install</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2262,7 +2361,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
