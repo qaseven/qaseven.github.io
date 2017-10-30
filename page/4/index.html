@@ -285,6 +285,286 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/24/front-end-tools/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/05/24/front-end-tools/" itemprop="url">前端测试工具集锦</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-24T20:47:35+08:00">
+                2016-05-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="/image/front-end-tools.png" alt="front-end-tools"></p>
+<p>总结最近了解的前端测试的相关内容，发现前端这里真的是太庞大了，而且各种测试工具层出不穷，需要总结东西太多了，如有遗漏请大家见谅。</p>
+<h2 id="TDD-vs-BDD："><a href="#TDD-vs-BDD：" class="headerlink" title="TDD vs BDD："></a>TDD vs BDD：</h2><p>TDD与BDD概念不再描述了，直奔主题。</p>
+<h3 id="前端BDD测试框架"><a href="#前端BDD测试框架" class="headerlink" title="前端BDD测试框架"></a>前端BDD测试框架</h3><p>jasmine<br>Installation</p>
+<figure class="highlight plain"><figcaption><span>install -g jasmine</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">Initializing</div><div class="line">To initialize a project for Jasmine</div><div class="line"></div><div class="line">```jasmine init</div></pre></td></tr></table></figure>
+<p>To seed your project with some examples</p>
+<figure class="highlight plain"><figcaption><span>examples</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">Usage</div><div class="line">To run your test suite</div><div class="line">```  jasmine</div></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">describe(<span class="string">"A suite"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</div><div class="line">  it(<span class="string">"contains spec with an expectation"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</div><div class="line">    expect(<span class="literal">true</span>).toBe(<span class="literal">true</span>);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>mocha(推荐,简洁明了)</p>
+<p>Installation</p>
+<p>Install with npm:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> npm install -g mocha</span></div></pre></td></tr></table></figure></p>
+<p>Getting Started<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> npm install -g mocha</span></div><div class="line"><span class="meta">$</span><span class="bash"> mkdir <span class="built_in">test</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="variable">$EDITOR</span> <span class="built_in">test</span>/test.js</span></div></pre></td></tr></table></figure></p>
+<p>In your editor:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var <span class="built_in">assert</span> = <span class="built_in">require</span>(<span class="string">'chai'</span>).<span class="built_in">assert</span>;</div><div class="line">describe(<span class="string">'Array'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span></span> &#123;</div><div class="line">  describe(<span class="string">'#indexOf()'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span></span> &#123;</div><div class="line">    it(<span class="string">'should return -1 when the value is not present'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span></span> &#123;</div><div class="line">      <span class="built_in">assert</span>.equal(<span class="number">-1</span>, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].indexOf(<span class="number">5</span>));</div><div class="line">      <span class="built_in">assert</span>.equal(<span class="number">-1</span>, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].indexOf(<span class="number">0</span>));</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>you need to install chai.<br>Back in the terminal:<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">    $  mocha</div><div class="line"></div><div class="line">      .</div><div class="line"></div><div class="line">      ✔ <span class="number">1</span> test complete (<span class="number">1</span>ms)</div><div class="line">```      </div><div class="line">### 前端TDD测试框架</div><div class="line"></div><div class="line">Qunit</div><div class="line">Installation</div></pre></td></tr></table></figure></p>
+<pre><code>$ npm i qunit
+</code></pre><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">API</div><div class="line">    http:<span class="comment">//api.qunitjs.com</span></div><div class="line"></div><div class="line">Qunit是一款强大的用于帮助调试代码的，JavaScript单元测试框架。QUnit由jQuery团队成员编写，是jQuery的官方测试套件，不仅如此，QUnit还可以测试任何常规JavaScript代码，甚至可以通过一些像Rhino或者V8这样的JavaScript引擎，测试服务端JavaScript代码。</div><div class="line"></div><div class="line">可以想象其跟jquery UI及jquery animation等库结局一样，逃脱不了各种被后来的库全方位的比较和“超越”.</div><div class="line"></div><div class="line"></div><div class="line">## Unit Testing</div><div class="line"></div><div class="line"></div><div class="line">Mocha &amp;&amp; Jasmine</div><div class="line"></div><div class="line">Mocha 跟 Jasmine 是目前最火的两个单元测试框架，基本上目前前端单元测试就在这两个库之间选了，下面是这两个库的区别，大家可以根据自己的需求进行选择：</div><div class="line"></div><div class="line">mocha：</div><div class="line"></div><div class="line">    优点：</div><div class="line">    终端显示友好</div><div class="line">    灵活，扩展性好</div><div class="line">    缺点：</div><div class="line">    自身集成度不高（没有断言，spy，异步等），而且经常要配合Chai，Sinon等库使用</div><div class="line">    配置相对麻烦一点点</div><div class="line"></div><div class="line">Jasmine:</div><div class="line"></div><div class="line">    优点：</div><div class="line">    集成度高，自带BBD，spy，方便的异步支持(<span class="number">2.0</span>)</div><div class="line">    配置方便</div><div class="line">    缺点：</div><div class="line">    相对不太灵活</div><div class="line">    由于各种功能内建，断言方式或者异步等风格相对比较固定</div><div class="line">    没有自带mockserver， 如果需要这功能的得另外配置</div><div class="line"></div><div class="line">jest</div><div class="line">Jest 是Facebook的一个专门进行Javascript单元测试的工具.它是在Jasmine测试框架上演变开发而来，使用了我们熟知的expect(value).toBe(other) 这种断言格式。</div><div class="line"></div><div class="line">First install Jest <span class="keyword">with</span> npm by running:</div></pre></td></tr></table></figure>
+<pre><code>npm install --save-dev jest-cli
+</code></pre><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Great! Now let's get started <span class="keyword">by</span> writing a <span class="keyword">test</span> <span class="keyword">for</span> a hypothetical <span class="keyword">sum</span>.js <span class="keyword">file</span>:</div></pre></td></tr></table></figure>
+<pre><code>function sum(a, b) {
+  return a + b;
+}
+module.exports = sum;
+</code></pre><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Create <span class="keyword">a</span> <span class="built_in">directory</span> __tests__/ <span class="keyword">with</span> <span class="keyword">a</span> <span class="built_in">file</span> <span class="built_in">sum</span>-test.js:</div></pre></td></tr></table></figure>
+<pre><code>jest.unmock(&apos;../sum&apos;); // unmock to use the actual implementation of sum
+describe(&apos;sum&apos;, () =&gt; {
+  it(&apos;adds 1 + 2 to equal 3&apos;, () =&gt; {
+    const sum = require(&apos;../sum&apos;);
+    expect(sum(1, 2)).toBe(3);
+  });
+});
+</code></pre><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="builtin-name">Add</span> the following <span class="keyword">to</span> your package.json:</div></pre></td></tr></table></figure>
+<pre><code>&quot;scripts&quot;: {
+  &quot;test&quot;: &quot;jest&quot;
+}
+</code></pre><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Run</span><span class="bash"> npm <span class="built_in">test</span>:</span></div></pre></td></tr></table></figure>
+<pre><code>[PASS] __tests__/sum-test.js (0.010s)
+</code></pre><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">## 代码覆盖率工具</span></div><div class="line"></div><div class="line">jscover</div><div class="line">jscover是一个用来显示JavaScript项目代码覆盖率的工具，它是继承于JSCoverage的，用C++/SpiderMonkey 取代了Java/Rhino</div><div class="line"></div><div class="line">但是已经沦落到淘汰的边缘</div><div class="line"></div><div class="line">Istanbul(推荐目前最强大前端代码覆盖率工具)</div><div class="line"></div><div class="line">Istanbul 是 JavaScript 程序的代码覆盖率工具,</div><div class="line">能产生 Statements/Lines/Functions/Branches 等指标报表，并以各种格式导出。</div><div class="line"></div><div class="line">http:<span class="regexp">//</span>qaseven.github.io<span class="regexp">/2016/01/25/gulp_for_qa/</span> 这篇文章里已经详细介绍了。</div><div class="line"></div><div class="line">blanketjs</div><div class="line"></div><div class="line">blanketjs是一个易于安装,易于配置和易于使用的JavaScript代码覆盖库 对于nodejs和浏览器都支持的不错。</div><div class="line"></div><div class="line">NodeJS (Powered <span class="keyword">by</span> Mocha)</div><div class="line"></div><div class="line">Install <span class="keyword">from</span> <span class="built_in">npm</span>.</div></pre></td></tr></table></figure>
+<pre><code>npm install blanket
+</code></pre><figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">Make</span> sure you <span class="meta">require</span> <span class="keyword">Blanket </span><span class="keyword">before </span>you <span class="meta">require</span> or run any of the <span class="meta">code</span> you want covered</div><div class="line"></div><div class="line">    <span class="meta">require</span>(<span class="string">"blanket"</span>)(&#123; <span class="comment">/* optional options */</span> &#125;),</div><div class="line">    <span class="meta">require</span>(<span class="string">"src/myscripttotest"</span>)<span class="comment">;</span></div><div class="line"></div><div class="line"><span class="symbol">Run</span> your tests using mocha <span class="keyword">and </span>take advantage of the json-cov <span class="keyword">and </span>html-cov reporters to output the coverage results.</div><div class="line"></div><div class="line">## e2e test</div><div class="line"><span class="symbol">ui</span></div><div class="line"></div><div class="line"><span class="symbol">webdriverio</span></div><div class="line"></div><div class="line">这个库是nodejs的一个webdriver模块(浏览器自动化)。你可以用它写超级简单<span class="keyword">Selenium测试在你最喜欢的BDD </span>/ TDD测试框架中,并且可以在本地运行或在云端中， Sauce Lab,<span class="keyword">BrowserStack或TestingBot。</span></div><div class="line"><span class="keyword"></span></div><div class="line"><span class="keyword"></span></div><div class="line"><span class="keyword">webdriverio </span>支持 Cucumber, Jasmine <span class="keyword">and </span>Mocha+Chai  这些测试框架</div><div class="line"></div><div class="line"><span class="symbol">nightwatch</span></div><div class="line"></div><div class="line"><span class="symbol">Nightwatch.js</span> 是一个易于使用的，基于 Node.js 平台的浏览器自动化测试解决方案。它使用强大的 <span class="keyword">Selenium </span>WebDriver API 来在 DOM 元素上执行命令和断言。 语法简单但很强大，使您可以快速编写测试。</div><div class="line">只需使用 Javascript 和 CSS 选择器，不需要初始化其他对象和类，您只需要编写测试规范。内置命令行测试运行器，使您能够运行整体测试，分组测试或者单个测试。</div></pre></td></tr></table></figure>
+<pre><code>this.demoTestGoogle = function (browser) {
+browser
+.url(“http://www.google.com”)
+.waitForElementVisible(&apos;body&apos;, 1000)
+.setValue(&apos;input[type=text]&apos;, &apos;nightwatch&apos;)
+.waitForElementVisible(&apos;button[name=btnG]&apos;, 1000)
+.click(&apos;button[name=btnG]&apos;)
+.pause(1000)
+.assert.containsText(&apos;#main&apos;, &apos;The Night Watch&apos;)
+.end();
+};
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">当涉及异步调用时，基于链式的队列是个糟糕的模式</div><div class="line"></div><div class="line">CodeceptJS</div><div class="line"></div><div class="line">CodeceptJS是一个基于WebDriver全新的端到端测试框架。它们从用户角度简单描述用户操作步骤来编写测试脚本</div></pre></td></tr></table></figure>
+<pre><code>Feature(&apos;CodeceptJS Demonstration&apos;);
+
+Scenario(&apos;test some forms&apos;, (I) =&gt; {
+  I.amOnPage(&apos;http://simple-form-bootstrap.plataformatec.com.br/documentation&apos;);
+  I.fillField(&apos;Email&apos;, &apos;hello@world.com&apos;);
+  I.fillField(&apos;Password&apos;, &apos;123456&apos;);
+  I.checkOption(&apos;Active&apos;);
+  I.checkOption(&apos;Male&apos;);  
+  I.click(&apos;Create User&apos;);
+  I.see(&apos;User is valid&apos;);
+  I.dontSeeInCurrentUrl(&apos;/documentation&apos;);
+});
+</code></pre><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="title">protractor</span><span class="params">(angluarjs亲儿子，由angluarjs核心人物开发的e2e测试工具)</span></span></div><div class="line">protractor 是 AngularJS 团队构建的一个端对端的测试运行工具，模拟用户交互，帮助你验证你的Angular应用的运行状况。</div><div class="line"></div><div class="line">Protractor使用Jasmine测试框架来定义测试,当然你也可以选择其他测试框架来定义测试，如mocha。Protractor为不同的页面交互提供一套健壮的API。</div></pre></td></tr></table></figure>
+<pre><code>var chai = require(&apos;chai&apos;);
+var chaiAsPromised = require(&apos;chai-as-promised&apos;);
+
+chai.use(chaiAsPromised);
+var expect = chai.expect;
+
+describe(&apos;angularjs 首页&apos;, function() {
+  it(&apos;应该欢迎一个具名的用户&apos;, function() {
+    //要求浏览器访问网址http://www.angularjs.org
+    browser.get(&apos;http://www.angularjs.org&apos;);
+
+    //找到ng-model名为&apos;youname&apos;的HTML元素，要求浏览器键入名字
+    element(by.model(&apos;yourName&apos;)).sendKeys(&apos;tanshuai&apos;);
+
+    var greeting = element(by.binding(&apos;yourName&apos;));
+
+     //取得结果并作断言测试
+    expect(greeting.getText()).to.eventually.equal(&apos;Hello tanshuai!&apos;);
+  });
+});
+</code></pre><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">## headless</span></div><div class="line"></div><div class="line">PhantomJS</div><div class="line"></div><div class="line">PhantomJS 是一个基于 WebKit 的服务器端 <span class="keyword">JavaScript </span>API。它全面支持web而不需浏览器支持，其快速，原生支持各种Web标准： DOM 处理, CSS 选择器, <span class="keyword">JSON, </span>Canvas, 和 SVG。 PhantomJS 可以用于 页面自动化 ， 网络监测 ， 网页截屏 ，以及 无界面测试 等。</div><div class="line">很多其它的测试框架都是基于PhantomJS二次开发的,例如下面要讲的casperjs，nightmare</div><div class="line"></div><div class="line">nightmare</div><div class="line"></div><div class="line">nightmare是一个高级浏览器自动化依赖库。</div></pre></td></tr></table></figure>
+<p>var Nightmare = require(‘nightmare’);<br>    var expect = require(‘chai’).expect; // jshint ignore:line</p>
+<pre><code>describe(&apos;test yahoo search results&apos;, function() {
+it(&apos;should find the nightmare github link first&apos;, function*() {
+  var nightmare = Nightmare()
+  var link = yield nightmare
+    .goto(&apos;http://yahoo.com&apos;)
+    .type(&apos;form[action*=&quot;/search&quot;] [name=p]&apos;, &apos;github nightmare&apos;)
+    .click(&apos;form[action*=&quot;/search&quot;] [type=submit]&apos;)
+    .wait(&apos;#main&apos;)
+    .evaluate(function () {
+      return document.querySelector(&apos;#main .searchCenterMiddle li a&apos;).href
+    })
+  expect(link).to.equal(&apos;https://github.com/segmentio/nightmare&apos;);
+});
+});
+</code></pre><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">casperjs</div><div class="line"></div><div class="line">CasperJS 是一个开源的导航脚本和测试工具，使用 <span class="keyword">JavaScript </span>基于 PhantomJS 编写，用于测试 Web 应用功能，Phantom <span class="keyword">JS是一个服务器端的 </span><span class="keyword">JavaScript </span>API 的 WebKit。其支持各种Web标准： DOM 处理, CSS 选择器, <span class="keyword">JSON, </span>Canvas, 和 SVG.</div></pre></td></tr></table></figure>
+<p> var casper = require(‘casper’).create();<br>    var fs = require(‘fs’)<br>    casper.start(‘<a href="https://github.com/login/" target="_blank" rel="external">https://github.com/login/</a>‘);<br>    casper.waitForSelector(‘input.btn.btn-primary.btn-block’); // wait for the form node to be added<br>    casper.then(function() {<br>      this.fillSelectors(‘.auth-form-body’, {<br>          ‘#login_field’: ‘qileilove’,<br>          ‘#password’: ‘<strong>*</strong>‘<br>       });<br>      this.click(‘input.btn.btn-primary.btn-block’); // Click the login button instead of submitting the form<br>      this.echo(‘Browser Cookie: ‘ + this.evaluate(function() {<br>           return document.cookie;<br>       }));</p>
+<pre><code>casper.run(function() {
+  var cookies = JSON.stringify((this.page.cookies));
+  fs.write(&apos;cookie.txt&apos;, cookies, &apos;w&apos;);
+  this.exit();
+});
+casper.wait(3000); // Wait for ajax form submission
+casper.then(function() {
+  this.capture(&apos;logged-in.png&apos;)
+});
+
+casper.run();
+</code></pre><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">## visual regression-test</span></div><div class="line"></div><div class="line"><span class="keyword">backstopjs</span></div><div class="line"><span class="keyword"></span></div><div class="line"><span class="keyword">BackstopJS </span>是自动 CSS 回归测试工具，它通过比较不同视窗大小的 DOM 截图来回应你所测试的 Web 界面。可以识别出两个不同视角上的网页差异。</div></pre></td></tr></table></figure>
+<pre><code>&quot;scenarios&quot;: [
+  {
+    &quot;label&quot;: &quot;My Local Test&quot;,
+    &quot;url&quot;: &quot;../../index.html&quot;,
+    &quot;hideSelectors&quot;: [],
+    &quot;removeSelectors&quot;: [
+    ],
+    &quot;selectors&quot;: [
+      &quot;nav&quot;,
+      &quot;.jumbotron&quot;,
+      &quot;body .col-md-4:nth-of-type(1)&quot;,
+      &quot;body .col-md-4:nth-of-type(2)&quot;,
+      &quot;body .col-md-4:nth-of-type(3)&quot;,
+      &quot;footer&quot;
+    ],
+    &quot;readyEvent&quot;: null,
+    &quot;delay&quot;: 0,
+    &quot;onReadyScript&quot;: null,
+    &quot;onBeforeScript&quot;: null
+  }
+],
+</code></pre><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">	<span class="attribute">viff</span></div><div class="line">  咱们公司的 基于selenium的，已经废了。。。 2年多没更新了</div><div class="line"></div><div class="line"></div><div class="line">	<span class="attribute">success</span></div><div class="line"><span class="attribute"></span></div><div class="line">  Succss is a command line tool built to find image-based differences between website updates. Succss relies on npm and is installed globally.</div><div class="line">    <span class="attribute">https://github.com/B2F/Succss</span></div><div class="line">  也一年没更新了..</div><div class="line"></div><div class="line"></div><div class="line">	<span class="attribute">phantomcss</span></div><div class="line"><span class="attribute"></span></div><div class="line">PhantomCSS 是 CSS 回归测试工具。一个通过 PhantomJS 或者 SlimerJS 和 Resemble.js 进行自动视觉回归测试的 CasperJS 模块。</div></pre></td></tr></table></figure>
+<pre><code>casper.
+    start( url ).
+    then(function(){        
+// do something
+        casper.click(&apos;button#open-dialog&apos;);        
+// Take a screenshot of the UI component
+        phantomcss.screenshot(&apos;#the-dialog&apos;, &apos;a screenshot of my dialog&apos;);
+
+    });
+</code></pre><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#JavaScript验证工具</span></span></div><div class="line">eslint</div><div class="line"></div><div class="line">jshint</div><div class="line"></div><div class="line">jslint</div><div class="line"></div><div class="line">三者比较的文章</div><div class="line">https://www.sitepoint.com/comparison-javascript-linting-tools/</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 前端mock工具</span></span></div><div class="line"></div><div class="line">Mock.js</div><div class="line"></div><div class="line"> Mockjs是个能够拦截页面ajax请求并模拟返回数据的小工具，借助Mockjs，前端开发中在后台测试接口还没有给的时候就可以自己拦截请求模拟数据进行愉快的开发了，所以只要制定好了协议，前后端分离开发的成本可以降到基本为0，也不需要联调工具了。</div><div class="line"></div><div class="line">sinon.js</div><div class="line">为Javascript提供独立的spies，stubs和mocks。没有任何依赖，可以与任何单元测试框架协同工作。</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># api测试工具</span></span></div><div class="line">SuperTest</div><div class="line"></div><div class="line">基于SuperAgent ，提供对HTTP测试的高度抽象.</div><div class="line">能嵌入各类测试框架，提供语义良好的断言.</div></pre></td></tr></table></figure>
+<pre><code>var app = require(&apos;../app&apos;);
+var request = require(&apos;supertest&apos;);
+
+describe(&apos;router testing&apos;, function () {
+    it(&apos;site root response&apos;, function (done) {
+        request(app)
+            .get(&apos;/&apos;)
+            .expect(&apos;Content-Type&apos;, &apos;text/html; charset=utf-8&apos;)
+            .expect(200)
+            .end(function(err, res){
+                if (err) throw err;
+                done();
+            });
+    });
+</code></pre><p>```<br>利用Mocha + Chai + SuperTest就可以搭建一套 前端rest－api测试框架</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/05/appium/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1548,7 +1828,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1561,7 +1841,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -105,7 +105,7 @@
 <meta property="og:description" content="vue组件 组件可以扩展HTML元素，封装可重用的HTML代码，我们可以将组件看作自定义的HTML元素。 全局组件 要注册一个全局组件，可以使用 Vue.component(tagName, options)。例如：123Vue.component(&apos;my-component&apos;, &amp;#123;  // 选项&amp;#125;) 组件在注册之后，便可以作为自定义元素  在一个实例的模板中使用。注意确保在初">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://cn.vuejs.org/images/props-events.png">
-<meta property="og:updated_time" content="2017-10-27T02:37:25.000Z">
+<meta property="og:updated_time" content="2017-10-30T01:47:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小QA学习前端系列之vue 组件">
 <meta name="twitter:description" content="vue组件 组件可以扩展HTML元素，封装可重用的HTML代码，我们可以将组件看作自定义的HTML元素。 全局组件 要注册一个全局组件，可以使用 Vue.component(tagName, options)。例如：123Vue.component(&apos;my-component&apos;, &amp;#123;  // 选项&amp;#125;) 组件在注册之后，便可以作为自定义元素  在一个实例的模板中使用。注意确保在初">
@@ -411,6 +411,14 @@ Symbol
 <p>另外，父组件可以在使用子组件的地方直接用 v-on 来监听子组件触发的事件。</p>
 <p>不能用 $on 侦听子组件释放的事件，而必须在模板里直接用 v-on 绑定，参见下面的例子。</p>
 <p>下面是一个例子：<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">&lt;div id=<span class="string">"counter-event-example"</span>&gt;</div><div class="line">  <span class="symbol">&lt;p&gt;</span>&#123;&#123; total &#125;&#125;&lt;/<span class="keyword">p</span>&gt;</div><div class="line">  &lt;button-counter v-<span class="keyword">on</span>:increment=<span class="string">"incrementTotal"</span>&gt;&lt;/button-counter&gt;</div><div class="line">  &lt;button-counter v-<span class="keyword">on</span>:increment=<span class="string">"incrementTotal"</span>&gt;&lt;/button-counter&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">Vue.component(<span class="string">'button-counter'</span>, &#123;</div><div class="line">  template: <span class="string">'&lt;button v-on:click="incrementCounter"&gt;&#123;&#123; counter &#125;&#125;&lt;/button&gt;'</span>,</div><div class="line">  dat<span class="variable">a:</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span> &#123;</span></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      counter: <span class="number">0</span></div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  method<span class="variable">s:</span> &#123;</div><div class="line">    incrementCounter: <span class="function"><span class="keyword">function</span> <span class="params">()</span> &#123;</span></div><div class="line">      this.counter += <span class="number">1</span></div><div class="line">      this.$emit(<span class="string">'increment'</span>)</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">&#125;)</div><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="keyword">e</span><span class="variable">l:</span> <span class="string">'#counter-event-example'</span>,</div><div class="line">  dat<span class="variable">a:</span> &#123;</div><div class="line">    tota<span class="variable">l:</span> <span class="number">0</span></div><div class="line">  &#125;,</div><div class="line">  method<span class="variable">s:</span> &#123;</div><div class="line">    incrementTota<span class="variable">l:</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span> &#123;</span></div><div class="line">      this.total += <span class="number">1</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h3 id="sync-修饰符"><a href="#sync-修饰符" class="headerlink" title=".sync 修饰符"></a>.sync 修饰符</h3><p>我们可能会需要对一个 prop 进行“双向绑定”。<br>如下代码</p>
+<comp :foo.sync="bar"></comp>
+
+<p>会被扩展为：</p>
+<comp :foo="bar" @update:foo="val => bar = val"></comp>
+
+<p>当子组件需要更新 foo 的值时，它需要显式地触发一个更新事件：</p>
+<p>this.$emit(‘update:foo’, newValue)</p>
 
       
     </div>
@@ -450,6 +458,10 @@ Symbol
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/30/vue10/" rel="prev" title="小QA学习前端系列之vue  router">
+                小QA学习前端系列之vue  router <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -532,7 +544,7 @@ Symbol
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -545,7 +557,7 @@ Symbol
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -587,7 +599,7 @@ Symbol
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue组件"><span class="nav-number">1.</span> <span class="nav-text">vue组件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#全局组件"><span class="nav-number">1.1.</span> <span class="nav-text">全局组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#局部组件"><span class="nav-number">1.2.</span> <span class="nav-text">局部组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#data-必须为函数"><span class="nav-number">1.3.</span> <span class="nav-text">data 必须为函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件组合"><span class="nav-number">1.4.</span> <span class="nav-text">组件组合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prop"><span class="nav-number">1.4.1.</span> <span class="nav-text">Prop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#camelCase-vs-kebab-case"><span class="nav-number">1.5.</span> <span class="nav-text">camelCase vs. kebab-case</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态-Prop"><span class="nav-number">1.6.</span> <span class="nav-text">动态 Prop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字面量语法-vs-动态语法"><span class="nav-number">1.7.</span> <span class="nav-text">字面量语法 vs 动态语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单向数据流"><span class="nav-number">1.8.</span> <span class="nav-text">单向数据流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prop-验证"><span class="nav-number">1.8.1.</span> <span class="nav-text">Prop 验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义事件"><span class="nav-number">1.9.</span> <span class="nav-text">自定义事件</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue组件"><span class="nav-number">1.</span> <span class="nav-text">vue组件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#全局组件"><span class="nav-number">1.1.</span> <span class="nav-text">全局组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#局部组件"><span class="nav-number">1.2.</span> <span class="nav-text">局部组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#data-必须为函数"><span class="nav-number">1.3.</span> <span class="nav-text">data 必须为函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件组合"><span class="nav-number">1.4.</span> <span class="nav-text">组件组合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prop"><span class="nav-number">1.4.1.</span> <span class="nav-text">Prop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#camelCase-vs-kebab-case"><span class="nav-number">1.5.</span> <span class="nav-text">camelCase vs. kebab-case</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态-Prop"><span class="nav-number">1.6.</span> <span class="nav-text">动态 Prop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字面量语法-vs-动态语法"><span class="nav-number">1.7.</span> <span class="nav-text">字面量语法 vs 动态语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单向数据流"><span class="nav-number">1.8.</span> <span class="nav-text">单向数据流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prop-验证"><span class="nav-number">1.8.1.</span> <span class="nav-text">Prop 验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义事件"><span class="nav-number">1.9.</span> <span class="nav-text">自定义事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sync-修饰符"><span class="nav-number">1.9.1.</span> <span class="nav-text">.sync 修饰符</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

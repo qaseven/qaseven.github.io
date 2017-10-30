@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="router," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="QA seven's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="创建组件 首先引入vue.js和vue-router.js：12345678npm install vue-router --save  &quot;dependencies&quot;: &amp;#123;    ...    &quot;vue-router&quot;: &quot;^2.1.1&quot;    ...  &amp;#125;,或者  npm install vue-router --save-dev 然后创建两个组件构造器Home和About：">
+<meta name="keywords" content="router">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小QA学习前端系列之vue  router">
+<meta property="og:url" content="http://yoursite.com/2017/10/30/vue10/index.html">
+<meta property="og:site_name" content="QA seven&#39;s blog">
+<meta property="og:description" content="创建组件 首先引入vue.js和vue-router.js：12345678npm install vue-router --save  &quot;dependencies&quot;: &amp;#123;    ...    &quot;vue-router&quot;: &quot;^2.1.1&quot;    ...  &amp;#125;,或者  npm install vue-router --save-dev 然后创建两个组件构造器Home和About：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-30T03:46:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小QA学习前端系列之vue  router">
+<meta name="twitter:description" content="创建组件 首先引入vue.js和vue-router.js：12345678npm install vue-router --save  &quot;dependencies&quot;: &amp;#123;    ...    &quot;vue-router&quot;: &quot;^2.1.1&quot;    ...  &amp;#125;,或者  npm install vue-router --save-dev 然后创建两个组件构造器Home和About：">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/30/vue10/"/>
+
+
+
+
+
+  <title>小QA学习前端系列之vue  router | QA seven's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">QA seven's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/30/vue10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">小QA学习前端系列之vue  router</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-30T09:47:00+08:00">
+                2017-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="创建组件"><a href="#创建组件" class="headerlink" title="创建组件"></a>创建组件</h2><p> 首先引入vue.js和vue-router.js：<br><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">npm install vue-router <span class="params">--save</span></div><div class="line">  <span class="string">"dependencies"</span>: &#123;</div><div class="line">    <span class="string">...</span></div><div class="line">    <span class="string">"vue-router"</span>: <span class="string">"^2.1.1"</span></div><div class="line">    <span class="string">...</span></div><div class="line">  &#125;,</div><div class="line">或者</div><div class="line">  npm install vue-router <span class="params">--save-dev</span></div></pre></td></tr></table></figure></p>
+<p>然后创建两个组件构造器Home和About：<br>App.vue<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">&lt;template&gt;</div><div class="line">  &lt;div id="app"&gt;</div><div class="line">    &lt;router-link to="/"&gt;1&lt;/router-link&gt;</div><div class="line">    &lt;router-link to="/2"&gt;2&lt;/router-link&gt;</div><div class="line">    &lt;br/&gt;</div><div class="line">    &lt;router-view&gt;&lt;/router-view&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/template&gt;</div></pre></td></tr></table></figure></p>
+<ol>
+<li>创建Router<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></div><div class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></div><div class="line"><span class="keyword">import</span> VueRouter <span class="keyword">from</span> <span class="string">'vue-router'</span></div><div class="line"><span class="keyword">import</span> Page1 <span class="keyword">from</span> <span class="string">'./components/page1'</span></div><div class="line"><span class="keyword">import</span> Page2 <span class="keyword">from</span> <span class="string">'./components/page2'</span></div><div class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> VueRouter(&#123;</div><div class="line">    routes</div><div class="line">&#125;)</div><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  el: <span class="string">'#app'</span>,</div><div class="line">  template: <span class="string">'&lt;App/&gt;'</span>,</div><div class="line">  components: &#123; App &#125;,</div><div class="line">  router</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>调用构造器VueRouter，创建一个路由器实例router。</p>
+<ol>
+<li>映射路由<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">const routes = [</div><div class="line">  &#123; <span class="string">path:</span> <span class="string">'/'</span>, <span class="string">component:</span> Page1 &#125;,</div><div class="line">  &#123; <span class="string">path:</span> <span class="string">'/2'</span>, <span class="string">component:</span> Page2 &#125;,</div><div class="line">]</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>page1.vue</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>page2<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>page2.vue<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>page2<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>实现步骤：</p>
+<pre><code>* npm安装vue-router
+* Vue.use(VueRouter)全局安装路由功能
+* 定义路径数组routes并创建路由对象router
+* 将路由注入到Vue对象中
+* 在根组件中使用&lt;router-link&gt;定义跳转路径
+* 在根组件中使用&lt;router-view&gt;来渲染组件
+* 创建子组件
+</code></pre><h2 id="路由的跳转"><a href="#路由的跳转" class="headerlink" title="路由的跳转"></a>路由的跳转</h2><h3 id="router-link"><a href="#router-link" class="headerlink" title="router-link"></a>router-link</h3><p>router-link标签用于页面的跳转<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/page1"</span>&gt;</span>page1<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>当点击这个router-link标签时 router-view就会渲染路径为/page1的页面。<br>注意：router-link默认是一个a标签的形式，如果需要显示不同的样子，可以在router-link标签中写入不同标签元素，如下显示为button按钮。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/04"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span>&gt;</span>to04<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><router-link> 会被渲染为 <a> 标签， to 会被渲染为 href，当 <router-link> 被点击的时候，url 会发生相应的改变</router-link></a></router-link></p>
+<p>如果使用 v-bind 指令，还可以在 to 后面接变量，配合 v-for 指令可以渲染导航菜单<br>如果对于所有 ID 各不相同的用户，都要使用 home 组件来渲染，可以在 routers.js 中添加动态参数：</p>
+<p>{<br>    path: ‘/home/:id’,<br>    component: Home<br>}</p>
+<p>这样 “/home/user01”、”/home/user02”、”/home/user03” 等路由，都会映射到 Home 组件</p>
+<p>然后还可以使用 $route.params.id 来获取到对应的 id</p>
+<h3 id="动态路由匹配"><a href="#动态路由匹配" class="headerlink" title="动态路由匹配"></a>动态路由匹配</h3><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span>  </span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello App!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span>  </span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>  </span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/user/foo/post/123"</span>&gt;</span>Go to Foo<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span>  </span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/user/bar/post/456"</span>&gt;</span>Go to Bar<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span>  </span></div><div class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span>  </span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span>  </span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span>  </span></div><div class="line"><span class="xml">  </span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">'user'</span>&gt;</span>  </span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>User:</span><span class="template-variable">&#123;&#123; $route.params.id &#125;&#125;</span><span class="xml">,Post:</span><span class="template-variable">&#123;&#123;$route.params.post_id&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span>  </span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1. 定义组件。  </span></div><div class="line"><span class="keyword">const</span> User = &#123;  </div><div class="line">    template:<span class="string">'#user'</span>,  </div><div class="line">    watch:&#123;  </div><div class="line">        <span class="string">'$route'</span>(to,<span class="keyword">from</span>)&#123;  </div><div class="line">            console.log(<span class="string">'从'</span>+<span class="keyword">from</span>.<span class="keyword">params</span>.id+<span class="string">'到'</span>+to.<span class="keyword">params</span>.id);  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;;  </div><div class="line"><span class="comment">// 2. 创建路由实例 (可设置多段路径参数)  </span></div><div class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRouter(&#123;  </div><div class="line">    routes:[  </div><div class="line">        &#123; path:<span class="string">'/user/:id/post/:post_id'</span>,component:User &#125;  </div><div class="line">    ]  </div><div class="line">&#125;);  </div><div class="line"><span class="comment">//3. 创建和挂载根实例  </span></div><div class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123; router:router &#125;).$mount(<span class="string">'#app'</span>);</div></pre></td></tr></table></figure>
+<h3 id="编程式导航-router-push"><a href="#编程式导航-router-push" class="headerlink" title="编程式导航 router.push"></a>编程式导航 router.push</h3><p>也可以通过JS代码控制路由的界面渲染，方法如下：<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 字符串</span></div><div class="line"><span class="selector-tag">router</span><span class="selector-class">.push</span>(<span class="string">'home'</span>)</div><div class="line"><span class="comment">// 对象</span></div><div class="line"><span class="selector-tag">router</span><span class="selector-class">.push</span>(&#123; <span class="attribute">path</span>: <span class="string">'home'</span> &#125;)</div><div class="line"><span class="comment">// 命名的路由</span></div><div class="line"><span class="selector-tag">router</span><span class="selector-class">.push</span>(&#123; <span class="attribute">name</span>: <span class="string">'user'</span>, <span class="attribute">params</span>: &#123; <span class="attribute">userId</span>: <span class="number">123</span> &#125;&#125;)</div><div class="line"><span class="comment">// 带查询参数，变成 /register?plan=private</span></div><div class="line"><span class="selector-tag">router</span><span class="selector-class">.push</span>(&#123; <span class="attribute">path</span>: <span class="string">'register'</span>, <span class="attribute">query</span>: &#123; <span class="attribute">plan</span>: <span class="string">'private'</span> &#125;&#125;)</div></pre></td></tr></table></figure></p>
+<p>实际情况下，有很多按钮在执行跳转之前，还会执行一系列方法，这时可以使用 this.$router.push(location) 来修改 url，完成跳转<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">button</span> <span class="attr">class</span>=<span class="string">"登录"</span> @<span class="attr">click</span>=<span class="string">"go"</span>&gt;</span> <span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">new</span> <span class="selector-tag">Vue</span>(&#123;</div><div class="line">  <span class="attribute">el</span>: <span class="string">'#app'</span>,</div><div class="line"> method: &#123;</div><div class="line">     go:()=&gt;&#123;</div><div class="line">         this.$router.<span class="built_in">push</span>(&#123;path:<span class="string">"/home/test"</span>&#125;)</div><div class="line">     &#125;</div><div class="line"> &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="嵌套路由"><a href="#嵌套路由" class="headerlink" title="嵌套路由"></a>嵌套路由</h3><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span>  </span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello App!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span>  </span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>  </span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/user/foo"</span>&gt;</span>Go to Foo<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span>  </span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/user/foo/profile"</span>&gt;</span>Go to profile<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span>  </span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/user/foo/posts"</span>&gt;</span>Go to posts<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span>  </span></div><div class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span>  </span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span>  </span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span>  </span></div><div class="line"><span class="xml">  </span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">'user'</span>&gt;</span>  </span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>  </span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">h2</span>&gt;</span>User:</span><span class="template-variable">&#123;&#123; $route.params.id &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">h2</span>&gt;</span>  </span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span>  </span></div><div class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span>  </span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span>  </span></div><div class="line"><span class="xml">  </span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">"userHome"</span>&gt;</span>  </span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>主页<span class="tag">&lt;/<span class="name">p</span>&gt;</span>  </span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span>  </span></div><div class="line"><span class="xml">  </span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">"userProfile"</span>&gt;</span>  </span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>概况<span class="tag">&lt;/<span class="name">p</span>&gt;</span>  </span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span>  </span></div><div class="line"><span class="xml">  </span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">"userPosts"</span>&gt;</span>  </span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>登录信息<span class="tag">&lt;/<span class="name">p</span>&gt;</span>  </span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">/ <span class="number">1.</span> 定义组件。  </div><div class="line"><span class="keyword">const</span> User = &#123;  </div><div class="line">    <span class="keyword">template</span>:<span class="string">'#user'</span>  </div><div class="line">&#125;;  </div><div class="line"><span class="keyword">const</span> UserHome = &#123;  </div><div class="line">    <span class="keyword">template</span>:<span class="string">'#userHome'</span>  </div><div class="line">&#125;;  </div><div class="line"><span class="keyword">const</span> UserProfile = &#123;  </div><div class="line">    <span class="keyword">template</span>:<span class="string">'#userProfile'</span>  </div><div class="line">&#125;;  </div><div class="line"><span class="keyword">const</span> UserPosts = &#123;  </div><div class="line">    <span class="keyword">template</span>:<span class="string">'#userPosts'</span>  </div><div class="line">&#125;;  </div><div class="line"><span class="comment">// 2. 创建路由实例  </span></div><div class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRouter(&#123;  </div><div class="line">    routes:[  </div><div class="line">        &#123; path:<span class="string">'/user/:id'</span>, component:User,  </div><div class="line">            children:[  </div><div class="line">                <span class="comment">// 当 /user/:id 匹配成功，  </span></div><div class="line">                <span class="comment">// UserHome 会被渲染在 User 的 &lt;router-view&gt; 中  </span></div><div class="line">                &#123; path: <span class="string">''</span>, component: UserHome&#125;,  </div><div class="line">                <span class="comment">// 当 /user/:id/profile 匹配成功，  </span></div><div class="line">                <span class="comment">// UserProfile 会被渲染在 User 的 &lt;router-view&gt; 中  </span></div><div class="line">                &#123; path:<span class="string">'profile'</span>, component:UserProfile &#125;,  </div><div class="line">                <span class="comment">// 当 /user/:id/posts 匹配成功  </span></div><div class="line">                <span class="comment">// UserPosts 会被渲染在 User 的 &lt;router-view&gt; 中  </span></div><div class="line">                &#123; path: <span class="string">'posts'</span>, component: UserPosts &#125;  </div><div class="line">            ]  </div><div class="line">        &#125;  </div><div class="line">    ]  </div><div class="line">&#125;);  </div><div class="line"><span class="comment">//3. 创建和挂载根实例  </span></div><div class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123; router:router &#125;).$mount(<span class="string">'#app'</span>);</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/router/" rel="tag"># router</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/26/vue9/" rel="next" title="小QA学习前端系列之vue 组件">
+                <i class="fa fa-chevron-left"></i> 小QA学习前端系列之vue 组件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="qi lei" />
+          <p class="site-author-name" itemprop="name">qi lei</p>
+           
+              <p class="site-description motion-element" itemprop="description">小qa 在thoughtworks苦苦挣扎中</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建组件"><span class="nav-number">1.</span> <span class="nav-text">创建组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路由的跳转"><span class="nav-number">2.</span> <span class="nav-text">路由的跳转</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#router-link"><span class="nav-number">2.1.</span> <span class="nav-text">router-link</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态路由匹配"><span class="nav-number">2.2.</span> <span class="nav-text">动态路由匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编程式导航-router-push"><span class="nav-number">2.3.</span> <span class="nav-text">编程式导航 router.push</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套路由"><span class="nav-number">2.4.</span> <span class="nav-text">嵌套路由</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">qi lei</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

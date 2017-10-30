@@ -285,6 +285,160 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/01/capybara5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qi lei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/09/01/capybara5/" itemprop="url">capybara5--实现你第一个自动化场景</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-01T22:31:15+08:00">
+                2016-09-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="实现你第一个自动化场景"><a href="#实现你第一个自动化场景" class="headerlink" title="实现你第一个自动化场景"></a>实现你第一个自动化场景</h2><p>万事俱备，只欠东风，让我们来实现我们一个自动化测试场景，百度上搜索capybara。</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">describe <span class="string">"i want search capybara"</span>,  :<span class="keyword">type</span> =&gt; :feature do</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">context</span> <span class="symbol">'i</span> need <span class="keyword">to</span> <span class="keyword">open</span> browser' do</div><div class="line">      it <span class="symbol">'should</span> be  has an browser'</div><div class="line"></div><div class="line">  <span class="keyword">end</span></div><div class="line">    <span class="keyword">context</span> <span class="symbol">'when</span> i input baidu url into the browser textarea' do</div><div class="line">      it <span class="symbol">'should</span> be redirect  <span class="keyword">to</span> the baidu homepage'</div><div class="line">  <span class="keyword">end</span></div><div class="line">    <span class="keyword">context</span> <span class="symbol">'when</span> i input the capybara into search <span class="literal">text</span> ' do</div><div class="line">      it <span class="symbol">'responds</span> <span class="keyword">with</span> <span class="number">200</span> <span class="keyword">and</span> show the result'</div><div class="line"></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<hr>
+<p>rspec 与 cucumber完整的使用指南并不包含在本书的范畴，但我会给大家讲解基本的项目架构与语法，帮助大家更好的理解capybara和自动化测试的规范。</p>
+<h3 id="rspec方式"><a href="#rspec方式" class="headerlink" title="rspec方式"></a>rspec方式</h3><p>对于基于rspec框架的项目，我们首先需要创建spec目录，来将我们的测试文件放置当中，这样做使我们项目代码结构更加清晰。<br>此外我们还需要创建spec/rspec_help.rb文件帮助我们设置测试的配置信息。</p>
+<p>如果你的项目是基于rails的，那么就更简单了，你只需要执行以下命令，系统就帮助我们完成这些基础配置和文件的生成</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rails <span class="keyword">generate</span> rspec:install</div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.rspec</div><div class="line">spec/spec_helper.rb</div><div class="line">spec/rails_helper.rb</div></pre></td></tr></table></figure>
+<p>让我正式开始<br>首先我们需要配置spec_helper.rb文件，<br>将以下内容复制到spec_helper.rb中，稍后章节中我将具体介绍配置文件中每条代码实际的作用</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div></pre></td><td class="code"><pre><div class="line">require <span class="string">"capybara/rspec"</span></div><div class="line">require <span class="string">"capybara"</span></div><div class="line">require <span class="string">"rspec"</span></div><div class="line">require <span class="string">'pry'</span></div><div class="line"></div><div class="line">Capybara.default_driver = <span class="symbol">:selenium</span></div><div class="line">Capybara.app_host = <span class="string">'http://www.baidu.com'</span></div><div class="line"></div><div class="line">Capybara.register_driver <span class="symbol">:selenium</span> <span class="keyword">do</span> |app| <span class="symbol">Capybara:</span><span class="symbol">:Selenium</span><span class="symbol">:</span><span class="symbol">:Driver</span>.new(</div><div class="line">app, <span class="symbol">:browser</span> =&gt; <span class="symbol">:chrome</span> )</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="comment"># This file was generated by the `rspec --init` command. Conventionally, all</span></div><div class="line"><span class="comment"># specs live under a `spec` directory, which RSpec adds to the `$LOAD_PATH`.</span></div><div class="line"><span class="comment"># The generated `.rspec` file contains `--require spec_helper` which will cause</span></div><div class="line"><span class="comment"># this file to always be loaded, without a need to explicitly require it in any</span></div><div class="line"><span class="comment"># files.</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># Given that it is always loaded, you are encouraged to keep this file as</span></div><div class="line"><span class="comment"># light-weight as possible. Requiring heavyweight dependencies from this file</span></div><div class="line"><span class="comment"># will add to the boot time of your test suite on EVERY test run, even for an</span></div><div class="line"><span class="comment"># individual file that may not need all of that loaded. Instead, consider making</span></div><div class="line"><span class="comment"># a separate helper file that requires the additional dependencies and performs</span></div><div class="line"><span class="comment"># the additional setup, and require it from the spec files that actually need</span></div><div class="line"><span class="comment"># it.</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># The `.rspec` file also contains a few flags that are not defaults but that</span></div><div class="line"><span class="comment"># users commonly want.</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration</span></div><div class="line">RSpec.configure <span class="keyword">do</span> |config|</div><div class="line"></div><div class="line">  <span class="comment"># rspec-expectations config goes here. You can use an alternate</span></div><div class="line">  <span class="comment"># assertion/expectation library such as wrong or the stdlib/minitest</span></div><div class="line">  <span class="comment"># assertions if you prefer.</span></div><div class="line"></div><div class="line">  config.expect_with <span class="symbol">:rspec</span> <span class="keyword">do</span> |expectations|</div><div class="line">    <span class="comment"># This option will default to `true` in RSpec 4. It makes the `description`</span></div><div class="line">    <span class="comment"># and `failure_message` of custom matchers include text for helper methods</span></div><div class="line">    <span class="comment"># defined using `chain`, e.g.:</span></div><div class="line">    <span class="comment">#     be_bigger_than(2).and_smaller_than(4).description</span></div><div class="line">    <span class="comment">#     # =&gt; "be bigger than 2 and smaller than 4"</span></div><div class="line">    <span class="comment"># ...rather than:</span></div><div class="line">    <span class="comment">#     # =&gt; "be bigger than 2"</span></div><div class="line">    expectations.include_chain_clauses_in_custom_matcher_descriptions = <span class="keyword">true</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="comment"># rspec-mocks config goes here. You can use an alternate test double</span></div><div class="line">  <span class="comment"># library (such as bogus or mocha) by changing the `mock_with` option here.</span></div><div class="line">  config.mock_with <span class="symbol">:rspec</span> <span class="keyword">do</span> |mocks|</div><div class="line">    <span class="comment"># Prevents you from mocking or stubbing a method that does not exist on</span></div><div class="line">    <span class="comment"># a real object. This is generally recommended, and will default to</span></div><div class="line">    <span class="comment"># `true` in RSpec 4.</span></div><div class="line">    mocks.verify_partial_doubles = <span class="keyword">true</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="comment"># This option will default to `:apply_to_host_groups` in RSpec 4 (and will</span></div><div class="line">  <span class="comment"># have no way to turn it off -- the option exists only for backwards</span></div><div class="line">  <span class="comment"># compatibility in RSpec 3). It causes shared context metadata to be</span></div><div class="line">  <span class="comment"># inherited by the metadata hash of host groups and examples, rather than</span></div><div class="line">  <span class="comment"># triggering implicit auto-inclusion in groups with matching metadata.</span></div><div class="line">  config.shared_context_metadata_behavior = <span class="symbol">:apply_to_host_groups</span></div><div class="line"></div><div class="line"><span class="comment"># The settings below are suggested to provide a good initial experience</span></div><div class="line"><span class="comment"># with RSpec, but feel free to customize to your heart's content.</span></div><div class="line">=<span class="keyword">begin</span></div><div class="line">  <span class="comment"># This allows you to limit a spec run to individual examples or groups</span></div><div class="line">  <span class="comment"># you care about by tagging them with `:focus` metadata. When nothing</span></div><div class="line">  <span class="comment"># is tagged with `:focus`, all examples get run. RSpec also provides</span></div><div class="line">  <span class="comment"># aliases for `it`, `describe`, and `context` that include `:focus`</span></div><div class="line">  <span class="comment"># metadata: `fit`, `fdescribe` and `fcontext`, respectively.</span></div><div class="line">  config.filter_run_when_matching <span class="symbol">:focus</span></div><div class="line"></div><div class="line">  <span class="comment"># Allows RSpec to persist some state between runs in order to support</span></div><div class="line">  <span class="comment"># the `--only-failures` and `--next-failure` CLI options. We recommend</span></div><div class="line">  <span class="comment"># you configure your source control system to ignore this file.</span></div><div class="line">  config.example_status_persistence_file_path = <span class="string">"spec/examples.txt"</span></div><div class="line"></div><div class="line">  <span class="comment"># Limits the available syntax to the non-monkey patched syntax that is</span></div><div class="line">  <span class="comment"># recommended. For more details, see:</span></div><div class="line">  <span class="comment">#   - http://rspec.info/blog/2012/06/rspecs-new-expectation-syntax/</span></div><div class="line">  <span class="comment">#   - http://www.teaisaweso.me/blog/2013/05/27/rspecs-new-message-expectation-syntax/</span></div><div class="line">  <span class="comment">#   - http://rspec.info/blog/2014/05/notable-changes-in-rspec-3/#zero-monkey-patching-mode</span></div><div class="line">  config.disable_monkey_patching!</div><div class="line"></div><div class="line">  <span class="comment"># This setting enables warnings. It's recommended, but in some cases may</span></div><div class="line">  <span class="comment"># be too noisy due to issues in dependencies.</span></div><div class="line">  config.warnings = <span class="keyword">true</span></div><div class="line"></div><div class="line">  <span class="comment"># Many RSpec users commonly either run the entire suite or an individual</span></div><div class="line">  <span class="comment"># file, and it's useful to allow more verbose output when running an</span></div><div class="line">  <span class="comment"># individual spec file.</span></div><div class="line">  if config.files_to_run.one?</div><div class="line">    <span class="comment"># Use the documentation formatter for detailed output,</span></div><div class="line">    <span class="comment"># unless a formatter has already been configured</span></div><div class="line">    <span class="comment"># (e.g. via a command-line flag).</span></div><div class="line">    config.default_formatter = <span class="string">'doc'</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="comment"># Print the 10 slowest examples and example groups at the</span></div><div class="line">  <span class="comment"># end of the spec run, to help surface which specs are running</span></div><div class="line">  <span class="comment"># particularly slow.</span></div><div class="line">  config.profile_examples = <span class="number">10</span></div><div class="line"></div><div class="line">  <span class="comment"># Run specs in random order to surface order dependencies. If you find an</span></div><div class="line">  <span class="comment"># order dependency and want to debug it, you can fix the order by providing</span></div><div class="line">  <span class="comment"># the seed, which is printed after each run.</span></div><div class="line">  <span class="comment">#     --seed 1234</span></div><div class="line">  config.order = <span class="symbol">:random</span></div><div class="line"></div><div class="line">  <span class="comment"># Seed global randomization in this process using the `--seed` CLI option.</span></div><div class="line">  <span class="comment"># Setting this allows you to use `--seed` to deterministically reproduce</span></div><div class="line">  <span class="comment"># test failures related to randomization by passing the same `--seed` value</span></div><div class="line">  <span class="comment"># as the one that triggered the failure.</span></div><div class="line">  Kernel.srand config.seed</div><div class="line">=<span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>我们执行以下命令来运行我们的测试</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># lqi @ CNlqi in ~/work/test/capybara_demo on git:master x [22:00:31]</span></div><div class="line">$ rspec ./spec/features/baidusearch_spec.rb</div><div class="line">***</div><div class="line"></div><div class="line">Pending: (Failures listed here are expected <span class="keyword">and</span> <span class="keyword">do</span> <span class="keyword">not</span> affect your suite<span class="comment">'s status)</span></div><div class="line"></div><div class="line">  <span class="number">1</span>) i want search capybara i need <span class="keyword">to</span> open browser should be  has an browser</div><div class="line">     <span class="meta"># Not yet implemented</span></div><div class="line">     <span class="meta"># ./spec/features/bb_spec.rb:9</span></div><div class="line"></div><div class="line">  <span class="number">2</span>) i want search capybara <span class="keyword">when</span> i input baidu url <span class="keyword">into</span> the browser textarea should be redirect  <span class="keyword">to</span> the baidu homepage</div><div class="line">     <span class="meta"># Not yet implemented</span></div><div class="line">     <span class="meta"># ./spec/features/bb_spec.rb:16</span></div><div class="line"></div><div class="line">  <span class="number">3</span>) i want search capybara <span class="keyword">when</span> i input the capybara <span class="keyword">into</span> search <span class="keyword">text</span>  responds <span class="keyword">with</span> <span class="number">200</span> <span class="keyword">and</span> show the result</div><div class="line">     <span class="meta"># Not yet implemented</span></div><div class="line">     <span class="meta"># ./spec/features/bb_spec.rb:20</span></div><div class="line"></div><div class="line"></div><div class="line">Finished <span class="keyword">in</span> <span class="number">0.00059</span> seconds (files took <span class="number">1.37</span> seconds <span class="keyword">to</span> load)</div><div class="line"><span class="number">3</span> examples, <span class="number">0</span> failures, <span class="number">3</span> pending</div></pre></td></tr></table></figure>
+<p>我们从测试结果能看出，我们并没有实现任何具体操作步骤，接下就让我们完成这些工作。<br>将我们测试文件baidusearch_spec.rb修改为以下内容</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">describe</span> <span class="string">"i want search capybara"</span>,  :<span class="keyword">type</span> =&gt; :feature <span class="keyword">do</span></div><div class="line">  <span class="keyword">context</span> <span class="string">"the page"</span> <span class="keyword">do</span></div><div class="line"></div><div class="line">    <span class="keyword">before</span> <span class="keyword">do</span></div><div class="line">      page.driver.browser.manage.window.resize_to(<span class="number">1440</span>,<span class="number">900</span>) #Mention it here</div><div class="line">      visit <span class="string">"/"</span></div><div class="line"></div><div class="line">    <span class="keyword">end</span></div><div class="line"></div><div class="line">    <span class="keyword">context</span> <span class="string">'i need to open browser'</span> <span class="keyword">do</span></div><div class="line">      it <span class="string">'should be  has an browser'</span> <span class="keyword">do</span></div><div class="line">      expect(page.driver.browser.browser).to eq :chrome</div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">    <span class="keyword">context</span> <span class="string">'when i input baidu url into the browser textarea'</span> <span class="keyword">do</span></div><div class="line">      it <span class="string">'should be redirect  to the baidu homepage'</span> <span class="keyword">do</span></div><div class="line">       expect(page.driver.current_url).to eq(<span class="string">'https://www.baidu.com/'</span>)</div><div class="line">    <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line">    <span class="keyword">context</span> <span class="string">'when i input the capybara into search text '</span> <span class="keyword">do</span></div><div class="line">      it <span class="string">' show search the result'</span> <span class="keyword">do</span></div><div class="line">        fill_in <span class="string">'kw'</span>, :<span class="keyword">with</span> =&gt; <span class="string">'capybara'</span></div><div class="line">        click_button <span class="string">'百度一下'</span></div><div class="line">        expect(page).to have_content <span class="string">'Capybara - Wikipedia, the free encyclopedia'</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"> <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>再次运行测试<br>这时浏览器打开并且按照我们测试文件中具体步骤一步一步进行操作和验证，全部通过</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># lqi @ CNlqi in ~/work/test/capybara_demo on git:master x [22:26:15] C:1</span></div><div class="line">$ rspec ./spec/features/baidusearch_spec.rb</div><div class="line">...</div><div class="line"></div><div class="line">Finished <span class="keyword">in</span> <span class="number">5.46</span> <span class="built_in">seconds</span> (<span class="built_in">files</span> took <span class="number">3.81</span> <span class="built_in">seconds</span> <span class="built_in">to</span> <span class="built_in">load</span>)</div><div class="line"><span class="number">3</span> examples, <span class="number">0</span> failures</div></pre></td></tr></table></figure>
+<h3 id="cucumber方式"><a href="#cucumber方式" class="headerlink" title="cucumber方式"></a>cucumber方式</h3><p>首先我们运行cucumber查看cucumber是否安装正确<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># lqi @ CNlqi in ~/work/test/capybara_demo on git:master x [13:42:41]</span></div><div class="line">$ cucumber</div><div class="line"><span class="literal">No</span> such file <span class="keyword">or</span> directory - features. You can use `cucumber --init` <span class="keyword">to</span> <span class="builtin-name">get</span> started.</div></pre></td></tr></table></figure></p>
+<p>当我们看到以上提示没有文件或者目录时，我们就可以确认cucumber安装成功<br>接下来让我们初始化cucumber测试目录结构<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># lqi @ CNlqi in ~/work/test/capybara_demo on git:master x [11:24:56] C:2</span></div><div class="line">$ cucumber <span class="comment">--init</span></div><div class="line">  <span class="built_in">create</span>   features</div><div class="line">  <span class="built_in">create</span>   features/step_definitions</div><div class="line">  <span class="built_in">create</span>   features/support</div><div class="line">  <span class="built_in">create</span>   features/support/env.rb</div></pre></td></tr></table></figure></p>
+<p>这样就完成目录结构的初始化，我们要将所有feature文件都放到features目录下<br>support目录下，使我们需要的一些配置文件.</p>
+<p>step<em>definitions目录下，是对feature文件中的具体操作实现。因为我们都知道feature文件中只是做了一些描述，具体的执行是放到step</em> definitions下面的文件里面的。<br>接下来，我们用cucumber完成和上面spec一样的场景。<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Feature: Search <span class="keyword">for</span> capybara on baidu</div><div class="line">      Scenario: Search <span class="keyword">for</span> website of baidu</div><div class="line">          Given I am on the baidu home page</div><div class="line">          When I search <span class="keyword">for</span> <span class="string">"capybara"</span></div><div class="line">          Then website of search result are returned</div></pre></td></tr></table></figure></p>
+<p>在命令行中运行cucumber命令，<br>运行上述测试用例，便可以看到下列输出，你可以使用下面的代码段实现步骤定义：<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># lqi @ CNlqi in ~/work/test/capybara_demo on git:master x [14:25:16] C:1</span></div><div class="line">$ cucumber</div><div class="line">Feature: Search <span class="keyword">for</span> capybara <span class="literal">on</span> baidu</div><div class="line"></div><div class="line">  Scenario: Search <span class="keyword">for</span> website <span class="keyword">of</span> baidu        <span class="comment"># features/baidu_search_capybara.feature:2</span></div><div class="line">    Given I am <span class="literal">on</span> the baidu home page          <span class="comment"># features/baidu_search_capybara.feature:3</span></div><div class="line">    When I search <span class="keyword">for</span> <span class="string">"capybara"</span>               <span class="comment"># features/baidu_search_capybara.feature:4</span></div><div class="line">    Then website <span class="keyword">of</span> search result are returned <span class="comment"># features/baidu_search_capybara.feature:5</span></div><div class="line"></div><div class="line"><span class="number">1</span> scenario (<span class="number">1</span> <span class="literal">undefined</span>)</div><div class="line"><span class="number">3</span> steps (<span class="number">3</span> <span class="literal">undefined</span>)</div><div class="line"><span class="number">0m</span>0.<span class="number">395s</span></div><div class="line"></div><div class="line">You can implement step definitions <span class="keyword">for</span> <span class="literal">undefined</span> steps <span class="keyword">with</span> these snippets:</div><div class="line"></div><div class="line">Given(<span class="regexp">/^I am on the baidu home page$/</span>) <span class="keyword">do</span></div><div class="line">  pending <span class="comment"># Write code here that turns the phrase above into concrete actions</span></div><div class="line">end</div><div class="line"></div><div class="line">When(<span class="regexp">/^I search for "([^"]*)"$/</span>) <span class="keyword">do</span> |arg1|</div><div class="line">  pending <span class="comment"># Write code here that turns the phrase above into concrete actions</span></div><div class="line">end</div><div class="line"></div><div class="line">Then(<span class="regexp">/^website of search result are returned$/</span>) <span class="keyword">do</span></div><div class="line">  pending <span class="comment"># Write code here that turns the phrase above into concrete actions</span></div><div class="line">end</div></pre></td></tr></table></figure></p>
+<p>复制以上代码到具体step.rb文件中，我们新建文件capybara_search_step.rb。<br>再次运行cucumber命令<br>现在,您将看到命令行报告,这些步骤已经存在但没有实现:<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># lqi @ CNlqi in ~/work/test/capybara_demo on git:master x [14:25:22]</span></div><div class="line">$ cucumber</div><div class="line">Feature: Search <span class="keyword">for</span> capybara <span class="keyword">on</span> baidu</div><div class="line"></div><div class="line">  Scenario: Search <span class="keyword">for</span> website <span class="keyword">of</span> baidu        <span class="comment"># features/baidu_search_capybara.feature:2</span></div><div class="line">    Given I am <span class="keyword">on</span> <span class="keyword">the</span> baidu home page          <span class="comment"># features/step_definitions/capybara_search_step.rb:1</span></div><div class="line">      TODO (Cucumber::Pending)</div><div class="line">      ./features/step_definitions/capybara_search_step.rb:<span class="number">2</span>:<span class="keyword">in</span> `/^I am <span class="keyword">on</span> <span class="keyword">the</span> baidu home page$/'</div><div class="line">      features/baidu_search_capybara.feature:<span class="number">3</span>:<span class="keyword">in</span> `Given I am <span class="keyword">on</span> <span class="keyword">the</span> baidu home page'</div><div class="line">    When I search <span class="keyword">for</span> <span class="string">"capybara"</span>               <span class="comment"># features/step_definitions/capybara_search_step.rb:5</span></div><div class="line">    Then website <span class="keyword">of</span> search <span class="literal">result</span> are returned <span class="comment"># features/step_definitions/capybara_search_step.rb:9</span></div><div class="line"></div><div class="line"><span class="number">1</span> scenario (<span class="number">1</span> pending)</div><div class="line"><span class="number">3</span> steps (<span class="number">2</span> skipped, <span class="number">1</span> pending)</div><div class="line"><span class="number">0</span>m0<span class="number">.152</span>s</div></pre></td></tr></table></figure></p>
+<p>接下来，我们通过增加少量的代码来使我们自动化运行起来。<br>首先确保你的env.rb文件配置如下：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">'capybara/cucumber'</span></div><div class="line">Capybara.default_driver = <span class="symbol">:selenium</span></div></pre></td></tr></table></figure></p>
+<p>首先，我们在文件中添加require ‘capybara/cucumber’;<br>这是我们必须需要加载文件。<br>之后我们需要告诉capybara使用selenium驱动：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Capybara<span class="selector-class">.default_driver</span> = :selenium</div></pre></td></tr></table></figure></p>
+<p>再次重申，capybara只是充当一个中间件，适配不同的dirver,使我们能够兼容任何的驱动程序,例如（Selecting the Driver，<br>RackTest，<br>Selenium，<br>Capybara-webkit，<br>Poltergeist）这里我们选择selemium webdriver 是因为它是目前最流行的开源浏览器自动化工具，很多公司的自动化框架都是基于它之上的二次开发而成，例如appium，淘宝的Automan X,网易Dagger等。</p>
+<p>如果我们不设置驱动，将会得到以下错误<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># lqi @ CNlqi in ~/work/test/capybara_demo on git:master x [17:13:47] C:2</span></div><div class="line">$ cucumber</div><div class="line">rack-test requires a rack application, but none was given (ArgumentError)</div><div class="line">/Users/lqi/.rbenv/versions/<span class="number">2.2</span>.<span class="number">2</span>/<span class="class"><span class="keyword">lib</span>/<span class="title">ruby</span>/<span class="title">gems</span>/2.2.0/<span class="title">gems</span>/<span class="title">capybara</span>-2.8.0/<span class="title">lib</span>/<span class="title">capybara</span>/<span class="title">rack_test</span>/<span class="title">driver</span>.<span class="title">rb</span>:17:<span class="title">in</span> `<span class="title">initialize</span>'</span></div><div class="line">/Users/lqi/.rbenv/versions/<span class="number">2.2</span>.<span class="number">2</span>/<span class="class"><span class="keyword">lib</span>/<span class="title">ruby</span>/<span class="title">gems</span>/2.2.0/<span class="title">gems</span>/<span class="title">capybara</span>-2.8.0/<span class="title">lib</span>/<span class="title">capybara</span>.<span class="title">rb</span>:509:<span class="title">in</span> `<span class="title">new</span>'</span></div><div class="line">/Users/lqi/.rbenv/versions/<span class="number">2.2</span>.<span class="number">2</span>/<span class="class"><span class="keyword">lib</span>/<span class="title">ruby</span>/<span class="title">gems</span>/2.2.0/<span class="title">gems</span>/<span class="title">capybara</span>-2.8.0/<span class="title">lib</span>/<span class="title">capybara</span>.<span class="title">rb</span>:509:<span class="title">in</span> `<span class="title">block</span> <span class="title">in</span> &lt;<span class="title">top</span> (<span class="title">required</span>)&gt;'</span></div><div class="line">/Users/lqi/.rbenv/versions/<span class="number">2.2</span>.<span class="number">2</span>/<span class="class"><span class="keyword">lib</span>/<span class="title">ruby</span>/<span class="title">gems</span>/2.2.0/<span class="title">gems</span>/<span class="title">capybara</span>-2.8.0/<span class="title">lib</span>/<span class="title">capybara</span>/<span class="title">session</span>.<span class="title">rb</span>:85:<span class="title">in</span> `<span class="title">call</span>'</span></div><div class="line">/Users/lqi/.rbenv/versions/<span class="number">2.2</span>.<span class="number">2</span>/<span class="class"><span class="keyword">lib</span>/<span class="title">ruby</span>/<span class="title">gems</span>/2.2.0/<span class="title">gems</span>/<span class="title">capybara</span>-2.8.0/<span class="title">lib</span>/<span class="title">capybara</span>/<span class="title">session</span>.<span class="title">rb</span>:85:<span class="title">in</span> `<span class="title">driver</span>'</span></div><div class="line">/Users/lqi/work/test/capybara_demo/features/support/env.<span class="symbol">rb:</span><span class="number">12</span>:in <span class="string">`&lt;top (required)&gt;'</span></div><div class="line"><span class="string">/Users/lqi/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/cucumber-2.4.0/lib/cucumber/rb_support/rb_language.rb:96:in `</span>load<span class="string">'</span></div><div class="line"><span class="string">/Users/lqi/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/cucumber-2.4.0/lib/cucumber/rb_support/rb_language.rb:96:in `load_code_file'</span></div><div class="line">/Users/lqi/.rbenv/versions/<span class="number">2.2</span>.<span class="number">2</span>/<span class="class"><span class="keyword">lib</span>/<span class="title">ruby</span>/<span class="title">gems</span>/2.2.0/<span class="title">gems</span>/<span class="title">cucumber</span>-2.4.0/<span class="title">lib</span>/<span class="title">cucumber</span>/<span class="title">runtime</span>/<span class="title">support_code</span>.<span class="title">rb</span>:142:<span class="title">in</span> `<span class="title">load_file</span>'</span></div><div class="line">/Users/lqi/.rbenv/versions/<span class="number">2.2</span>.<span class="number">2</span>/<span class="class"><span class="keyword">lib</span>/<span class="title">ruby</span>/<span class="title">gems</span>/2.2.0/<span class="title">gems</span>/<span class="title">cucumber</span>-2.4.0/<span class="title">lib</span>/<span class="title">cucumber</span>/<span class="title">runtime</span>/<span class="title">support_code</span>.<span class="title">rb</span>:84:<span class="title">in</span> `<span class="title">block</span> <span class="title">in</span> <span class="title">load_files!</span>'</span></div><div class="line">/Users/lqi/.rbenv/versions/<span class="number">2.2</span>.<span class="number">2</span>/<span class="class"><span class="keyword">lib</span>/<span class="title">ruby</span>/<span class="title">gems</span>/2.2.0/<span class="title">gems</span>/<span class="title">cucumber</span>-2.4.0/<span class="title">lib</span>/<span class="title">cucumber</span>/<span class="title">runtime</span>/<span class="title">support_code</span>.<span class="title">rb</span>:83:<span class="title">in</span> `<span class="title">each</span>'</span></div><div class="line">/Users/lqi/.rbenv/versions/<span class="number">2.2</span>.<span class="number">2</span>/<span class="class"><span class="keyword">lib</span>/<span class="title">ruby</span>/<span class="title">gems</span>/2.2.0/<span class="title">gems</span>/<span class="title">cucumber</span>-2.4.0/<span class="title">lib</span>/<span class="title">cucumber</span>/<span class="title">runtime</span>/<span class="title">support_code</span>.<span class="title">rb</span>:83:<span class="title">in</span> `<span class="title">load_files!</span>'</span></div><div class="line">/Users/lqi/.rbenv/versions/<span class="number">2.2</span>.<span class="number">2</span>/<span class="class"><span class="keyword">lib</span>/<span class="title">ruby</span>/<span class="title">gems</span>/2.2.0/<span class="title">gems</span>/<span class="title">cucumber</span>-2.4.0/<span class="title">lib</span>/<span class="title">cucumber</span>/<span class="title">runtime</span>.<span class="title">rb</span>:253:<span class="title">in</span> `<span class="title">load_step_definitions</span>'</span></div><div class="line">/Users/lqi/.rbenv/versions/<span class="number">2.2</span>.<span class="number">2</span>/<span class="class"><span class="keyword">lib</span>/<span class="title">ruby</span>/<span class="title">gems</span>/2.2.0/<span class="title">gems</span>/<span class="title">cucumber</span>-2.4.0/<span class="title">lib</span>/<span class="title">cucumber</span>/<span class="title">runtime</span>.<span class="title">rb</span>:61:<span class="title">in</span> `<span class="title">run!</span>'</span></div><div class="line">/Users/lqi/.rbenv/versions/<span class="number">2.2</span>.<span class="number">2</span>/<span class="class"><span class="keyword">lib</span>/<span class="title">ruby</span>/<span class="title">gems</span>/2.2.0/<span class="title">gems</span>/<span class="title">cucumber</span>-2.4.0/<span class="title">lib</span>/<span class="title">cucumber</span>/<span class="title">cli</span>/<span class="title">main</span>.<span class="title">rb</span>:32:<span class="title">in</span> `<span class="title">execute!</span>'</span></div><div class="line">/Users/lqi/.rbenv/versions/<span class="number">2.2</span>.<span class="number">2</span>/<span class="class"><span class="keyword">lib</span>/<span class="title">ruby</span>/<span class="title">gems</span>/2.2.0/<span class="title">gems</span>/<span class="title">cucumber</span>-2.4.0/<span class="title">bin</span>/<span class="title">cucumber</span>:8:<span class="title">in</span> `&lt;<span class="title">top</span> (<span class="title">required</span>)&gt;'</span></div><div class="line">/Users/lqi/.rbenv/versions/<span class="number">2.2</span>.<span class="number">2</span>/bin/<span class="symbol">cucumber:</span><span class="number">23</span>:in <span class="string">`load'</span></div><div class="line"><span class="string">/Users/lqi/.rbenv/versions/2.2.2/bin/cucumber:23:in `</span>&lt;main&gt;<span class="string">'</span></div></pre></td></tr></table></figure></p>
+<p>默认情况下，capybara被用来测试rack 应用。rack 是一个设计非常巧妙的中间件，被用作在rails与sinatra框架做全栈的Client/Server集成测试，并且没有什么HTTP的开销，从而是测试能够快速运行。稍后，我们将详细介绍capybara如何测试在rails与sinatra的应用测试。<br>接下来我们的任务就是你在步骤定义用Ruby代码调用capybaraAPI驱动测试。<br>将以下代码复制到你的capybara_search_step.rb中<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Given(<span class="regexp">/^I am on the baidu home page$/</span>) <span class="keyword">do</span></div><div class="line">  visit <span class="string">'https://www.baidu.com/'</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">When(<span class="regexp">/^I search for "([^"]*)"$/</span>) <span class="keyword">do</span> <span class="params">|search_term|</span></div><div class="line">  fill_in <span class="string">'kw'</span>, <span class="symbol">:with</span> =&gt; search_term</div><div class="line">  click_on <span class="string">'su'</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">Then(<span class="regexp">/^website of search result are returned$/</span>) <span class="keyword">do</span></div><div class="line">     page.should have_content <span class="string">'capybara'</span></div><div class="line"></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>在我们分析代码之前,让我们先运行测试,看看会发生什么。像往常一样,在命令行中输入cucumber。<br>希望你能看到chrome打开，并且跳转到baidu首页，之后搜索到capybara结果并返回。<br>恭喜你，你已经利用capybara完成了第一个全栈的集成测试。</p>
+<p>在我们深入了解capybara丰富的API之前，让我们简要的回顾一下每个步骤的内容，这里你可以看到capybra如何优雅而简洁使用api，代码字面含义已经向我们展示它在干什么，不需要多解释。cucumber和capybra配合起来使用，具有良好的可读性，项目中的任何一个角色都能够当前场景做了哪些事情，非常适合应用于自动化和维护工作。<br>第一行代码告诉capybara通知driver（selenium webdriver）<br>打开一个浏览器并跳转到我们提供的链接地址：<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">visit</span> <span class="string">'https://www.baidu.com/'</span></div></pre></td></tr></table></figure></p>
+<p>  接下来，我们需要输入查询条件，点击搜索按钮，所以我们告诉capybara去让driver在页面上查找搜输入栏，并填写搜索条件。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fill_in <span class="string">'kw'</span>, :<span class="keyword">with</span> =&gt; search_term</div><div class="line"></div><div class="line">click_on <span class="string">'su'</span></div></pre></td></tr></table></figure>
+<p>这里唯一的困惑是fill_in 方法中使用’kw’这个关键字，当你代码告诉capybara去在页面上寻找<br>这个关键字时，capybara使用了一种’猜测’的机制。<br>也就是说capybra试图在DOM元素各种属性中找到你要求的。在这个例子中,我们知道baidu搜索表栏的id属性kw，这是我们需要在代码中提供的。<br>最后,我们需要检查返回的搜索结果是否正确。为此,我们使用capybara的内置RSpec匹配器。如果你不知道RSpec,rspec官方文档是你最好的选择(<a href="http://rspec.info/),与传统断言不同是当条件不满足时，会抛出异常，而不是只是返回false" target="_blank" rel="external">http://rspec.info/),与传统断言不同是当条件不满足时，会抛出异常，而不是只是返回false</a></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">page<span class="selector-class">.should</span> have_content <span class="string">'capybara'</span></div></pre></td></tr></table></figure>
+<p>最后需要注意的是,have_content方法的匹配器内置了一个默认的等待。这是非常有用的,因为如果查找的内容我是通过JavaScript异步加载而成的话(而不是在初始页面就加载完成),capybara在我们设置默认等待时间重试,看它是否存在。我们将在后面的章节介绍如何处理异步JavaScript的问题。</p>
+<p>总结，本章目标是让你认识capybra，以及配置它的运行环境，ruby和rubygems以及相关依赖。最后，我们通过一个简单的场景来编写自动化，来加强我们的学习。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/08/30/capybara4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1704,286 +1858,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/24/front-end-tools/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="qi lei">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QA seven's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/05/24/front-end-tools/" itemprop="url">前端测试工具集锦</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-24T20:47:35+08:00">
-                2016-05-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="/image/front-end-tools.png" alt="front-end-tools"></p>
-<p>总结最近了解的前端测试的相关内容，发现前端这里真的是太庞大了，而且各种测试工具层出不穷，需要总结东西太多了，如有遗漏请大家见谅。</p>
-<h2 id="TDD-vs-BDD："><a href="#TDD-vs-BDD：" class="headerlink" title="TDD vs BDD："></a>TDD vs BDD：</h2><p>TDD与BDD概念不再描述了，直奔主题。</p>
-<h3 id="前端BDD测试框架"><a href="#前端BDD测试框架" class="headerlink" title="前端BDD测试框架"></a>前端BDD测试框架</h3><p>jasmine<br>Installation</p>
-<figure class="highlight plain"><figcaption><span>install -g jasmine</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">Initializing</div><div class="line">To initialize a project for Jasmine</div><div class="line"></div><div class="line">```jasmine init</div></pre></td></tr></table></figure>
-<p>To seed your project with some examples</p>
-<figure class="highlight plain"><figcaption><span>examples</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">Usage</div><div class="line">To run your test suite</div><div class="line">```  jasmine</div></pre></td></tr></table></figure>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">describe(<span class="string">"A suite"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</div><div class="line">  it(<span class="string">"contains spec with an expectation"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</div><div class="line">    expect(<span class="literal">true</span>).toBe(<span class="literal">true</span>);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>mocha(推荐,简洁明了)</p>
-<p>Installation</p>
-<p>Install with npm:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> npm install -g mocha</span></div></pre></td></tr></table></figure></p>
-<p>Getting Started<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> npm install -g mocha</span></div><div class="line"><span class="meta">$</span><span class="bash"> mkdir <span class="built_in">test</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="variable">$EDITOR</span> <span class="built_in">test</span>/test.js</span></div></pre></td></tr></table></figure></p>
-<p>In your editor:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var <span class="built_in">assert</span> = <span class="built_in">require</span>(<span class="string">'chai'</span>).<span class="built_in">assert</span>;</div><div class="line">describe(<span class="string">'Array'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span></span> &#123;</div><div class="line">  describe(<span class="string">'#indexOf()'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span></span> &#123;</div><div class="line">    it(<span class="string">'should return -1 when the value is not present'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span></span> &#123;</div><div class="line">      <span class="built_in">assert</span>.equal(<span class="number">-1</span>, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].indexOf(<span class="number">5</span>));</div><div class="line">      <span class="built_in">assert</span>.equal(<span class="number">-1</span>, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].indexOf(<span class="number">0</span>));</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<p>you need to install chai.<br>Back in the terminal:<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">    $  mocha</div><div class="line"></div><div class="line">      .</div><div class="line"></div><div class="line">      ✔ <span class="number">1</span> test complete (<span class="number">1</span>ms)</div><div class="line">```      </div><div class="line">### 前端TDD测试框架</div><div class="line"></div><div class="line">Qunit</div><div class="line">Installation</div></pre></td></tr></table></figure></p>
-<pre><code>$ npm i qunit
-</code></pre><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">API</div><div class="line">    http:<span class="comment">//api.qunitjs.com</span></div><div class="line"></div><div class="line">Qunit是一款强大的用于帮助调试代码的，JavaScript单元测试框架。QUnit由jQuery团队成员编写，是jQuery的官方测试套件，不仅如此，QUnit还可以测试任何常规JavaScript代码，甚至可以通过一些像Rhino或者V8这样的JavaScript引擎，测试服务端JavaScript代码。</div><div class="line"></div><div class="line">可以想象其跟jquery UI及jquery animation等库结局一样，逃脱不了各种被后来的库全方位的比较和“超越”.</div><div class="line"></div><div class="line"></div><div class="line">## Unit Testing</div><div class="line"></div><div class="line"></div><div class="line">Mocha &amp;&amp; Jasmine</div><div class="line"></div><div class="line">Mocha 跟 Jasmine 是目前最火的两个单元测试框架，基本上目前前端单元测试就在这两个库之间选了，下面是这两个库的区别，大家可以根据自己的需求进行选择：</div><div class="line"></div><div class="line">mocha：</div><div class="line"></div><div class="line">    优点：</div><div class="line">    终端显示友好</div><div class="line">    灵活，扩展性好</div><div class="line">    缺点：</div><div class="line">    自身集成度不高（没有断言，spy，异步等），而且经常要配合Chai，Sinon等库使用</div><div class="line">    配置相对麻烦一点点</div><div class="line"></div><div class="line">Jasmine:</div><div class="line"></div><div class="line">    优点：</div><div class="line">    集成度高，自带BBD，spy，方便的异步支持(<span class="number">2.0</span>)</div><div class="line">    配置方便</div><div class="line">    缺点：</div><div class="line">    相对不太灵活</div><div class="line">    由于各种功能内建，断言方式或者异步等风格相对比较固定</div><div class="line">    没有自带mockserver， 如果需要这功能的得另外配置</div><div class="line"></div><div class="line">jest</div><div class="line">Jest 是Facebook的一个专门进行Javascript单元测试的工具.它是在Jasmine测试框架上演变开发而来，使用了我们熟知的expect(value).toBe(other) 这种断言格式。</div><div class="line"></div><div class="line">First install Jest <span class="keyword">with</span> npm by running:</div></pre></td></tr></table></figure>
-<pre><code>npm install --save-dev jest-cli
-</code></pre><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Great! Now let's get started <span class="keyword">by</span> writing a <span class="keyword">test</span> <span class="keyword">for</span> a hypothetical <span class="keyword">sum</span>.js <span class="keyword">file</span>:</div></pre></td></tr></table></figure>
-<pre><code>function sum(a, b) {
-  return a + b;
-}
-module.exports = sum;
-</code></pre><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Create <span class="keyword">a</span> <span class="built_in">directory</span> __tests__/ <span class="keyword">with</span> <span class="keyword">a</span> <span class="built_in">file</span> <span class="built_in">sum</span>-test.js:</div></pre></td></tr></table></figure>
-<pre><code>jest.unmock(&apos;../sum&apos;); // unmock to use the actual implementation of sum
-describe(&apos;sum&apos;, () =&gt; {
-  it(&apos;adds 1 + 2 to equal 3&apos;, () =&gt; {
-    const sum = require(&apos;../sum&apos;);
-    expect(sum(1, 2)).toBe(3);
-  });
-});
-</code></pre><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="builtin-name">Add</span> the following <span class="keyword">to</span> your package.json:</div></pre></td></tr></table></figure>
-<pre><code>&quot;scripts&quot;: {
-  &quot;test&quot;: &quot;jest&quot;
-}
-</code></pre><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Run</span><span class="bash"> npm <span class="built_in">test</span>:</span></div></pre></td></tr></table></figure>
-<pre><code>[PASS] __tests__/sum-test.js (0.010s)
-</code></pre><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">## 代码覆盖率工具</span></div><div class="line"></div><div class="line">jscover</div><div class="line">jscover是一个用来显示JavaScript项目代码覆盖率的工具，它是继承于JSCoverage的，用C++/SpiderMonkey 取代了Java/Rhino</div><div class="line"></div><div class="line">但是已经沦落到淘汰的边缘</div><div class="line"></div><div class="line">Istanbul(推荐目前最强大前端代码覆盖率工具)</div><div class="line"></div><div class="line">Istanbul 是 JavaScript 程序的代码覆盖率工具,</div><div class="line">能产生 Statements/Lines/Functions/Branches 等指标报表，并以各种格式导出。</div><div class="line"></div><div class="line">http:<span class="regexp">//</span>qaseven.github.io<span class="regexp">/2016/01/25/gulp_for_qa/</span> 这篇文章里已经详细介绍了。</div><div class="line"></div><div class="line">blanketjs</div><div class="line"></div><div class="line">blanketjs是一个易于安装,易于配置和易于使用的JavaScript代码覆盖库 对于nodejs和浏览器都支持的不错。</div><div class="line"></div><div class="line">NodeJS (Powered <span class="keyword">by</span> Mocha)</div><div class="line"></div><div class="line">Install <span class="keyword">from</span> <span class="built_in">npm</span>.</div></pre></td></tr></table></figure>
-<pre><code>npm install blanket
-</code></pre><figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">Make</span> sure you <span class="meta">require</span> <span class="keyword">Blanket </span><span class="keyword">before </span>you <span class="meta">require</span> or run any of the <span class="meta">code</span> you want covered</div><div class="line"></div><div class="line">    <span class="meta">require</span>(<span class="string">"blanket"</span>)(&#123; <span class="comment">/* optional options */</span> &#125;),</div><div class="line">    <span class="meta">require</span>(<span class="string">"src/myscripttotest"</span>)<span class="comment">;</span></div><div class="line"></div><div class="line"><span class="symbol">Run</span> your tests using mocha <span class="keyword">and </span>take advantage of the json-cov <span class="keyword">and </span>html-cov reporters to output the coverage results.</div><div class="line"></div><div class="line">## e2e test</div><div class="line"><span class="symbol">ui</span></div><div class="line"></div><div class="line"><span class="symbol">webdriverio</span></div><div class="line"></div><div class="line">这个库是nodejs的一个webdriver模块(浏览器自动化)。你可以用它写超级简单<span class="keyword">Selenium测试在你最喜欢的BDD </span>/ TDD测试框架中,并且可以在本地运行或在云端中， Sauce Lab,<span class="keyword">BrowserStack或TestingBot。</span></div><div class="line"><span class="keyword"></span></div><div class="line"><span class="keyword"></span></div><div class="line"><span class="keyword">webdriverio </span>支持 Cucumber, Jasmine <span class="keyword">and </span>Mocha+Chai  这些测试框架</div><div class="line"></div><div class="line"><span class="symbol">nightwatch</span></div><div class="line"></div><div class="line"><span class="symbol">Nightwatch.js</span> 是一个易于使用的，基于 Node.js 平台的浏览器自动化测试解决方案。它使用强大的 <span class="keyword">Selenium </span>WebDriver API 来在 DOM 元素上执行命令和断言。 语法简单但很强大，使您可以快速编写测试。</div><div class="line">只需使用 Javascript 和 CSS 选择器，不需要初始化其他对象和类，您只需要编写测试规范。内置命令行测试运行器，使您能够运行整体测试，分组测试或者单个测试。</div></pre></td></tr></table></figure>
-<pre><code>this.demoTestGoogle = function (browser) {
-browser
-.url(“http://www.google.com”)
-.waitForElementVisible(&apos;body&apos;, 1000)
-.setValue(&apos;input[type=text]&apos;, &apos;nightwatch&apos;)
-.waitForElementVisible(&apos;button[name=btnG]&apos;, 1000)
-.click(&apos;button[name=btnG]&apos;)
-.pause(1000)
-.assert.containsText(&apos;#main&apos;, &apos;The Night Watch&apos;)
-.end();
-};
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">当涉及异步调用时，基于链式的队列是个糟糕的模式</div><div class="line"></div><div class="line">CodeceptJS</div><div class="line"></div><div class="line">CodeceptJS是一个基于WebDriver全新的端到端测试框架。它们从用户角度简单描述用户操作步骤来编写测试脚本</div></pre></td></tr></table></figure>
-<pre><code>Feature(&apos;CodeceptJS Demonstration&apos;);
-
-Scenario(&apos;test some forms&apos;, (I) =&gt; {
-  I.amOnPage(&apos;http://simple-form-bootstrap.plataformatec.com.br/documentation&apos;);
-  I.fillField(&apos;Email&apos;, &apos;hello@world.com&apos;);
-  I.fillField(&apos;Password&apos;, &apos;123456&apos;);
-  I.checkOption(&apos;Active&apos;);
-  I.checkOption(&apos;Male&apos;);  
-  I.click(&apos;Create User&apos;);
-  I.see(&apos;User is valid&apos;);
-  I.dontSeeInCurrentUrl(&apos;/documentation&apos;);
-});
-</code></pre><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="title">protractor</span><span class="params">(angluarjs亲儿子，由angluarjs核心人物开发的e2e测试工具)</span></span></div><div class="line">protractor 是 AngularJS 团队构建的一个端对端的测试运行工具，模拟用户交互，帮助你验证你的Angular应用的运行状况。</div><div class="line"></div><div class="line">Protractor使用Jasmine测试框架来定义测试,当然你也可以选择其他测试框架来定义测试，如mocha。Protractor为不同的页面交互提供一套健壮的API。</div></pre></td></tr></table></figure>
-<pre><code>var chai = require(&apos;chai&apos;);
-var chaiAsPromised = require(&apos;chai-as-promised&apos;);
-
-chai.use(chaiAsPromised);
-var expect = chai.expect;
-
-describe(&apos;angularjs 首页&apos;, function() {
-  it(&apos;应该欢迎一个具名的用户&apos;, function() {
-    //要求浏览器访问网址http://www.angularjs.org
-    browser.get(&apos;http://www.angularjs.org&apos;);
-
-    //找到ng-model名为&apos;youname&apos;的HTML元素，要求浏览器键入名字
-    element(by.model(&apos;yourName&apos;)).sendKeys(&apos;tanshuai&apos;);
-
-    var greeting = element(by.binding(&apos;yourName&apos;));
-
-     //取得结果并作断言测试
-    expect(greeting.getText()).to.eventually.equal(&apos;Hello tanshuai!&apos;);
-  });
-});
-</code></pre><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">## headless</span></div><div class="line"></div><div class="line">PhantomJS</div><div class="line"></div><div class="line">PhantomJS 是一个基于 WebKit 的服务器端 <span class="keyword">JavaScript </span>API。它全面支持web而不需浏览器支持，其快速，原生支持各种Web标准： DOM 处理, CSS 选择器, <span class="keyword">JSON, </span>Canvas, 和 SVG。 PhantomJS 可以用于 页面自动化 ， 网络监测 ， 网页截屏 ，以及 无界面测试 等。</div><div class="line">很多其它的测试框架都是基于PhantomJS二次开发的,例如下面要讲的casperjs，nightmare</div><div class="line"></div><div class="line">nightmare</div><div class="line"></div><div class="line">nightmare是一个高级浏览器自动化依赖库。</div></pre></td></tr></table></figure>
-<p>var Nightmare = require(‘nightmare’);<br>    var expect = require(‘chai’).expect; // jshint ignore:line</p>
-<pre><code>describe(&apos;test yahoo search results&apos;, function() {
-it(&apos;should find the nightmare github link first&apos;, function*() {
-  var nightmare = Nightmare()
-  var link = yield nightmare
-    .goto(&apos;http://yahoo.com&apos;)
-    .type(&apos;form[action*=&quot;/search&quot;] [name=p]&apos;, &apos;github nightmare&apos;)
-    .click(&apos;form[action*=&quot;/search&quot;] [type=submit]&apos;)
-    .wait(&apos;#main&apos;)
-    .evaluate(function () {
-      return document.querySelector(&apos;#main .searchCenterMiddle li a&apos;).href
-    })
-  expect(link).to.equal(&apos;https://github.com/segmentio/nightmare&apos;);
-});
-});
-</code></pre><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">casperjs</div><div class="line"></div><div class="line">CasperJS 是一个开源的导航脚本和测试工具，使用 <span class="keyword">JavaScript </span>基于 PhantomJS 编写，用于测试 Web 应用功能，Phantom <span class="keyword">JS是一个服务器端的 </span><span class="keyword">JavaScript </span>API 的 WebKit。其支持各种Web标准： DOM 处理, CSS 选择器, <span class="keyword">JSON, </span>Canvas, 和 SVG.</div></pre></td></tr></table></figure>
-<p> var casper = require(‘casper’).create();<br>    var fs = require(‘fs’)<br>    casper.start(‘<a href="https://github.com/login/" target="_blank" rel="external">https://github.com/login/</a>‘);<br>    casper.waitForSelector(‘input.btn.btn-primary.btn-block’); // wait for the form node to be added<br>    casper.then(function() {<br>      this.fillSelectors(‘.auth-form-body’, {<br>          ‘#login_field’: ‘qileilove’,<br>          ‘#password’: ‘<strong>*</strong>‘<br>       });<br>      this.click(‘input.btn.btn-primary.btn-block’); // Click the login button instead of submitting the form<br>      this.echo(‘Browser Cookie: ‘ + this.evaluate(function() {<br>           return document.cookie;<br>       }));</p>
-<pre><code>casper.run(function() {
-  var cookies = JSON.stringify((this.page.cookies));
-  fs.write(&apos;cookie.txt&apos;, cookies, &apos;w&apos;);
-  this.exit();
-});
-casper.wait(3000); // Wait for ajax form submission
-casper.then(function() {
-  this.capture(&apos;logged-in.png&apos;)
-});
-
-casper.run();
-</code></pre><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">## visual regression-test</span></div><div class="line"></div><div class="line"><span class="keyword">backstopjs</span></div><div class="line"><span class="keyword"></span></div><div class="line"><span class="keyword">BackstopJS </span>是自动 CSS 回归测试工具，它通过比较不同视窗大小的 DOM 截图来回应你所测试的 Web 界面。可以识别出两个不同视角上的网页差异。</div></pre></td></tr></table></figure>
-<pre><code>&quot;scenarios&quot;: [
-  {
-    &quot;label&quot;: &quot;My Local Test&quot;,
-    &quot;url&quot;: &quot;../../index.html&quot;,
-    &quot;hideSelectors&quot;: [],
-    &quot;removeSelectors&quot;: [
-    ],
-    &quot;selectors&quot;: [
-      &quot;nav&quot;,
-      &quot;.jumbotron&quot;,
-      &quot;body .col-md-4:nth-of-type(1)&quot;,
-      &quot;body .col-md-4:nth-of-type(2)&quot;,
-      &quot;body .col-md-4:nth-of-type(3)&quot;,
-      &quot;footer&quot;
-    ],
-    &quot;readyEvent&quot;: null,
-    &quot;delay&quot;: 0,
-    &quot;onReadyScript&quot;: null,
-    &quot;onBeforeScript&quot;: null
-  }
-],
-</code></pre><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">	<span class="attribute">viff</span></div><div class="line">  咱们公司的 基于selenium的，已经废了。。。 2年多没更新了</div><div class="line"></div><div class="line"></div><div class="line">	<span class="attribute">success</span></div><div class="line"><span class="attribute"></span></div><div class="line">  Succss is a command line tool built to find image-based differences between website updates. Succss relies on npm and is installed globally.</div><div class="line">    <span class="attribute">https://github.com/B2F/Succss</span></div><div class="line">  也一年没更新了..</div><div class="line"></div><div class="line"></div><div class="line">	<span class="attribute">phantomcss</span></div><div class="line"><span class="attribute"></span></div><div class="line">PhantomCSS 是 CSS 回归测试工具。一个通过 PhantomJS 或者 SlimerJS 和 Resemble.js 进行自动视觉回归测试的 CasperJS 模块。</div></pre></td></tr></table></figure>
-<pre><code>casper.
-    start( url ).
-    then(function(){        
-// do something
-        casper.click(&apos;button#open-dialog&apos;);        
-// Take a screenshot of the UI component
-        phantomcss.screenshot(&apos;#the-dialog&apos;, &apos;a screenshot of my dialog&apos;);
-
-    });
-</code></pre><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#JavaScript验证工具</span></span></div><div class="line">eslint</div><div class="line"></div><div class="line">jshint</div><div class="line"></div><div class="line">jslint</div><div class="line"></div><div class="line">三者比较的文章</div><div class="line">https://www.sitepoint.com/comparison-javascript-linting-tools/</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 前端mock工具</span></span></div><div class="line"></div><div class="line">Mock.js</div><div class="line"></div><div class="line"> Mockjs是个能够拦截页面ajax请求并模拟返回数据的小工具，借助Mockjs，前端开发中在后台测试接口还没有给的时候就可以自己拦截请求模拟数据进行愉快的开发了，所以只要制定好了协议，前后端分离开发的成本可以降到基本为0，也不需要联调工具了。</div><div class="line"></div><div class="line">sinon.js</div><div class="line">为Javascript提供独立的spies，stubs和mocks。没有任何依赖，可以与任何单元测试框架协同工作。</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># api测试工具</span></span></div><div class="line">SuperTest</div><div class="line"></div><div class="line">基于SuperAgent ，提供对HTTP测试的高度抽象.</div><div class="line">能嵌入各类测试框架，提供语义良好的断言.</div></pre></td></tr></table></figure>
-<pre><code>var app = require(&apos;../app&apos;);
-var request = require(&apos;supertest&apos;);
-
-describe(&apos;router testing&apos;, function () {
-    it(&apos;site root response&apos;, function (done) {
-        request(app)
-            .get(&apos;/&apos;)
-            .expect(&apos;Content-Type&apos;, &apos;text/html; charset=utf-8&apos;)
-            .expect(200)
-            .end(function(err, res){
-                if (err) throw err;
-                done();
-            });
-    });
-</code></pre><p>```<br>利用Mocha + Chai + SuperTest就可以搭建一套 前端rest－api测试框架</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2034,7 +1908,7 @@ describe(&apos;router testing&apos;, function () {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2047,7 +1921,7 @@ describe(&apos;router testing&apos;, function () {
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
