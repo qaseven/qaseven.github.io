@@ -285,6 +285,139 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/07/vue12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="seven">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/image/my.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/07/vue12/" itemprop="url">小QA学习前端系列之vue实战2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-07T10:27:14+08:00">
+                2017-11-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="继续了解-list-view"><a href="#继续了解-list-view" class="headerlink" title="继续了解 list view"></a>继续了解 list view</h2><p>接上一节代码<br>我们首先去看看nvhead component<br>    import nvHead from ‘../components/header.vue’;<br>其实就是 header.vue<br><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"page-cover"</span> <span class="attr">v-if</span>=<span class="string">"show&amp;&amp;fixHead"</span> @<span class="attr">click</span>=<span class="string">"showMenus"</span>&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">header</span> <span class="attr">:class</span>=<span class="string">"&#123;'show':show&amp;&amp;fixHead,'fix-header':fixHead,'no-fix':!fixHead&#125;"</span> <span class="attr">id</span>=<span class="string">"hd"</span>&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"nv-toolbar"</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"toolbar-nav"</span> @<span class="attr">click</span>=<span class="string">"openMenu"</span> <span class="attr">v-if</span>=<span class="string">"fixHead"</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-text</span>=<span class="string">"pageType"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"num"</span> <span class="attr">v-if</span>=<span class="string">"messageCount &gt; 0"</span>&gt;</span> </span><span class="template-variable">&#123;&#123;messageCount&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/add"</span>&gt;</span></span></div><div class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">i</span> <span class="attr">v-if</span>=<span class="string">"needAdd"</span> <span class="attr">v-show</span>=<span class="string">"!messageCount || messageCount &lt;= 0"</span> <span class="attr">class</span>=<span class="string">"iconfont add-icon"</span>&gt;</span>&amp;#xe60f;<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">nv-menu</span> <span class="attr">:show-menu</span>=<span class="string">"show"</span> <span class="attr">:page-type</span>=<span class="string">"pageType"</span> <span class="attr">:nick-name</span>=<span class="string">"nickname"</span> <span class="attr">:profile-url</span>=<span class="string">"profileimgurl"</span> <span class="attr">v-if</span>=<span class="string">"fixHead"</span>&gt;</span><span class="tag">&lt;/<span class="name">nv-menu</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span></div><div class="line"><span class="xml">import $ from 'webpack-zepto';</span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">export default &#123;</span></div><div class="line"><span class="xml">    replace: true,</span></div><div class="line"><span class="xml">    props: &#123;</span></div><div class="line"><span class="xml">        pageType: String,</span></div><div class="line"><span class="xml">        fixHead: Boolean,</span></div><div class="line"><span class="xml">        messageCount: Number,</span></div><div class="line"><span class="xml">        scrollTop: 0,</span></div><div class="line"><span class="xml">        needAdd: &#123;</span></div><div class="line"><span class="xml">            type: Boolean,</span></div><div class="line"><span class="xml">            default: true</span></div><div class="line"><span class="xml">        &#125;</span></div><div class="line"><span class="xml">    &#125;,</span></div><div class="line"><span class="xml">    data () &#123;</span></div><div class="line"><span class="xml">        return &#123;</span></div><div class="line"><span class="xml">            nickname: '',</span></div><div class="line"><span class="xml">            profileimgurl: '',</span></div><div class="line"><span class="xml">            show: false</span></div><div class="line"><span class="xml">        &#125;;</span></div><div class="line"><span class="xml">    &#125;,</span></div><div class="line"><span class="xml">    methods: &#123;</span></div><div class="line"><span class="xml">        openMenu() &#123;</span></div><div class="line"><span class="xml">            // $('html, body, #page').addClass('scroll-hide');</span></div><div class="line"><span class="xml">            $('body').css('overflow', 'hidden');</span></div><div class="line"><span class="xml">            this.show = !this.show;</span></div><div class="line"><span class="xml">        &#125;,</span></div><div class="line"><span class="xml">        showMenus() &#123;</span></div><div class="line"><span class="xml">            this.show = !this.show;</span></div><div class="line"><span class="xml">            $('body').css('overflow', 'auto');</span></div><div class="line"><span class="xml">            // $('html, body, #page').removeClass('scroll-hide');</span></div><div class="line"><span class="xml">        &#125;</span></div><div class="line"><span class="xml">    &#125;,</span></div><div class="line"><span class="xml">    components: &#123;</span></div><div class="line"><span class="xml">        'nvMenu': require('./menu.vue')</span></div><div class="line"><span class="xml">    &#125;</span></div><div class="line"><span class="xml">&#125;;</span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<p>ok我们一行一行代码过<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"page-cover"</span> v-<span class="keyword">if</span>=<span class="string">"show&amp;&amp;fixHead"</span> <span class="meta">@click</span>=<span class="string">"showMenus"</span>&gt;</div></pre></td></tr></table></figure></p>
+<p>fixHead来自于list.vue中传递过来的参数<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;nv-head <span class="symbol">:page-type=<span class="string">"getTitleStr(searchKey.tab)"</span></span></div><div class="line">             ref=<span class="string">"head"</span></div><div class="line">             <span class="symbol">:fix-head=<span class="string">"true"</span></span></div><div class="line">             <span class="symbol">:need-add=<span class="string">"true"</span>&gt;</span></div><div class="line">     &lt;<span class="regexp">/nv-head&gt;</span></div></pre></td></tr></table></figure></p>
+<p>show来自于 data()<br>click 调用showMenus()<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">showMenus() &#123;</div><div class="line">           this.show = !this.show;</div><div class="line">           <span class="variable">$(</span><span class="string">'body'</span>).css(<span class="string">'overflow'</span>, <span class="string">'auto'</span>);</div><div class="line">           /<span class="regexp">/ $('html, body, #page').removeClass('scroll-hide');</span></div><div class="line"><span class="regexp">       &#125;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="string">header :</span><span class="class"><span class="keyword">class</span>="&#123;</span><span class="string">'show'</span>:show&amp;&amp;fixHead,<span class="string">'fix-header'</span>:fixHead,<span class="string">'no-fix'</span>:!fixHead&#125;<span class="string">" id="</span>hd<span class="string">"&gt;</span></div></pre></td></tr></table></figure>
+<p>通过一些参数来定制header的样式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"toolbar-nav"</span> <span class="meta">@click</span>=<span class="string">"openMenu"</span> v-<span class="keyword">if</span>=<span class="string">"fixHead"</span>&gt;</div></pre></td></tr></table></figure>
+<p>click方法调用 openmenu<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">openMenu() &#123;</div><div class="line">           /<span class="regexp">/ $('html, body, #page').addClass('scroll-hide');</span></div><div class="line"><span class="regexp">           $('body').css('overflow', 'hidden');</span></div><div class="line"><span class="regexp">           this.show = !this.show;</span></div><div class="line"><span class="regexp">       &#125;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;i <span class="keyword">class</span>=<span class="string">"num"</span> v-<span class="keyword">if</span>=<span class="string">"messageCount &gt; 0"</span>&gt; &#123;&#123;messageCount&#125;&#125;&lt;/i&gt;</div></pre></td></tr></table></figure>
+<p>messageCount 来自于messagfe.vue</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;nv-head page-type=<span class="string">"消息"</span></div><div class="line">               <span class="symbol">:fix-head=<span class="string">"true"</span></span></div><div class="line">               <span class="symbol">:show-menu=<span class="string">"showMenu"</span></span></div><div class="line">               <span class="symbol">:message-count=<span class="string">"no_read_len"</span></span></div><div class="line">               <span class="symbol">:need-add=<span class="string">"true"</span></span> &gt;&lt;<span class="regexp">/nv-head&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;router-link <span class="keyword">to</span>=<span class="string">"/add"</span>&gt;</div><div class="line">                    &lt;i v-<span class="keyword">if</span>=<span class="string">"needAdd"</span> v-show=<span class="string">"!messageCount || messageCount &lt;= 0"</span> <span class="built_in">class</span>=<span class="string">"iconfont add-icon"</span>&gt;&amp;<span class="comment">#xe60f;&lt;/i&gt;</span></div><div class="line">                &lt;/router-link&gt;</div></pre></td></tr></table></figure>
+<p>router-link 指向 add 路由<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;nv-menu <span class="symbol">:show-menu=<span class="string">"show"</span></span> <span class="symbol">:page-type=<span class="string">"pageType"</span></span> <span class="symbol">:nick-name=<span class="string">"nickname"</span></span> <span class="symbol">:profile-url=<span class="string">"profileimgurl"</span></span> v-<span class="keyword">if</span>=<span class="string">"fixHead"</span>&gt;&lt;<span class="regexp">/nv-menu&gt;</span></div></pre></td></tr></table></figure></p>
+<p>:show-menu=”show” :page-type=”pageType” :nick-name=”nickname” :profile-url=”profileimgurl”<br>调用方法 传参数 返回其值</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/31/vue11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -370,6 +503,8 @@
 <p>index.vue 只是利用mount去向$router push一个{    name: ‘list’}对象<br>设置了一个异步操作 2秒后 跳转到list页面<br>在来看看 index.html<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Vue.js-Cnodejs社区<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"yes"</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-capable"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-status-bar-style"</span> <span class="attr">content</span>=<span class="string">"black-translucent"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"black"</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-status-bar-style"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span> <span class="attr">v-cloak</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- built files will be auto injected --&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <p>他是整个SPA的基础页面</p>
 <p>将真个应用会挂载的id 为app 这个节点下。</p>
+<p>再来看看index跳转的list页面<br><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">        <span class="comment">&lt;!-- 全局header --&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">nv-head</span> <span class="attr">:page-type</span>=<span class="string">"getTitleStr(searchKey.tab)"</span></span></span></div><div class="line"><span class="xml">                ref="head"</span></div><div class="line"><span class="xml">                :fix-head="true"</span></div><div class="line"><span class="xml">                :need-add="true"&gt;</span></div><div class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">nv-head</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">section</span> <span class="attr">id</span>=<span class="string">"page"</span>&gt;</span></span></div><div class="line"><span class="xml">            <span class="comment">&lt;!-- 首页列表 --&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"posts-list"</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"item in topics"</span> <span class="attr">:key</span>=<span class="string">"item.id"</span>&gt;</span></span></div><div class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">:to</span>=<span class="string">"&#123;name:'topic',params:&#123;id:item.id&#125;&#125;"</span>&gt;</span></span></div><div class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">h3</span> <span class="attr">v-text</span>=<span class="string">"item.title"</span></span></span></div><div class="line"><span class="xml">                            :class="getTabInfo(item.tab, item.good, item.top, true)"</span></div><div class="line"><span class="xml">                            :title="getTabInfo(item.tab, item.good, item.top, false)"&gt;</span></div><div class="line"><span class="xml">                    <span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></div><div class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span></span></div><div class="line"><span class="xml">                        <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"avatar"</span> <span class="attr">:src</span>=<span class="string">"item.author.avatar_url"</span> /&gt;</span></span></div><div class="line"><span class="xml">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"info"</span>&gt;</span></span></div><div class="line"><span class="xml">                            <span class="tag">&lt;<span class="name">p</span>&gt;</span></span></div><div class="line"><span class="xml">                                <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"name"</span>&gt;</span></span></div><div class="line"><span class="xml">                                    </span><span class="template-variable">&#123;&#123;item.author.loginname&#125;&#125;</span><span class="xml"></span></div><div class="line"><span class="xml">                                <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                                <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"status"</span> <span class="attr">v-if</span>=<span class="string">"item.reply_count &gt; 0"</span>&gt;</span></span></div><div class="line"><span class="xml">                                    <span class="tag">&lt;<span class="name">b</span>&gt;</span></span><span class="template-variable">&#123;&#123;item.reply_count&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">b</span>&gt;</span></span></div><div class="line"><span class="xml">                                    /</span><span class="template-variable">&#123;&#123;item.visit_count&#125;&#125;</span><span class="xml"></span></div><div class="line"><span class="xml">                                <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                            <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line"><span class="xml">                            <span class="tag">&lt;<span class="name">p</span>&gt;</span></span></div><div class="line"><span class="xml">                                <span class="tag">&lt;<span class="name">time</span>&gt;</span></span><span class="template-variable">&#123;&#123;item.create_at | getLastTimeStr(true)&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">time</span>&gt;</span></span></div><div class="line"><span class="xml">                                <span class="tag">&lt;<span class="name">time</span>&gt;</span></span><span class="template-variable">&#123;&#123;item.last_reply_at | getLastTimeStr(true)&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">time</span>&gt;</span></span></div><div class="line"><span class="xml">                            <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line"><span class="xml">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">                    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">                    <span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">nv-top</span>&gt;</span><span class="tag">&lt;/<span class="name">nv-top</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span></div><div class="line"><span class="xml">    import $ from 'webpack-zepto';</span></div><div class="line"><span class="xml">    import utils from '../libs/utils.js';</span></div><div class="line"><span class="xml">    import nvHead from '../components/header.vue';</span></div><div class="line"><span class="xml">    import nvTop from '../components/backtotop.vue';</span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">    export default &#123;</span></div><div class="line"><span class="xml">        filters: &#123;</span></div><div class="line"><span class="xml">            getLastTimeStr(time, isFromNow) &#123;</span></div><div class="line"><span class="xml">                return utils.getLastTimeStr(time, isFromNow);</span></div><div class="line"><span class="xml">            &#125;</span></div><div class="line"><span class="xml">        &#125;,</span></div><div class="line"><span class="xml">        data() &#123;</span></div><div class="line"><span class="xml">            return &#123;</span></div><div class="line"><span class="xml">                scroll: true,</span></div><div class="line"><span class="xml">                topics: [],</span></div><div class="line"><span class="xml">                index: &#123;&#125;,</span></div><div class="line"><span class="xml">                searchKey: &#123;</span></div><div class="line"><span class="xml">                    page: 1,</span></div><div class="line"><span class="xml">                    limit: 20,</span></div><div class="line"><span class="xml">                    tab: 'all',</span></div><div class="line"><span class="xml">                    mdrender: true</span></div><div class="line"><span class="xml">                &#125;,</span></div><div class="line"><span class="xml">                searchDataStr: ''</span></div><div class="line"><span class="xml">            &#125;;</span></div><div class="line"><span class="xml">        &#125;,</span></div><div class="line"><span class="xml">        mounted() &#123;</span></div><div class="line"><span class="xml">            if (this.$route.query &amp;&amp; this.$route.query.tab) &#123;</span></div><div class="line"><span class="xml">                this.searchKey.tab = this.$route.query.tab;</span></div><div class="line"><span class="xml">            &#125;</span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">            // 如果从详情返回并且之前存有对应的查询条件和参数</span></div><div class="line"><span class="xml">            // 则直接渲染之前的数据</span></div><div class="line"><span class="xml">            if (window.window.sessionStorage.searchKey &amp;&amp; window.window.sessionStorage.tab === this.searchKey.tab) &#123;</span></div><div class="line"><span class="xml">                this.topics = JSON.parse(window.window.sessionStorage.topics);</span></div><div class="line"><span class="xml">                this.searchKey = JSON.parse(window.window.sessionStorage.searchKey);</span></div><div class="line"><span class="xml">                this.$nextTick(() =&gt; $(window).scrollTop(window.window.sessionStorage.scrollTop));</span></div><div class="line"><span class="xml">            &#125; else &#123;</span></div><div class="line"><span class="xml">                this.getTopics();</span></div><div class="line"><span class="xml">            &#125;</span></div><div class="line"><span class="xml">            // 滚动加载</span></div><div class="line"><span class="xml">            $(window).on('scroll', utils.throttle(this.getScrollData, 300, 1000));</span></div><div class="line"><span class="xml">        &#125;,</span></div><div class="line"><span class="xml">        beforeRouteLeave(to, from, next) &#123;</span></div><div class="line"><span class="xml">            // 如果跳转到详情页面，则记录关键数据</span></div><div class="line"><span class="xml">            // 方便从详情页面返回到该页面的时候继续加载之前位置的数据</span></div><div class="line"><span class="xml">            if (to.name === 'topic') &#123;</span></div><div class="line"><span class="xml">                // 当前滚动条位置</span></div><div class="line"><span class="xml">                window.window.sessionStorage.scrollTop = $(window).scrollTop();</span></div><div class="line"><span class="xml">                // 当前页面主题数据</span></div><div class="line"><span class="xml">                window.window.sessionStorage.topics = JSON.stringify(this.topics);</span></div><div class="line"><span class="xml">                // 查询参数</span></div><div class="line"><span class="xml">                window.window.sessionStorage.searchKey = JSON.stringify(this.searchKey);</span></div><div class="line"><span class="xml">                // 当前tab</span></div><div class="line"><span class="xml">                window.window.sessionStorage.tab = from.query.tab || 'all';</span></div><div class="line"><span class="xml">            &#125;</span></div><div class="line"><span class="xml">            $(window).off('scroll');</span></div><div class="line"><span class="xml">            next();</span></div><div class="line"><span class="xml">        &#125;,</span></div><div class="line"><span class="xml">        beforeRouteEnter(to, from, next) &#123;</span></div><div class="line"><span class="xml">            if (from.name !== 'topic') &#123;</span></div><div class="line"><span class="xml">                // 页面切换移除之前记录的数据集</span></div><div class="line"><span class="xml">                if (window.window.sessionStorage.tab) &#123;</span></div><div class="line"><span class="xml">                    window.window.sessionStorage.removeItem('topics');</span></div><div class="line"><span class="xml">                    window.window.sessionStorage.removeItem('searchKey');</span></div><div class="line"><span class="xml">                    window.window.sessionStorage.removeItem('tab');</span></div><div class="line"><span class="xml">                &#125;</span></div><div class="line"><span class="xml">            &#125;</span></div><div class="line"><span class="xml">            next();</span></div><div class="line"><span class="xml">        &#125;,</span></div><div class="line"><span class="xml">        methods: &#123;</span></div><div class="line"><span class="xml">            // 获取title文字</span></div><div class="line"><span class="xml">            getTitleStr(tab) &#123;</span></div><div class="line"><span class="xml">                let str = '';</span></div><div class="line"><span class="xml">                switch (tab) &#123;</span></div><div class="line"><span class="xml">                    case 'share':</span></div><div class="line"><span class="xml">                        str = '分享';</span></div><div class="line"><span class="xml">                        break;</span></div><div class="line"><span class="xml">                    case 'ask':</span></div><div class="line"><span class="xml">                        str = '问答';</span></div><div class="line"><span class="xml">                        break;</span></div><div class="line"><span class="xml">                    case 'job':</span></div><div class="line"><span class="xml">                        str = '招聘';</span></div><div class="line"><span class="xml">                        break;</span></div><div class="line"><span class="xml">                    case 'good':</span></div><div class="line"><span class="xml">                        str = '精华';</span></div><div class="line"><span class="xml">                        break;</span></div><div class="line"><span class="xml">                    default:</span></div><div class="line"><span class="xml">                        str = '全部';</span></div><div class="line"><span class="xml">                        break;</span></div><div class="line"><span class="xml">                &#125;</span></div><div class="line"><span class="xml">                return str;</span></div><div class="line"><span class="xml">            &#125;,</span></div><div class="line"><span class="xml">            // 获取不同tab的样式或者标题</span></div><div class="line"><span class="xml">            getTabInfo(tab, good, top, isClass) &#123;</span></div><div class="line"><span class="xml">                return utils.getTabInfo(tab, good, top, isClass);</span></div><div class="line"><span class="xml">            &#125;,</span></div><div class="line"><span class="xml">            // 获取主题数据</span></div><div class="line"><span class="xml">            getTopics() &#123;</span></div><div class="line"><span class="xml">                let params = $.param(this.searchKey);</span></div><div class="line"><span class="xml">                $.get('https://cnodejs.org/api/v1/topics?' + params, (d) =&gt; &#123;</span></div><div class="line"><span class="xml">                    this.scroll = true;</span></div><div class="line"><span class="xml">                    if (d &amp;&amp; d.data) &#123;</span></div><div class="line"><span class="xml">                        d.data.forEach(this.mergeTopics);</span></div><div class="line"><span class="xml">                    &#125;</span></div><div class="line"><span class="xml">                &#125;);</span></div><div class="line"><span class="xml">            &#125;,</span></div><div class="line"><span class="xml">            mergeTopics(topic) &#123;</span></div><div class="line"><span class="xml">                if (typeof this.index[topic.id] === 'number') &#123;</span></div><div class="line"><span class="xml">                    const topicsIndex = this.index[topic.id];</span></div><div class="line"><span class="xml">                    this.topics[topicsIndex] = topic;</span></div><div class="line"><span class="xml">                &#125; else &#123;</span></div><div class="line"><span class="xml">                    this.index[topic.id] = this.topics.length;</span></div><div class="line"><span class="xml">                    this.topics.push(topic);</span></div><div class="line"><span class="xml">                &#125;</span></div><div class="line"><span class="xml">            &#125;,</span></div><div class="line"><span class="xml">            // 滚动加载数据</span></div><div class="line"><span class="xml">            getScrollData() &#123;</span></div><div class="line"><span class="xml">                if (this.scroll) &#123;</span></div><div class="line"><span class="xml">                    let totalheight = parseInt($(window).height(), 20) + parseInt($(window).scrollTop(), 20);</span></div><div class="line"><span class="xml">                    if ($(document).height() <span class="tag">&lt;<span class="name">=</span> <span class="attr">totalheight</span> + <span class="attr">200</span>) &#123;</span></span></div><div class="line"><span class="xml">                        this.scroll = false;</span></div><div class="line"><span class="xml">                        this.searchKey.page += 1;</span></div><div class="line"><span class="xml">                        this.getTopics();</span></div><div class="line"><span class="xml">                    &#125;</span></div><div class="line"><span class="xml">                &#125;</span></div><div class="line"><span class="xml">            &#125;</span></div><div class="line"><span class="xml">        &#125;,</span></div><div class="line"><span class="xml">        watch: &#123;</span></div><div class="line"><span class="xml">            // 切换页面</span></div><div class="line"><span class="xml">            '$route' (to, from) &#123;</span></div><div class="line"><span class="xml">                // 如果是当前页面切换分类的情况</span></div><div class="line"><span class="xml">                if (to.query &amp;&amp; to.query.tab) &#123;</span></div><div class="line"><span class="xml">                    this.searchKey.tab = to.query.tab;</span></div><div class="line"><span class="xml">                    this.topics = [];</span></div><div class="line"><span class="xml">                    this.index = &#123;&#125;;</span></div><div class="line"><span class="xml">                &#125;</span></div><div class="line"><span class="xml">                this.searchKey.page = 1;</span></div><div class="line"><span class="xml">                this.getTopics();</span></div><div class="line"><span class="xml">                // 隐藏导航栏</span></div><div class="line"><span class="xml">                this.$refs.head.show = false;</span></div><div class="line"><span class="xml">            &#125;</span></div><div class="line"><span class="xml">        &#125;,</span></div><div class="line"><span class="xml">        components: &#123;</span></div><div class="line"><span class="xml">            nvHead,</span></div><div class="line"><span class="xml">            nvTop</span></div><div class="line"><span class="xml">        &#125;</span></div><div class="line"><span class="xml">    &#125;;</span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<p>利用了2个component nvHEAD nvTop<br>下一篇 继续讲解 list view</p>
 
           
         
@@ -1587,171 +1722,6 @@ reverse()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/18/vue2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="seven">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/image/my.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QA seven's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/18/vue2/" itemprop="url">小QA学习前端系列之vue模板</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T11:30:15+08:00">
-                2017-10-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="小QA学习前端系列之vue模板"><a href="#小QA学习前端系列之vue模板" class="headerlink" title="小QA学习前端系列之vue模板"></a>小QA学习前端系列之vue模板</h1><p>之前我们已经学习vue实例，已经理解如何初始化一个vue实例，以及实例中数据与方法使用，还了解生命周期，那接下来我要学习vue模板</p>
-<h2 id="插值"><a href="#插值" class="headerlink" title="插值"></a>插值</h2><h3 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h3><p>使用“Mustache”语法 (双大括号) 的文本插值<br><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>Message: </span><span class="template-variable">&#123;&#123; msg &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
-<h3 id="原始-HTML"><a href="#原始-HTML" class="headerlink" title="原始 HTML"></a>原始 HTML</h3><p>双大括号会将数据解释为普通文本，而非 HTML 代码。为了输出真正的 HTML ，你需要使用 v-html 指令<br><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>Message: </span><span class="template-variable">&#123;&#123; msg &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
-<p>这个标签可能导致xss攻击</p>
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 v-bind 指令<br>例如 id class 等</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> v-bind:<span class="built_in">id</span>=<span class="string">"TEST"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
-<p>可以 省略前面的v-bind 直接使用:id</p>
-<h3 id="使用-JavaScript-表达式"><a href="#使用-JavaScript-表达式" class="headerlink" title="使用 JavaScript 表达式"></a>使用 JavaScript 表达式</h3><p>用在v-bind中<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"box"</span> <span class="attr">:style</span>=<span class="string">"[isA?styleA:'', styleB]"</span>&gt;</span>我是字<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="actionscript"><span class="keyword">new</span> Vue(&#123;</span></div><div class="line"><span class="actionscript">  el: <span class="string">"#app"</span>,</span></div><div class="line"><span class="undefined">  data:&#123;</span></div><div class="line"><span class="undefined">    styleA:&#123;</span></div><div class="line"><span class="actionscript">      fontSize: <span class="string">'30px'</span>,</span></div><div class="line"><span class="actionscript">      color: <span class="string">'red'</span></span></div><div class="line"><span class="undefined">    &#125;,</span></div><div class="line"><span class="undefined">    styleB:&#123;</span></div><div class="line"><span class="actionscript">      textShadow: <span class="string">'5px 2px 6px #000'</span></span></div><div class="line"><span class="undefined">    &#125;,</span></div><div class="line"><span class="actionscript">    isA: <span class="literal">false</span></span></div><div class="line"><span class="undefined">  &#125;</span></div><div class="line"><span class="undefined">&#125;)</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>用在Mustache中<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;&#123; ok ? <span class="string">'YES'</span> : <span class="string">'NO'</span> &#125;&#125;</div></pre></td></tr></table></figure></p>
-<p>有个限制就是，每个绑定都只能包含单个表达式</p>
-<h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h3><p>指令 (Directives) 是带有 v- 前缀的特殊属性。<br>v-text</p>
-<pre><code>预期：string
-
-详细：
-
-更新元素的 textContent。如果要更新部分的 textContent ，需要使用 {{ Mustache }} 插值。
-
-示例：
-</code></pre><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="xml"></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">span</span> <span class="attr">v-text</span>=<span class="string">"msg"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="comment">&lt;!-- 和下面的一样 --&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span></span><span class="template-variable">&#123;&#123;msg&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div></pre></td></tr></table></figure>
-<p>v-show</p>
-<pre><code>预期：any
-
-用法：
-
-根据表达式之真假值，切换元素的 display CSS 属性。
-
-当条件变化时该指令触发过渡效果。
-</code></pre><p>v-if</p>
-<pre><code>预期：any
-
-用法：
-
-根据表达式的值的真假条件渲染元素。在切换时元素及它的数据绑定 / 组件被销毁并重建。如果元素是 &lt;template&gt; ，将提出它的内容作为条件块。
-
-当条件变化时该指令触发过渡效果。
-</code></pre><h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p>一些指令能够接收一个“参数”，在指令名称之后以冒号表示。<br><a v-bind:href="url"></a></p>
-<p>在这里 href 是参数，告知 v-bind 指令将该元素的 href 属性与表达式 url 的值绑定。<br>另一个例子是 v-on 指令，它用于监听 DOM 事件：</p>
-<p><a v-on:click="doSomething"></a></p>
-<p>在这里参数是监听的事件名。</p>
-<h3 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h3><p>修饰符 (Modifiers) 是以半角句号 . 指明的特殊后缀，用于指出一个指令应该以特殊方式绑定。例如，.prevent 修饰符告诉 v-on 指令对于触发的事件调用 event.preventDefault()：</p>
-<form v-on:submit.prevent="onSubmit"></form>
-
-<h3 id="缩写"><a href="#缩写" class="headerlink" title="缩写"></a>缩写</h3><p>v- 前缀作为一种视觉提示，用来识别模板中 Vue 特定的特性。<br>v-bind 缩写</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 完整语法 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-bind:href</span>=<span class="string">"url"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 缩写 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">:href</span>=<span class="string">"url"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>v-on 缩写<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">&lt;!-- 完整语法 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click</span>=<span class="string">"doSomething"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 缩写 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> @<span class="attr">click</span>=<span class="string">"doSomething"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>ok 今天主要介绍基本的模板语法，其实还有一些语法没有解释，根据官方文档咱们一步一步来</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1802,7 +1772,7 @@ reverse()
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

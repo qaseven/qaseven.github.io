@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="vue," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="QA seven's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="继续了解 list view接上一节代码我们首先去看看nvhead component    import nvHead from ‘../components/header.vue’;其实就是 header.vue12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小QA学习前端系列之vue实战2">
+<meta property="og:url" content="http://yoursite.com/2017/11/07/vue12/index.html">
+<meta property="og:site_name" content="QA seven&#39;s blog">
+<meta property="og:description" content="继续了解 list view接上一节代码我们首先去看看nvhead component    import nvHead from ‘../components/header.vue’;其实就是 header.vue12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-09T09:55:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小QA学习前端系列之vue实战2">
+<meta name="twitter:description" content="继续了解 list view接上一节代码我们首先去看看nvhead component    import nvHead from ‘../components/header.vue’;其实就是 header.vue12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/07/vue12/"/>
+
+
+
+
+
+  <title>小QA学习前端系列之vue实战2 | QA seven's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">QA seven's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/07/vue12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="seven">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/image/my.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">小QA学习前端系列之vue实战2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-07T10:27:14+08:00">
+                2017-11-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="继续了解-list-view"><a href="#继续了解-list-view" class="headerlink" title="继续了解 list view"></a>继续了解 list view</h2><p>接上一节代码<br>我们首先去看看nvhead component<br>    import nvHead from ‘../components/header.vue’;<br>其实就是 header.vue<br><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"page-cover"</span> <span class="attr">v-if</span>=<span class="string">"show&amp;&amp;fixHead"</span> @<span class="attr">click</span>=<span class="string">"showMenus"</span>&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">header</span> <span class="attr">:class</span>=<span class="string">"&#123;'show':show&amp;&amp;fixHead,'fix-header':fixHead,'no-fix':!fixHead&#125;"</span> <span class="attr">id</span>=<span class="string">"hd"</span>&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"nv-toolbar"</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"toolbar-nav"</span> @<span class="attr">click</span>=<span class="string">"openMenu"</span> <span class="attr">v-if</span>=<span class="string">"fixHead"</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-text</span>=<span class="string">"pageType"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"num"</span> <span class="attr">v-if</span>=<span class="string">"messageCount &gt; 0"</span>&gt;</span> </span><span class="template-variable">&#123;&#123;messageCount&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/add"</span>&gt;</span></span></div><div class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">i</span> <span class="attr">v-if</span>=<span class="string">"needAdd"</span> <span class="attr">v-show</span>=<span class="string">"!messageCount || messageCount &lt;= 0"</span> <span class="attr">class</span>=<span class="string">"iconfont add-icon"</span>&gt;</span>&amp;#xe60f;<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">nv-menu</span> <span class="attr">:show-menu</span>=<span class="string">"show"</span> <span class="attr">:page-type</span>=<span class="string">"pageType"</span> <span class="attr">:nick-name</span>=<span class="string">"nickname"</span> <span class="attr">:profile-url</span>=<span class="string">"profileimgurl"</span> <span class="attr">v-if</span>=<span class="string">"fixHead"</span>&gt;</span><span class="tag">&lt;/<span class="name">nv-menu</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span></div><div class="line"><span class="xml">import $ from 'webpack-zepto';</span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">export default &#123;</span></div><div class="line"><span class="xml">    replace: true,</span></div><div class="line"><span class="xml">    props: &#123;</span></div><div class="line"><span class="xml">        pageType: String,</span></div><div class="line"><span class="xml">        fixHead: Boolean,</span></div><div class="line"><span class="xml">        messageCount: Number,</span></div><div class="line"><span class="xml">        scrollTop: 0,</span></div><div class="line"><span class="xml">        needAdd: &#123;</span></div><div class="line"><span class="xml">            type: Boolean,</span></div><div class="line"><span class="xml">            default: true</span></div><div class="line"><span class="xml">        &#125;</span></div><div class="line"><span class="xml">    &#125;,</span></div><div class="line"><span class="xml">    data () &#123;</span></div><div class="line"><span class="xml">        return &#123;</span></div><div class="line"><span class="xml">            nickname: '',</span></div><div class="line"><span class="xml">            profileimgurl: '',</span></div><div class="line"><span class="xml">            show: false</span></div><div class="line"><span class="xml">        &#125;;</span></div><div class="line"><span class="xml">    &#125;,</span></div><div class="line"><span class="xml">    methods: &#123;</span></div><div class="line"><span class="xml">        openMenu() &#123;</span></div><div class="line"><span class="xml">            // $('html, body, #page').addClass('scroll-hide');</span></div><div class="line"><span class="xml">            $('body').css('overflow', 'hidden');</span></div><div class="line"><span class="xml">            this.show = !this.show;</span></div><div class="line"><span class="xml">        &#125;,</span></div><div class="line"><span class="xml">        showMenus() &#123;</span></div><div class="line"><span class="xml">            this.show = !this.show;</span></div><div class="line"><span class="xml">            $('body').css('overflow', 'auto');</span></div><div class="line"><span class="xml">            // $('html, body, #page').removeClass('scroll-hide');</span></div><div class="line"><span class="xml">        &#125;</span></div><div class="line"><span class="xml">    &#125;,</span></div><div class="line"><span class="xml">    components: &#123;</span></div><div class="line"><span class="xml">        'nvMenu': require('./menu.vue')</span></div><div class="line"><span class="xml">    &#125;</span></div><div class="line"><span class="xml">&#125;;</span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<p>ok我们一行一行代码过<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"page-cover"</span> v-<span class="keyword">if</span>=<span class="string">"show&amp;&amp;fixHead"</span> <span class="meta">@click</span>=<span class="string">"showMenus"</span>&gt;</div></pre></td></tr></table></figure></p>
+<p>fixHead来自于list.vue中传递过来的参数<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;nv-head <span class="symbol">:page-type=<span class="string">"getTitleStr(searchKey.tab)"</span></span></div><div class="line">             ref=<span class="string">"head"</span></div><div class="line">             <span class="symbol">:fix-head=<span class="string">"true"</span></span></div><div class="line">             <span class="symbol">:need-add=<span class="string">"true"</span>&gt;</span></div><div class="line">     &lt;<span class="regexp">/nv-head&gt;</span></div></pre></td></tr></table></figure></p>
+<p>show来自于 data()<br>click 调用showMenus()<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">showMenus() &#123;</div><div class="line">           this.show = !this.show;</div><div class="line">           <span class="variable">$(</span><span class="string">'body'</span>).css(<span class="string">'overflow'</span>, <span class="string">'auto'</span>);</div><div class="line">           /<span class="regexp">/ $('html, body, #page').removeClass('scroll-hide');</span></div><div class="line"><span class="regexp">       &#125;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="string">header :</span><span class="class"><span class="keyword">class</span>="&#123;</span><span class="string">'show'</span>:show&amp;&amp;fixHead,<span class="string">'fix-header'</span>:fixHead,<span class="string">'no-fix'</span>:!fixHead&#125;<span class="string">" id="</span>hd<span class="string">"&gt;</span></div></pre></td></tr></table></figure>
+<p>通过一些参数来定制header的样式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"toolbar-nav"</span> <span class="meta">@click</span>=<span class="string">"openMenu"</span> v-<span class="keyword">if</span>=<span class="string">"fixHead"</span>&gt;</div></pre></td></tr></table></figure>
+<p>click方法调用 openmenu<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">openMenu() &#123;</div><div class="line">           /<span class="regexp">/ $('html, body, #page').addClass('scroll-hide');</span></div><div class="line"><span class="regexp">           $('body').css('overflow', 'hidden');</span></div><div class="line"><span class="regexp">           this.show = !this.show;</span></div><div class="line"><span class="regexp">       &#125;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;i <span class="keyword">class</span>=<span class="string">"num"</span> v-<span class="keyword">if</span>=<span class="string">"messageCount &gt; 0"</span>&gt; &#123;&#123;messageCount&#125;&#125;&lt;/i&gt;</div></pre></td></tr></table></figure>
+<p>messageCount 来自于messagfe.vue</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;nv-head page-type=<span class="string">"消息"</span></div><div class="line">               <span class="symbol">:fix-head=<span class="string">"true"</span></span></div><div class="line">               <span class="symbol">:show-menu=<span class="string">"showMenu"</span></span></div><div class="line">               <span class="symbol">:message-count=<span class="string">"no_read_len"</span></span></div><div class="line">               <span class="symbol">:need-add=<span class="string">"true"</span></span> &gt;&lt;<span class="regexp">/nv-head&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;router-link <span class="keyword">to</span>=<span class="string">"/add"</span>&gt;</div><div class="line">                    &lt;i v-<span class="keyword">if</span>=<span class="string">"needAdd"</span> v-show=<span class="string">"!messageCount || messageCount &lt;= 0"</span> <span class="built_in">class</span>=<span class="string">"iconfont add-icon"</span>&gt;&amp;<span class="comment">#xe60f;&lt;/i&gt;</span></div><div class="line">                &lt;/router-link&gt;</div></pre></td></tr></table></figure>
+<p>router-link 指向 add 路由<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;nv-menu <span class="symbol">:show-menu=<span class="string">"show"</span></span> <span class="symbol">:page-type=<span class="string">"pageType"</span></span> <span class="symbol">:nick-name=<span class="string">"nickname"</span></span> <span class="symbol">:profile-url=<span class="string">"profileimgurl"</span></span> v-<span class="keyword">if</span>=<span class="string">"fixHead"</span>&gt;&lt;<span class="regexp">/nv-menu&gt;</span></div></pre></td></tr></table></figure></p>
+<p>:show-menu=”show” :page-type=”pageType” :nick-name=”nickname” :profile-url=”profileimgurl”<br>调用方法 传参数 返回其值</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/31/vue11/" rel="next" title="小QA学习前端系列之vue实战">
+                <i class="fa fa-chevron-left"></i> 小QA学习前端系列之vue实战
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/image/my.jpeg"
+               alt="seven" />
+          <p class="site-author-name" itemprop="name">seven</p>
+           
+              <p class="site-description motion-element" itemprop="description">小qa 在thoughtworks苦苦挣扎中</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#继续了解-list-view"><span class="nav-number">1.</span> <span class="nav-text">继续了解 list view</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">seven</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
