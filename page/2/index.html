@@ -285,6 +285,275 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/20/vue4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="seven">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/image/my.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/20/vue4/" itemprop="url">小QA学习前端系列之vue Class 与 Style 绑定</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-20T10:54:57+08:00">
+                2017-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="小QA学习前端系列之vue-Class-与-Style-绑定"><a href="#小QA学习前端系列之vue-Class-与-Style-绑定" class="headerlink" title="小QA学习前端系列之vue Class 与 Style 绑定"></a>小QA学习前端系列之vue Class 与 Style 绑定</h1><h2 id="绑定-HTML-Class"><a href="#绑定-HTML-Class" class="headerlink" title="绑定 HTML Class"></a>绑定 HTML Class</h2><p>对象语法<br>使用 v-bind:class </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div v-bind:<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123; active: isActive &#125;"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p>当然也可以绑定一个 data对象</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="string">&lt;div</span> <span class="attr">v-bind:class="classObject"&gt;&lt;/div&gt;</span></div><div class="line"></div><div class="line"><span class="attr">data:</span> <span class="string">&#123;</span></div><div class="line"><span class="attr">  classObject:</span> <span class="string">&#123;</span></div><div class="line"><span class="attr">    active:</span> <span class="literal">true</span><span class="string">,</span></div><div class="line"><span class="attr">    'text-danger':</span> <span class="literal">false</span></div><div class="line">  <span class="string">&#125;</span></div><div class="line"><span class="string">&#125;</span></div></pre></td></tr></table></figure>
+<p>也可以绑定一个返回对象的计算属性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;div v-bind:<span class="class"><span class="keyword">class</span></span>=<span class="string">"classObject"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"></div><div class="line">data: &#123;</div><div class="line">  isActive: <span class="literal">true</span>,</div><div class="line">  error: <span class="literal">null</span></div><div class="line">&#125;,</div><div class="line">computed: &#123;</div><div class="line">  classObject: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      active: <span class="keyword">this</span>.isActive &amp;&amp; !<span class="keyword">this</span>.error,</div><div class="line">      <span class="string">'text-danger'</span>: <span class="keyword">this</span>.error &amp;&amp; <span class="keyword">this</span>.error.type === <span class="string">'fatal'</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>数组语法<br>我们可以把一个数组传给 v-bind:class，以应用一个 class 列表：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;div v-bind:<span class="class"><span class="keyword">class</span></span>=<span class="string">"[activeClass, errorClass]"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"></div><div class="line">data: &#123;</div><div class="line">  activeClass: <span class="string">'active'</span>,</div><div class="line">  errorClass: <span class="string">'text-danger'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>用在组件上</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">例如，如果你声明了这个组件：</div><div class="line"></div><div class="line"><span class="type">Vue</span>.component(<span class="symbol">'my</span>-component', &#123;</div><div class="line">  template: '&lt;p <span class="class"><span class="keyword">class</span></span>=<span class="string">"foo bar"</span>&gt;<span class="type">Hi</span>&lt;/p&gt;'</div><div class="line">&#125;)</div><div class="line"></div><div class="line">然后在使用它的时候添加一些 <span class="class"><span class="keyword">class</span><span class="title">：</span></span></div><div class="line"><span class="class"></span></div><div class="line"><span class="class"><span class="title">&lt;my-component</span> <span class="title">class=</span>"<span class="title">baz</span> <span class="title">boo</span>"<span class="title">&gt;&lt;/my-component&gt;</span></span></div><div class="line"><span class="class"></span></div><div class="line"><span class="class"><span class="title">HTML</span> <span class="title">将被渲染为</span></span>:</div><div class="line"></div><div class="line">&lt;p <span class="class"><span class="keyword">class</span></span>=<span class="string">"foo bar baz boo"</span>&gt;<span class="type">Hi</span>&lt;/p&gt;</div><div class="line"></div><div class="line">对于带数据绑定 <span class="class"><span class="keyword">class</span> <span class="title">也同样适用：</span></span></div><div class="line"><span class="class"></span></div><div class="line"><span class="class"><span class="title">&lt;my-component</span> <span class="title">v-bind</span></span>:<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123; active: isActive &#125;"</span>&gt;&lt;/my-component&gt;</div><div class="line"></div><div class="line">当 isActive 为真值 (译者注：truthy 不是 <span class="literal">true</span>，参考这里) 时，<span class="type">HTML</span> 将被渲染成为：</div><div class="line"></div><div class="line">&lt;p <span class="class"><span class="keyword">class</span></span>=<span class="string">"foo bar active"</span>&gt;<span class="type">Hi</span>&lt;/p&gt;</div></pre></td></tr></table></figure>
+<h2 id="绑定内联样式"><a href="#绑定内联样式" class="headerlink" title="绑定内联样式"></a>绑定内联样式</h2><h3 id="对象语法"><a href="#对象语法" class="headerlink" title="对象语法"></a>对象语法</h3><p>v-bind:style 的对象语法十分直观——看着非常像 CSS，但其实是一个 JavaScript 对象。CSS 属性名可以用驼峰式 (camelCase) 或短横线分隔 (kebab-case，记得用单引号括起来) 来命名：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="string">&lt;div</span> <span class="attr">v-bind:style="&#123;</span> <span class="attr">color:</span> <span class="string">activeColor,</span> <span class="attr">fontSize:</span> <span class="string">fontSize</span> <span class="string">+</span> <span class="string">'px'</span> <span class="string">&#125;"&gt;&lt;/div&gt;</span></div><div class="line"></div><div class="line"><span class="attr">data:</span> <span class="string">&#123;</span></div><div class="line"><span class="attr">  activeColor:</span> <span class="string">'red'</span><span class="string">,</span></div><div class="line"><span class="attr">  fontSize:</span> <span class="number">30</span></div><div class="line"><span class="string">&#125;</span></div></pre></td></tr></table></figure></p>
+<h3 id="绑定到一个样式对象"><a href="#绑定到一个样式对象" class="headerlink" title="绑定到一个样式对象"></a>绑定到一个样式对象</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">div</span> v-bind:style=<span class="string">"styleObject"</span>&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">data: &#123;</div><div class="line">  styleObject: &#123;</div><div class="line">    <span class="attribute">color</span>: <span class="string">'red'</span>,</div><div class="line">    fontSize: <span class="string">'13px'</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="数组语法"><a href="#数组语法" class="headerlink" title="数组语法"></a>数组语法</h3><p>v-bind:style 的数组语法可以将多个样式对象应用到同一个元素上：<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> v-<span class="keyword">bind</span>:style=<span class="string">"[baseStyles, overridingStyles]"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="自动添加前缀"><a href="#自动添加前缀" class="headerlink" title="自动添加前缀"></a>自动添加前缀</h3><p>当 v-bind:style 使用需要添加浏览器引擎前缀的 CSS 属性时，如 transform，Vue.js 会自动侦测并添加相应的前缀。</p>
+<h3 id="多重值"><a href="#多重值" class="headerlink" title="多重值"></a>多重值</h3><p>从 2.3.0 起你可以为 style 绑定中的属性提供一个包含多个值的数组，常用于提供多个带前缀的值，例如：</p>
+<div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
+
+<p>这样写只会渲染数组中最后一个被浏览器支持的值。在本例中，如果浏览器支持不带浏览器前缀的 flexbox，那么就只会渲染 display: flex。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/19/vue3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="seven">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/image/my.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/19/vue3/" itemprop="url">小QA学习前端系列之vue计算属性和观察者</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-19T09:50:14+08:00">
+                2017-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="小QA学习前端系列之vue计算属性和观察者"><a href="#小QA学习前端系列之vue计算属性和观察者" class="headerlink" title="小QA学习前端系列之vue计算属性和观察者"></a>小QA学习前端系列之vue计算属性和观察者</h1><h2 id="对于任何复杂逻辑，你都应当使用计算属性"><a href="#对于任何复杂逻辑，你都应当使用计算属性" class="headerlink" title="对于任何复杂逻辑，你都应当使用计算属性"></a>对于任何复杂逻辑，你都应当使用计算属性</h2><p>我可以在模板放入逻辑<br><figure class="highlight axapta"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> id=<span class="string">"example"</span>&gt;</div><div class="line">  &#123;&#123; message.split(<span class="string">''</span>).<span class="keyword">reverse</span>().join(<span class="string">''</span>) &#125;&#125;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure></p>
+<p>也可以用$watch来计算逻辑<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;div id=<span class="string">"demo"</span>&gt;&#123;&#123;fullName&#125;&#125;&lt;/div&gt;</div><div class="line"></div><div class="line"><span class="keyword">var</span> vm = new Vue(&#123;</div><div class="line">  <span class="keyword">data</span>: &#123;</div><div class="line">    firstName: <span class="string">'Foo'</span>,</div><div class="line">    lastName: <span class="string">'Bar'</span>,</div><div class="line">    fullName: <span class="string">'Foo Bar'</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">vm.$watch(<span class="string">'firstName'</span>, function (<span class="keyword">val</span>) &#123;</div><div class="line">  <span class="keyword">this</span>.fullName = <span class="keyword">val</span> + <span class="string">' '</span> + <span class="keyword">this</span>.lastName</div><div class="line">&#125;)</div><div class="line"></div><div class="line">vm.$watch(<span class="string">'lastName'</span>, function (<span class="keyword">val</span>) &#123;</div><div class="line">  <span class="keyword">this</span>.fullName = <span class="keyword">this</span>.firstName + <span class="string">' '</span> + <span class="keyword">val</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>通常情况下，使用计算属性会比使用过程式的$watch回调更合适<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</div><div class="line">    el:<span class="string">'#demo'</span>,</div><div class="line">    data: &#123;</div><div class="line">        firstName: <span class="string">'Foo'</span>,</div><div class="line">        lastName: <span class="string">'Bar'</span></div><div class="line">    &#125;,</div><div class="line">    computed: &#123;</div><div class="line">        fullName: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">' '</span> + <span class="keyword">this</span>.lastName</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>是不是代码量少多了，开心吧<br>但要记住<strong>计算属性是基于它们的依赖进行缓存的</strong>，而直接在vue的method中每当触发重新渲染时，调用方法将总会再次执行函数。<br>如果你不想使用缓存 也可以 只需要cache关闭开关就好<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">computed: &#123;</div><div class="line">  example: &#123;</div><div class="line">    cache: <span class="literal">false</span>,</div><div class="line">    <span class="keyword">get</span>: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</div><div class="line">      <span class="keyword">return</span> Date.now() + <span class="keyword">this</span>.msg</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="计算属性的-setter"><a href="#计算属性的-setter" class="headerlink" title="计算属性的 setter"></a>计算属性的 setter</h2><p>计算属性默认只有 getter ，不过在需要时你也可以提供一个 setter ：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// ...</span></div><div class="line">computed: &#123;</div><div class="line">  fullName: &#123;</div><div class="line">    <span class="comment">// getter</span></div><div class="line">    <span class="keyword">get</span>: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">' '</span> + <span class="keyword">this</span>.lastName</div><div class="line">    &#125;,</div><div class="line">    <span class="comment">// setter</span></div><div class="line">    <span class="keyword">set</span>: <span class="function"><span class="keyword">function</span> <span class="params">(newValue)</span> </span>&#123;</div><div class="line">      <span class="keyword">var</span> names = newValue.split(<span class="string">' '</span>)</div><div class="line">      <span class="keyword">this</span>.firstName = names[<span class="number">0</span>]</div><div class="line">      <span class="keyword">this</span>.lastName = names[names.length - <span class="number">1</span>]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// ...</span></div></pre></td></tr></table></figure></p>
+<p>现在再运行 vm.fullName = ‘John Doe’ 时，setter 会被调用，vm.firstName 和 vm.lastName 也会相应地被更新。</p>
+<h2 id="侦听器"><a href="#侦听器" class="headerlink" title="侦听器"></a>侦听器</h2><p>那什么时候用watch<br>虽然计算属性在大多数情况下更合适，但有时也需要一个自定义的侦听器。这就是为什么 Vue 通过 watch 选项提供了一个更通用的方法，来响应数据的变化。当<strong>需要在数据变化时执行异步或开销较大的操作时，这个方式是最有用的</strong>。</p>
+<p>例如：</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"watch-example"</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span></div><div class="line"><span class="xml">    Ask a yes/no question:</span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"question"</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><span class="template-variable">&#123;&#123; answer &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml"><span class="comment">&lt;!-- 因为 AJAX 库和通用工具的生态已经相当丰富，Vue 核心代码没有重复 --&gt;</span></span></div><div class="line"><span class="xml"><span class="comment">&lt;!-- 提供这些功能以保持精简。这也可以让你自由选择自己更熟悉的工具。 --&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span></div><div class="line"><span class="xml">var watchExampleVM = new Vue(&#123;</span></div><div class="line"><span class="xml">  el: '#watch-example',</span></div><div class="line"><span class="xml">  data: &#123;</span></div><div class="line"><span class="xml">    question: '',</span></div><div class="line"><span class="xml">    answer: 'I cannot give you an answer until you ask a question!'</span></div><div class="line"><span class="xml">  &#125;,</span></div><div class="line"><span class="xml">  watch: &#123;</span></div><div class="line"><span class="xml">    // 如果 `question` 发生改变，这个函数就会运行</span></div><div class="line"><span class="xml">    question: function (newQuestion) &#123;</span></div><div class="line"><span class="xml">      this.answer = 'Waiting for you to stop typing...'</span></div><div class="line"><span class="xml">      this.getAnswer()</span></div><div class="line"><span class="xml">    &#125;</span></div><div class="line"><span class="xml">  &#125;,</span></div><div class="line"><span class="xml">  methods: &#123;</span></div><div class="line"><span class="xml">    // `_.debounce` 是一个通过 Lodash 限制操作频率的函数。</span></div><div class="line"><span class="xml">    // 在这个例子中，我们希望限制访问 yesno.wtf/api 的频率</span></div><div class="line"><span class="xml">    // AJAX 请求直到用户输入完毕才会发出。想要了解更多关于</span></div><div class="line"><span class="xml">    // `_.debounce` 函数 (及其近亲 `_.throttle`) 的知识，</span></div><div class="line"><span class="xml">    // 请参考：https://lodash.com/docs#debounce</span></div><div class="line"><span class="xml">    getAnswer: _.debounce(</span></div><div class="line"><span class="xml">      function () &#123;</span></div><div class="line"><span class="xml">        if (this.question.indexOf('?') === -1) &#123;</span></div><div class="line"><span class="xml">          this.answer = 'Questions usually contain a question mark. ;-)'</span></div><div class="line"><span class="xml">          return</span></div><div class="line"><span class="xml">        &#125;</span></div><div class="line"><span class="xml">        this.answer = 'Thinking...'</span></div><div class="line"><span class="xml">        var vm = this</span></div><div class="line"><span class="xml">        axios.get('https://yesno.wtf/api')</span></div><div class="line"><span class="xml">          .then(function (response) &#123;</span></div><div class="line"><span class="xml">            vm.answer = _.capitalize(response.data.answer)</span></div><div class="line"><span class="xml">          &#125;)</span></div><div class="line"><span class="xml">          .catch(function (error) &#123;</span></div><div class="line"><span class="xml">            vm.answer = 'Error! Could not reach the API. ' + error</span></div><div class="line"><span class="xml">          &#125;)</span></div><div class="line"><span class="xml">      &#125;,</span></div><div class="line"><span class="xml">      // 这是我们为判定用户停止输入等待的毫秒数</span></div><div class="line"><span class="xml">      500</span></div><div class="line"><span class="xml">    )</span></div><div class="line"><span class="xml">  &#125;</span></div><div class="line"><span class="xml">&#125;)</span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p>结果：</p>
+<p>Ask a yes/no question:</p>
+<p>I cannot give you an answer until you ask a question!</p>
+<p>在这个示例中，使用 watch 选项允许我们执行异步操作 (访问一个 API)，限制我们执行该操作的频率，并在我们得到最终结果前，设置中间状态。这些都是计算属性无法做到的。</p>
+<p>除了 watch 选项之外，您还可以使用命令式的 vm.$watch API。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/18/vue2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1771,332 +2040,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/08/espresso3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="seven">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/image/my.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QA seven's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/12/08/espresso3/" itemprop="url">espresso系列3--测试实践</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-08T22:30:17+08:00">
-                2016-12-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前2篇我们已经详细介绍了espresso的架构以及相应的API，相信大家也有了一定的了解，理论讲的再多，还是不如手上自己敲一遍代码。<br>还是深入浅出系列的套路，让我这个小司机带大家一步一步进入espresso的世界吧。</p>
-<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p><img src="http://f.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=1b0dc3d30d2442a7ba03f5f7b02ac62e/6159252dd42a2834b1c7cf5b59b5c9ea15cebf79.jpg" alt="github"><br>github，如果你还用svn的话，请放弃阅读本系列文章，太low了，而且本系列的code都是采用google官方的espresso的demo，都来源于github。<br><img src="http://web.img.chuanke.com/course/2015-03/04/208e43b22dffd2a46a88f2a610c77e35.jpg" alt="android studio"><br>android studio,这个不用说，目前android开发者最好的工具，并且他有很多帮助espresso测试的插件或功能，比如录制功能等。<br><img src="http://i1.wp.com/photo.sofun.tw/2013/09/Android-SDK-ADT-Bundle-Logo.jpg" alt="android sdk"><br>android sdk，这个更不用说，如果你连这个都没，还学什么android。<br><img src="http://img1.imgtn.bdimg.com/it/u=2429262149,756671414&amp;fm=21&amp;gp=0.jpg" alt="genymotion"><br>genymotion,android目前来说最好的模拟器，虽然原生的也很不错，但是开发者首先得还是genymotion</p>
-<h3 id="首先使用android-studio创建项目"><a href="#首先使用android-studio创建项目" class="headerlink" title="首先使用android studio创建项目"></a>首先使用android studio创建项目</h3><p>最好你已经拥有了项目源码，espresso并不是单纯的黑盒ui测试工具，它能干得事情很多，包括单元测试，集成测试，甚至在mock服务，以及将你需要的内容注入到代码中，所以我把称为灰盒工具。<br>如果之前没有做个android项目的话，也可以在github上找一些开源的android app 练手。不过建议大家从espresso demo库入手。</p>
-<h4 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h4><p><img src="/image/android_studio.png" alt="android_studio"></p>
-<p>如上图，我们可以创建新的项目，导入已经存在android项目，从版本管理软件中导入，从gradle等其他工具中导入，以及获取android代码样例导入。<br>google android 所有的测试demo都在以下github地址<br><a href="https://github.com/googlesamples/android-testing.git" target="_blank" rel="external">    https://github.com/googlesamples/android-testing.git</a><br>下载完成后，我们进入espresso目录，可以看到espresso的demo还是很丰富的。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> lqi @ CNlqi-3 <span class="keyword">in</span> ~/work/<span class="built_in">test</span>/android/android-testing on git:master x [0:19:24]</span></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> ui/espresso</span></div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> lqi @ CNlqi-3 <span class="keyword">in</span> ~/work/<span class="built_in">test</span>/android/android-testing/ui/espresso on git:master x [0:19:31]</span></div><div class="line"><span class="meta">$</span><span class="bash"> ls</span></div><div class="line">BasicSample           CustomMatcherSample   EspressoSpoonDemo     IntentsAdvancedSample MultiWindowSample     WebBasicSample</div><div class="line">BasicSampleBundled    DataAdapterSample     IdlingResourceSample  IntentsBasicSample    RecyclerViewSample    spoon-gradle-plugin</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> lqi @ CNlqi-3 <span class="keyword">in</span> ~/work/<span class="built_in">test</span>/android/android-testing/ui/espresso on git:master x [0:19:37]</span></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> BasicSample</span></div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> lqi @ CNlqi-3 <span class="keyword">in</span> ~/work/<span class="built_in">test</span>/android/android-testing/ui/espresso/BasicSample on git:master x [0:19:40]</span></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">pwd</span></span></div><div class="line">/Users/lqi/work/test/android/android-testing/ui/espresso/BasicSample</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> lqi @ CNlqi-3 <span class="keyword">in</span> ~/work/<span class="built_in">test</span>/android/android-testing/ui/espresso/BasicSample on git:master x [0:20:42]</span></div><div class="line"><span class="meta">$</span><span class="bash"></span></div></pre></td></tr></table></figure></p>
-<h4 id="导入项目"><a href="#导入项目" class="headerlink" title="导入项目"></a>导入项目</h4><p>选择<code>BasicSample</code>导入或者直接命令行<code>studio .</code>打开该项目。<br><img src="/image/android_menu.png" alt="android_menu">·<br>外层的build.gradle文件设置的是整个项目的一些配置,例如依赖的类库，远程的仓库repositories。编译器的版本，espresso的版本等。</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Top-level build file where you can add configuration options common to all sub-projects/modules.</span></div><div class="line"></div><div class="line"><span class="keyword">buildscript</span> &#123;</div><div class="line">    <span class="keyword">repositories</span> &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">dependencies</span> &#123;</div><div class="line">        <span class="keyword">classpath</span> <span class="string">'com.android.tools.build:gradle:2.1.2'</span></div><div class="line"></div><div class="line">        <span class="comment">// <span class="doctag">NOTE:</span> Do not place your application dependencies here; they belong</span></div><div class="line">        <span class="comment">// in the individual module build.gradle files</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">allprojects</span> &#123;</div><div class="line">    <span class="keyword">repositories</span> &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">ext &#123;</div><div class="line">    buildToolsVersion = <span class="string">"24.0.1"</span></div><div class="line">    supportLibVersion = <span class="string">"24.2.0"</span></div><div class="line">    runnerVersion = <span class="string">"0.5"</span></div><div class="line">    rulesVersion = <span class="string">"0.5"</span></div><div class="line">    espressoVersion = <span class="string">"2.2.2"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h4><p>app目录为项目主目录包含项目源代码以及测试代码<br>app里面也包含build.gradle文件，有时候项目可能包含几个主目录，那么各个目录的下的build.gradle文件都继承自顶层的build.gradle文件。<br>app下的build.gradle文件配置了android的配置信息，以及会用到的依赖。</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">apply plugin: <span class="string">'com.android.application'</span></div><div class="line"></div><div class="line">android &#123;</div><div class="line">    compileSdkVersion <span class="number">24</span></div><div class="line">    buildToolsVersion rootProject.buildToolsVersion</div><div class="line">    defaultConfig &#123;</div><div class="line">        applicationId <span class="string">"com.example.android.testing.espresso.BasicSample"</span></div><div class="line">        minSdkVersion <span class="number">10</span></div><div class="line">        targetSdkVersion <span class="number">24</span></div><div class="line">        versionCode <span class="number">1</span></div><div class="line">        versionName <span class="string">"1.0"</span></div><div class="line">        testInstrumentationRunner <span class="string">"android.support.test.runner.AndroidJUnitRunner"</span></div><div class="line">    &#125;</div><div class="line">    lintOptions &#123;</div><div class="line">        abortOnError <span class="keyword">false</span></div><div class="line">    &#125;</div><div class="line">    productFlavors &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">dependencies</span> &#123;</div><div class="line">    <span class="comment">// App dependencies</span></div><div class="line">    <span class="keyword">compile</span> <span class="string">'com.android.support:support-annotations:'</span> + rootProject.supportLibVersion;</div><div class="line">    <span class="keyword">compile</span> <span class="string">'com.google.guava:guava:18.0'</span></div><div class="line">    <span class="comment">// Testing-only dependencies</span></div><div class="line">    <span class="comment">// Force usage of support annotations in the test app, since it is internally used by the runner module.</span></div><div class="line">    androidTestCompile <span class="string">'com.android.support:support-annotations:'</span> + rootProject.supportLibVersion;</div><div class="line">    androidTestCompile <span class="string">'com.android.support.test:runner:'</span> + rootProject.runnerVersion;</div><div class="line">    androidTestCompile <span class="string">'com.android.support.test:rules:'</span> + rootProject.rulesVersion;</div><div class="line">    androidTestCompile <span class="string">'com.android.support.test.espresso:espresso-core:'</span> + rootProject.espressoVersion;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>BasicSample APP就长样子。<br><img src="/image/启动espresso.png" alt="启动espresso"></p>
-<h4 id="启动模拟器"><a href="#启动模拟器" class="headerlink" title="启动模拟器"></a>启动模拟器</h4><p>首先启动android emulator/genymotion,之后直接点击run按钮就能部署app到模拟器上。<br>log如下.<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">Testing started at <span class="number">2</span>:<span class="number">32</span> PM ...</div><div class="line"></div><div class="line"><span class="number">12</span>/<span class="number">09</span> <span class="number">14</span>:<span class="number">32</span>:<span class="number">04</span>: Launching ChangeTextBehaviorTe...</div><div class="line">$ adb push /Users/lqi/work/test/android/android-testing/ui/espresso/BasicSample/app/build/outputs/apk/app-debug<span class="selector-class">.apk</span> /data/local/tmp/com<span class="selector-class">.example</span><span class="selector-class">.android</span><span class="selector-class">.testing</span><span class="selector-class">.espresso</span><span class="selector-class">.BasicSample</span></div><div class="line">$ adb shell pm install -r <span class="string">"/data/local/tmp/com.example.android.testing.espresso.BasicSample"</span></div><div class="line">	pkg: /data/local/tmp/com<span class="selector-class">.example</span><span class="selector-class">.android</span><span class="selector-class">.testing</span><span class="selector-class">.espresso</span><span class="selector-class">.BasicSample</span></div><div class="line">Success</div><div class="line"></div><div class="line"></div><div class="line">$ adb push /Users/lqi/work/test/android/android-testing/ui/espresso/BasicSample/app/build/outputs/apk/app-debug-androidTest-unaligned<span class="selector-class">.apk</span> /data/local/tmp/com<span class="selector-class">.example</span><span class="selector-class">.android</span><span class="selector-class">.testing</span><span class="selector-class">.espresso</span><span class="selector-class">.BasicSample</span><span class="selector-class">.test</span></div><div class="line">$ adb shell pm install -r <span class="string">"/data/local/tmp/com.example.android.testing.espresso.BasicSample.test"</span></div><div class="line">	pkg: /data/local/tmp/com<span class="selector-class">.example</span><span class="selector-class">.android</span><span class="selector-class">.testing</span><span class="selector-class">.espresso</span><span class="selector-class">.BasicSample</span><span class="selector-class">.test</span></div><div class="line">Success</div><div class="line"></div><div class="line"></div><div class="line">Running tests</div><div class="line"></div><div class="line">$ adb shell am instrument -w -r   -e debug false -e class com<span class="selector-class">.example</span><span class="selector-class">.android</span><span class="selector-class">.testing</span><span class="selector-class">.espresso</span><span class="selector-class">.BasicSample</span><span class="selector-class">.ChangeTextBehaviorTest</span> com<span class="selector-class">.example</span><span class="selector-class">.android</span><span class="selector-class">.testing</span><span class="selector-class">.espresso</span><span class="selector-class">.BasicSample</span><span class="selector-class">.test</span>/android<span class="selector-class">.support</span><span class="selector-class">.test</span><span class="selector-class">.runner</span><span class="selector-class">.AndroidJUnitRunner</span></div><div class="line">Client not ready yet..</div><div class="line">Started running tests</div><div class="line">Tests ran to completion.</div></pre></td></tr></table></figure></p>
-<h4 id="编写测试"><a href="#编写测试" class="headerlink" title="编写测试"></a>编写测试</h4><p>此实例BasicSample包含1个textView,1个EditText和2个button，当点击change text 按钮时，会将edittext的值填入textview中。当点击open activity and change text 按钮时，将打开一个新的页面（姑且叫这样吧）并将edittext内容显示在这个页面。<br><code>@RunWith(AndroidJUnit4.class)</code><br>采用了JUnit 4风格进行编写</p>
-<ul>
-<li>首先我们需要新建一个测试类。<br><code>ChangeTextBehaviorTest</code></li>
-</ul>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChangeTextBehaviorTest</span> </span>&#123;  </div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>首先创建一个@Rule,ActivityTestRule用来指明被测试的Activity;<br>@Rule: 简单来说，是为各个测试方法提供一些支持。具体来说，比如我需要测试一个Activity，那么我可以在@Rule注解下面采用一个ActivityTestRule，该类提供了对相应Activity的功能测试的支持。该类可以在@Before和@Test标识的方法执行之前确保将Activity运行起来，并且在所有@Test和@After方法执行结束之后将Activity杀死。在整个测试期间，每个测试方法都可以直接对相应Activity进行修改和访问。</li>
-</ul>
-<figure class="highlight d"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">@Rule</span></div><div class="line">       <span class="keyword">public</span> ActivityTestRule&lt;MainActivity&gt; mActivityRule = <span class="keyword">new</span> ActivityTestRule&lt;&gt;(</div><div class="line">           MainActivity.<span class="keyword">class</span>);</div></pre></td></tr></table></figure>
-<ul>
-<li>标识一个测试方法。一个测试类中可以有多个测试方法，每个测试方法需要用一个@Test注解来标识。<br>以下代码找到editTextUserInput输入‘Espresso’，关闭键盘。点击changeTextBt按钮。检查textToBeChanged的值是否为‘Espresso’。<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@Test</span></div><div class="line">public void changeText_sameActivity() &#123;</div><div class="line">    <span class="comment">// Type text and then press the button.</span></div><div class="line">    <span class="selector-tag">onView</span>(withId(R.id.editTextUserInput))</div><div class="line">            <span class="selector-class">.perform</span>(typeText(STRING_TO_BE_TYPED), closeSoftKeyboard());</div><div class="line">    <span class="selector-tag">onView</span>(withId(R.id.changeTextBt))<span class="selector-class">.perform</span>(click());</div><div class="line"></div><div class="line">    <span class="comment">// Check that the text was changed.</span></div><div class="line">    <span class="selector-tag">onView</span>(withId(R.id.textToBeChanged))<span class="selector-class">.check</span>(matches(withText(STRING_TO_BE_TYPED)));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>顺便说说其他junit4注解的用法</p>
-<pre><code>@Before: 标识在运行测试方法之前运行的代码。可以支持同一个Class中有多个@Before，但是这些方法的执行顺序是随机的。该注解替代了JUnit 3中的setUp()方法。
-@After: 标识在运行测试方法结束之后运行的代码。可以在其中做一些释放资源的操作。该注解替代了JUnit 3中的tearDown()方法。
-@BeforeClass: 为测试类标识一个static方法，在测试之前只执行一次。
-@AfterClass: 为测试类标识一个static方法，在所有测试方法结束之后只执行一次。
-@Test(timeout=&lt;milliseconds&gt;): 为测试方法设定超时时间。
-</code></pre><p>到了这里我们要说下怎么定位所需的元素，其实和web差不多，我们可以利用layout inspector与android device monitor工具。<br><img src="/image/android_device_monitor.png" alt="android_device_monitor"><br><img src="/image/android_layout_inspector.png" alt="android_device_monitor"><br>在写一个测试，在editTextUserInput输入‘Espresso’，之后关闭键盘。点击activityChangeTextBtn按钮，查看show_text_view的值是否为‘Espresso’。<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@Test</span></div><div class="line">  public void changeText_newActivity() &#123;</div><div class="line">      <span class="comment">// Type text and then press the button.</span></div><div class="line">      <span class="selector-tag">onView</span>(withId(R.id.editTextUserInput))<span class="selector-class">.perform</span>(typeText(STRING_TO_BE_TYPED),</div><div class="line">              closeSoftKeyboard());</div><div class="line">      <span class="selector-tag">onView</span>(withId(R.id.activityChangeTextBtn))<span class="selector-class">.perform</span>(click());</div><div class="line"></div><div class="line">      <span class="comment">// This view is in a different Activity, no need to tell Espresso.</span></div><div class="line">      <span class="selector-tag">onView</span>(withId(R.id.show_text_view))<span class="selector-class">.check</span>(matches(withText(STRING_TO_BE_TYPED)));</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
-<p>以上是espresso最常见的测试，希望大家能够好好理解。</p>
-<h3 id="接下来我们看看espresso如何对AdapterView控制器测试。"><a href="#接下来我们看看espresso如何对AdapterView控制器测试。" class="headerlink" title="接下来我们看看espresso如何对AdapterView控制器测试。"></a>接下来我们看看espresso如何对AdapterView控制器测试。</h3><p>​AdapterView​ 是一个从适配器中动态加载数据的特殊控件。最常见的 ​AdapterView​ 是 ListView​。与像 ​LinearLayout​ 这样的静态控件相反，在当前视图结构中，可能只加载了 ​AdapterView​ 子控件的一部分， 简单的 ​onview()​ 可能会找不到当前没有被加载的视图。Espresso 通过提供单独的 onData()​方法来切入点处理此问题，它可以在操作适配器中有该问题的条目或该条目的子项之前将其加载（使其获取焦点）。<br>导入espresso demo中的MultiWindowSample项目<br>该测试是从ArrayAdapter类型的dropdown_item控件中选出需要的值，类似我们用搜索引擎时，显示的list。<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@Test</span></div><div class="line">   public void autoCompleteTextView_onDataClickAndCheck() &#123;</div><div class="line">       <span class="comment">// NB: The autocompletion box is implemented with a ListView, so the preferred way</span></div><div class="line">       <span class="comment">// to interact with it is onData(). We can use inRoot here too!</span></div><div class="line">       <span class="selector-tag">onView</span>(withId(R.id.auto_complete_text_view))</div><div class="line">               <span class="selector-class">.perform</span>(typeText(<span class="string">"S"</span>), closeSoftKeyboard());</div><div class="line"></div><div class="line">       <span class="comment">// This is useful because some of the completions may not be part of the View Hierarchy</span></div><div class="line">       <span class="comment">// unless you scroll around the list.</span></div><div class="line">       <span class="selector-tag">onData</span>(allOf(instanceOf(String.class), is(<span class="string">"Baltic Sea"</span>)))</div><div class="line">               <span class="selector-class">.inRoot</span>(withDecorView(not(is(mActivity.getWindow().getDecorView()))))</div><div class="line">               <span class="selector-class">.perform</span>(click());</div><div class="line"></div><div class="line">       <span class="comment">// The text should be filled in.</span></div><div class="line">       <span class="selector-tag">onView</span>(withId(R.id.auto_complete_text_view))</div><div class="line">               <span class="selector-class">.check</span>(matches(withText(<span class="string">"Baltic Sea"</span>)));</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
-<p>，AutoCompleteText的选择等。 这些测试项都有一个共同的特点。即不在主UI布局的结构(layout,及其include的layout)之中，是不能直接定位的。 所以这里就需要使用inRoot( ) 了。<br><code>onData(allOf(instanceOf(String.class), is(&quot;Baltic Sea&quot;)))
-        .inRoot(withDecorView(not(is(mActivity.getWindow().getDecorView()))))
-        .perform(click());</code><br>以上代码就解决了之前UiAutomator不支持Toast的验证的问题。</p>
-<h3 id="运行测试"><a href="#运行测试" class="headerlink" title="运行测试"></a>运行测试</h3><p>运行测试的方法很多，第一种命令行执行。<br>切换到当前项目目录，终端运行<br><code>./gradlew cAT</code><br>其中，cAT意为connectedAndroidTest。</p>
-<p>另一种方式是在android studio中，点击run按钮，或者右键执行单一测试。<br><img src="/image/android_test.png" alt="android_device_monitor"></p>
-<p>这一章还是以基础的实践为主，之后我们将深入架构，来看看espresso的API 方法，帮助大家理解API 更好更快的编写测试。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/02/espresso2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="seven">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/image/my.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QA seven's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/12/02/espresso2/" itemprop="url">espresso基础架构与API分析</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-02T11:57:43+08:00">
-                2016-12-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="espresso基础架构与API分析"><a href="#espresso基础架构与API分析" class="headerlink" title="espresso基础架构与API分析"></a>espresso基础架构与API分析</h2><p>Espresso测试框架提供了一组API来构建UI测试，以测试应用程序内的用户流。 这些API让您能够编写简洁，运行可靠的自动化UI测试。 Espresso非常适合编写白盒式自动化测试，其中测试代码使用来自所测试的应用程序的实现代码细节。</p>
-<p>Espresso测试框架的主要功能包括：</p>
-<p>用于在目标应用程序中查看和适配器匹配的灵活API。 有关详细信息，请参阅<a href="https://developer.android.com/topic/libraries/testing-support-library/index.html#espresso-matching" target="_blank" rel="external">View matching</a>。<br>一组广泛的操作API，用于自动化UI交互。 有关更多信息，请参阅<a href="https://developer.android.com/topic/libraries/testing-support-library/index.html#espresso-actions" target="_blank" rel="external"> Action APIs</a>。<br>UI线程同步提高测试的可靠性。 有关更多信息，请参阅 <a href="https://developer.android.com/topic/libraries/testing-support-library/index.html#espresso-thread-sync" target="_blank" rel="external">UI thread synchronization</a>。<br>可以作为参数传入 ​ViewInteraction.check()​方法中的 ViewAssertion 的集合。通常，你会使用带有视图匹配器的匹配断言来判断当前被选中视图的状态，请参阅<a href="https://developer.android.com/reference/android/support/test/espresso/assertion/package-summary.html" target="_blank" rel="external">ViewAssertions</a><br>需要Android 2.2（API级别8）或更高版本。</p>
-<h2 id="View-matching"><a href="#View-matching" class="headerlink" title="View matching"></a>View matching</h2><h3 id="onView"><a href="#onView" class="headerlink" title="onView()"></a>onView()</h3><p>Espresso.onView()方法允许您访问目标应用程序中的UI组件并与其进行交互。 该方法接受Matcher参数并搜索视图层次以定位满足某些给定标准的对应View实例。 您可以通过指定以下条件来优化搜索：</p>
-<ul>
-<li>视图的类名</li>
-<li>视图的内容描述</li>
-<li>视图的R.id</li>
-<li>视图中显示的文本<br>例如，要定位ID值为my_button的按钮，您可以指定一个匹配器，如下所示：</li>
-</ul>
-<p><code>onView（withId（R.id.my_button））;</code><br>如果搜索成功，onView()方法返回一个引用，该引用允许您对目标视图执行用户操作和测试断言。</p>
-<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function">ViewInteraction <span class="title">onView</span><span class="params">(<span class="keyword">final</span> Matcher&lt;View&gt; viewMatcher)</span> </span>&#123;</div><div class="line">   <span class="keyword">return</span> BASE.plus(<span class="keyword">new</span> ViewInteractionModule(viewMatcher)).viewInteraction();</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<h4 id="ViewMatchers"><a href="#ViewMatchers" class="headerlink" title="ViewMatchers"></a>ViewMatchers</h4><p>onView方法需要传入类型为Matcher<view>泛型viewMatcher对象.</view></p>
-<p>ViewMatchers类中方法有<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">isAssignableFrom，withClassName，isDisplayed，isCompletelyDisplayed，isDisplayingAtLeast，isEnabled，isFocusable，hasFocus，isSelected，hasSibling，withContentDescription，withContentDescription，withContentDescription，withId，withResourceName，withTagKey，withTagValue，withText，withCharSequence，withHint，isChecked，isNotChecked，withCheckBoxState，hasContentDescription，hasDescendant，isClickable，isDescendantOfA，withEffectiveVisibility，withParent，withChild，isRoot，supportsInputMethods，hasImeAction，hasImeAction，hasLinks，assertThat，withSpinnerText，isJavascriptEnabled，hasErrorText，withInputType。</div></pre></td></tr></table></figure></p>
-<p> 这些方法能够帮助我们快速定位到特定的视图。<br> 我们来看看常用的几个方法<br> withId<br> 返回基于资源ids匹配视图的匹配器。<br> withText<br> 返回基于TextView的文本属性值匹配TextView的匹配器。<br><code>onView(allOf(withId(R.id.my_view), withText(&quot;Hello!&quot;)))</code><br> isDisplayed<br> 返回与当前显示在屏幕上的视图匹配的匹配器给用户。<br> 如下</p>
-<p> <code>Espresso.onView(ViewMatchers.withId(R.id.mpu_summary_send_receipt_button))
-          .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));</code><br>其他API方法可以在以下文档中找到具体用法和解释，我们并不需要记住每个方法，遇到具体的场景的时候再过来查询也来得及<br><a href="https://developer.android.com/reference/android/support/test/espresso/matcher/ViewMatchers.html" target="_blank" rel="external">viewmatchers-API</a></p>
-<h4 id="ViewMatchers与hamcrest匹配器配合使用"><a href="#ViewMatchers与hamcrest匹配器配合使用" class="headerlink" title="ViewMatchers与hamcrest匹配器配合使用"></a>ViewMatchers与hamcrest匹配器配合使用</h4><p><strong>什么是hamcrest？</strong></p>
-<p>Hamcrest框架是junit4框架新引入的断言框架，Hamcest提供了一套匹配符Matcher，这些匹配符更接近自然语言，可读性高，更加灵活。<br>我们可以通过各种viewmatchers与Hamcrest组合匹配器来缩小搜索的范围。<br>如以下示例所示：</p>
-<p><code>onView(allOf(withId(R.id.button_signin), withText(&quot;Sign-in&quot;)));</code></p>
-<p>你也可以使用 ​not​ 反转匹配：</p>
-<p><code>onView(allOf(withId(R.id.button_signin), not(withText(&quot;Sign-out&quot;))));</code><br><strong>注意：</strong><br>一个工程化的应用中，所有用户可与之交互的视图都应该包含说明文字或有一个内容描述（参考 Android 可访问性指导）。如果你不能通过使用 ‘withText’ 或 ‘withContentDescripiton’ 来缩小onView的搜索范围，可以认为这是一个可访问性的 bug。</p>
-<p>请使用最少的匹配器来定位视图。不要过指定，因为这将强制框架做无用功。例如，如果一个视图可以通过它的文字唯一确定，你不需要说明该视图也可以通过 ​TextView​ 指定。对许多视图而言，使用它的​R.id​值就足够了。</p>
-<p>更多的hamcrest api请查看<br><a href="http://hamcrest.org/JavaHamcrest/javadoc/1.3/" target="_blank" rel="external">hamcrest api</a></p>
-<p>###onData<br>当espresso在AdapterView中查找视图时需要用onData方法，例如在AdapterView小部件中，视图在运行时动态填充子视图。如果要测试的目标视图位于AdapterView（例如ListView，GridView或Spinner）中，则onView()方法可能无法工作，因为只有一部分视图可能会加载到当前视图层次结构中。</p>
-<p>相反，调用onData()方法可获取DataInteraction对象以访问目标视图元素。 Espresso处理将目标视图元素加载到当前视图层次结构中。 Espresso还负责滚动到目标元素，并将放在焦点元素。</p>
-<p>注意：onData()方法不检查您指定的项目是否与视图对应。 Espresso仅搜索当前视图层次结构。如果没有找到匹配，该方法将抛出NoMatchingViewException异常。</p>
-<p>下面的代码片段展示了如何使用onData()方法和Hamcrest匹配来搜索包含给定字符串的列表中的特定行。在此示例中，LongListActivity类包含通过SimpleAdapter公开的字符串列表。</p>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">onData(<span class="name">allOf</span>(<span class="name">is</span>(<span class="name">instanceOf</span>(<span class="name">Map</span>.class)),</div><div class="line">        hasEntry(<span class="name">equalTo</span>(<span class="name">LongListActivity</span>.ROW_TEXT), is(<span class="string">"test input"</span>)))<span class="comment">;</span></div></pre></td></tr></table></figure>
-<h2 id="Performing-Actions"><a href="#Performing-Actions" class="headerlink" title="Performing Actions"></a>Performing Actions</h2><p>调用ViewInteraction.perform()或DataInteraction.perform()方法来模拟UI组件上的用户交互。您必须传入一个或多个ViewAction对象作为参数。Espresso按照给定的顺序依次触发每个动作，并在主线程中执行它们。<br>ViewActions类提供了指定常用操作的帮助方法列表。您可以使用这些方法作为方便的快捷方式，而不是创建和配置单个ViewAction对象。您可以指定以下操作：</p>
-<ul>
-<li>ViewActions.click()：点击视图。</li>
-<li>ViewActions.typeText()：点击视图并输入指定的字符串。</li>
-<li>ViewActions.scrollTo()：滚动到视图。目标视图必须是来自ScrollView的子类，它的android：visibility属性的值必须是VISIBLE。对于扩展AdapterView（例如，ListView）的视图，onData()方法为您处理滚动。</li>
-<li>ViewActions.pressKey()：使用指定的键码执行键按下。</li>
-<li>ViewActions.clearText()：清除目标视图中的文本。<br>如果目标视图位于ScrollView内部，请先执行ViewActions.scrollTo()操作，以在其他操作进行之前在屏幕中显示视图。如果视图已显示，ViewActions.scrollTo()操作将不起作用。</li>
-</ul>
-<p>例如，要模拟输入字符串值并按按钮提交值，您可以编写类似这样的自动测试脚本。 ViewInteraction.perform()和DataInteraction.perform()方法采用一个或多个ViewAction参数，并按提供的顺序运行操作。</p>
-<p>//将文本键入EditText视图，然后关闭软键盘<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">onView(<span class="name">withId</span>(<span class="name">R</span>.id.editTextUserInput)）</div><div class="line">     .perform(<span class="name">typeText</span>(<span class="name">STRING_TO_BE_TYPED</span>),closeSoftKeyboard()）<span class="comment">;</span></div></pre></td></tr></table></figure></p>
-<p>//按按钮提交文本更改<br><code>onView(withId(R.id.changeTextBt)).perform(click());</code></p>
-<p>其他action api 请查看<br><a href="espresso.action">https://developer.android.com/reference/android/support/test/espresso/action/package-summary.html</a></p>
-<h2 id="Verifying-Results"><a href="#Verifying-Results" class="headerlink" title="Verifying Results"></a>Verifying Results</h2><p>调用ViewInteraction.check()或DataInteraction.check()方法来断言UI中的视图匹配一些预期状态。 您必须传递一个ViewAssertion对象作为参数。 如果断言失败，Espresso会抛出一个AssertionFailedError。<br>ViewAssertions类提供了用于指定公共断言的帮助程序方法的列表。 您可以使用的断言包括：<br>doesNotExist：断言没有与当前视图层次结构中指定的条件匹配的视图。<br>matches：断言指定视图存在于当前视图层次结构中，并且其状态与某个给定的Hamcrest匹配器匹配。<br>selectedDescendentsMatch：存在指定的孩子为父视图查看的声明，它们的状态与某个给定的Hamcrest匹配器匹配。</p>
-<p>以下代码段显示了如何检查UI中显示的文本的值与之前在EditText字段中输入的文本的值相同。<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">public</span> <span class="selector-tag">void</span> <span class="selector-tag">testChangeText_sameActivity</span>() &#123;</div><div class="line">    <span class="comment">// Type text and then press the button.</span></div><div class="line">    ...</div><div class="line">    <span class="selector-tag">onView</span>(withText(R.string.item_1_text))</div><div class="line">            <span class="selector-class">.check</span>(doesNotExist());</div><div class="line">    <span class="comment">// Check that the text was changed.</span></div><div class="line">    <span class="selector-tag">onView</span>(withId(R.id.textToBeChanged))</div><div class="line">            <span class="selector-class">.check</span>(matches(withText(STRING_TO_BE_TYPED)));</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>ViewMatchers, ViewActions, ViewAssertions 组成了espresso的基础架构，所以要真正的掌握espresso必须将这3部分基础熟悉。<br>上一节<a href="https://qaseven.github.io/2016/11/30/expresso/" target="_blank" rel="external">espresso基础</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2142,7 +2090,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-count">42</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

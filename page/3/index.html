@@ -285,6 +285,327 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/08/espresso3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="seven">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/image/my.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/08/espresso3/" itemprop="url">espresso系列3--测试实践</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-08T22:30:17+08:00">
+                2016-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前2篇我们已经详细介绍了espresso的架构以及相应的API，相信大家也有了一定的了解，理论讲的再多，还是不如手上自己敲一遍代码。<br>还是深入浅出系列的套路，让我这个小司机带大家一步一步进入espresso的世界吧。</p>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p><img src="http://f.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=1b0dc3d30d2442a7ba03f5f7b02ac62e/6159252dd42a2834b1c7cf5b59b5c9ea15cebf79.jpg" alt="github"><br>github，如果你还用svn的话，请放弃阅读本系列文章，太low了，而且本系列的code都是采用google官方的espresso的demo，都来源于github。<br><img src="http://web.img.chuanke.com/course/2015-03/04/208e43b22dffd2a46a88f2a610c77e35.jpg" alt="android studio"><br>android studio,这个不用说，目前android开发者最好的工具，并且他有很多帮助espresso测试的插件或功能，比如录制功能等。<br><img src="http://i1.wp.com/photo.sofun.tw/2013/09/Android-SDK-ADT-Bundle-Logo.jpg" alt="android sdk"><br>android sdk，这个更不用说，如果你连这个都没，还学什么android。<br><img src="http://img1.imgtn.bdimg.com/it/u=2429262149,756671414&amp;fm=21&amp;gp=0.jpg" alt="genymotion"><br>genymotion,android目前来说最好的模拟器，虽然原生的也很不错，但是开发者首先得还是genymotion</p>
+<h3 id="首先使用android-studio创建项目"><a href="#首先使用android-studio创建项目" class="headerlink" title="首先使用android studio创建项目"></a>首先使用android studio创建项目</h3><p>最好你已经拥有了项目源码，espresso并不是单纯的黑盒ui测试工具，它能干得事情很多，包括单元测试，集成测试，甚至在mock服务，以及将你需要的内容注入到代码中，所以我把称为灰盒工具。<br>如果之前没有做个android项目的话，也可以在github上找一些开源的android app 练手。不过建议大家从espresso demo库入手。</p>
+<h4 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h4><p><img src="/image/android_studio.png" alt="android_studio"></p>
+<p>如上图，我们可以创建新的项目，导入已经存在android项目，从版本管理软件中导入，从gradle等其他工具中导入，以及获取android代码样例导入。<br>google android 所有的测试demo都在以下github地址<br><a href="https://github.com/googlesamples/android-testing.git" target="_blank" rel="external">    https://github.com/googlesamples/android-testing.git</a><br>下载完成后，我们进入espresso目录，可以看到espresso的demo还是很丰富的。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> lqi @ CNlqi-3 <span class="keyword">in</span> ~/work/<span class="built_in">test</span>/android/android-testing on git:master x [0:19:24]</span></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> ui/espresso</span></div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> lqi @ CNlqi-3 <span class="keyword">in</span> ~/work/<span class="built_in">test</span>/android/android-testing/ui/espresso on git:master x [0:19:31]</span></div><div class="line"><span class="meta">$</span><span class="bash"> ls</span></div><div class="line">BasicSample           CustomMatcherSample   EspressoSpoonDemo     IntentsAdvancedSample MultiWindowSample     WebBasicSample</div><div class="line">BasicSampleBundled    DataAdapterSample     IdlingResourceSample  IntentsBasicSample    RecyclerViewSample    spoon-gradle-plugin</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> lqi @ CNlqi-3 <span class="keyword">in</span> ~/work/<span class="built_in">test</span>/android/android-testing/ui/espresso on git:master x [0:19:37]</span></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> BasicSample</span></div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> lqi @ CNlqi-3 <span class="keyword">in</span> ~/work/<span class="built_in">test</span>/android/android-testing/ui/espresso/BasicSample on git:master x [0:19:40]</span></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">pwd</span></span></div><div class="line">/Users/lqi/work/test/android/android-testing/ui/espresso/BasicSample</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> lqi @ CNlqi-3 <span class="keyword">in</span> ~/work/<span class="built_in">test</span>/android/android-testing/ui/espresso/BasicSample on git:master x [0:20:42]</span></div><div class="line"><span class="meta">$</span><span class="bash"></span></div></pre></td></tr></table></figure></p>
+<h4 id="导入项目"><a href="#导入项目" class="headerlink" title="导入项目"></a>导入项目</h4><p>选择<code>BasicSample</code>导入或者直接命令行<code>studio .</code>打开该项目。<br><img src="/image/android_menu.png" alt="android_menu">·<br>外层的build.gradle文件设置的是整个项目的一些配置,例如依赖的类库，远程的仓库repositories。编译器的版本，espresso的版本等。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Top-level build file where you can add configuration options common to all sub-projects/modules.</span></div><div class="line"></div><div class="line"><span class="keyword">buildscript</span> &#123;</div><div class="line">    <span class="keyword">repositories</span> &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">dependencies</span> &#123;</div><div class="line">        <span class="keyword">classpath</span> <span class="string">'com.android.tools.build:gradle:2.1.2'</span></div><div class="line"></div><div class="line">        <span class="comment">// <span class="doctag">NOTE:</span> Do not place your application dependencies here; they belong</span></div><div class="line">        <span class="comment">// in the individual module build.gradle files</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">allprojects</span> &#123;</div><div class="line">    <span class="keyword">repositories</span> &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">ext &#123;</div><div class="line">    buildToolsVersion = <span class="string">"24.0.1"</span></div><div class="line">    supportLibVersion = <span class="string">"24.2.0"</span></div><div class="line">    runnerVersion = <span class="string">"0.5"</span></div><div class="line">    rulesVersion = <span class="string">"0.5"</span></div><div class="line">    espressoVersion = <span class="string">"2.2.2"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h4><p>app目录为项目主目录包含项目源代码以及测试代码<br>app里面也包含build.gradle文件，有时候项目可能包含几个主目录，那么各个目录的下的build.gradle文件都继承自顶层的build.gradle文件。<br>app下的build.gradle文件配置了android的配置信息，以及会用到的依赖。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">apply plugin: <span class="string">'com.android.application'</span></div><div class="line"></div><div class="line">android &#123;</div><div class="line">    compileSdkVersion <span class="number">24</span></div><div class="line">    buildToolsVersion rootProject.buildToolsVersion</div><div class="line">    defaultConfig &#123;</div><div class="line">        applicationId <span class="string">"com.example.android.testing.espresso.BasicSample"</span></div><div class="line">        minSdkVersion <span class="number">10</span></div><div class="line">        targetSdkVersion <span class="number">24</span></div><div class="line">        versionCode <span class="number">1</span></div><div class="line">        versionName <span class="string">"1.0"</span></div><div class="line">        testInstrumentationRunner <span class="string">"android.support.test.runner.AndroidJUnitRunner"</span></div><div class="line">    &#125;</div><div class="line">    lintOptions &#123;</div><div class="line">        abortOnError <span class="keyword">false</span></div><div class="line">    &#125;</div><div class="line">    productFlavors &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">dependencies</span> &#123;</div><div class="line">    <span class="comment">// App dependencies</span></div><div class="line">    <span class="keyword">compile</span> <span class="string">'com.android.support:support-annotations:'</span> + rootProject.supportLibVersion;</div><div class="line">    <span class="keyword">compile</span> <span class="string">'com.google.guava:guava:18.0'</span></div><div class="line">    <span class="comment">// Testing-only dependencies</span></div><div class="line">    <span class="comment">// Force usage of support annotations in the test app, since it is internally used by the runner module.</span></div><div class="line">    androidTestCompile <span class="string">'com.android.support:support-annotations:'</span> + rootProject.supportLibVersion;</div><div class="line">    androidTestCompile <span class="string">'com.android.support.test:runner:'</span> + rootProject.runnerVersion;</div><div class="line">    androidTestCompile <span class="string">'com.android.support.test:rules:'</span> + rootProject.rulesVersion;</div><div class="line">    androidTestCompile <span class="string">'com.android.support.test.espresso:espresso-core:'</span> + rootProject.espressoVersion;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>BasicSample APP就长样子。<br><img src="/image/启动espresso.png" alt="启动espresso"></p>
+<h4 id="启动模拟器"><a href="#启动模拟器" class="headerlink" title="启动模拟器"></a>启动模拟器</h4><p>首先启动android emulator/genymotion,之后直接点击run按钮就能部署app到模拟器上。<br>log如下.<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">Testing started at <span class="number">2</span>:<span class="number">32</span> PM ...</div><div class="line"></div><div class="line"><span class="number">12</span>/<span class="number">09</span> <span class="number">14</span>:<span class="number">32</span>:<span class="number">04</span>: Launching ChangeTextBehaviorTe...</div><div class="line">$ adb push /Users/lqi/work/test/android/android-testing/ui/espresso/BasicSample/app/build/outputs/apk/app-debug<span class="selector-class">.apk</span> /data/local/tmp/com<span class="selector-class">.example</span><span class="selector-class">.android</span><span class="selector-class">.testing</span><span class="selector-class">.espresso</span><span class="selector-class">.BasicSample</span></div><div class="line">$ adb shell pm install -r <span class="string">"/data/local/tmp/com.example.android.testing.espresso.BasicSample"</span></div><div class="line">	pkg: /data/local/tmp/com<span class="selector-class">.example</span><span class="selector-class">.android</span><span class="selector-class">.testing</span><span class="selector-class">.espresso</span><span class="selector-class">.BasicSample</span></div><div class="line">Success</div><div class="line"></div><div class="line"></div><div class="line">$ adb push /Users/lqi/work/test/android/android-testing/ui/espresso/BasicSample/app/build/outputs/apk/app-debug-androidTest-unaligned<span class="selector-class">.apk</span> /data/local/tmp/com<span class="selector-class">.example</span><span class="selector-class">.android</span><span class="selector-class">.testing</span><span class="selector-class">.espresso</span><span class="selector-class">.BasicSample</span><span class="selector-class">.test</span></div><div class="line">$ adb shell pm install -r <span class="string">"/data/local/tmp/com.example.android.testing.espresso.BasicSample.test"</span></div><div class="line">	pkg: /data/local/tmp/com<span class="selector-class">.example</span><span class="selector-class">.android</span><span class="selector-class">.testing</span><span class="selector-class">.espresso</span><span class="selector-class">.BasicSample</span><span class="selector-class">.test</span></div><div class="line">Success</div><div class="line"></div><div class="line"></div><div class="line">Running tests</div><div class="line"></div><div class="line">$ adb shell am instrument -w -r   -e debug false -e class com<span class="selector-class">.example</span><span class="selector-class">.android</span><span class="selector-class">.testing</span><span class="selector-class">.espresso</span><span class="selector-class">.BasicSample</span><span class="selector-class">.ChangeTextBehaviorTest</span> com<span class="selector-class">.example</span><span class="selector-class">.android</span><span class="selector-class">.testing</span><span class="selector-class">.espresso</span><span class="selector-class">.BasicSample</span><span class="selector-class">.test</span>/android<span class="selector-class">.support</span><span class="selector-class">.test</span><span class="selector-class">.runner</span><span class="selector-class">.AndroidJUnitRunner</span></div><div class="line">Client not ready yet..</div><div class="line">Started running tests</div><div class="line">Tests ran to completion.</div></pre></td></tr></table></figure></p>
+<h4 id="编写测试"><a href="#编写测试" class="headerlink" title="编写测试"></a>编写测试</h4><p>此实例BasicSample包含1个textView,1个EditText和2个button，当点击change text 按钮时，会将edittext的值填入textview中。当点击open activity and change text 按钮时，将打开一个新的页面（姑且叫这样吧）并将edittext内容显示在这个页面。<br><code>@RunWith(AndroidJUnit4.class)</code><br>采用了JUnit 4风格进行编写</p>
+<ul>
+<li>首先我们需要新建一个测试类。<br><code>ChangeTextBehaviorTest</code></li>
+</ul>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChangeTextBehaviorTest</span> </span>&#123;  </div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>首先创建一个@Rule,ActivityTestRule用来指明被测试的Activity;<br>@Rule: 简单来说，是为各个测试方法提供一些支持。具体来说，比如我需要测试一个Activity，那么我可以在@Rule注解下面采用一个ActivityTestRule，该类提供了对相应Activity的功能测试的支持。该类可以在@Before和@Test标识的方法执行之前确保将Activity运行起来，并且在所有@Test和@After方法执行结束之后将Activity杀死。在整个测试期间，每个测试方法都可以直接对相应Activity进行修改和访问。</li>
+</ul>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">@Rule</span></div><div class="line">       <span class="keyword">public</span> ActivityTestRule&lt;MainActivity&gt; mActivityRule = <span class="keyword">new</span> ActivityTestRule&lt;&gt;(</div><div class="line">           MainActivity.<span class="keyword">class</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li>标识一个测试方法。一个测试类中可以有多个测试方法，每个测试方法需要用一个@Test注解来标识。<br>以下代码找到editTextUserInput输入‘Espresso’，关闭键盘。点击changeTextBt按钮。检查textToBeChanged的值是否为‘Espresso’。<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@Test</span></div><div class="line">public void changeText_sameActivity() &#123;</div><div class="line">    <span class="comment">// Type text and then press the button.</span></div><div class="line">    <span class="selector-tag">onView</span>(withId(R.id.editTextUserInput))</div><div class="line">            <span class="selector-class">.perform</span>(typeText(STRING_TO_BE_TYPED), closeSoftKeyboard());</div><div class="line">    <span class="selector-tag">onView</span>(withId(R.id.changeTextBt))<span class="selector-class">.perform</span>(click());</div><div class="line"></div><div class="line">    <span class="comment">// Check that the text was changed.</span></div><div class="line">    <span class="selector-tag">onView</span>(withId(R.id.textToBeChanged))<span class="selector-class">.check</span>(matches(withText(STRING_TO_BE_TYPED)));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>顺便说说其他junit4注解的用法</p>
+<pre><code>@Before: 标识在运行测试方法之前运行的代码。可以支持同一个Class中有多个@Before，但是这些方法的执行顺序是随机的。该注解替代了JUnit 3中的setUp()方法。
+@After: 标识在运行测试方法结束之后运行的代码。可以在其中做一些释放资源的操作。该注解替代了JUnit 3中的tearDown()方法。
+@BeforeClass: 为测试类标识一个static方法，在测试之前只执行一次。
+@AfterClass: 为测试类标识一个static方法，在所有测试方法结束之后只执行一次。
+@Test(timeout=&lt;milliseconds&gt;): 为测试方法设定超时时间。
+</code></pre><p>到了这里我们要说下怎么定位所需的元素，其实和web差不多，我们可以利用layout inspector与android device monitor工具。<br><img src="/image/android_device_monitor.png" alt="android_device_monitor"><br><img src="/image/android_layout_inspector.png" alt="android_device_monitor"><br>在写一个测试，在editTextUserInput输入‘Espresso’，之后关闭键盘。点击activityChangeTextBtn按钮，查看show_text_view的值是否为‘Espresso’。<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@Test</span></div><div class="line">  public void changeText_newActivity() &#123;</div><div class="line">      <span class="comment">// Type text and then press the button.</span></div><div class="line">      <span class="selector-tag">onView</span>(withId(R.id.editTextUserInput))<span class="selector-class">.perform</span>(typeText(STRING_TO_BE_TYPED),</div><div class="line">              closeSoftKeyboard());</div><div class="line">      <span class="selector-tag">onView</span>(withId(R.id.activityChangeTextBtn))<span class="selector-class">.perform</span>(click());</div><div class="line"></div><div class="line">      <span class="comment">// This view is in a different Activity, no need to tell Espresso.</span></div><div class="line">      <span class="selector-tag">onView</span>(withId(R.id.show_text_view))<span class="selector-class">.check</span>(matches(withText(STRING_TO_BE_TYPED)));</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<p>以上是espresso最常见的测试，希望大家能够好好理解。</p>
+<h3 id="接下来我们看看espresso如何对AdapterView控制器测试。"><a href="#接下来我们看看espresso如何对AdapterView控制器测试。" class="headerlink" title="接下来我们看看espresso如何对AdapterView控制器测试。"></a>接下来我们看看espresso如何对AdapterView控制器测试。</h3><p>​AdapterView​ 是一个从适配器中动态加载数据的特殊控件。最常见的 ​AdapterView​ 是 ListView​。与像 ​LinearLayout​ 这样的静态控件相反，在当前视图结构中，可能只加载了 ​AdapterView​ 子控件的一部分， 简单的 ​onview()​ 可能会找不到当前没有被加载的视图。Espresso 通过提供单独的 onData()​方法来切入点处理此问题，它可以在操作适配器中有该问题的条目或该条目的子项之前将其加载（使其获取焦点）。<br>导入espresso demo中的MultiWindowSample项目<br>该测试是从ArrayAdapter类型的dropdown_item控件中选出需要的值，类似我们用搜索引擎时，显示的list。<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@Test</span></div><div class="line">   public void autoCompleteTextView_onDataClickAndCheck() &#123;</div><div class="line">       <span class="comment">// NB: The autocompletion box is implemented with a ListView, so the preferred way</span></div><div class="line">       <span class="comment">// to interact with it is onData(). We can use inRoot here too!</span></div><div class="line">       <span class="selector-tag">onView</span>(withId(R.id.auto_complete_text_view))</div><div class="line">               <span class="selector-class">.perform</span>(typeText(<span class="string">"S"</span>), closeSoftKeyboard());</div><div class="line"></div><div class="line">       <span class="comment">// This is useful because some of the completions may not be part of the View Hierarchy</span></div><div class="line">       <span class="comment">// unless you scroll around the list.</span></div><div class="line">       <span class="selector-tag">onData</span>(allOf(instanceOf(String.class), is(<span class="string">"Baltic Sea"</span>)))</div><div class="line">               <span class="selector-class">.inRoot</span>(withDecorView(not(is(mActivity.getWindow().getDecorView()))))</div><div class="line">               <span class="selector-class">.perform</span>(click());</div><div class="line"></div><div class="line">       <span class="comment">// The text should be filled in.</span></div><div class="line">       <span class="selector-tag">onView</span>(withId(R.id.auto_complete_text_view))</div><div class="line">               <span class="selector-class">.check</span>(matches(withText(<span class="string">"Baltic Sea"</span>)));</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<p>，AutoCompleteText的选择等。 这些测试项都有一个共同的特点。即不在主UI布局的结构(layout,及其include的layout)之中，是不能直接定位的。 所以这里就需要使用inRoot( ) 了。<br><code>onData(allOf(instanceOf(String.class), is(&quot;Baltic Sea&quot;)))
+        .inRoot(withDecorView(not(is(mActivity.getWindow().getDecorView()))))
+        .perform(click());</code><br>以上代码就解决了之前UiAutomator不支持Toast的验证的问题。</p>
+<h3 id="运行测试"><a href="#运行测试" class="headerlink" title="运行测试"></a>运行测试</h3><p>运行测试的方法很多，第一种命令行执行。<br>切换到当前项目目录，终端运行<br><code>./gradlew cAT</code><br>其中，cAT意为connectedAndroidTest。</p>
+<p>另一种方式是在android studio中，点击run按钮，或者右键执行单一测试。<br><img src="/image/android_test.png" alt="android_device_monitor"></p>
+<p>这一章还是以基础的实践为主，之后我们将深入架构，来看看espresso的API 方法，帮助大家理解API 更好更快的编写测试。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/02/espresso2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="seven">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/image/my.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/02/espresso2/" itemprop="url">espresso基础架构与API分析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-02T11:57:43+08:00">
+                2016-12-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="espresso基础架构与API分析"><a href="#espresso基础架构与API分析" class="headerlink" title="espresso基础架构与API分析"></a>espresso基础架构与API分析</h2><p>Espresso测试框架提供了一组API来构建UI测试，以测试应用程序内的用户流。 这些API让您能够编写简洁，运行可靠的自动化UI测试。 Espresso非常适合编写白盒式自动化测试，其中测试代码使用来自所测试的应用程序的实现代码细节。</p>
+<p>Espresso测试框架的主要功能包括：</p>
+<p>用于在目标应用程序中查看和适配器匹配的灵活API。 有关详细信息，请参阅<a href="https://developer.android.com/topic/libraries/testing-support-library/index.html#espresso-matching" target="_blank" rel="external">View matching</a>。<br>一组广泛的操作API，用于自动化UI交互。 有关更多信息，请参阅<a href="https://developer.android.com/topic/libraries/testing-support-library/index.html#espresso-actions" target="_blank" rel="external"> Action APIs</a>。<br>UI线程同步提高测试的可靠性。 有关更多信息，请参阅 <a href="https://developer.android.com/topic/libraries/testing-support-library/index.html#espresso-thread-sync" target="_blank" rel="external">UI thread synchronization</a>。<br>可以作为参数传入 ​ViewInteraction.check()​方法中的 ViewAssertion 的集合。通常，你会使用带有视图匹配器的匹配断言来判断当前被选中视图的状态，请参阅<a href="https://developer.android.com/reference/android/support/test/espresso/assertion/package-summary.html" target="_blank" rel="external">ViewAssertions</a><br>需要Android 2.2（API级别8）或更高版本。</p>
+<h2 id="View-matching"><a href="#View-matching" class="headerlink" title="View matching"></a>View matching</h2><h3 id="onView"><a href="#onView" class="headerlink" title="onView()"></a>onView()</h3><p>Espresso.onView()方法允许您访问目标应用程序中的UI组件并与其进行交互。 该方法接受Matcher参数并搜索视图层次以定位满足某些给定标准的对应View实例。 您可以通过指定以下条件来优化搜索：</p>
+<ul>
+<li>视图的类名</li>
+<li>视图的内容描述</li>
+<li>视图的R.id</li>
+<li>视图中显示的文本<br>例如，要定位ID值为my_button的按钮，您可以指定一个匹配器，如下所示：</li>
+</ul>
+<p><code>onView（withId（R.id.my_button））;</code><br>如果搜索成功，onView()方法返回一个引用，该引用允许您对目标视图执行用户操作和测试断言。</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function">ViewInteraction <span class="title">onView</span><span class="params">(<span class="keyword">final</span> Matcher&lt;View&gt; viewMatcher)</span> </span>&#123;</div><div class="line">   <span class="keyword">return</span> BASE.plus(<span class="keyword">new</span> ViewInteractionModule(viewMatcher)).viewInteraction();</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<h4 id="ViewMatchers"><a href="#ViewMatchers" class="headerlink" title="ViewMatchers"></a>ViewMatchers</h4><p>onView方法需要传入类型为Matcher<view>泛型viewMatcher对象.</view></p>
+<p>ViewMatchers类中方法有<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">isAssignableFrom，withClassName，isDisplayed，isCompletelyDisplayed，isDisplayingAtLeast，isEnabled，isFocusable，hasFocus，isSelected，hasSibling，withContentDescription，withContentDescription，withContentDescription，withId，withResourceName，withTagKey，withTagValue，withText，withCharSequence，withHint，isChecked，isNotChecked，withCheckBoxState，hasContentDescription，hasDescendant，isClickable，isDescendantOfA，withEffectiveVisibility，withParent，withChild，isRoot，supportsInputMethods，hasImeAction，hasImeAction，hasLinks，assertThat，withSpinnerText，isJavascriptEnabled，hasErrorText，withInputType。</div></pre></td></tr></table></figure></p>
+<p> 这些方法能够帮助我们快速定位到特定的视图。<br> 我们来看看常用的几个方法<br> withId<br> 返回基于资源ids匹配视图的匹配器。<br> withText<br> 返回基于TextView的文本属性值匹配TextView的匹配器。<br><code>onView(allOf(withId(R.id.my_view), withText(&quot;Hello!&quot;)))</code><br> isDisplayed<br> 返回与当前显示在屏幕上的视图匹配的匹配器给用户。<br> 如下</p>
+<p> <code>Espresso.onView(ViewMatchers.withId(R.id.mpu_summary_send_receipt_button))
+          .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));</code><br>其他API方法可以在以下文档中找到具体用法和解释，我们并不需要记住每个方法，遇到具体的场景的时候再过来查询也来得及<br><a href="https://developer.android.com/reference/android/support/test/espresso/matcher/ViewMatchers.html" target="_blank" rel="external">viewmatchers-API</a></p>
+<h4 id="ViewMatchers与hamcrest匹配器配合使用"><a href="#ViewMatchers与hamcrest匹配器配合使用" class="headerlink" title="ViewMatchers与hamcrest匹配器配合使用"></a>ViewMatchers与hamcrest匹配器配合使用</h4><p><strong>什么是hamcrest？</strong></p>
+<p>Hamcrest框架是junit4框架新引入的断言框架，Hamcest提供了一套匹配符Matcher，这些匹配符更接近自然语言，可读性高，更加灵活。<br>我们可以通过各种viewmatchers与Hamcrest组合匹配器来缩小搜索的范围。<br>如以下示例所示：</p>
+<p><code>onView(allOf(withId(R.id.button_signin), withText(&quot;Sign-in&quot;)));</code></p>
+<p>你也可以使用 ​not​ 反转匹配：</p>
+<p><code>onView(allOf(withId(R.id.button_signin), not(withText(&quot;Sign-out&quot;))));</code><br><strong>注意：</strong><br>一个工程化的应用中，所有用户可与之交互的视图都应该包含说明文字或有一个内容描述（参考 Android 可访问性指导）。如果你不能通过使用 ‘withText’ 或 ‘withContentDescripiton’ 来缩小onView的搜索范围，可以认为这是一个可访问性的 bug。</p>
+<p>请使用最少的匹配器来定位视图。不要过指定，因为这将强制框架做无用功。例如，如果一个视图可以通过它的文字唯一确定，你不需要说明该视图也可以通过 ​TextView​ 指定。对许多视图而言，使用它的​R.id​值就足够了。</p>
+<p>更多的hamcrest api请查看<br><a href="http://hamcrest.org/JavaHamcrest/javadoc/1.3/" target="_blank" rel="external">hamcrest api</a></p>
+<p>###onData<br>当espresso在AdapterView中查找视图时需要用onData方法，例如在AdapterView小部件中，视图在运行时动态填充子视图。如果要测试的目标视图位于AdapterView（例如ListView，GridView或Spinner）中，则onView()方法可能无法工作，因为只有一部分视图可能会加载到当前视图层次结构中。</p>
+<p>相反，调用onData()方法可获取DataInteraction对象以访问目标视图元素。 Espresso处理将目标视图元素加载到当前视图层次结构中。 Espresso还负责滚动到目标元素，并将放在焦点元素。</p>
+<p>注意：onData()方法不检查您指定的项目是否与视图对应。 Espresso仅搜索当前视图层次结构。如果没有找到匹配，该方法将抛出NoMatchingViewException异常。</p>
+<p>下面的代码片段展示了如何使用onData()方法和Hamcrest匹配来搜索包含给定字符串的列表中的特定行。在此示例中，LongListActivity类包含通过SimpleAdapter公开的字符串列表。</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">onData(<span class="name">allOf</span>(<span class="name">is</span>(<span class="name">instanceOf</span>(<span class="name">Map</span>.class)),</div><div class="line">        hasEntry(<span class="name">equalTo</span>(<span class="name">LongListActivity</span>.ROW_TEXT), is(<span class="string">"test input"</span>)))<span class="comment">;</span></div></pre></td></tr></table></figure>
+<h2 id="Performing-Actions"><a href="#Performing-Actions" class="headerlink" title="Performing Actions"></a>Performing Actions</h2><p>调用ViewInteraction.perform()或DataInteraction.perform()方法来模拟UI组件上的用户交互。您必须传入一个或多个ViewAction对象作为参数。Espresso按照给定的顺序依次触发每个动作，并在主线程中执行它们。<br>ViewActions类提供了指定常用操作的帮助方法列表。您可以使用这些方法作为方便的快捷方式，而不是创建和配置单个ViewAction对象。您可以指定以下操作：</p>
+<ul>
+<li>ViewActions.click()：点击视图。</li>
+<li>ViewActions.typeText()：点击视图并输入指定的字符串。</li>
+<li>ViewActions.scrollTo()：滚动到视图。目标视图必须是来自ScrollView的子类，它的android：visibility属性的值必须是VISIBLE。对于扩展AdapterView（例如，ListView）的视图，onData()方法为您处理滚动。</li>
+<li>ViewActions.pressKey()：使用指定的键码执行键按下。</li>
+<li>ViewActions.clearText()：清除目标视图中的文本。<br>如果目标视图位于ScrollView内部，请先执行ViewActions.scrollTo()操作，以在其他操作进行之前在屏幕中显示视图。如果视图已显示，ViewActions.scrollTo()操作将不起作用。</li>
+</ul>
+<p>例如，要模拟输入字符串值并按按钮提交值，您可以编写类似这样的自动测试脚本。 ViewInteraction.perform()和DataInteraction.perform()方法采用一个或多个ViewAction参数，并按提供的顺序运行操作。</p>
+<p>//将文本键入EditText视图，然后关闭软键盘<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">onView(<span class="name">withId</span>(<span class="name">R</span>.id.editTextUserInput)）</div><div class="line">     .perform(<span class="name">typeText</span>(<span class="name">STRING_TO_BE_TYPED</span>),closeSoftKeyboard()）<span class="comment">;</span></div></pre></td></tr></table></figure></p>
+<p>//按按钮提交文本更改<br><code>onView(withId(R.id.changeTextBt)).perform(click());</code></p>
+<p>其他action api 请查看<br><a href="espresso.action">https://developer.android.com/reference/android/support/test/espresso/action/package-summary.html</a></p>
+<h2 id="Verifying-Results"><a href="#Verifying-Results" class="headerlink" title="Verifying Results"></a>Verifying Results</h2><p>调用ViewInteraction.check()或DataInteraction.check()方法来断言UI中的视图匹配一些预期状态。 您必须传递一个ViewAssertion对象作为参数。 如果断言失败，Espresso会抛出一个AssertionFailedError。<br>ViewAssertions类提供了用于指定公共断言的帮助程序方法的列表。 您可以使用的断言包括：<br>doesNotExist：断言没有与当前视图层次结构中指定的条件匹配的视图。<br>matches：断言指定视图存在于当前视图层次结构中，并且其状态与某个给定的Hamcrest匹配器匹配。<br>selectedDescendentsMatch：存在指定的孩子为父视图查看的声明，它们的状态与某个给定的Hamcrest匹配器匹配。</p>
+<p>以下代码段显示了如何检查UI中显示的文本的值与之前在EditText字段中输入的文本的值相同。<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">public</span> <span class="selector-tag">void</span> <span class="selector-tag">testChangeText_sameActivity</span>() &#123;</div><div class="line">    <span class="comment">// Type text and then press the button.</span></div><div class="line">    ...</div><div class="line">    <span class="selector-tag">onView</span>(withText(R.string.item_1_text))</div><div class="line">            <span class="selector-class">.check</span>(doesNotExist());</div><div class="line">    <span class="comment">// Check that the text was changed.</span></div><div class="line">    <span class="selector-tag">onView</span>(withId(R.id.textToBeChanged))</div><div class="line">            <span class="selector-class">.check</span>(matches(withText(STRING_TO_BE_TYPED)));</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>ViewMatchers, ViewActions, ViewAssertions 组成了espresso的基础架构，所以要真正的掌握espresso必须将这3部分基础熟悉。<br>上一节<a href="https://qaseven.github.io/2016/11/30/expresso/" target="_blank" rel="external">espresso基础</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/30/expresso/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1650,415 +1971,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/15/gatling3-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="seven">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/image/my.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QA seven's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/06/15/gatling3-1/" itemprop="url">gatling官方文档翻译4</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-15T17:54:52+08:00">
-                2016-06-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>第四篇</p>
-<p><a href="http://gatling.io/docs/2.2.1/migration_guides/2.0.0-M3a-to-2.0.html" target="_blank" rel="external">http://gatling.io/docs/2.2.1/migration_guides/2.0.0-M3a-to-2.0.html</a><br>Migrating from 2.0.0-M3a to 2.0<br>Global changes<br>Gatling requires at least JDK7u6<br>As targeting newer JDKs provides bug fixes, speed improvements and opens opportunities for optimization, Gatling now requires at least a JDK7u6 (released almost two years ago already).</p>
-<p>Gatling is now available on Maven Central<br>Gatling releases are now available on Maven Central, and snapshots are deployed on each successful build by Travis CI to Sonatype’s snapshots repository. If you were using Gatling with its Maven plugin, you no longer need to add the Excilys repository in your pom.xml.</p>
-<p>Simulation<br>Necessary imports<br>import bootstrap.<em> and import assertions.</em> are now unnecessary and have to be removed.<br>import io.gatling.http.Headers.Names.<em> is now unnecessary, headers names are now directly available from HeaderNames.<br>import io.gatling.http.Headers.Values.</em> is now unnecessary, headers values are now directly available from HeaderValues.<br>Injection DSL<br>ramp(10 users) becomes rampUsers(10)<br>heaviside(10 users) becomes heavideUsers(10)<br>atOnce(10 users) becomes atOnceUsers(10)<br>constantRate(10 usersPerSec) becomes constantUsersPerSec(10)<br>rampRate(10 usersPerSec) becomes rampUsersPerSec(10)<br>split(10 users) becomes splitUsers(10)<br>Core<br>Structure Elements<br>In asLongAs, exitASAP now defaults to true. For more information on the change of behaviour it introduces, see asLongAs documentation.</p>
-<p>Checks<br>whatever has been renamed to optional.<br>transform now no longer takes and returns an Option[T] and takes and returns plain types, but transformOption provides the same functionality as transform did.<br>HTTP<br>Form parameters (for POST requests)<br>Renamed</p>
-<p>Methods for adding form parameters to the request have been renamed:</p>
-<p>param =&gt; formParam<br>multiValuedParam =&gt; multiValuedFormParam<br>Misc<br>requestInfoExtractor and responseInfoExtractor have been merged into a single extraInfoExtractor, which takes a ExtraInfo =&gt; List[Any] function.<br>gatling.http.ahc.useRawUrl configuration parameter was removed, please use disableUrlEncoding instead, as described here.<br>For more information on extraInfoExtractor, please refer to its documentation.</p>
-<p>Logs<br>simulation.log has been redesigned.</p>
-<p>If you wrote your own specific simulation.log parser, you’ll need to migrate it to the new structure.</p>
-<p>Recorder<br>Until now, when setting up the Recorder, you had to setup two ports for the Recorder’s local proxy: one for HTTP, one for HTTPS. This is not needed anymore, as the Recorder handles itself the switch to an HTTPS connection if necessary, and only a single port needs to be specified.</p>
-<p>Maven Plugin<br>The <includes>…</includes> and <excludes>…</excludes> configuration options have been removed. Should you want to select a specific simulation to run, you can use the <simulationclass>…</simulationclass> config option to do so.</p>
-<p>For more information, see the Maven plugin documentation.</p>
-<p>Migrating from 2.0.0-M3a to 2.0<br>从2.0.0-M3a 合并到2.0</p>
-<p>全局改变<br>Gatling  需要至少JDK7u6版本</p>
-<p>因为心得JDKs修复一些问题，速度得到改善，优化了处理，gatling 现在需要至少JDK7u6(2年前已经发布)</p>
-<p>gatling 现在同样在maven cetral 适用</p>
-<p>gatling 现在同样在maven cetral 适用，并且快照都会部署到 Sonatype’s snapshots repository 当每次 Travis ci 构建成功后。如果你使用maven插件版gatling，你不需要添加the Excilys repository 在你的pom.xml中。</p>
-<p>模拟器<br>Necessary imports<br>import bootstrap.<em> and import assertions.</em> 现在已经不需要并且被移除<br>import io.gatling.http.Headers.Names.<em> 已经不需要， headers names被 HeaderNames代替.<br>import io.gatling.http.Headers.Values.</em> 已经不需要, headers values 被 HeaderValues代替.</p>
-<p>Injection DSL<br>ramp(10 users) 变为 rampUsers(10)<br>heaviside(10 users) 变为 heavideUsers(10)<br>atOnce(10 users)变为 atOnceUsers(10)<br>constantRate(10 usersPerSec) 变为 constantUsersPerSec(10)<br>rampRate(10 usersPerSec)变为 rampUsersPerSec(10)<br>split(10 users) 变为 splitUsers(10)<br>Core</p>
-<p>Structure Elements<br>结构化组件</p>
-<p>在 asLongAs, exitASAP 默认为trule。<br>有关的行为改变的更多信息介绍,请看asLongAs文档。</p>
-<p>Checks</p>
-<p>whatever 已经被重新命名为 optional.<br>transform now no longer takes and returns an Option[T] and takes and returns plain types, but transformOption provides the same functionality as transform did.<br>transform现在不再需要现在返回一个Option[T],并返回plain类型,但transformOption和transform提供了相同的功能。<br>HTTP<br>Form parameters (关于 POST 请求)<br>重命名</p>
-<p> adding form parameters 方法请求已经被重命名:</p>
-<p>param =&gt; formParam<br>multiValuedParam =&gt; multiValuedFormParam</p>
-<p>Misc<br>requestInfoExtractor 和 responseInfoExtractor 已经合并为 extraInfoExtractor, which takes a ExtraInfo =&gt; List[Any] function.<br>gatling.http.ahc.useRawUrl 配置参数已经被移除, 请用 disableUrlEncoding 代替, 描述如下.<br>更多关于 extraInfoExtractor信息, 请参照这个文档.</p>
-<p>Logs</p>
-<p>simulation.log 已经被重新设计.</p>
-<p>如果你写自己的simulation.log解析器,您需要它迁移到新结构</p>
-<p>Recorder</p>
-<p>Until now, 当你设置 Recorder时, 你必须设置两个端口记录器的当地代理:一个用于HTTP,HTTPS。 这再也不需要了, 因为record处理本身转向一个HTTPS连接如果必要,并且只需要指定一个单独的端口。</p>
-<p>Maven Plugin</p>
-<p>The <code>&lt;includes&gt;...&lt;/includes&gt;</code> 和 <code>&lt;excludes&gt;...&lt;/excludes&gt;</code> 配置项 已经被移除. 如果你需要选择一个特殊的模拟运行, 你可以使用 <code>&lt;simulationClass&gt;...&lt;/simulationClass&gt;</code> 去配置.</p>
-<p>更多的信息, 查阅 Maven plugin 文档.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/08/gatling3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="seven">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/image/my.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QA seven's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/06/08/gatling3/" itemprop="url">gatling官方文档翻译3</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-08T23:22:40+08:00">
-                2016-06-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>第三篇<br><a href="http://gatling.io/docs/2.2.1/migration_guides/1.5.x-to-2.0.html" target="_blank" rel="external">http://gatling.io/docs/2.2.1/migration_guides/1.5.x-to-2.0.html</a></p>
-<p>Migrating from 1.5.x to 2.0<br>Global changes<br>Gatling requires at least JDK7u6<br>As targeting newer JDKs provides bug fixes, speed improvements and opens opportunities for optimization, Gatling now requires at least a JDK7u6 (released almost two years ago already).</p>
-<p>Scala 2.10<br>Gatling is built with Scala 2.10. If you’re using Scala IDE, make sure you’re using a version compatible with Scala 2.10.</p>
-<p>Gatling is now available on Maven Central<br>Gatling releases are now available on Maven Central, and snapshots are deployed on each successful build by Travis CI to Sonatype’s snapshots repository. If you were using Gatling with its Maven plugin, you no longer need to add the Excilys repository in your pom.xml.</p>
-<p>Package and GroupId changes<br>Gatling’s artifacts groupId and package are now io.gatling. You’ll have to :</p>
-<p>Update your build scripts to change the groupId of Gatling’s dependencies from com.excilys.ebi.gatling to io.gatling<br>Update your simulations to replace the com.excilys.ebi.gatling part in the imports by io.gatling<br>Simulation<br>Necessary imports<br>akka.util.duration classes have been ported to the scala.concurrent.duration package. Simply replace import akka.util.duration.<em> by import scala.concurrent.duration.</em>.<br>import bootstrap.<em> and import assertions.</em> are now unnecessary and have to be removed.<br>import com.excilys.ebi.gatling.http.Headers.Names.<em> is now unnecessary, headers names are now directly available from HeaderNames.<br>import com.excilys.ebi.gatling.http.Headers.Values.</em> is now unnecessary, headers values are now directly available from HeaderValues.<br>Protocols setup<br>Protocols are no longer configured by scenario and are now configured by simulation, using the protocols method.</p>
-<p>A 1.4.x-1.5.x setUp like this one:</p>
-<p>setUp(scn.(…).protocolConfig(httpConfig))<br>would now be with Gatling 2.0:</p>
-<p>setUp(scn.(…)).protocols(httpConfig)<br>Assertions setup<br>The assertThat method has been removed, assertions are now configured using assertions in the same fashion as protocols are, e.g.</p>
-<p>setup(scn.(…).protocolConfig(httpConfig))</p>
-<p>assertThat(global.responseTime.max.lessThan(1000))<br>becomes:</p>
-<p>setup(scn.(…))<br>  .protocols(httpConfig)<br>  .assertions(global.responseTime.max.lessThan(1000)<br>New Injection DSL<br>The users, ramp and delay methods to configure the injection profile for your scenario have been removed in favor of a full-blown dedicated DSL.</p>
-<p>Injection steps are now configured using the inject method available on your configured scenario.</p>
-<p>Migrating users</p>
-<p>// With Gatling 1.5.X<br>setUp(scn.users(10)…)</p>
-<p>// With Gatling 2.0<br>setUp(scn.inject(atOnceUsers(10))…<br>Migrating ramp</p>
-<p>// With Gatling 1.5.X<br>setUp(scn.users(10).ramp(30)…)</p>
-<p>// With Gatling 2.0<br>setUp(scn.inject(rampUsers(10) over (30 seconds))…<br>Migrating delay</p>
-<p>// With Gatling 1.5.X<br>setUp(scn.users(10).delay(5)…)</p>
-<p>// With Gatling 2.0<br>setUp(scn.inject(nothingFor(5 seconds), atOnceUsers(10))…<br>For more information on the new Injection DSL, please consult the Injection DSL reference documentation.</p>
-<p>Core<br>Checks<br>whatever has been renamed to optional.</p>
-<p>Structure Elements<br>The first parameter of foreach is now an Expression (e.g. a Gatling EL string), not the name of the attribute to loop over.<br>For example, if you have a list attribute in the user’s session holding a list of values:</p>
-<p>.foreach(“list”, “elem”) {<br>  …<br>}<br>becomes:</p>
-<p>.foreach(“${list}”, “elem”) {<br>  …<br>}<br>In asLongAs, exitASAP now defaults to true. For more information on the change of behaviour it introduces, see asLongAs documentation.<br>Session<br>Session has been under major refactoring:</p>
-<p>session.get(“foobar”) becomes session(“foobar”)<br>session.getTypedAttribute<a href="&quot;foobar&quot;">T</a> becomes session(“foobar”).as[T]<br>session.getAttributeAsOption<a href="&quot;foobar&quot;">T</a> becomes session(“foobar”).asOption[T]<br>session.setAttribute(“foobar”, 1234) becomes session.set(“foobar”, 1234)<br>session.setAttributes(Map(“foo” -&gt; 1, “bar” -&gt; 2) becomes session.setAll(“foo” -&gt; 1, “bar” -&gt; 2)<br>session.removeAttribute(“foobar”) becomes session.remove(“foobar”)<br>session.isAttributeDefined(“foobar”) becomes session.contains(“foobar”)<br>HTTP<br>Protocol<br>HTTP protocol bootstrapper, httpProtocol, has been renamed to http.</p>
-<p>Query parameters<br>Removed</p>
-<p>Versions of queryParam and multivaluedQueryParam that took no other parameters than the key (resolving the value from the session, using the key’s name to find the attribute with the same name) have been removed.</p>
-<p>Modified</p>
-<p>multivaluedQueryParam can now resolve the values directly from the session, using Gatling’s EL.</p>
-<p>Form parameters (for POST requests)<br>Renamed</p>
-<p>Methods for adding form parameters to the request have been renamed:</p>
-<p>param =&gt; formParam<br>multiValuedParam =&gt; multivaluedFormParam<br>Removed</p>
-<p>Versions of queryParam and multivaluedQueryParam that took no other parameters than the key (resolving the value from the session, using the key’s name to find the attribute with the same name) have been removed.</p>
-<p>Modified</p>
-<p>multivaluedFormParam can now resolve the values directly from the session, using Gatling’s EL.</p>
-<p>Request bodies<br>Scalate templates support has been dropped. ElFileBody (see below) is the best suited to replace your existing Scalate templates.<br>The API for setting request bodies on request has changed. Instead of having several methods like body, fileBody and byteArrayBody, there is a now a single method, body(…) in which you set the type of body to send.<br>Migrating .body(body)</p>
-<p>.body(body) has been replaced by .body(StringBody(body)).</p>
-<p>http(“my post request”)<br>  .post(“<a href="http://www.example.org" target="_blank" rel="external">http://www.example.org</a>“)<br>  .body(“Look Ma, I’m a request body !”)<br>becomes:</p>
-<p>http(“my post request”)<br>  .post(“<a href="http://www.example.org" target="_blank" rel="external">http://www.example.org</a>“)<br>  .body(StringBody(“Look Ma, I’m a request body !”))<br>Migrating .fileBody(filePath)</p>
-<p>.fileBody(filePath) has been replaced by .body(RawFileBody(filePath)).</p>
-<p>http(“my post request”)<br>  .post(“<a href="http://www.example.org" target="_blank" rel="external">http://www.example.org</a>“)<br>  .fileBody(“my_upload.xslx”)<br>becomes:</p>
-<p>http(“my post request”)<br>  .post(“<a href="http://www.example.org" target="_blank" rel="external">http://www.example.org</a>“)<br>  .body(FileBody(“my_upload.xslx”))<br>Migrating .fileBody(filePath, values)</p>
-<p>.fileBody(filePath, values) has been replaced by .body(ElFileBody(filePath)). values are now directly resolved from the virtual user’s session’s content.</p>
-<p>http(“my post request”)<br>  .post(“<a href="http://www.example.org" target="_blank" rel="external">http://www.example.org</a>“)<br>  .fileBody(“my_template.txt”, Map(“userName” -&gt; “user123”)<br>becomes:</p>
-<p>http(“my post request”)<br>  .post(“<a href="http://www.example.org" target="_blank" rel="external">http://www.example.org</a>“)<br>  .body(ElFileBody(“my template.txt”))<br>If my template.txt contains:</p>
-<p>Hi, my name is ${userName}<br>and the virtual user’s session has an attribute userName set to user123,</p>
-<p>Then the effectively sent request body would be:</p>
-<p>Hi, my name is user123<br>Migrating .byteArrayBody(byteArray)</p>
-<p>.byteArrayBody(byteArray) has been replaced by .body(ByteArrayBody(bytes)).</p>
-<p>http(“my post request”)<br>  .post(“<a href="http://www.example.org" target="_blank" rel="external">http://www.example.org</a>“)<br>  .byteArrayBody(Array(1, 2, 3, 4))<br>becomes:</p>
-<p>http(“my post request”)<br>  .post(“<a href="http://www.example.org" target="_blank" rel="external">http://www.example.org</a>“)<br>  .body(ByteArrayBody(Array(1, 2, 3, 4)))<br>For more information, see the Request bodies reference section.</p>
-<p>Misc<br>ExtendedResponse has been renamed into Response.<br>requestInfoExtractor and responseInfoExtractor have been merged into a single extraInfoExtractor, which takes a ExtraInfo =&gt; List[Any] function.<br>For more information on extraInfoExtractor, please refer to its documentation.</p>
-<p>Logs<br>simulation.log has been redesigned.</p>
-<p>If you wrote your own specific simulation.log parser, you’ll need to migrate it to the new structure.</p>
-<p>Recorder<br>Until now, when setting up the Recorder, you had to setup two ports for the Recorder’s local proxy: one for HTTP, one for HTTPS. This is not needed anymore, as the Recorder handles itself the switch to an HTTPS connection if necessary, and only a single port needs to be specified.</p>
-<p>Maven Plugin<br>The <includes>…</includes> and <excludes>…</excludes> configuration options have been removed. Should you want to select a specific simulation to run, you can use the <simulationclass>…</simulationclass> config option to do so.</p>
-<p>For more information, see the Maven plugin documentation.</p>
-<p>从1.5迁移到2.0</p>
-<p>全局变化<br>gatling至少需要JDK7u6</p>
-<p>提供新jdk针对的是bug修复、优化速度和打开优化速度,gatling现在至少需要JDK7u6(大约两年前已经发布)。<br>Scala 2.10</p>
-<p>gatling使用Scala 2.10。如果你使用Scala的IDE,确保您正在使用一个版本能与Scala 2.10兼容。<br>gatling现在可用在Maven中央库</p>
-<p>galtling版本现在可以使用Maven中央,以及快照部署在每个成功构建了 Travis CI Sonatype快照存储库。如果你是使用gatling的Maven插件,您不再需要添加pom.xml Excilys存储库。</p>
-<p>package和GroupId变化</p>
-<p>gatling的groupId和package现在io.gatling组件。<br>你必须:<br>更新您的构建脚本改变从com.excilys.ebi groupId gatling的依赖关系。gatling,io.gatling更新你的模拟来代替com.excilys.ebi。io.gatling<br>更新你的模拟器来代替com.excilys.ebi.io.gatling部分通过引入io.gatling</p>
-<p>akka.util.duration 类 已经移植到 scala.concurrent.duration 包中。简单从 import akka.util.duration.<em> 替换到 import scala.concurrent.duration.</em>.</p>
-<p>import bootstrap.<em> 和 import assertions.</em> 现在不是必须的，已经被移除.</p>
-<p>import com.excilys.ebi.gatling.http.Headers.Names._ 现在不是必须的, headers 名字 直接使用HeaderNames.</p>
-<p>import com.excilys.ebi.gatling.http.Headers.Values._ 现在不是必须的, headers 值 直接使用HeaderValues.</p>
-<p>协议设置<br>协议已经不再配置场景,现在配置模拟器,使用协议的方法。</p>
-<p>A 1.4.x-1.5.x 设置如下:</p>
-<p>setUp(scn.(…).protocolConfig(httpConfig))<br> Gatling 2.0将会这样设置:</p>
-<p>setUp(scn.(…)).protocols(httpConfig)</p>
-<p>Assertions 设置</p>
-<p>assertThat方法已经被移除，assertions配置使用assertions以相同的方式作为协议.如下</p>
-<p>setup(scn.(…).protocolConfig(httpConfig))</p>
-<p>assertThat(global.responseTime.max.lessThan(1000))</p>
-<p>改变<br>setup(scn.(…))<br>  .protocols(httpConfig)<br>  .assertions(global.responseTime.max.lessThan(1000)<br>新的DSL语言注入</p>
-<p>通过用户、增长和延迟来配置你的场景注入剖面的方法已被拆除,取而代之的是一个完整的专用的DSL。</p>
-<p>注入步骤现在使用注射方法配置可用的配置。</p>
-<p>合并 users</p>
-<p>// With Gatling 1.5.X<br>setUp(scn.users(10)…)</p>
-<p>// With Gatling 2.0<br>setUp(scn.inject(atOnceUsers(10))…<br>合并 ramp</p>
-<p>// With Gatling 1.5.X<br>setUp(scn.users(10).ramp(30)…)</p>
-<p>// With Gatling 2.0<br>setUp(scn.inject(rampUsers(10) over (30 seconds))…<br>合并 delay</p>
-<p>// With Gatling 1.5.X<br>setUp(scn.users(10).delay(5)…)</p>
-<p>// With Gatling 2.0<br>setUp(scn.inject(nothingFor(5 seconds), atOnceUsers(10))…</p>
-<p>新注入的DSL的更多信息,请查阅注入DSL参考文档。</p>
-<p>核心<br>Checks<br>whatever 现在被改名为 optional.</p>
-<p>Structure Elements</p>
-<p>The first parameter of foreach is now an Expression (e.g. a Gatling EL string), not the name of the attribute to loop over.</p>
-<p>foreach现在是一个表达式的第一个参数(如gatling EL string),不是遍历属性的名称。</p>
-<p>For example, if you have a list attribute in the user’s session holding a list of values:</p>
-<p>例如,如果您有一个属性列表在用户的会话持有的值列表:</p>
-<p>.foreach(“list”, “elem”) {<br>  …<br>}<br>变为:</p>
-<p>.foreach(“${list}”, “elem”) {<br>  …<br>}<br>In asLongAs, exitASAP now defaults to true. For more information on the change of behaviour it introduces, see asLongAs documentation.</p>
-<p>在 asLongAs exitASAP 现在默认设置是true.有关的行为改变的更多信息介绍,请看asLongAs文档。</p>
-<p>Session</p>
-<p>会话已经作为主要的重构:</p>
-<p>session.get(“foobar”) becomes session(“foobar”)<br>session.getTypedAttribute<a href="&quot;foobar&quot;">T</a> becomes session(“foobar”).as[T]<br>session.getAttributeAsOption<a href="&quot;foobar&quot;">T</a> becomes session(“foobar”).asOption[T]<br>session.setAttribute(“foobar”, 1234) becomes session.set(“foobar”, 1234)<br>session.setAttributes(Map(“foo” -&gt; 1, “bar” -&gt; 2) becomes session.setAll(“foo” -&gt; 1, “bar” -&gt; 2)<br>session.removeAttribute(“foobar”) becomes session.remove(“foobar”)<br>session.isAttributeDefined(“foobar”) becomes session.contains(“foobar”)</p>
-<p>HTTP协议<br>HTTP协议启动加载器、httpProtocol已经更名为HTTP。<br>Query 参数<br>移除<br>版本的queryParam和multivaluedQueryParam,没有其他比的关键参数(解决会话中的值,使用关键的名字找到具有相同名称的属性)已被移除。</p>
-<p>Modified</p>
-<p>multivaluedFormParam现在可以解决直接从会话值,使用gatling的EL。</p>
-<p>Request bodies</p>
-<p>Scalate templates support has been dropped.<br>对Scalate templates 支持已经放弃。</p>
-<p> ElFileBody (如下) 是当前代替Scalate templates最佳方案</p>
-<p>api的请求体的设置意境改变。现在用这几个方法来代替body fileBody byteArrayBody.现在有一个单独的方法。body(…)通过你设置的类型的body来发送。<br>合并 .body(body)</p>
-<p>body(body) 已经被 .body(StringBody(body))代替.</p>
-<p>http(“my post request”)<br>  .post(“<a href="http://www.example.org" target="_blank" rel="external">http://www.example.org</a>“)<br>  .body(“Look Ma, I’m a request body !”)<br>变成：</p>
-<p>http(“my post request”)<br>  .post(“<a href="http://www.example.org" target="_blank" rel="external">http://www.example.org</a>“)<br>  .body(StringBody(“Look Ma, I’m a request body !”))</p>
-<p>合并 .fileBody(filePath)</p>
-<p>.fileBody(filePath) 被 .body(RawFileBody(filePath))代替.</p>
-<p>http(“my post request”)<br>  .post(“<a href="http://www.example.org" target="_blank" rel="external">http://www.example.org</a>“)<br>  .fileBody(“my_upload.xslx”)<br>becomes:</p>
-<p>http(“my post request”)<br>  .post(“<a href="http://www.example.org" target="_blank" rel="external">http://www.example.org</a>“)<br>  .body(FileBody(“my_upload.xslx”))</p>
-<p>合并 .fileBody(filePath, values)</p>
-<p>.fileBody(filePath, values) 已经被 .body(ElFileBody(filePath))代替.<br>值现在直接解决虚拟用户会话的内容。</p>
-<p>http(“my post request”)<br>  .post(“<a href="http://www.example.org" target="_blank" rel="external">http://www.example.org</a>“)<br>  .fileBody(“my_template.txt”, Map(“userName” -&gt; “user123”)</p>
-<p>变为</p>
-<p>http(“my post request”)<br>  .post(“<a href="http://www.example.org" target="_blank" rel="external">http://www.example.org</a>“)<br>  .body(ElFileBody(“my template.txt”))</p>
-<p>如果 template.txt 包含:</p>
-<p>Hi, my name is ${userName}</p>
-<p>和虚拟用户的会话属性的用户名设置为user123,</p>
-<p>然后将发送有效地请求主体:<br>Hi, my name is user123</p>
-<p>合并 .byteArrayBody(byteArray)</p>
-<p>.byteArrayBody(byteArray) 被 .body(ByteArrayBody(bytes))代替.</p>
-<p>http(“my post request”)<br>  .post(“<a href="http://www.example.org" target="_blank" rel="external">http://www.example.org</a>“)<br>  .byteArrayBody(Array(1, 2, 3, 4))</p>
-<p>变为：</p>
-<p>http(“my post request”)<br>  .post(“<a href="http://www.example.org" target="_blank" rel="external">http://www.example.org</a>“)<br>  .body(ByteArrayBody(Array(1, 2, 3, 4)))</p>
-<p>更多有关信息,请参见请求机构引用部分。</p>
-<p>Misc<br>ExtendedResponse已经重命名为响应。requestInfoExtractor和responseInfoExtractor已经合并成一个单一的extraInfoExtractor,ExtraInfo =&gt; List[Any] function.。<br>在extraInfoExtractor的更多信息,请参阅文档。</p>
-<p>Logs<br>simulation.log 被重新设计。</p>
-<p>If you wrote your own specific simulation.log parser, you’ll need to migrate it to the new structure.<br>如果你写自己的simulation.log解析器,您需要它迁移到新结构</p>
-<p>Recorder<br>录制器<br>Until now, 当你设置 Recorder时, 你必须设置两个端口记录器的当地代理:一个用于HTTP,HTTPS。 这再也不需要了, 因为record处理本身转向一个HTTPS连接如果必要,并且只需要指定一个单独的端口。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2104,7 +2021,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-count">42</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

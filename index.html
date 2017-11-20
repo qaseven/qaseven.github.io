@@ -285,6 +285,253 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/16/vue14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="seven">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/image/my.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/16/vue14/" itemprop="url">小QA学习前端系列之vue实战4</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-16T11:47:43+08:00">
+                2017-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="接上节-我们继续学习"><a href="#接上节-我们继续学习" class="headerlink" title="接上节 我们继续学习"></a>接上节 我们继续学习</h2><p>回到router<br>我们再来看看add路径<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attribute">path</span>: <span class="string">'/add'</span>,</div><div class="line">    name: <span class="string">'add'</span>,</div><div class="line">    component: resolve =&gt; <span class="built_in">require</span>([<span class="string">'./views/new.vue'</span>], resolve),</div><div class="line">    meta: &#123; requiresAuth: true &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>最后调用的是一个 new.vue</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">nv-head</span> <span class="attr">page-type</span>=<span class="string">"主题"</span></span></div><div class="line"><span class="tag">            <span class="attr">:show-menu</span>=<span class="string">"false"</span></span></div><div class="line"><span class="tag">            <span class="attr">:fix-head</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;/<span class="name">nv-head</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"add-container"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"line"</span>&gt;</span>选择分类：</div><div class="line">                <span class="tag">&lt;<span class="name">select</span> <span class="attr">class</span>=<span class="string">"add-tab"</span> <span class="attr">v-model</span>=<span class="string">"topic.tab"</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"share"</span>&gt;</span>分享<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"ask"</span>&gt;</span>问答<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"job"</span>&gt;</span>招聘<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">select</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"add-btn"</span> @<span class="attr">click</span>=<span class="string">"addTopic"</span>&gt;</span>发布<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"line"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"add-title"</span> <span class="attr">v-model</span>=<span class="string">"topic.title"</span></span></div><div class="line"><span class="tag">                        <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">:class</span>=<span class="string">"&#123;'err':err=='title'&#125;"</span></span></div><div class="line"><span class="tag">                        <span class="attr">placeholder</span>=<span class="string">"标题，字数10字以上"</span> <span class="attr">max-length</span>=<span class="string">"100"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">v-model</span>=<span class="string">"topic.content"</span> <span class="attr">rows</span>=<span class="string">"35"</span> <span class="attr">class</span>=<span class="string">"add-content"</span></span></div><div class="line"><span class="tag">                <span class="attr">:class</span>=<span class="string">"&#123;'err':err=='content'&#125;"</span></span></div><div class="line"><span class="tag">                <span class="attr">placeholder</span>=<span class="string">'回复支持Markdown语法,请注意标记代码'</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">    <span class="keyword">import</span> $ <span class="keyword">from</span> <span class="string">'webpack-zepto'</span>;</span></div><div class="line"><span class="javascript">    <span class="keyword">import</span> nvHead <span class="keyword">from</span> <span class="string">'../components/header.vue'</span>;</span></div><div class="line"><span class="actionscript">    <span class="meta"><span class="meta-keyword">import</span> &#123;</span></span></div><div class="line"><span class="undefined">        mapGetters</span></div><div class="line"><span class="javascript">    &#125; <span class="keyword">from</span> <span class="string">'vuex'</span>;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">    <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></div><div class="line"><span class="undefined">        data() &#123;</span></div><div class="line"><span class="actionscript">            <span class="keyword">return</span> &#123;</span></div><div class="line"><span class="undefined">                topic: &#123;</span></div><div class="line"><span class="actionscript">                    tab: <span class="string">'share'</span>,</span></div><div class="line"><span class="actionscript">                    title: <span class="string">''</span>,</span></div><div class="line"><span class="actionscript">                    content: <span class="string">''</span></span></div><div class="line"><span class="undefined">                &#125;,</span></div><div class="line"><span class="actionscript">                err: <span class="string">''</span>,</span></div><div class="line"><span class="handlebars"><span class="xml">                authorTxt: '<span class="tag">&lt;<span class="name">br</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"from"</span> <span class="attr">href</span>=<span class="string">"https://github.com/shinygang/Vue-cnodejs"</span>&gt;</span>I‘m webapp-cnodejs-vue<span class="tag">&lt;/<span class="name">a</span>&gt;</span>'</span></span></div><div class="line"><span class="undefined">            &#125;;</span></div><div class="line"><span class="undefined">        &#125;,</span></div><div class="line"><span class="undefined">        computed: &#123;</span></div><div class="line"><span class="undefined">            ...mapGetters(&#123;</span></div><div class="line"><span class="actionscript">                userInfo: <span class="string">'getUserInfo'</span></span></div><div class="line"><span class="undefined">            &#125;)</span></div><div class="line"><span class="undefined">        &#125;,</span></div><div class="line"><span class="undefined">        methods: &#123;</span></div><div class="line"><span class="undefined">            addTopic() &#123;</span></div><div class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="keyword">this</span>.userInfo);</span></div><div class="line"><span class="javascript">                <span class="keyword">let</span> title = $.trim(<span class="keyword">this</span>.topic.title);</span></div><div class="line"><span class="javascript">                <span class="keyword">let</span> contents = $.trim(<span class="keyword">this</span>.topic.content);</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="actionscript">                <span class="keyword">if</span> (!title || title.length &lt; <span class="number">10</span>) &#123;</span></div><div class="line"><span class="actionscript">                    <span class="keyword">this</span>.err = <span class="string">'title'</span>;</span></div><div class="line"><span class="actionscript">                    <span class="keyword">return</span> <span class="literal">false</span>;</span></div><div class="line"><span class="undefined">                &#125;</span></div><div class="line"><span class="actionscript">                <span class="keyword">if</span> (!contents) &#123;</span></div><div class="line"><span class="actionscript">                    <span class="keyword">this</span>.err = <span class="string">'content'</span>;</span></div><div class="line"><span class="actionscript">                    <span class="keyword">return</span> <span class="literal">false</span>;</span></div><div class="line"><span class="undefined">                &#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">                <span class="keyword">let</span> postData = &#123;</span></div><div class="line"><span class="undefined">                    ...this.topic,</span></div><div class="line"><span class="actionscript">                    content: <span class="keyword">this</span>.topic.content + <span class="keyword">this</span>.authorTxt,</span></div><div class="line"><span class="actionscript">                    accesstoken: <span class="keyword">this</span>.userInfo.token</span></div><div class="line"><span class="undefined">                &#125;;</span></div><div class="line"><span class="javascript">                $.ajax(&#123;</span></div><div class="line"><span class="actionscript">                    type: <span class="string">'POST'</span>,</span></div><div class="line"><span class="actionscript">                    url: <span class="string">'https://cnodejs.org/api/v1/topics'</span>,</span></div><div class="line"><span class="undefined">                    data: postData,</span></div><div class="line"><span class="actionscript">                    dataType: <span class="string">'json'</span>,</span></div><div class="line"><span class="javascript">                    success: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span></div><div class="line"><span class="actionscript">                        <span class="keyword">if</span> (res.success) &#123;</span></div><div class="line"><span class="actionscript">                            <span class="keyword">this</span>.$router.push(&#123;</span></div><div class="line"><span class="actionscript">                                name: <span class="string">'list'</span></span></div><div class="line"><span class="undefined">                            &#125;);</span></div><div class="line"><span class="undefined">                        &#125;</span></div><div class="line"><span class="undefined">                    &#125;,</span></div><div class="line"><span class="javascript">                    error: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span></div><div class="line"><span class="javascript">                        <span class="keyword">let</span> error = <span class="built_in">JSON</span>.parse(res.responseText);</span></div><div class="line"><span class="actionscript">                        <span class="keyword">this</span>.$alert(error.error_msg);</span></div><div class="line"><span class="actionscript">                        <span class="keyword">return</span> <span class="literal">false</span>;</span></div><div class="line"><span class="undefined">                    &#125;</span></div><div class="line"><span class="undefined">                &#125;);</span></div><div class="line"><span class="undefined">            &#125;</span></div><div class="line"><span class="undefined">        &#125;,</span></div><div class="line"><span class="undefined">        components: &#123;</span></div><div class="line"><span class="undefined">            nvHead</span></div><div class="line"><span class="undefined">        &#125;</span></div><div class="line"><span class="undefined">    &#125;;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"scss"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="css">    <span class="selector-class">.add-container</span> &#123;</span></div><div class="line"><span class="undefined">        margin-top: 50px;</span></div><div class="line"><span class="css">        <span class="selector-tag">background-color</span>: <span class="selector-id">#fff</span>;</span></div><div class="line"><span class="css">        <span class="selector-class">.line</span> &#123;</span></div><div class="line"><span class="undefined">            padding: 10px 15px;</span></div><div class="line"><span class="css">            <span class="selector-tag">border-bottom</span>: <span class="selector-tag">solid</span> 1<span class="selector-tag">px</span> <span class="selector-id">#d4d4d4</span>;</span></div><div class="line"><span class="css">            <span class="selector-class">.add-btn</span> &#123;</span></div><div class="line"><span class="css">                <span class="selector-tag">color</span>: <span class="selector-id">#fff</span>;</span></div><div class="line"><span class="css">                <span class="selector-tag">background-color</span>: <span class="selector-id">#80bd01</span>;</span></div><div class="line"><span class="undefined">                padding: 5px 15px;</span></div><div class="line"><span class="undefined">                border-radius: 5px;</span></div><div class="line"><span class="undefined">            &#125;</span></div><div class="line"><span class="css">            <span class="selector-class">.add-tab</span> &#123;</span></div><div class="line"><span class="undefined">                display: inline-block;</span></div><div class="line"><span class="undefined">                width: calc(100% - 140px);</span></div><div class="line"><span class="undefined">                min-width: 50%;</span></div><div class="line"><span class="undefined">                font-size: 16px;</span></div><div class="line"><span class="undefined">                background: transparent;</span></div><div class="line"><span class="css">                 <span class="selector-pseudo">:after</span> &#123;</span></div><div class="line"><span class="undefined">                    content: 'xe60e';</span></div><div class="line"><span class="undefined">                &#125;</span></div><div class="line"><span class="undefined">                ;</span></div><div class="line"><span class="undefined">            &#125;</span></div><div class="line"><span class="css">            <span class="selector-class">.add-title</span> &#123;</span></div><div class="line"><span class="undefined">                font-size: 16px;</span></div><div class="line"><span class="undefined">                border: none;</span></div><div class="line"><span class="undefined">                width: 100%;</span></div><div class="line"><span class="undefined">                background: transparent;</span></div><div class="line"><span class="undefined">                height: 25px;</span></div><div class="line"><span class="undefined">            &#125;</span></div><div class="line"><span class="css">            <span class="selector-class">.err</span> &#123;</span></div><div class="line"><span class="undefined">                border: solid 1px red;</span></div><div class="line"><span class="undefined">            &#125;</span></div><div class="line"><span class="undefined">        &#125;</span></div><div class="line"><span class="css">        <span class="selector-class">.add-content</span> &#123;</span></div><div class="line"><span class="undefined">            margin: 15px 2%;</span></div><div class="line"><span class="undefined">            width: 96%;</span></div><div class="line"><span class="css">            <span class="selector-tag">border-color</span>: <span class="selector-id">#d4d4d4</span>;</span></div><div class="line"><span class="css">            <span class="selector-tag">color</span>: <span class="selector-id">#000</span>;</span></div><div class="line"><span class="undefined">        &#125;</span></div><div class="line"><span class="css">        <span class="selector-class">.err</span> &#123;</span></div><div class="line"><span class="undefined">            border: solid 1px red;</span></div><div class="line"><span class="undefined">        &#125;</span></div><div class="line"><span class="undefined">    &#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>nv-head设置标题<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;nv-head page-type=<span class="string">"主题"</span></div><div class="line">    <span class="symbol">:show-menu=<span class="string">"false"</span></span></div><div class="line">    <span class="symbol">:fix-head=<span class="string">"true"</span>&gt;&lt;/nv-head&gt;</span></div></pre></td></tr></table></figure></p>
+<p>内容部分<br>一个option标签来选择具体的分类，一个输入栏 一个textarea<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="keyword">class</span>=<span class="string">"add-container"</span>&gt;</div><div class="line">           &lt;div <span class="keyword">class</span>=<span class="string">"line"</span>&gt;选择分类：</div><div class="line">               &lt;<span class="keyword">select</span> <span class="keyword">class</span>=<span class="string">"add-tab"</span> v-model=<span class="string">"topic.tab"</span>&gt;</div><div class="line">                   &lt;option <span class="keyword">value</span>=<span class="string">"share"</span>&gt;分享&lt;/option&gt;</div><div class="line">                   &lt;option <span class="keyword">value</span>=<span class="string">"ask"</span>&gt;问答&lt;/option&gt;</div><div class="line">                   &lt;option <span class="keyword">value</span>=<span class="string">"job"</span>&gt;招聘&lt;/option&gt;</div><div class="line">               &lt;/<span class="keyword">select</span>&gt;</div><div class="line">               &lt;a <span class="keyword">class</span>=<span class="string">"add-btn"</span> @click=<span class="string">"addTopic"</span>&gt;发布&lt;/a&gt;</div><div class="line">           &lt;/div&gt;</div><div class="line">           &lt;div <span class="keyword">class</span>=<span class="string">"line"</span>&gt;</div><div class="line">               &lt;input <span class="keyword">class</span>=<span class="string">"add-title"</span> v-model=<span class="string">"topic.title"</span></div><div class="line">                       type=<span class="string">"text"</span> :<span class="keyword">class</span>=<span class="string">"&#123;'err':err=='title'&#125;"</span></div><div class="line">                       placeholder=<span class="string">"标题，字数10字以上"</span> max-length=<span class="string">"100"</span>/&gt;</div><div class="line">           &lt;/div&gt;</div><div class="line">           &lt;textarea v-model=<span class="string">"topic.content"</span> rows=<span class="string">"35"</span> <span class="keyword">class</span>=<span class="string">"add-content"</span></div><div class="line">               :<span class="keyword">class</span>=<span class="string">"&#123;'err':err=='content'&#125;"</span></div><div class="line">               placeholder=<span class="string">'回复支持Markdown语法,请注意标记代码'</span>&gt;</div><div class="line">           &lt;/textarea&gt;</div><div class="line">       &lt;/div&gt;</div><div class="line">   &lt;/div&gt;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/13/vue13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="seven">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/image/my.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QA seven's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/13/vue13/" itemprop="url">小QA学习前端系列之vue实战3</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-13T10:59:38+08:00">
+                2017-11-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="接上节-我们继续学习"><a href="#接上节-我们继续学习" class="headerlink" title="接上节 我们继续学习"></a>接上节 我们继续学习</h2><p>接下来我们要看看router<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attribute">path</span>: <span class="string">'/topic/:id'</span>,</div><div class="line">    name: <span class="string">'topic'</span>,</div><div class="line">    <span class="built_in">component</span>(resolve) &#123;</div><div class="line">        require.<span class="built_in">ensure</span>([<span class="string">'./views/topic.vue'</span>], () =&gt; &#123;</div><div class="line">            <span class="built_in">resolve</span>(require(<span class="string">'./views/topic.vue'</span>));</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>topic router指向的是topic vue components<br><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div></pre></td><td class="code"><pre><div class="line"><span class="xml">&#123;</span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">template</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">nv-head</span> <span class="attr">page-type</span>=<span class="string">"主题"</span></span></span></div><div class="line"><span class="xml">                :show-menu="showMenu"</span></div><div class="line"><span class="xml">                :need-add="true"</span></div><div class="line"><span class="xml">                :fix-head="true"&gt;</span></div><div class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">nv-head</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"page"</span></span></span></div><div class="line"><span class="xml">                :class="&#123;'show-menu':showMenu&#125;"</span></div><div class="line"><span class="xml">                v-if="topic.title"&gt;</span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">"topic-title"</span> <span class="attr">v-text</span>=<span class="string">"topic.title"</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"author-info"</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"avatar"</span> <span class="attr">:src</span>=<span class="string">"topic.author.avatar_url"</span> /&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col"</span>&gt;</span></span></div><div class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">span</span>&gt;</span></span><span class="template-variable">&#123;&#123;topic.author.loginname&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">time</span>&gt;</span></span></div><div class="line"><span class="xml">                        发布于:</span><span class="template-variable">&#123;&#123;topic.create_at | getLastTimeStr(true)&#125;&#125;</span><span class="xml"></span></div><div class="line"><span class="xml">                    <span class="tag">&lt;/<span class="name">time</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span></span></div><div class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"tag"</span></span></span></div><div class="line"><span class="xml">                            :class="getTabInfo(topic.tab, topic.good, topic.top, true)"</span></div><div class="line"><span class="xml">                            v-text="getTabInfo(topic.tab, topic.good, topic.top, false)"&gt;</span></div><div class="line"><span class="xml">                    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"name"</span>&gt;</span></span><span class="template-variable">&#123;&#123;topic.visit_count&#125;&#125;</span><span class="xml">次浏览<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">'markdown-body topic-content'</span> <span class="attr">v-html</span>=<span class="string">"topic.content"</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">h3</span> <span class="attr">class</span>=<span class="string">"topic-reply"</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;<span class="name">strong</span>&gt;</span></span><span class="template-variable">&#123;&#123;topic.reply_count&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">strong</span>&gt;</span> 回复</span></div><div class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"reply-list"</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></div><div class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"item in topic.replies"</span>&gt;</span></span></div><div class="line"><span class="xml">                        <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"user"</span>&gt;</span></span></div><div class="line"><span class="xml">                            <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">:to</span>=<span class="string">"&#123;name:'user',params:&#123;loginname:item.author.loginname&#125;&#125;"</span> &gt;</span></span></div><div class="line"><span class="xml">                                <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"head"</span> <span class="attr">:src</span>=<span class="string">"item.author.avatar_url"</span>/&gt;</span></span></div><div class="line"><span class="xml">                            <span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span></div><div class="line"><span class="xml">                            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"info"</span>&gt;</span></span></div><div class="line"><span class="xml">                                <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"cl"</span>&gt;</span></span></div><div class="line"><span class="xml">                                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"name"</span> <span class="attr">v-text</span>=<span class="string">"item.author.loginname"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"name mt10"</span>&gt;</span></span></div><div class="line"><span class="xml">                                        <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                                        发布于:</span><span class="template-variable">&#123;&#123;item.create_at | getLastTimeStr(true)&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                                <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                                <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"cr"</span>&gt;</span></span></div><div class="line"><span class="xml">                                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"iconfont icon"</span></span></span></div><div class="line"><span class="xml">                                        :class="&#123;'uped':isUps(item.ups)&#125;"</span></div><div class="line"><span class="xml">                                        @click="upReply(item)"&gt;&amp;#xe608;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                                    </span><span class="template-variable">&#123;&#123;item.ups.length&#125;&#125;</span><span class="xml"></span></div><div class="line"><span class="xml">                                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"iconfont icon"</span> @<span class="attr">click</span>=<span class="string">"addReply(item.id)"</span>&gt;</span>&amp;#xe609;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                                <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">                        <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span></div><div class="line"><span class="xml">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"reply_content"</span> <span class="attr">v-html</span>=<span class="string">"item.content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">                        <span class="tag">&lt;<span class="name">nv-reply</span> <span class="attr">:topic.sync</span>=<span class="string">"topic"</span></span></span></div><div class="line"><span class="xml">                                :topic-id="topicId"</span></div><div class="line"><span class="xml">                                :reply-id="item.id"</span></div><div class="line"><span class="xml">                                :reply-to="item.author.loginname"</span></div><div class="line"><span class="xml">                                :show.sync="curReplyId"</span></div><div class="line"><span class="xml">                                @close="hideItemReply"</span></div><div class="line"><span class="xml">                                v-if="userInfo.userId &amp;&amp; curReplyId === item.id"&gt;<span class="tag">&lt;/<span class="name">nv-reply</span>&gt;</span></span></div><div class="line"><span class="xml">                    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">nv-top</span>&gt;</span><span class="tag">&lt;/<span class="name">nv-top</span>&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">nv-reply</span> <span class="attr">v-if</span>=<span class="string">"userInfo.userId"</span></span></span></div><div class="line"><span class="xml">                    :topic="topic"</span></div><div class="line"><span class="xml">                    :topic-id="topicId"&gt;</span></div><div class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">nv-reply</span>&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'no-data'</span> <span class="attr">v-if</span>=<span class="string">"noData"</span>&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"iconfont icon-empty"</span>&gt;</span>&amp;#xe60a;<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span></div><div class="line"><span class="xml">            该话题不存在!</span></div><div class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span></div><div class="line"><span class="xml">    import $ from 'webpack-zepto';</span></div><div class="line"><span class="xml">    import utils from '../libs/utils.js';</span></div><div class="line"><span class="xml">    import nvHead from '../components/header.vue';</span></div><div class="line"><span class="xml">    import nvReply from '../components/reply.vue';</span></div><div class="line"><span class="xml">    import nvTop from '../components/backtotop.vue';</span></div><div class="line"><span class="xml">    import &#123;</span></div><div class="line"><span class="xml">        mapGetters</span></div><div class="line"><span class="xml">    &#125; from 'vuex';</span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">    export default &#123;</span></div><div class="line"><span class="xml">        data() &#123;</span></div><div class="line"><span class="xml">            return &#123;</span></div><div class="line"><span class="xml">                showMenu: false, // 是否展开左侧菜单</span></div><div class="line"><span class="xml">                topic: &#123;&#125;, // 主题</span></div><div class="line"><span class="xml">                noData: false,</span></div><div class="line"><span class="xml">                topicId: '',</span></div><div class="line"><span class="xml">                curReplyId: ''</span></div><div class="line"><span class="xml">            &#125;;</span></div><div class="line"><span class="xml">        &#125;,</span></div><div class="line"><span class="xml">        computed: &#123;</span></div><div class="line"><span class="xml">            ...mapGetters(&#123;</span></div><div class="line"><span class="xml">                userInfo: 'getUserInfo'</span></div><div class="line"><span class="xml">            &#125;)</span></div><div class="line"><span class="xml">        &#125;,</span></div><div class="line"><span class="xml">        mounted() &#123;</span></div><div class="line"><span class="xml">            // 隐藏左侧展开菜单</span></div><div class="line"><span class="xml">            this.showMenu = false;</span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">            // 获取url传的tab参数</span></div><div class="line"><span class="xml">            this.topicId = this.$route.params.id;</span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">            // 加载主题数据</span></div><div class="line"><span class="xml">            $.get('https://cnodejs.org/api/v1/topic/' + this.topicId, (d) =&gt; &#123;</span></div><div class="line"><span class="xml">                if (d &amp;&amp; d.data) &#123;</span></div><div class="line"><span class="xml">                    this.topic = d.data;</span></div><div class="line"><span class="xml">                &#125; else &#123;</span></div><div class="line"><span class="xml">                    this.noData = true;</span></div><div class="line"><span class="xml">                &#125;</span></div><div class="line"><span class="xml">            &#125;);</span></div><div class="line"><span class="xml">        &#125;,</span></div><div class="line"><span class="xml">        methods: &#123;</span></div><div class="line"><span class="xml">            getTabInfo(tab, good = false, top, isClass) &#123;</span></div><div class="line"><span class="xml">                return utils.getTabInfo(tab, good, top, isClass);</span></div><div class="line"><span class="xml">            &#125;,</span></div><div class="line"><span class="xml">            getLastTimeStr(time, ago) &#123;</span></div><div class="line"><span class="xml">                return utils.getLastTimeStr(time, ago);</span></div><div class="line"><span class="xml">            &#125;,</span></div><div class="line"><span class="xml">            isUps(ups) &#123;</span></div><div class="line"><span class="xml">                return $.inArray(this.userInfo.userId, ups) &gt;= 0;</span></div><div class="line"><span class="xml">            &#125;,</span></div><div class="line"><span class="xml">            addReply(id) &#123;</span></div><div class="line"><span class="xml">                this.curReplyId = id;</span></div><div class="line"><span class="xml">                if (!this.userInfo.userId) &#123;</span></div><div class="line"><span class="xml">                    this.$router.push(&#123;</span></div><div class="line"><span class="xml">                        name: 'login',</span></div><div class="line"><span class="xml">                        params: &#123;</span></div><div class="line"><span class="xml">                            redirect: encodeURIComponent(this.$route.path)</span></div><div class="line"><span class="xml">                        &#125;</span></div><div class="line"><span class="xml">                    &#125;);</span></div><div class="line"><span class="xml">                &#125;</span></div><div class="line"><span class="xml">            &#125;,</span></div><div class="line"><span class="xml">            hideItemReply() &#123;</span></div><div class="line"><span class="xml">                this.curReplyId = '';</span></div><div class="line"><span class="xml">            &#125;,</span></div><div class="line"><span class="xml">            upReply(item) &#123;</span></div><div class="line"><span class="xml">                if (!this.userInfo.userId) &#123;</span></div><div class="line"><span class="xml">                    this.$router.push(&#123;</span></div><div class="line"><span class="xml">                        name: 'login',</span></div><div class="line"><span class="xml">                        params: &#123;</span></div><div class="line"><span class="xml">                            redirect: encodeURIComponent(this.$route.path)</span></div><div class="line"><span class="xml">                        &#125;</span></div><div class="line"><span class="xml">                    &#125;);</span></div><div class="line"><span class="xml">                &#125; else &#123;</span></div><div class="line"><span class="xml">                    $.ajax(&#123;</span></div><div class="line"><span class="xml">                        type: 'POST',</span></div><div class="line"><span class="xml">                        url: 'https://cnodejs.org/api/v1/reply/' + item.id + '/ups',</span></div><div class="line"><span class="xml">                        data: &#123;</span></div><div class="line"><span class="xml">                            accesstoken: this.userInfo.token</span></div><div class="line"><span class="xml">                        &#125;,</span></div><div class="line"><span class="xml">                        dataType: 'json',</span></div><div class="line"><span class="xml">                        success: (res) =&gt; &#123;</span></div><div class="line"><span class="xml">                            if (res.success) &#123;</span></div><div class="line"><span class="xml">                                if (res.action === 'down') &#123;</span></div><div class="line"><span class="xml">                                    let index = $.inArray(this.userInfo.userId, item.ups);</span></div><div class="line"><span class="xml">                                    item.ups.splice(index, 1);</span></div><div class="line"><span class="xml">                                &#125; else &#123;</span></div><div class="line"><span class="xml">                                    item.ups.push(this.userInfo.userId);</span></div><div class="line"><span class="xml">                                &#125;</span></div><div class="line"><span class="xml">                            &#125;</span></div><div class="line"><span class="xml">                        &#125;,</span></div><div class="line"><span class="xml">                        error: (res) =&gt; &#123;</span></div><div class="line"><span class="xml">                            let error = JSON.parse(res.responseText);</span></div><div class="line"><span class="xml">                            this.$alert(error.error_msg);</span></div><div class="line"><span class="xml">                            return false;</span></div><div class="line"><span class="xml">                        &#125;</span></div><div class="line"><span class="xml">                    &#125;);</span></div><div class="line"><span class="xml">                &#125;</span></div><div class="line"><span class="xml">            &#125;</span></div><div class="line"><span class="xml">        &#125;,</span></div><div class="line"><span class="xml">        components: &#123;</span></div><div class="line"><span class="xml">            nvHead,</span></div><div class="line"><span class="xml">            nvReply,</span></div><div class="line"><span class="xml">            nvTop</span></div><div class="line"><span class="xml">        &#125;</span></div><div class="line"><span class="xml">    &#125;;</span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">&#125;</span></div></pre></td></tr></table></figure></p>
+<p>依然是有一个fix header 和list中一样<br>我们继续看看第二部分,构成了页面内容的只要部分<br><figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line"><span class="xml">\\是否展示topic title</span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"page"</span></span></span></div><div class="line"><span class="xml">                :class="</span><span class="template-variable">&#123;'show-menu':showMenu&#125;</span><span class="xml">"</span></div><div class="line"><span class="xml">                v-if="topic.title"&gt;</span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">"topic-title"</span> <span class="attr">v-text</span>=<span class="string">"topic.title"</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></div><div class="line"><span class="xml">            \\author个人信息 照片等</span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"author-info"</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"avatar"</span> <span class="attr">:src</span>=<span class="string">"topic.author.avatar_url"</span> /&gt;</span></span></div><div class="line"><span class="xml">                \\author 登录名</span></div><div class="line"><span class="xml">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col"</span>&gt;</span></span></div><div class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">span</span>&gt;</span></span><span class="template-variable">&#123;&#123;topic.author.loginname&#125;</span><span class="xml">&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                    \\发布时间</span></div><div class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">time</span>&gt;</span></span></div><div class="line"><span class="xml">                        发布于:</span><span class="template-variable">&#123;&#123;topic.create_at | getLastTimeStr(true)&#125;</span><span class="xml">&#125;</span></div><div class="line"><span class="xml">                    <span class="tag">&lt;/<span class="name">time</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span></span></div><div class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"tag"</span></span></span></div><div class="line"><span class="xml">                            :class="getTabInfo(topic.tab, topic.good, topic.top, true)"</span></div><div class="line"><span class="xml">                            v-text="getTabInfo(topic.tab, topic.good, topic.top, false)"&gt;</span></div><div class="line"><span class="xml">                    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                    \\浏览量</span></div><div class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"name"</span>&gt;</span></span><span class="template-variable">&#123;&#123;topic.visit_count&#125;</span><span class="xml">&#125;次浏览<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">'markdown-body topic-content'</span> <span class="attr">v-html</span>=<span class="string">"topic.content"</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span></div><div class="line"><span class="xml">            \\  回复数  </span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">h3</span> <span class="attr">class</span>=<span class="string">"topic-reply"</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;<span class="name">strong</span>&gt;</span></span><span class="template-variable">&#123;&#123;topic.reply_count&#125;</span><span class="xml">&#125;<span class="tag">&lt;/<span class="name">strong</span>&gt;</span> 回复</span></div><div class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></div><div class="line"><span class="xml">            \\ 回复列表   </span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"reply-list"</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></div><div class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"item in topic.replies"</span>&gt;</span></span></div><div class="line"><span class="xml">                        <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"user"</span>&gt;</span></span></div><div class="line"><span class="xml">                            <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">:to</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;name:'user',params:&#123;loginname:item.author.loginname&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span> &gt;</span></span></div><div class="line"><span class="xml">                                <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"head"</span> <span class="attr">:src</span>=<span class="string">"item.author.avatar_url"</span>/&gt;</span></span></div><div class="line"><span class="xml">                            <span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span></div><div class="line"><span class="xml">                            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"info"</span>&gt;</span></span></div><div class="line"><span class="xml">                                <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"cl"</span>&gt;</span></span></div><div class="line"><span class="xml">                                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"name"</span> <span class="attr">v-text</span>=<span class="string">"item.author.loginname"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"name mt10"</span>&gt;</span></span></div><div class="line"><span class="xml">                                        <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                                        发布于:</span><span class="template-variable">&#123;&#123;item.create_at | getLastTimeStr(true)&#125;</span><span class="xml">&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                                <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                                <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"cr"</span>&gt;</span></span></div><div class="line"><span class="xml">                                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"iconfont icon"</span></span></span></div><div class="line"><span class="xml">                                        :class="</span><span class="template-variable">&#123;'uped':isUps(item.ups)&#125;</span><span class="xml">"</span></div><div class="line"><span class="xml">                                        @click="upReply(item)"&gt;&amp;#xe608;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                                    </span><span class="template-variable">&#123;&#123;item.ups.length&#125;</span><span class="xml">&#125;</span></div><div class="line"><span class="xml">            \\拿到relpyid 且判断用户是否登陆</span></div><div class="line"><span class="xml">                                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"iconfont icon"</span> @<span class="attr">click</span>=<span class="string">"addReply(item.id)"</span>&gt;</span>&amp;#xe609;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                                <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">                            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">                        <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span></div><div class="line"><span class="xml">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"reply_content"</span> <span class="attr">v-html</span>=<span class="string">"item.content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">                        <span class="tag">&lt;<span class="name">nv-reply</span> <span class="attr">:topic.sync</span>=<span class="string">"topic"</span></span></span></div><div class="line"><span class="xml">                                :topic-id="topicId"</span></div><div class="line"><span class="xml">                                :reply-id="item.id"</span></div><div class="line"><span class="xml">                                :reply-to="item.author.loginname"</span></div><div class="line"><span class="xml">                                :show.sync="curReplyId"</span></div><div class="line"><span class="xml">                                @close="hideItemReply"</span></div><div class="line"><span class="xml">                                v-if="userInfo.userId &amp;&amp; curReplyId === item.id"&gt;<span class="tag">&lt;/<span class="name">nv-reply</span>&gt;</span></span></div><div class="line"><span class="xml">                    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></div><div class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">nv-top</span>&gt;</span><span class="tag">&lt;/<span class="name">nv-top</span>&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">nv-reply</span> <span class="attr">v-if</span>=<span class="string">"userInfo.userId"</span></span></span></div><div class="line"><span class="xml">                    :topic="topic"</span></div><div class="line"><span class="xml">                    :topic-id="topicId"&gt;</span></div><div class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">nv-reply</span>&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'no-data'</span> <span class="attr">v-if</span>=<span class="string">"noData"</span>&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"iconfont icon-empty"</span>&gt;</span>&amp;#xe60a;<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span></div><div class="line"><span class="xml">            该话题不存在!</span></div><div class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<p>非常简单主要是进行topic的展示 回复 更新等</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/07/vue12/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1460,280 +1707,11 @@ reverse()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/20/vue4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="seven">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/image/my.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QA seven's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/20/vue4/" itemprop="url">小QA学习前端系列之vue Class 与 Style 绑定</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-20T10:54:57+08:00">
-                2017-10-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="小QA学习前端系列之vue-Class-与-Style-绑定"><a href="#小QA学习前端系列之vue-Class-与-Style-绑定" class="headerlink" title="小QA学习前端系列之vue Class 与 Style 绑定"></a>小QA学习前端系列之vue Class 与 Style 绑定</h1><h2 id="绑定-HTML-Class"><a href="#绑定-HTML-Class" class="headerlink" title="绑定 HTML Class"></a>绑定 HTML Class</h2><p>对象语法<br>使用 v-bind:class </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div v-bind:<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123; active: isActive &#125;"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure>
-<p>当然也可以绑定一个 data对象</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="string">&lt;div</span> <span class="attr">v-bind:class="classObject"&gt;&lt;/div&gt;</span></div><div class="line"></div><div class="line"><span class="attr">data:</span> <span class="string">&#123;</span></div><div class="line"><span class="attr">  classObject:</span> <span class="string">&#123;</span></div><div class="line"><span class="attr">    active:</span> <span class="literal">true</span><span class="string">,</span></div><div class="line"><span class="attr">    'text-danger':</span> <span class="literal">false</span></div><div class="line">  <span class="string">&#125;</span></div><div class="line"><span class="string">&#125;</span></div></pre></td></tr></table></figure>
-<p>也可以绑定一个返回对象的计算属性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;div v-bind:<span class="class"><span class="keyword">class</span></span>=<span class="string">"classObject"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"></div><div class="line">data: &#123;</div><div class="line">  isActive: <span class="literal">true</span>,</div><div class="line">  error: <span class="literal">null</span></div><div class="line">&#125;,</div><div class="line">computed: &#123;</div><div class="line">  classObject: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      active: <span class="keyword">this</span>.isActive &amp;&amp; !<span class="keyword">this</span>.error,</div><div class="line">      <span class="string">'text-danger'</span>: <span class="keyword">this</span>.error &amp;&amp; <span class="keyword">this</span>.error.type === <span class="string">'fatal'</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>数组语法<br>我们可以把一个数组传给 v-bind:class，以应用一个 class 列表：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;div v-bind:<span class="class"><span class="keyword">class</span></span>=<span class="string">"[activeClass, errorClass]"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"></div><div class="line">data: &#123;</div><div class="line">  activeClass: <span class="string">'active'</span>,</div><div class="line">  errorClass: <span class="string">'text-danger'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>用在组件上</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">例如，如果你声明了这个组件：</div><div class="line"></div><div class="line"><span class="type">Vue</span>.component(<span class="symbol">'my</span>-component', &#123;</div><div class="line">  template: '&lt;p <span class="class"><span class="keyword">class</span></span>=<span class="string">"foo bar"</span>&gt;<span class="type">Hi</span>&lt;/p&gt;'</div><div class="line">&#125;)</div><div class="line"></div><div class="line">然后在使用它的时候添加一些 <span class="class"><span class="keyword">class</span><span class="title">：</span></span></div><div class="line"><span class="class"></span></div><div class="line"><span class="class"><span class="title">&lt;my-component</span> <span class="title">class=</span>"<span class="title">baz</span> <span class="title">boo</span>"<span class="title">&gt;&lt;/my-component&gt;</span></span></div><div class="line"><span class="class"></span></div><div class="line"><span class="class"><span class="title">HTML</span> <span class="title">将被渲染为</span></span>:</div><div class="line"></div><div class="line">&lt;p <span class="class"><span class="keyword">class</span></span>=<span class="string">"foo bar baz boo"</span>&gt;<span class="type">Hi</span>&lt;/p&gt;</div><div class="line"></div><div class="line">对于带数据绑定 <span class="class"><span class="keyword">class</span> <span class="title">也同样适用：</span></span></div><div class="line"><span class="class"></span></div><div class="line"><span class="class"><span class="title">&lt;my-component</span> <span class="title">v-bind</span></span>:<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123; active: isActive &#125;"</span>&gt;&lt;/my-component&gt;</div><div class="line"></div><div class="line">当 isActive 为真值 (译者注：truthy 不是 <span class="literal">true</span>，参考这里) 时，<span class="type">HTML</span> 将被渲染成为：</div><div class="line"></div><div class="line">&lt;p <span class="class"><span class="keyword">class</span></span>=<span class="string">"foo bar active"</span>&gt;<span class="type">Hi</span>&lt;/p&gt;</div></pre></td></tr></table></figure>
-<h2 id="绑定内联样式"><a href="#绑定内联样式" class="headerlink" title="绑定内联样式"></a>绑定内联样式</h2><h3 id="对象语法"><a href="#对象语法" class="headerlink" title="对象语法"></a>对象语法</h3><p>v-bind:style 的对象语法十分直观——看着非常像 CSS，但其实是一个 JavaScript 对象。CSS 属性名可以用驼峰式 (camelCase) 或短横线分隔 (kebab-case，记得用单引号括起来) 来命名：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="string">&lt;div</span> <span class="attr">v-bind:style="&#123;</span> <span class="attr">color:</span> <span class="string">activeColor,</span> <span class="attr">fontSize:</span> <span class="string">fontSize</span> <span class="string">+</span> <span class="string">'px'</span> <span class="string">&#125;"&gt;&lt;/div&gt;</span></div><div class="line"></div><div class="line"><span class="attr">data:</span> <span class="string">&#123;</span></div><div class="line"><span class="attr">  activeColor:</span> <span class="string">'red'</span><span class="string">,</span></div><div class="line"><span class="attr">  fontSize:</span> <span class="number">30</span></div><div class="line"><span class="string">&#125;</span></div></pre></td></tr></table></figure></p>
-<h3 id="绑定到一个样式对象"><a href="#绑定到一个样式对象" class="headerlink" title="绑定到一个样式对象"></a>绑定到一个样式对象</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">div</span> v-bind:style=<span class="string">"styleObject"</span>&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">data: &#123;</div><div class="line">  styleObject: &#123;</div><div class="line">    <span class="attribute">color</span>: <span class="string">'red'</span>,</div><div class="line">    fontSize: <span class="string">'13px'</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="数组语法"><a href="#数组语法" class="headerlink" title="数组语法"></a>数组语法</h3><p>v-bind:style 的数组语法可以将多个样式对象应用到同一个元素上：<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> v-<span class="keyword">bind</span>:style=<span class="string">"[baseStyles, overridingStyles]"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure></p>
-<h3 id="自动添加前缀"><a href="#自动添加前缀" class="headerlink" title="自动添加前缀"></a>自动添加前缀</h3><p>当 v-bind:style 使用需要添加浏览器引擎前缀的 CSS 属性时，如 transform，Vue.js 会自动侦测并添加相应的前缀。</p>
-<h3 id="多重值"><a href="#多重值" class="headerlink" title="多重值"></a>多重值</h3><p>从 2.3.0 起你可以为 style 绑定中的属性提供一个包含多个值的数组，常用于提供多个带前缀的值，例如：</p>
-<div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
-
-<p>这样写只会渲染数组中最后一个被浏览器支持的值。在本例中，如果浏览器支持不带浏览器前缀的 flexbox，那么就只会渲染 display: flex。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/19/vue3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="seven">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/image/my.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QA seven's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/19/vue3/" itemprop="url">小QA学习前端系列之vue计算属性和观察者</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-19T09:50:14+08:00">
-                2017-10-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="小QA学习前端系列之vue计算属性和观察者"><a href="#小QA学习前端系列之vue计算属性和观察者" class="headerlink" title="小QA学习前端系列之vue计算属性和观察者"></a>小QA学习前端系列之vue计算属性和观察者</h1><h2 id="对于任何复杂逻辑，你都应当使用计算属性"><a href="#对于任何复杂逻辑，你都应当使用计算属性" class="headerlink" title="对于任何复杂逻辑，你都应当使用计算属性"></a>对于任何复杂逻辑，你都应当使用计算属性</h2><p>我可以在模板放入逻辑<br><figure class="highlight axapta"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> id=<span class="string">"example"</span>&gt;</div><div class="line">  &#123;&#123; message.split(<span class="string">''</span>).<span class="keyword">reverse</span>().join(<span class="string">''</span>) &#125;&#125;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure></p>
-<p>也可以用$watch来计算逻辑<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;div id=<span class="string">"demo"</span>&gt;&#123;&#123;fullName&#125;&#125;&lt;/div&gt;</div><div class="line"></div><div class="line"><span class="keyword">var</span> vm = new Vue(&#123;</div><div class="line">  <span class="keyword">data</span>: &#123;</div><div class="line">    firstName: <span class="string">'Foo'</span>,</div><div class="line">    lastName: <span class="string">'Bar'</span>,</div><div class="line">    fullName: <span class="string">'Foo Bar'</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">vm.$watch(<span class="string">'firstName'</span>, function (<span class="keyword">val</span>) &#123;</div><div class="line">  <span class="keyword">this</span>.fullName = <span class="keyword">val</span> + <span class="string">' '</span> + <span class="keyword">this</span>.lastName</div><div class="line">&#125;)</div><div class="line"></div><div class="line">vm.$watch(<span class="string">'lastName'</span>, function (<span class="keyword">val</span>) &#123;</div><div class="line">  <span class="keyword">this</span>.fullName = <span class="keyword">this</span>.firstName + <span class="string">' '</span> + <span class="keyword">val</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>通常情况下，使用计算属性会比使用过程式的$watch回调更合适<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</div><div class="line">    el:<span class="string">'#demo'</span>,</div><div class="line">    data: &#123;</div><div class="line">        firstName: <span class="string">'Foo'</span>,</div><div class="line">        lastName: <span class="string">'Bar'</span></div><div class="line">    &#125;,</div><div class="line">    computed: &#123;</div><div class="line">        fullName: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">' '</span> + <span class="keyword">this</span>.lastName</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>是不是代码量少多了，开心吧<br>但要记住<strong>计算属性是基于它们的依赖进行缓存的</strong>，而直接在vue的method中每当触发重新渲染时，调用方法将总会再次执行函数。<br>如果你不想使用缓存 也可以 只需要cache关闭开关就好<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">computed: &#123;</div><div class="line">  example: &#123;</div><div class="line">    cache: <span class="literal">false</span>,</div><div class="line">    <span class="keyword">get</span>: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</div><div class="line">      <span class="keyword">return</span> Date.now() + <span class="keyword">this</span>.msg</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="计算属性的-setter"><a href="#计算属性的-setter" class="headerlink" title="计算属性的 setter"></a>计算属性的 setter</h2><p>计算属性默认只有 getter ，不过在需要时你也可以提供一个 setter ：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// ...</span></div><div class="line">computed: &#123;</div><div class="line">  fullName: &#123;</div><div class="line">    <span class="comment">// getter</span></div><div class="line">    <span class="keyword">get</span>: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">' '</span> + <span class="keyword">this</span>.lastName</div><div class="line">    &#125;,</div><div class="line">    <span class="comment">// setter</span></div><div class="line">    <span class="keyword">set</span>: <span class="function"><span class="keyword">function</span> <span class="params">(newValue)</span> </span>&#123;</div><div class="line">      <span class="keyword">var</span> names = newValue.split(<span class="string">' '</span>)</div><div class="line">      <span class="keyword">this</span>.firstName = names[<span class="number">0</span>]</div><div class="line">      <span class="keyword">this</span>.lastName = names[names.length - <span class="number">1</span>]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// ...</span></div></pre></td></tr></table></figure></p>
-<p>现在再运行 vm.fullName = ‘John Doe’ 时，setter 会被调用，vm.firstName 和 vm.lastName 也会相应地被更新。</p>
-<h2 id="侦听器"><a href="#侦听器" class="headerlink" title="侦听器"></a>侦听器</h2><p>那什么时候用watch<br>虽然计算属性在大多数情况下更合适，但有时也需要一个自定义的侦听器。这就是为什么 Vue 通过 watch 选项提供了一个更通用的方法，来响应数据的变化。当<strong>需要在数据变化时执行异步或开销较大的操作时，这个方式是最有用的</strong>。</p>
-<p>例如：</p>
-<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"watch-example"</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span></div><div class="line"><span class="xml">    Ask a yes/no question:</span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"question"</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line"><span class="xml">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><span class="template-variable">&#123;&#123; answer &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml"><span class="comment">&lt;!-- 因为 AJAX 库和通用工具的生态已经相当丰富，Vue 核心代码没有重复 --&gt;</span></span></div><div class="line"><span class="xml"><span class="comment">&lt;!-- 提供这些功能以保持精简。这也可以让你自由选择自己更熟悉的工具。 --&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span></div><div class="line"><span class="xml">var watchExampleVM = new Vue(&#123;</span></div><div class="line"><span class="xml">  el: '#watch-example',</span></div><div class="line"><span class="xml">  data: &#123;</span></div><div class="line"><span class="xml">    question: '',</span></div><div class="line"><span class="xml">    answer: 'I cannot give you an answer until you ask a question!'</span></div><div class="line"><span class="xml">  &#125;,</span></div><div class="line"><span class="xml">  watch: &#123;</span></div><div class="line"><span class="xml">    // 如果 `question` 发生改变，这个函数就会运行</span></div><div class="line"><span class="xml">    question: function (newQuestion) &#123;</span></div><div class="line"><span class="xml">      this.answer = 'Waiting for you to stop typing...'</span></div><div class="line"><span class="xml">      this.getAnswer()</span></div><div class="line"><span class="xml">    &#125;</span></div><div class="line"><span class="xml">  &#125;,</span></div><div class="line"><span class="xml">  methods: &#123;</span></div><div class="line"><span class="xml">    // `_.debounce` 是一个通过 Lodash 限制操作频率的函数。</span></div><div class="line"><span class="xml">    // 在这个例子中，我们希望限制访问 yesno.wtf/api 的频率</span></div><div class="line"><span class="xml">    // AJAX 请求直到用户输入完毕才会发出。想要了解更多关于</span></div><div class="line"><span class="xml">    // `_.debounce` 函数 (及其近亲 `_.throttle`) 的知识，</span></div><div class="line"><span class="xml">    // 请参考：https://lodash.com/docs#debounce</span></div><div class="line"><span class="xml">    getAnswer: _.debounce(</span></div><div class="line"><span class="xml">      function () &#123;</span></div><div class="line"><span class="xml">        if (this.question.indexOf('?') === -1) &#123;</span></div><div class="line"><span class="xml">          this.answer = 'Questions usually contain a question mark. ;-)'</span></div><div class="line"><span class="xml">          return</span></div><div class="line"><span class="xml">        &#125;</span></div><div class="line"><span class="xml">        this.answer = 'Thinking...'</span></div><div class="line"><span class="xml">        var vm = this</span></div><div class="line"><span class="xml">        axios.get('https://yesno.wtf/api')</span></div><div class="line"><span class="xml">          .then(function (response) &#123;</span></div><div class="line"><span class="xml">            vm.answer = _.capitalize(response.data.answer)</span></div><div class="line"><span class="xml">          &#125;)</span></div><div class="line"><span class="xml">          .catch(function (error) &#123;</span></div><div class="line"><span class="xml">            vm.answer = 'Error! Could not reach the API. ' + error</span></div><div class="line"><span class="xml">          &#125;)</span></div><div class="line"><span class="xml">      &#125;,</span></div><div class="line"><span class="xml">      // 这是我们为判定用户停止输入等待的毫秒数</span></div><div class="line"><span class="xml">      500</span></div><div class="line"><span class="xml">    )</span></div><div class="line"><span class="xml">  &#125;</span></div><div class="line"><span class="xml">&#125;)</span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
-<p>结果：</p>
-<p>Ask a yes/no question:</p>
-<p>I cannot give you an answer until you ask a question!</p>
-<p>在这个示例中，使用 watch 选项允许我们执行异步操作 (访问一个 API)，限制我们执行该操作的频率，并在我们得到最终结果前，设置中间状态。这些都是计算属性无法做到的。</p>
-<p>除了 watch 选项之外，您还可以使用命令式的 vm.$watch API。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1779,7 +1757,7 @@ reverse()
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-count">42</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
